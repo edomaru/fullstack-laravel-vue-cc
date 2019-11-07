@@ -1,0 +1,281 @@
+WEBVTT
+
+0
+00: 00.900 -> 00: 01.510
+Hai
+
+1
+00: 01.680 -> 00: 07.050
+Selamat datang di kursus online fullstack web development dengan Laravel dan Vue.js kursus terbaik dan terlengkap
+
+2
+00: 07.050 -> 00: 14.190
+untuk mempelajari pembuatan aplikasi full stack web dengan Laravel, Vue.js, bootstrap, dan teknologi lainnya.
+
+3
+00: 14.190 -> 00: 20.620
+Nama saya Eding Muhamad Saprudin dan saya adalah Fullstack web developer dengan pengalaman programming lebih dari satu dekade.
+
+4
+00: 20.880 -> 00: 25.710
+Nah tanpa basa-basi lagi saya ingin memberi Anda gambaran singkat tentang proyek apa yang akan kita bangun
+
+5
+00: 25.710 -> 00: 29.190
+dalam kursus ini, dan apa yang akan Anda pelajari.
+
+6
+00: 29.250 -> 00: 32.560
+Jadi ini adalah proyek utama yang akan kita bangun di kursus ini.
+
+7
+00: 32.740 -> 00: 34.000
+Saya menyebutnya Laravel Q/A
+
+8
+00: 34.020 -> 00: 41.540
+Single page Application atau SPA yang terinspirasi oleh stackoverflow. Di halaman depan
+
+9
+00: 41.550 -> 00: 45.500
+kita akan memiliki daftar pertanyaan. Jika Anda gulir ke bawah
+
+10
+00: 45.640 -> 00: 52.490
+Ada pagination sederhana yang memungkinkan kita menavigasi ke halaman sebelumnya atau berikutnya. Jika kita klik yang tombol older
+
+11
+00: 52.490 -> 00: 55.810
+Ia akan membawa kita ke halaman berikutnya.
+
+12
+00: 55.850 -> 00: 59.100
+Seperti yang Anda bisa lihat URL berubah
+
+13
+00: 59.120 -> 01: 01.870
+setiap kita menekan tombol tanpa perlu melakukan reload halaman.
+
+14
+01: 02.120 -> 01: 08.360
+Ketika kita mencapai halaman pertama atau terakhir tombol akan non-aktif. Untuk membuat pertanyaan baru
+
+15
+01: 09.050 -> 01: 11.430
+kita dapat menekan tombol Ask Question.
+
+16
+01: 11.810 -> 01: 19.580
+Kita akan diarahkan ke halaman ask question. Di halaman ini kita bisa memasukkan judul pertanyaan dan isi pertanyaan kemudian
+
+17
+01: 19.580 -> 01: 27.420
+tekan tombol simpan. Pertanyaan akan disimpan ke dalam database dan akan mengarahkan kita kembali ke halaman all questions.
+
+18
+01: 28.050 -> 01: 31.080
+Jika kita pilih satu pertanyaan, kita akan diarahkan ke pertanyaan
+
+19
+01: 31.080 -> 01: 39.080
+detail. Halaman ini berisi pertanyaan beserta jawaban terkait. Jika kita menekan tombol load more answer
+
+20
+01: 39.800 -> 01: 41.450
+jawaban lainnya yang terkait akan dimuat.
+
+21
+01: 42.720 -> 01: 46.280
+Anda dapat menjawab pertanyaan tertentu dalam form ini.
+
+22
+01: 46.320 -> 01: 51.480
+Anda menulis dalam sintaks markdown dan Anda juga dapat melakukan pratinjau pertanyaan Anda sebelum benar-benar mengklik
+
+23
+01: 51.480 -> 01: 53.710
+tombol kirim.
+
+24
+01: 53.940 -> 02: 00.780
+Nah pengguna aktif saat ini juga dapat melihat semua pertanyaan dan jawaban yang telah dibuat dengan mengakses
+
+25
+02: 00.860 -> 02: 09.780
+Link ini. Di halaman ini mereka dapat melihat semua pertanyaan dan jawaban, hanya pertanyaan saja
+
+26
+02: 11.450 -> 02: 17.030
+atau jawaban saga. Jadi itulah proyek yang akan kita bangun dalam kursus ini.
+
+27
+02: 17.030 -> 02: 19.620
+Sekarang mari kita lihat bagaimana kursus ini disusun.
+
+28
+02: 19.750 -> 02: 25.270
+Kita mulai dengan Bagian 2 di mana kita akan mengatur proyek kita dan mulai membuat operasi CRUD pertama kita untuk
+
+29
+02: 25.270 -> 02: 27.400
+mengelola pertanyaan dari aplikasi
+
+30
+02: 27.400 -> 02: 28.310
+Laravel Q/A
+
+31
+02: 28.360 -> 02: 35.380
+Anda juga akan mempelajari beberapa fitur Laravel seperti migrasi database, Database Seed, model factory, accessor
+
+32
+02: 35.380 -> 02: 41.940
+dan muttators, validasi formulir, otentikasi, dan otorisasi. dalam Bagian 3
+
+33
+02: 41.950 -> 02: 47.650
+Kita akan membangun CRUD kedua kita untuk mengelola jawaban dan mempelajari beberapa teknik seperti Eloquent
+
+34
+02: 47.670 -> 02: 54.850
+relationship, eloquent event, mengintegrasikan fontawesome 5, memanfaatkan laravel mix untuk menulis dan mengkompile kode sass
+
+35
+02: 54.850 -> 02: 59.510
+dan kode JavaScript dan banyak lagi. Di bagian 4
+
+36
+02: 59.540 -> 03: 04.300
+Kita akan membangun sistem voting seperti menandai pertanyaan sebagai favorit,
+
+37
+03: 04.300 -> 03: 06.340
+menandai jawaban sebagai jawaban terbaik,
+
+38
+03: 06.490 -> 03: 12.700
+Voting naik atau voting turun untuk pertanyaan dan jawaban. Di bagian ini Anda akan mempelajari beberapa teknik seperti
+
+39
+03: 12.700 -> 03: 19.850
+seperti menerapkan relasi Many to Many, many to many polymorphic dan banyak lagi. Setelah
+
+40
+03: 19.850 -> 03: 25.270
+Itu di Bagian 5 Anda akan belajar cara melakukan refactor kode dan menerapkan prinsip DRY.
+
+41
+03: 25.360 -> 03: 30.260
+untuk menjadikan kode Anda jauh lebih bersih dan lebih mudah dalam maintenance. Di bagian 6
+
+42
+03: 30.280 -> 03: 36.690
+kita akan mengintegrasikan Vue.js ke dalam aplikasi kita dan membuatnya lebih interaktif. Di bagian
+
+43
+03: 36.690 -> 03: 37.340
+7
+
+44
+03: 37.390 -> 03: 42.850
+Anda akan belajar bagaimana membuat komponen yang memungkinkan Anda menulis sintaks markdown dan melihat bagaimana tampilannya
+
+45
+03: 43.030 -> 03: 45.820
+sebelum Anda benar-benar menyimpannya ke dalam database Anda.
+
+46
+03: 45.820 -> 03: 51.590
+Anda juga akan belajar cara mengintegrasikan prism.js untuk membuat kode Anda terlihat cantil. Dalam Bagian 8
+
+47
+03: 51.590 -> 03: 54.080
+Anda akan belajar tentang pengembangan Restful API.
+
+48
+03: 54.080 -> 03: 58.570
+Anda akan belajar cara membuat API endpoint dan mengujinya pada Postman REST client.
+
+49
+03: 59.210 -> 04: 05.600
+Dan di bagian terakhir Anda akan belajar bagaimana membangun SPA atau Single Page application dengan Vue
+
+50
+04: 05.660 -> 04: 11.270
+dan Vue Router dan memanfaatkan API yang telah Anda buat di bagian sebelumnya.
+
+51
+04: 11.420 -> 04: 16.970
+Saya juga menyediakan appendix sebagai referensi tambahan untuk membantu Anda memahami topik tertentu
+
+52
+04: 17.180 -> 04: 18.890
+yang masih terkait dengan kursus ini.
+
+53
+04: 19.520 -> 04: 25.150
+Jadi misalnya jika Anda baru belajar Vue.js maka Anda dapat mempelajari Vue.js Fundamental terlebih dahulu
+
+54
+04: 25.190 -> 04: 31.760
+setelah menyelesaikan Bagian 5 dan sebelum melanjutkan ke Bagian 6. Di bagian ini Anda akan belajar dasar-dasar vue.js
+
+55
+04: 31.820 -> 04: 39.260
+seperti menulis hello word dengan vue.js, list rendering, conditional render, class binding, computed property dan
+
+56
+04: 39.260 -> 04: 42.680
+lain-lian. Kemudian di bagian upgrading Laravel app
+
+57
+04: 42.860 -> 04: 46.540
+Anda akan melihat cara mengupgrade aplikasi Laravel untuk menjadikannya up to date.
+
+58
+04: 46.670 -> 04: 52.550
+Kemudian jika Anda ingin meng-onlinekan aplikasi Laravel Anda, maka Anda dapat melihat bagaimana melakukannya pada bagian deploying Laravel app
+
+59
+04: 52.550 -> 04: 57.530
+In Heroku atau deploying Laravel app in digital ocean.
+
+60
+04: 57.650 -> 05: 02.880
+Baiklah jadi itu kira-kira proyek yang akan kita bangun dan bagaimana kursus disusun.
+
+61
+05: 04.370 -> 05: 05.740
+Nah di semua pelajaran
+
+62
+05: 05.840 -> 05: 12.260
+Saya selalu melakukan yang terbaik untuk menjelaskan setiap bit sintaks langkah demi langkah untuk memastikan bahwa Anda mengerti persis
+
+63
+05: 12.320 -> 05: 14.240
+apa yang sedang Anda buat.
+
+64
+05: 14.240 -> 05: 20.420
+Saya juga menyediakan repositori dengan branch berbeda untuk setiap pelajaran sehingga Anda bisa melihat
+
+65
+05: 20.420 -> 05: 26.870
+Materi pelajaran dan bandingkan dengan yang anda kerjakan kalau-kalau Anda mengalami error dan perlu memperbaikinya.
+
+66
+05: 26.870 -> 05: 32.540
+Dan jika Anda masih bingung maka Anda dapat ke Udemy Q/A dan Anda dapat memeriksa jika ada
+
+67
+05: 32.540 -> 05: 35.840
+siswa lain yang mungkin telah mengajukan pertanyaan yang sama dengan pertanyaan Anda.
+
+68
+05: 35.840 -> 05: 41.690
+Jika tidak ditemukan maka Anda dapat memposting pertanyaan Anda sendiri dan saya akan melakukan yang terbaik untuk membantu anda.
+
+69
+05: 41.810 -> 05: 43.580
+Baiklah mari kita mulai
