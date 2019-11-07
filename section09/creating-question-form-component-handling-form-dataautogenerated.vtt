@@ -1,0 +1,421 @@
+WEBVTT
+
+0
+00:02.040 --> 00:02.290
+All right
+
+1
+00:02.800 --> 00:08.060
+let's switch back over to our editor. Go to question from
+
+2
+00:10.930 --> 00:12.210
+and jump to handle submit.
+
+3
+00:16.010 --> 00:19.960
+Now since this form will also be used for edit question,
+
+4
+00:19.970 --> 00:27.030
+so in here we will not hit any endpoint instead 
+we will emit an event by saying this emit the
+
+5
+00:30.150 --> 00:40.170
+event name is going to be 'submitted'. Then we'll pass 
+an object containing the question title and body as
+
+6
+00:40.170 --> 00:49.080
+payload.
+
+7
+00:49.080 --> 00:53.790
+Now let's go to parent component 
+in this case create question page.
+
+8
+00:58.310 --> 01:04.880
+Here when we call question from component 
+we can listen to that event submitted.
+
+9
+01:08.860 --> 01:11.230
+So when submitted event fired
+
+10
+01:11.230 --> 01:20.200
+what are we gonna perform? Here we'll call create method. 
+So let's define this method in our script. Let's jump
+
+11
+01:20.200 --> 01:20.770
+to our script.
+
+12
+01:25.780 --> 01:28.050
+Here let's add methods property
+
+13
+01:31.020 --> 01:33.150
+in here let's define the create method.
+
+14
+01:38.130 --> 01:46.530
+This method will accept an argument data in this case. 
+In this method we are gonna hit our create question
+
+15
+01:46.530 --> 01:57.990
+endpoint by saying axios post forward slash 
+questions. Pass in data in the second argument
+
+16
+02:00.770 --> 02:05.960
+remember that we have set up create fresh 
+api token when working with passport.
+
+17
+02:06.920 --> 02:11.290
+So here we don't need to explicitly attach the access token. Here
+
+18
+02:11.300 --> 02:14.270
+let's chain in with then.
+
+19
+02:19.120 --> 02:20.740
+But for now we'll leave it blank.
+
+20
+02:23.830 --> 02:28.480
+Let's also chain in with catch to catch response error
+
+21
+02:38.190 --> 02:41.440
+and here let's console log the response error data for a while.
+
+22
+02:52.850 --> 02:54.610
+All right let's save all changes.
+
+23
+02:57.700 --> 02:58.940
+Now let's see how that look.
+
+24
+03:05.350 --> 03:05.820
+Here
+
+25
+03:05.860 --> 03:09.070
+let's leave the form empty, open the browser console
+
+26
+03:19.520 --> 03:26.580
+then hit this ask question button. Ups I get error unauthorized.
+
+27
+03:29.540 --> 03:29.910
+Okay
+
+28
+03:29.920 --> 03:31.960
+this occurred because I haven't log in.
+
+29
+03:32.950 --> 03:35.440
+So let me log in and come back here.
+
+30
+03:37.650 --> 03:40.260
+Okay let's leave the form empty
+
+31
+03:41.160 --> 03:42.450
+then hit this ask question button.
+
+32
+03:45.780 --> 03:47.090
+as you can see in the console
+
+33
+03:49.690 --> 03:52.720
+here we got the validation error messages in array.
+
+34
+03:53.050 --> 03:55.780
+We can grab that and show it in our form.
+
+35
+03:55.960 --> 03:59.930
+So back to our editor.
+
+36
+04:00.220 --> 04:04.270
+Now to show the validation error messages in our form here
+
+37
+04:04.270 --> 04:10.600
+we need to kind of send this error messages back 
+to our question form. But how can we do that?
+
+38
+04:12.520 --> 04:20.140
+Well for this situation I think it would be better to 
+use global event or event bus. So let's important
+
+39
+04:20.140 --> 04:21.700
+that on the top here.
+
+40
+04:32.320 --> 04:44.230
+Then here we can simply replace this console log 
+with event bus dot emit. So here if error occurred
+
+41
+04:44.590 --> 04:47.970
+we emit our event globally.
+
+42
+04:48.000 --> 04:51.330
+OK now we can listen to this event in question form.
+
+43
+04:51.700 --> 04:53.950
+So let's go to question form
+
+44
+04:59.890 --> 05:00.610
+and here
+
+45
+05:00.760 --> 05:05.550
+I think the best place to listen to the 
+error event is in mounted hook.
+
+46
+05:06.130 --> 05:09.160
+So let's call mounted
+
+47
+05:15.810 --> 05:16.340
+and here
+
+48
+05:16.350 --> 05:24.030
+we can listen to the error event by saying event bus on error.
+
+49
+05:27.810 --> 05:28.810
+In the second argument
+
+50
+05:28.810 --> 05:40.520
+we can use javascript arrow function errors arrow this errors equals errors.
+
+51
+05:43.320 --> 05:47.490
+So here we'll assign the error messages 
+from the parent to local errors variable.
+
+52
+05:52.080 --> 05:54.920
+Don't forget to important the event bus at the top here.
+
+53
+05:57.350 --> 06:03.120
+All right let's save all changes. Back to our browser
+
+54
+06:05.840 --> 06:09.640
+and reload.
+
+55
+06:10.190 --> 06:19.140
+Now it will leave the form empty and hit the ask question button.
+
+56
+06:19.160 --> 06:22.060
+Now the validation error messages appear on the form.
+
+57
+06:22.190 --> 06:22.550
+Awesome.
+
+58
+06:25.560 --> 06:30.600
+Now before we test this form with valid 
+question, let's do a couple of things.
+
+59
+06:30.810 --> 06:32.270
+Let's go back to our editor,
+
+60
+06:35.460 --> 06:36.930
+back to create question page.
+
+61
+06:43.290 --> 06:46.020
+Here in then method let's extract the data
+
+62
+06:54.460 --> 07:00.250
+then inside here we can instruct the vue router 
+to kind of redirect to all questions page.
+
+63
+07:00.250 --> 07:04.690
+We can do that by saying this router push
+
+64
+07:07.490 --> 07:09.680
+name questions.
+
+65
+07:13.840 --> 07:21.080
+Also we need to show the success 
+message by saying this toast success
+
+66
+07:23.980 --> 07:28.230
+data message success.
+
+67
+07:32.320 --> 07:38.070
+And the last thing that we could do is to use mark 
+down editor component in our question form.
+
+68
+07:38.070 --> 07:39.860
+So let's go back to a question form
+
+69
+07:42.850 --> 07:44.670
+here let's import the M Editor
+
+70
+07:57.950 --> 07:58.890
+then register it
+
+71
+07:58.970 --> 08:06.400
+by put it on components property.
+
+72
+08:07.460 --> 08:10.220
+All right now let's use this component in our template
+
+73
+08:16.380 --> 08:19.000
+let's wrap this text area
+
+74
+08:19.350 --> 08:20.520
+this invalid feedback
+
+75
+08:26.300 --> 08:29.460
+with M Editor.
+
+76
+08:36.510 --> 08:44.880
+Let's bind the body to body and give it a name
+
+77
+08:45.050 --> 08:47.840
+question body.
+
+78
+08:48.160 --> 08:49.350
+All right let's save all changes. Back
+
+79
+08:53.180 --> 08:58.180
+to our browser and reload.
+
+80
+09:03.130 --> 09:06.580
+As you can see now we have mark
+down editor in our question form.
+
+81
+09:10.090 --> 09:14.170
+Let's hit the ask question button. OK
+
+82
+09:14.190 --> 09:18.660
+the error message still working as it was. 
+Now let me enter a valid question
+
+83
+09:27.080 --> 09:31.320
+let's hit the ask question button again. Great
+
+84
+09:31.360 --> 09:35.230
+the new question saves successfully and 
+it will bring us to all questions page.
+
+85
+09:38.190 --> 09:40.690
+But here I have a small issue
+
+86
+09:40.990 --> 09:44.180
+It's look like I forgot to remove this blade syntax.
+
+87
+09:44.460 --> 09:50.000
+So let me go to my editor. Go to question excerpt
+
+88
+09:54.400 --> 09:55.390
+so here
+
+89
+09:55.510 --> 09:56.410
+just remove this.
+
+90
+09:59.050 --> 09:59.590
+Save,
+
+91
+10:03.340 --> 10:06.460
+reload again. OK
+
+92
+10:06.490 --> 10:09.470
+awesome.
+
+93
+10:09.500 --> 10:16.040
+So now that we have two pages in our single page 
+application All questions page that display all questions
+
+94
+10:16.790 --> 10:24.740
+with pagination on the bottom, then we have ask question 
+page that allows us to create a new question.
+
+95
+10:24.740 --> 10:29.690
+All of this working smoothly and without 
+need to page reload. In next lesson
+
+96
+10:29.690 --> 10:35.390
+we're still working with question form, but we'll make 
+a small tweak to the form so that it can be used
+
+97
+10:35.390 --> 10:37.130
+to edit existing  question.
+
+98
+10:37.130 --> 10:38.000
+So you there.

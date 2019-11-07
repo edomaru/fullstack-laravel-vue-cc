@@ -1,0 +1,232 @@
+WEBVTT
+
+0
+00:01.660 --> 00:06.490
+In this video we're going to take a look 
+at how to protect a route in this case
+
+1
+00:06.490 --> 00:14.600
+my posts route from being access by unauthenticated user. 
+The mechanism probably the same thing with middleware
+
+2
+00:14.990 --> 00:18.160
+when we're working on backend stuff with laravel.
+
+3
+00:18.170 --> 00:25.980
+All right let's switch over to our editor and go to routes.js
+
+4
+00:26.190 --> 00:28.220
+where we define our entire front end routes.
+
+5
+00:31.410 --> 00:37.000
+And here let's add additional information on this
+
+6
+00:37.040 --> 00:45.350
+my posts route. We can do that by adding `meta`
+then in there we can specify any values
+
+7
+00:48.110 --> 00:54.260
+now because I want to make this route only accessible 
+when the users have successfully sign in here
+
+8
+00:54.260 --> 01:03.590
+I'll say requires auth equal true don't forget
+
+9
+01:03.590 --> 01:04.400
+comma here.
+
+10
+01:06.790 --> 01:10.100
+So remember we can specify any values here.
+
+11
+01:10.300 --> 01:16.550
+So you could say is logged in authenticated 
+or something else that you prefer. Here
+
+12
+01:16.630 --> 01:19.830
+I'll stick with requires auth. All right
+
+13
+01:19.840 --> 01:32.850
+mow we can go to router index.js than here before 
+we export the router instance we can do a global
+
+14
+01:32.940 --> 01:37.830
+before guard by saying router before each
+
+15
+01:40.910 --> 01:48.860
+as noted in vue router official buide that the global before 
+guards are called in creation order whenever a navigation
+
+16
+01:48.860 --> 01:49.970
+is triggered.
+
+17
+01:50.090 --> 01:56.450
+Guards may be resolved asynchronously and the navigation is considered pending before all hooks have
+
+18
+01:56.450 --> 01:57.740
+been resolved.
+
+19
+01:57.740 --> 02:06.770
+So this method receives a callback which 
+contains three arguments `to` `from` and `next`
+
+20
+02:11.430 --> 02:18.930
+the `to` is a target router object being navigated to 
+`from` is a current route being navigated away from
+
+21
+02:19.250 --> 02:24.410
+and the `next` is called the function 
+that must be called to resolve the hook.
+
+22
+02:24.510 --> 02:37.460
+Here we can check whether a route record contains meta 
+dot requiresAuth by seeing if `to` matched dot some
+
+23
+02:39.430 --> 02:41.410
+then we will need to provide a callback function
+
+24
+02:43.970 --> 03:01.270
+r arrow r meter requires auth. This basically means 
+if a particular route record contains meta requires
+
+25
+03:01.270 --> 03:13.000
+auth we can then add an and operator followed by not window auth
+
+26
+03:15.600 --> 03:16.350
+signed in
+
+27
+03:21.440 --> 03:29.750
+so if someone not sign in and access any route that has 
+requires auth we will do something. In here we can
+
+28
+03:29.750 --> 03:38.060
+utilize the next callback to kind of redirect 
+or forward the request to other page.
+
+29
+03:38.150 --> 03:43.870
+For example if I want to forward a requests 
+to login page we can say next
+
+30
+03:45.330 --> 03:48.810
+name login
+
+31
+03:48.810 --> 03:54.120
+Since we haven't defined any route for login and 
+we don't need that because we'll stick with server
+
+32
+03:54.120 --> 03:57.590
+side login then we cannot use this standard way.
+
+33
+03:57.600 --> 04:02.820
+Instead we're going to redirect to the actual 
+laravel login page by using vanilla javascript like
+
+34
+04:02.820 --> 04:14.180
+so window location equals window auth url
+
+35
+04:17.750 --> 04:19.030
+don't forget to add
+
+36
+04:19.070 --> 04:23.110
+return to ignore the next execution
+
+37
+04:23.190 --> 04:28.840
+outside the if statement. So here outside the if statement
+
+38
+04:28.860 --> 04:31.630
+we can call next like
+
+39
+04:31.710 --> 04:35.120
+so. That means move on to the next hook.
+
+40
+04:35.820 --> 04:39.380
+So make sure to always call this next callback. 
+
+41
+04:39.460 --> 04:46.410
+Now since we call this window auth 
+url so let's go to spa blade php
+
+42
+04:49.340 --> 04:50.440
+scroll all the way down
+
+43
+04:53.500 --> 04:54.460
+and here
+
+44
+04:54.540 --> 05:06.570
+let's add url and we'll set it to route login. Let's save all changes
+
+45
+05:13.450 --> 05:19.700
+reload the page. Here I can still access 
+it because I currently logged in.
+
+46
+05:19.780 --> 05:22.060
+Now let me log out from here.
+
+47
+05:25.910 --> 05:26.660
+Now let visit
+
+48
+05:26.660 --> 05:30.690
+my posts. Something went wrong.
+
+49
+05:31.980 --> 05:36.450
+Let me go to my editor then go to web.php
+
+50
+05:39.900 --> 05:45.090
+OK here I need to move this before this route.
+
+51
+05:47.790 --> 05:48.420
+Save
+
+52
+05:55.110 --> 05:57.890
+Great now I'll be taken to log in page.

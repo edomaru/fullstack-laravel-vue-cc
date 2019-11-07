@@ -1,0 +1,433 @@
+WEBVTT
+
+0
+00:04.070 --> 00:09.320
+After that we have successfully made 
+our vote question controls working
+
+1
+00:09.530 --> 00:14.260
+now we can do almost the same steps 
+to make the vote answer control working.
+
+2
+00:14.390 --> 00:35.520
+But before we moving on let's commit our 
+changes into git repo git add all git commit -m 
+
+3
+00:36.790 --> 00:39.270
+And then I'll push the current branch to remote repo
+
+4
+00:52.470 --> 00:55.410
+and now we can switch to web.php
+
+5
+00:58.140 --> 01:00.890
+and here let's define a new route for our vote answer
+
+6
+01:00.910 --> 01:24.670
+button. So route post the uri will be answers answer vote 
+and the action will be vote answer controller. Now let's
+
+7
+01:24.780 --> 01:36.240
+go back to our terminal and create new controller 
+by saying php artisan make controller vote
+
+8
+01:36.420 --> 01:38.580
+answer controller
+
+9
+01:43.040 --> 01:43.450
+OK
+
+10
+01:43.460 --> 01:47.920
+now let's open vote answer controller
+
+11
+01:51.610 --> 01:52.950
+import the answer namespace
+
+12
+02:00.130 --> 02:01.500
+and then define a constructor
+
+13
+02:09.100 --> 02:10.140
+and call middleware auth
+
+14
+02:18.360 --> 02:19.190
+and then let's define
+
+15
+02:19.200 --> 02:19.960
+invoke method
+
+16
+02:23.710 --> 02:25.000
+type-hint the answer
+
+17
+02:30.240 --> 02:31.760
+and here get the vote request
+
+18
+02:40.630 --> 02:42.010
+and then get the current user
+
+19
+02:46.450 --> 02:51.330
+then call vote answer pass in answer instance
+
+20
+02:54.250 --> 02:55.450
+and also the vote
+
+21
+03:00.580 --> 03:06.470
+and the last reload the page
+
+22
+03:06.760 --> 03:09.630
+So here we haven't defined vote answer yet
+
+23
+03:09.820 --> 03:11.650
+so let's open the user model
+
+24
+03:20.500 --> 03:24.370
+and here let's define a new method vote
+
+25
+03:24.400 --> 03:24.900
+answer
+
+26
+03:28.450 --> 03:40.110
+answer answer and then vote
+
+27
+03:40.350 --> 03:45.770
+And here the logic for this method is 
+almost the same with vote question
+
+28
+03:45.810 --> 03:50.100
+for now we are going to copy from this vote question
+
+29
+03:56.240 --> 03:57.550
+and then we'll make some adjusment
+
+30
+04:01.900 --> 04:08.470
+first less change all vote questions inside this method to 
+vote answers here we can simply select an instance
+
+31
+04:10.480 --> 04:14.540
+and then hit Control D to select other instances.
+
+32
+04:20.420 --> 04:30.670
+Now we can change them to vote answers 
+and then select the question instance
+
+33
+04:39.240 --> 04:48.490
+and change them to answer.
+
+34
+04:48.620 --> 04:49.080
+All right
+
+35
+04:49.140 --> 04:51.720
+I think that's all we need to do here for now.
+
+36
+04:51.720 --> 04:55.200
+Later we'll refactor our code and implement DRY principle.
+
+37
+04:55.350 --> 05:03.040
+But for now we just make everything work and 
+here we need to define down vote and up votes
+
+38
+05:06.060 --> 05:23.250
+Let's simply copy them in our question model.
+
+39
+05:23.280 --> 05:23.810
+All right
+
+40
+05:24.000 --> 05:32.720
+now let's switch to questions show.blade.php
+
+41
+05:32.970 --> 05:37.210
+And here we have vote controls fully working
+
+42
+05:37.230 --> 05:38.720
+So let's copy them
+
+43
+05:47.040 --> 05:50.460
+now let's open answers
+
+44
+05:51.090 --> 06:00.880
+index.blade.php
+
+45
+06:01.030 --> 06:02.520
+And here we can replace all of these
+
+46
+06:08.630 --> 06:09.650
+here let's change
+
+47
+06:09.690 --> 06:18.350
+the title from this question to this answer.
+
+48
+06:19.910 --> 06:22.970
+And then change the ID from
+
+49
+06:25.730 --> 06:26.990
+vote question
+
+50
+06:31.240 --> 06:37.970
+to vote answer and then
+
+51
+06:42.460 --> 06:45.160
+select the select the question
+
+52
+06:50.980 --> 06:53.580
+and then chance them to answer
+
+53
+06:57.080 --> 07:01.770
+and don't forget to change the action from questions
+
+54
+07:05.320 --> 07:08.230
+to answers.
+
+55
+07:11.780 --> 07:13.050
+OK that's it
+
+56
+07:13.070 --> 07:14.150
+now let's save all changes.
+
+57
+07:18.330 --> 07:19.520
+Switch to our browser reload
+
+58
+07:22.640 --> 07:23.450
+the page
+
+59
+07:34.950 --> 07:36.510
+let me go to all questions
+
+60
+07:39.460 --> 07:40.790
+and see another question.
+
+61
+07:50.640 --> 07:53.550
+OK I have a problem here.
+
+62
+07:53.550 --> 07:56.910
+The vote counts always three
+
+63
+07:57.070 --> 07:59.560
+Actually we need to seed the vote answer. 
+
+64
+08:00.040 --> 08:01.840
+So let's switch over to our editor
+
+65
+08:04.630 --> 08:06.940
+let's open votables table seeder
+
+66
+08:13.650 --> 08:17.100
+And here let's remove all records from votables table
+
+67
+08:17.100 --> 08:18.910
+so here let's remove this where method.
+
+68
+08:25.810 --> 08:27.660
+And then we can copy this for each loop
+
+69
+08:32.310 --> 08:33.180
+paste here.
+
+70
+08:35.170 --> 08:38.690
+And change the question to answer change
+
+71
+08:42.330 --> 08:43.430
+the question instance
+
+72
+08:46.580 --> 08:58.670
+to answer and then change this vote question to vote answer.
+
+73
+08:58.950 --> 09:05.870
+Lastly let's open answer answer factory
+
+74
+09:06.850 --> 09:09.190
+And here let's comment this line.
+
+75
+09:09.980 --> 09:20.350
+Save all changes go to our terminal and 
+then rerun our votables table seeder
+
+76
+09:30.860 --> 09:34.550
+Ups I get error class answer not found.
+
+77
+09:35.060 --> 09:41.290
+OK here I need to import the namespace here.
+
+78
+09:47.300 --> 09:50.890
+Save run the seed again.
+
+79
+09:53.830 --> 09:57.520
+I still get the error down votes doesn't exist.
+
+80
+10:06.050 --> 10:12.980
+Let's see the user model
+
+81
+10:13.020 --> 10:21.510
+Sorry this should be an answer model.
+
+82
+10:24.270 --> 10:32.410
+Paste here save run the seed again. OK
+
+83
+10:32.430 --> 10:34.390
+no error.
+
+84
+10:34.430 --> 10:37.170
+Let's see reload
+
+85
+10:41.410 --> 10:42.280
+OK
+
+86
+10:42.590 --> 10:50.660
+Here the number was changed.
+
+87
+10:50.750 --> 10:53.920
+Now let's try to hit this vote up
+
+88
+11:00.460 --> 11:01.970
+It's look no different
+
+89
+11:01.990 --> 11:03.970
+So let me hit this button
+
+90
+11:11.350 --> 11:12.800
+and now the numbers decreasing.
+
+91
+11:12.810 --> 11:14.280
+So let me hit this button again
+
+92
+11:20.670 --> 11:25.560
+and now the vote increasing and I think they are working perfectly.
+
+93
+11:25.560 --> 11:27.020
+Great
+
+94
+11:27.080 --> 11:30.500
+All right so now we have vote control system that really working
+
+95
+11:30.620 --> 11:34.340
+we can vote up or vote down whether the question or answer.
+
+96
+11:34.360 --> 11:39.420
+We are also able to favorite the question 
+and accept the answer as the best answer.
+
+97
+11:40.690 --> 11:41.830
+OK with that
+
+98
+11:41.920 --> 11:43.420
+Let's switch over to our terminal
+
+99
+11:46.320 --> 11:53.380
+and commit the changes to our git repo git
+
+100
+11:53.680 --> 12:01.690
+commit -m  and I'm going to say "make the vote answer working"
+
+101
+12:05.260 --> 12:05.670
+now
+
+102
+12:05.680 --> 12:06.940
+I'll switch to master branch
+
+103
+12:12.380 --> 12:14.150
+and merge to lesson 22 branch
+
+104
+12:21.490 --> 12:25.390
+and then push the lesson 22 and 
+master branch to my remote repo.

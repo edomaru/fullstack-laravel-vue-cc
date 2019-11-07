@@ -1,0 +1,283 @@
+WEBVTT
+
+0
+00:02.830 --> 00:03.700
+Back to our editor
+
+1
+00:07.330 --> 00:15.640
+then here let's uncomment this line and 
+then let's open the answers component.
+
+2
+00:19.950 --> 00:22.960
+Let's jump to methods
+
+3
+00:26.720 --> 00:27.050
+here
+
+4
+00:27.060 --> 00:30.050
+we need to make a little change to this fetch method.
+
+5
+00:33.480 --> 00:36.160
+Here instead of data
+
+6
+00:36.300 --> 00:42.410
+Next page url to this next url here
+
+7
+00:42.440 --> 00:46.800
+we are going to assign data meta next.
+
+8
+00:49.370 --> 00:49.830
+Alright
+
+9
+00:49.880 --> 00:50.780
+let's save all changes
+
+10
+00:54.320 --> 01:05.770
+back to our browser and reload.
+
+11
+01:05.830 --> 01:07.140
+Here we have the answers
+
+12
+01:10.850 --> 01:12.320
+but here we still have error.
+
+13
+01:20.310 --> 01:31.710
+It's occurred in accept component. So let's go back to 
+our editor then let's open answer resource dot php.
+
+14
+01:37.650 --> 01:44.820
+Here we can include the question instance like we did 
+before or because we only need the user id column
+
+15
+01:45.420 --> 01:48.030
+here I'll add
+
+16
+01:48.210 --> 01:49.570
+question
+
+17
+01:49.710 --> 02:03.410
+user id which will hold this question user underscore id.
+
+18
+02:03.500 --> 02:06.680
+Now we can open our policies.js
+
+19
+02:09.910 --> 02:10.960
+and here
+
+20
+02:11.070 --> 02:17.350
+let's change this to answer question
+
+21
+02:17.350 --> 02:22.570
+user id.
+
+22
+02:22.760 --> 02:23.110
+All right
+
+23
+02:23.570 --> 02:34.330
+let's save. Back to our browser and reload.
+
+24
+02:34.610 --> 02:35.380
+OK
+
+25
+02:35.390 --> 02:41.830
+now the error is gone.
+
+26
+02:41.870 --> 02:48.680
+Let me try adding new answer. OK it's still working.
+
+27
+02:48.750 --> 02:50.310
+Let me go back to all questions.
+
+28
+02:55.090 --> 02:56.370
+Here i'll create a new question.
+
+29
+03:07.360 --> 03:11.950
+As you can see that this question since it has no answer
+
+30
+03:11.950 --> 03:15.130
+we have this delete buttons appears.
+
+31
+03:15.160 --> 03:16.600
+Now let me show you one issue
+
+32
+03:20.470 --> 03:21.730
+if I add a new answer
+
+33
+03:28.610 --> 03:32.890
+you see this delete button is still in there.
+
+34
+03:32.890 --> 03:33.760
+We don't want that
+
+35
+03:34.180 --> 03:38.830
+instead we want this button to disappear 
+once it has one or more answers.
+
+36
+03:42.160 --> 03:47.930
+if we reload the page, it is gone.
+
+37
+03:48.120 --> 03:48.520
+Now
+
+38
+03:48.570 --> 03:49.500
+let me delete this
+
+39
+03:49.500 --> 03:51.950
+answer. 
+
+40
+03:51.960 --> 03:55.900
+Hit yes the answer removed successfully.
+
+41
+03:56.670 --> 04:01.460
+But again here we have issue on delete 
+button. Once it has no answer
+
+42
+04:01.590 --> 04:03.420
+it still disappear.
+
+43
+04:03.420 --> 04:08.650
+Probably this is not a big deal. But for me that's not what I want.
+
+44
+04:08.670 --> 04:11.830
+So that's the first issue that we have here.
+
+45
+04:12.000 --> 04:18.210
+And then the next issue that I want to 
+show you is let me go to all questions.
+
+46
+04:22.440 --> 04:26.200
+And let me find a question which has some answers.
+
+47
+04:30.370 --> 04:43.150
+Here let me hit this. So here we have six answers 
+and if we hit the load answers. Ups the load answers
+
+48
+04:43.180 --> 04:44.780
+disappear.
+
+49
+04:44.800 --> 04:45.930
+Let me go to my editor
+
+50
+04:52.550 --> 04:52.860
+OK
+
+51
+04:52.880 --> 04:57.920
+It should be data links next.
+
+52
+05:02.730 --> 05:03.150
+reload
+
+53
+05:06.440 --> 05:07.610
+OK.
+
+54
+05:07.940 --> 05:13.280
+So the issue that I want to show you 
+is this load more answers button.
+
+55
+05:13.280 --> 05:15.020
+Firstly let me add new answer
+
+56
+05:18.700 --> 05:19.260
+hit submit
+
+57
+05:23.590 --> 05:23.890
+OK
+
+58
+05:23.890 --> 05:24.790
+Let me add another one
+
+59
+05:36.270 --> 05:38.560
+now if we hit this load more answers button
+
+60
+05:46.080 --> 05:46.440
+OK
+
+61
+05:55.390 --> 05:55.710
+here
+
+62
+05:55.720 --> 05:58.080
+we'll have duplicate answers.
+
+63
+05:58.270 --> 06:06.160
+So basically our new answers will get loaded when 
+we hit the button. And last issue that I want to show
+
+64
+06:06.160 --> 06:09.940
+you is this favorite button.
+
+65
+06:09.990 --> 06:16.960
+If we hit this it's look like nothing happened. 
+But if I open my browser console
+
+66
+06:20.400 --> 06:23.040
+here I get internal server error.
+
+67
+06:23.580 --> 06:25.890
+So that are three issues that we need to fix.

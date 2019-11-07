@@ -1,0 +1,110 @@
+WEBVTT
+
+0
+00:02.660 --> 00:03.100
+All right
+
+1
+00:03.190 --> 00:07.710
+Let's go back to our editor go to questions
+
+2
+00:07.710 --> 00:11.830
+page jump to script section
+
+3
+00:17.350 --> 00:19.110
+and here let's add mounted hook.
+
+4
+00:27.010 --> 00:27.620
+in here
+
+5
+00:27.630 --> 00:28.960
+let's call another method
+
+6
+00:29.490 --> 00:33.510
+let's say Fetch questions
+
+7
+00:36.980 --> 00:39.350
+now let's add methods
+
+8
+00:43.210 --> 00:52.470
+and define the fetch questions method. Here we 
+can consume our questions API endpoint like so.
+
+9
+00:52.590 --> 00:56.190
+axios get questions
+
+10
+00:58.640 --> 00:59.120
+then
+
+11
+01:07.510 --> 01:07.730
+data
+
+12
+01:11.510 --> 01:16.410
+in here we simply assign the API response to questions.
+
+13
+01:16.410 --> 01:21.820
+this questions equals data data.
+
+14
+01:22.800 --> 01:24.410
+Let's save.
+
+15
+01:25.090 --> 01:26.430
+Back to our browser
+
+16
+01:30.540 --> 01:31.480
+reload the page
+
+17
+01:34.080 --> 01:48.590
+something went wrong. Let me open my browser console.
+
+18
+01:48.850 --> 01:49.810
+I made typo here
+
+19
+01:53.480 --> 01:54.870
+authirize
+
+20
+01:54.890 --> 01:56.510
+So let me go back to my editor
+
+21
+01:59.150 --> 02:00.230
+here in question excerpt
+
+22
+02:04.550 --> 02:06.850
+so here it should be
+
+23
+02:07.030 --> 02:10.310
+authorize save.
+
+24
+02:15.100 --> 02:24.610
+Reload. All right
+
+25
+02:24.780 --> 02:27.020
+now we have all questions displayed in this page
+
+26
+02:27.570 --> 02:27.990
+Awesome.

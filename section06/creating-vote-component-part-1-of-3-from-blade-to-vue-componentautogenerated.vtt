@@ -1,0 +1,492 @@
+WEBVTT
+
+0
+00:02.740 --> 00:08.860
+After we have successfully rewritten our favorite and accept 
+button into vue js component now we can continue
+
+1
+00:08.860 --> 00:15.440
+building our project and rewrite our vote 
+controls into vue js component. OK
+
+2
+00:15.460 --> 00:17.920
+without further ado let's get started.
+
+3
+00:18.400 --> 00:20.170
+Let's switch over to our terminal
+
+4
+00:22.210 --> 00:25.550
+and then create new branch by saying git checkout
+
+5
+00:25.570 --> 00:31.730
+-b lesson-35
+
+6
+00:32.230 --> 00:35.700
+And then we can run web pack by saying npm
+
+7
+00:35.940 --> 00:40.160
+run watch.
+
+8
+00:40.320 --> 00:45.570
+Now let's open up shared _vote.blade.php
+
+9
+00:53.720 --> 00:54.720
+let's copy the markup
+
+10
+00:59.330 --> 01:10.230
+and then go to assets js components 
+folder and then create new file.
+
+11
+01:10.320 --> 01:12.720
+I'm going to call it vote.vue
+
+12
+01:16.530 --> 01:18.900
+inside this file let's add template tag
+
+13
+01:23.130 --> 01:24.210
+and paste the markup
+
+14
+01:35.600 --> 01:36.010
+here
+
+15
+01:36.080 --> 01:48.740
+let's remove this if else statement and 
+then utilize the v-if and v-else directive.
+
+16
+01:48.770 --> 01:53.770
+I don't have any idea how to check the 
+instance of an object in Javascript.
+
+17
+01:53.930 --> 01:55.920
+So here I'm going to check the name instead.
+
+18
+02:03.000 --> 02:09.340
+If the name is question this favourite component will be shown
+
+19
+02:13.320 --> 02:14.190
+otherwise
+
+20
+02:18.440 --> 02:20.200
+Is the name is answer
+
+21
+02:22.890 --> 02:25.440
+then this accept component will be shown.
+
+22
+02:25.690 --> 02:29.760
+Or we can simplify this with v-else directive
+
+23
+02:34.700 --> 02:39.070
+because we are no longer in blade file
+
+24
+02:39.120 --> 02:53.570
+let's check the model from php variable into javascript.
+
+25
+02:53.620 --> 02:57.110
+So in this component we need to define two properties
+
+26
+02:57.280 --> 03:01.960
+name and model.
+
+27
+03:02.110 --> 03:06.110
+Let's add script tag
+
+28
+03:06.300 --> 03:07.350
+define props
+
+29
+03:11.540 --> 03:21.340
+and add name and model.
+
+30
+03:21.360 --> 03:26.700
+Now let's remove all on click attributes as well as the forms from this component
+
+31
+03:50.790 --> 03:51.270
+and then
+
+32
+03:54.350 --> 03:57.460
+remove the additional class and add class binding.
+
+33
+03:58.680 --> 04:07.860
+This almost the same thing as we did in the previous 
+lesson so when user not signed in we add `off` class.
+
+34
+04:26.110 --> 04:27.590
+Let's define computed poperty
+
+35
+04:32.800 --> 04:35.050
+and inside here let's define classes method
+
+36
+04:40.310 --> 04:46.640
+here is simply return nothing if a user 
+has signed in or off if user not signed in
+
+37
+04:52.590 --> 05:02.180
+next let's make change to title attribute both in vote up 
+and vote down button. Since the title should be dynamic
+
+38
+05:03.940 --> 05:04.690
+so
+
+39
+05:07.810 --> 05:08.800
+let's cut the text
+
+40
+05:12.700 --> 05:14.980
+and remove the title's text here.
+
+41
+05:22.590 --> 05:26.550
+And we will bind this title attribute to a method let's say title
+
+42
+05:32.520 --> 05:36.240
+pass in up in vote up anchor
+
+43
+05:39.020 --> 05:40.550
+and pass in down
+
+44
+05:41.490 --> 05:42.640
+in vote down anchor
+
+45
+05:46.490 --> 05:47.610
+here in script tag
+
+46
+05:51.390 --> 05:52.820
+let's add methods property
+
+47
+05:59.110 --> 06:07.900
+and inside here let's define the title method and of 
+course this method should has an argument vote type
+
+48
+06:12.220 --> 06:12.940
+here
+
+49
+06:12.940 --> 06:14.640
+firstly let's provide titles
+
+50
+06:20.740 --> 06:24.440
+each for vote up and vote down
+
+51
+06:33.860 --> 06:35.460
+and make each name dynamic.
+
+52
+06:47.540 --> 06:52.920
+And then we simply return the title based 
+on the type that we enter in the argument.
+
+53
+06:58.960 --> 06:59.510
+Next
+
+54
+06:59.590 --> 07:02.130
+let's make change the vote count. Here
+
+55
+07:02.140 --> 07:06.440
+I'm going to change this to count. Here in the script
+
+56
+07:09.510 --> 07:14.320
+I'll define data method return an object
+
+57
+07:17.410 --> 07:18.520
+and inside here
+
+58
+07:19.590 --> 07:28.990
+I'll define count property to hold model dot votes count.
+
+59
+07:29.010 --> 07:32.690
+Now let's register this vote component in app.js
+
+60
+07:39.620 --> 07:43.220
+duplicate this line
+
+61
+07:43.310 --> 07:51.470
+the component name will be vote and 
+it come from components vote.vue
+
+62
+07:54.780 --> 07:55.810
+Here
+
+63
+07:56.020 --> 08:02.790
+this favourite and accept component will only called 
+inside the vote component and they will not called
+
+64
+08:02.880 --> 08:04.190
+in other places.
+
+65
+08:04.230 --> 08:12.990
+So let's remove both of these from here and we will register 
+them as local component inside the vote component.
+
+66
+08:13.350 --> 08:15.270
+Let's go back to vote.vue
+
+67
+08:19.290 --> 08:19.700
+here
+
+68
+08:19.710 --> 08:26.720
+I'm going import the components using 
+native es6 module like this import Favorite
+
+69
+08:29.590 --> 08:30.250
+from
+
+70
+08:33.040 --> 08:34.760
+because we are in the same directory
+
+71
+08:40.060 --> 08:43.530
+here we can call the file path like this dot forward
+
+72
+08:43.540 --> 08:45.050
+slash favorite dot vue
+
+73
+08:48.530 --> 08:49.930
+Let's duplicate this line
+
+74
+08:53.450 --> 08:55.550
+And change to accept
+
+75
+09:05.380 --> 09:05.950
+Here
+
+76
+09:06.380 --> 09:08.400
+let's define components property
+
+77
+09:14.130 --> 09:17.190
+and register both favorite and accept component here.
+
+78
+09:22.180 --> 09:25.410
+Here the key will be the name of our component.
+
+79
+09:25.540 --> 09:29.900
+So it's equivalent with this one.
+
+80
+09:30.910 --> 09:38.000
+But here we should define it in camel case 
+and vue js  will interpret it in kebab case.
+
+81
+09:38.020 --> 09:39.730
+So if we change these to
+
+82
+09:42.490 --> 09:43.470
+favorite component
+
+83
+09:46.300 --> 09:51.800
+then in our template we call favorite dash component.
+
+84
+10:00.920 --> 10:01.380
+Next
+
+85
+10:01.490 --> 10:03.740
+let's also register the accept component
+
+86
+10:11.750 --> 10:18.830
+in es6 if we want to define an object which the key 
+has the same name with a value then we can use
+
+87
+10:18.830 --> 10:24.190
+the shorthand syntax by simply pass the key name just like this
+
+88
+10:27.270 --> 10:31.810
+favorite accept.
+
+89
+10:31.910 --> 10:35.780
+So this is called object literal property value shorthand.
+
+90
+10:36.160 --> 10:36.660
+All right
+
+91
+10:36.680 --> 10:39.820
+now let's call this component in _answer
+
+92
+10:39.860 --> 10:40.640
+blade php
+
+93
+10:59.430 --> 11:04.940
+here we can call our vote component by saying vote model
+
+94
+11:08.050 --> 11:08.670
+answer
+
+95
+11:13.030 --> 11:13.420
+name
+
+96
+11:17.730 --> 11:18.220
+answer
+
+97
+11:25.550 --> 11:26.780
+let's save all changes
+
+98
+11:32.420 --> 11:33.290
+and have a look.
+
+99
+11:36.690 --> 11:43.190
+Reload the page.
+
+100
+11:43.270 --> 11:44.290
+It's look no difference
+
+101
+11:47.110 --> 11:48.400
+Actually
+
+102
+11:48.520 --> 11:50.170
+We lose our favorite button.
+
+103
+11:50.470 --> 11:54.420
+Let me open my browser console. Here
+
+104
+11:54.460 --> 11:57.220
+I have error unknown custom elements fovorite
+
+105
+11:57.220 --> 11:58.830
+did you register the company correctly
+
+106
+11:58.840 --> 11:59.670
+blah blah blah.
+
+107
+12:02.040 --> 12:08.880
+I'm sure this error because we haven't changed in 
+here the vote control with our new vote component.
+
+108
+12:09.120 --> 12:11.100
+So let's switch back over to our editor
+
+109
+12:15.130 --> 12:18.080
+open questions show blade php
+
+110
+12:25.990 --> 12:26.370
+Here
+
+111
+12:26.420 --> 12:29.110
+let's replace this with our vote component.
+
+112
+12:51.790 --> 12:57.220
+now the favorite button come back and we have no error here.
+
+113
+13:02.660 --> 13:10.290
+Here let me see the tool tips "this question 
+is useful",  "this question is not useful"
+
+114
+13:10.600 --> 13:11.020
+Now
+
+115
+13:11.090 --> 13:16.650
+let me see the tool tips on the answer 
+the tool tip "this answer is useful".
+
+116
+13:17.230 --> 13:19.470
+And "this answer is not useful".
+
+117
+13:19.480 --> 13:19.990
+Great.

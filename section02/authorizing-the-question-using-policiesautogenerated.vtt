@@ -1,0 +1,529 @@
+WEBVTT
+
+0
+00:01.630 --> 00:05.910
+In the previous lesson you've learn how to authorize your application using Gates.
+
+1
+00:06.080 --> 00:12.650
+Now in this lesson I'll show you another way to authorize your application using something called Policy.
+
+2
+00:12.650 --> 00:14.720
+All right let's head over to our terminal
+
+3
+00:18.030 --> 00:20.890
+and isolate our work in new branch
+
+4
+00:24.670 --> 00:28.850
+And as I said I'll call it lesson 12
+
+5
+00:29.050 --> 00:34.720
+dash b. OK to authorize our application using policies
+
+6
+00:34.760 --> 00:37.760
+firstly we need to create our policy class.
+
+7
+00:37.940 --> 00:46.430
+So here in the terminal we can say: php artisan make policy
+
+8
+00:46.820 --> 00:49.870
+sorry make policy
+
+9
+00:50.390 --> 00:57.800
+Then we have to specify the policy name because the policy usually used to authorize some actions for
+
+10
+00:57.800 --> 01:03.780
+a particular model then the name will start with our model name and end with policy.
+
+11
+01:04.010 --> 01:09.760
+So let's call it question policy.
+
+12
+01:10.690 --> 01:11.770
+If we hit return now
+
+13
+01:21.020 --> 01:29.340
+with a half question policy inside our 
+policies folder and if we open it
+
+14
+01:32.910 --> 01:35.110
+it's only empty class.
+
+15
+01:35.130 --> 01:37.580
+So let's remove this file
+
+16
+01:45.650 --> 01:49.050
+and I will run the make policy once again.
+
+17
+01:49.640 --> 01:57.200
+So here we can also add --model and specify the model name
+
+18
+01:57.350 --> 02:00.530
+In this case question like so
+
+19
+02:05.640 --> 02:08.950
+now if we opened the question policy again
+
+20
+02:12.690 --> 02:23.560
+it includes basic crud policy methods in our generated policy class.
+
+21
+02:23.600 --> 02:26.420
+Actually we only need update and delete method
+
+22
+02:26.600 --> 02:29.110
+So let's get rid of other methods
+
+23
+02:43.630 --> 02:50.540
+and here we'll find two arguments defined user and question.
+
+24
+02:50.540 --> 02:55.780
+It's almost the same when we're writing gates and inside here we'll do the same thing as we did when
+
+25
+02:55.780 --> 02:57.200
+we're working with Gates.
+
+26
+02:57.280 --> 03:01.540
+We match ID of the user with user ID in the question object
+
+27
+03:13.780 --> 03:15.250
+let's copy this line.
+
+28
+03:17.690 --> 03:23.080
+And paste instead here. And here
+
+29
+03:23.100 --> 03:24.660
+let's add another condition.
+
+30
+03:24.660 --> 03:31.380
+So the question that has one or more answers cannot be removed even by the Creator.
+
+31
+03:31.380 --> 03:42.070
+Here we simply add and operator and then check if question answers
+
+32
+03:43.960 --> 03:47.070
+less than one.
+
+33
+03:47.470 --> 03:55.930
+So this means if the user is the creator of the question and the question that will be removed has
+
+34
+03:55.960 --> 03:57.010
+no answer.
+
+35
+03:57.130 --> 04:00.810
+Then the creator of the question will be authorized to remove it.
+
+36
+04:00.940 --> 04:08.110
+All right once we have new policy the next thing we have to do is register the policy let's reopen the
+
+37
+04:08.200 --> 04:09.340
+auth service provider
+
+38
+04:16.300 --> 04:27.280
+and in policies attribute we simply map that particular model with particular policy.
+
+39
+04:27.640 --> 04:30.140
+In this case we'll map the question model class
+
+40
+04:35.100 --> 04:37.590
+to question policy class
+
+41
+04:45.340 --> 04:48.530
+and don't forget to import the namespace on the top here.
+
+42
+05:03.230 --> 05:07.370
+Now we have question policy and mapped it to a question model.
+
+43
+05:07.730 --> 05:08.210
+We can now
+
+44
+05:08.210 --> 05:10.800
+authorize our action in our question controller
+
+45
+05:20.380 --> 05:29.270
+here for example in edit method we can call this authorize to authorize this method
+
+46
+05:32.260 --> 05:33.230
+here
+
+47
+05:33.440 --> 05:36.840
+the name is update
+
+48
+05:36.970 --> 05:42.850
+so here we can specify update
+
+49
+05:43.180 --> 05:44.990
+as the first argument.
+
+50
+05:45.550 --> 05:46.540
+And the question
+
+51
+05:46.540 --> 05:48.180
+Instance in the second argument
+
+52
+05:51.320 --> 05:56.600
+again we don't need to specify the user instance because laravel will recognize that and handle
+
+53
+05:56.600 --> 05:58.810
+it behind the scene.
+
+54
+05:59.410 --> 06:01.910
+Let's do the same thing to update method.
+
+55
+06:08.380 --> 06:15.660
+this authorize update question
+
+56
+06:19.260 --> 06:19.940
+and the last
+
+57
+06:19.950 --> 06:23.430
+we also authorize the destroy method.
+
+58
+06:39.920 --> 06:45.690
+OK let's see. Let's find a question that belongs to someone else
+
+59
+06:53.210 --> 06:55.810
+OK let's try to hit this edit button.
+
+60
+07:02.700 --> 07:04.950
+All right we'll get the expected error.
+
+61
+07:11.490 --> 07:13.830
+Now let's try to hit the delete button
+
+62
+07:20.960 --> 07:35.920
+OK we got the same error.
+
+63
+07:35.930 --> 07:43.280
+Now let's hit this edit on our own question
+
+64
+07:43.430 --> 07:44.480
+Here we can edit that
+
+65
+07:54.770 --> 07:56.990
+now let's try to hit the delete button.
+
+66
+07:59.650 --> 08:04.520
+Note that the number of the answer is three.
+
+67
+08:04.630 --> 08:05.630
+If we hit OK
+
+68
+08:10.560 --> 08:18.270
+we'll also get an expected error.
+
+69
+08:18.410 --> 08:19.890
+So let me create new question
+
+70
+08:34.050 --> 08:37.310
+and here as you can see the answer is still zero.
+
+71
+08:38.400 --> 08:43.890
+Now if I hit the button and then hit OK
+
+72
+08:46.490 --> 08:49.900
+I can delete the question OK.
+
+73
+08:50.130 --> 08:56.520
+So now that we have authorized our application using policy in our control or to authorize some actions
+
+74
+08:57.160 --> 09:01.960
+now we can hide the edit and delete button as we did in the previous lesson.
+
+75
+09:13.670 --> 09:25.040
+So here we can say if auth user can 
+and then the name of the method
+
+76
+09:30.520 --> 09:31.990
+and pass in the question instance
+
+77
+09:42.060 --> 09:53.840
+let's copy this line and paste here. Change to delete and don't forget to close with endif
+
+78
+10:01.640 --> 10:02.490
+save the change
+
+79
+10:05.970 --> 10:15.110
+and reload the page.
+
+80
+10:15.110 --> 10:15.770
+All right
+
+81
+10:15.860 --> 10:24.180
+Now the buttons are only here for authorize user and here are you'll see the delete button is hidden
+
+82
+10:24.190 --> 10:26.430
+for the question that has answers.
+
+83
+10:30.600 --> 10:31.440
+OK great.
+
+84
+10:39.910 --> 10:45.560
+Actually here we can simplify this if statement with
+
+85
+10:48.370 --> 10:49.350
+can directive
+
+86
+10:55.420 --> 10:59.560
+and remove the extra crossing parenthesis.
+
+87
+10:59.600 --> 11:05.690
+So this mean if the current user can update the question then we'll show the edit button.
+
+88
+11:06.730 --> 11:14.230
+And here we change this endif with endcan 
+we can do the same thing here.
+
+89
+11:16.980 --> 11:21.270
+can delete
+
+90
+11:28.560 --> 11:30.880
+end change with end can
+
+91
+11:33.750 --> 11:37.230
+save and let's see
+
+92
+11:42.850 --> 11:45.420
+ups I get error
+
+93
+11:45.550 --> 11:51.120
+Let me see.
+
+94
+11:51.280 --> 11:52.710
+Sorry I made typo here.
+
+95
+11:54.010 --> 11:58.700
+This would be end can reload again.
+
+96
+12:03.980 --> 12:06.310
+And here we'll get the same thing.
+
+97
+12:06.420 --> 12:13.970
+Now one more thing that we need to do is protect the create method because if we sign out
+
+98
+12:16.850 --> 12:17.960
+from the application
+
+99
+12:22.480 --> 12:23.630
+go to questions
+
+100
+12:26.720 --> 12:34.130
+and then hit this ask question button here I can access the ask question form.
+
+101
+12:34.160 --> 12:35.640
+So to fix this let's go
+
+102
+12:35.640 --> 12:38.260
+to questions controller.
+
+103
+12:44.210 --> 12:47.030
+And in here we need to define contructor
+
+104
+12:47.030 --> 12:53.120
+Constructor is a special method that will be executed for the first time whenever a class is instantiated
+
+105
+12:53.820 --> 12:54.620
+in php 
+
+106
+12:54.650 --> 12:56.150
+We can write the constructor like so
+
+107
+13:09.470 --> 13:12.390
+and in here we'll call authentication middleware like so
+
+108
+13:21.410 --> 13:28.170
+and here there are two methods that users don't need to be a authenticated index method because anyone can
+
+109
+13:28.170 --> 13:29.680
+see all the questions.
+
+110
+13:29.880 --> 13:31.760
+And the second is show method.
+
+111
+13:31.880 --> 13:38.670
+anyone can also see the detail of the question so we can define in the second argument like this
+
+112
+13:44.400 --> 13:50.530
+Index and show save.
+
+113
+13:50.610 --> 13:52.460
+Now if we reload the page
+
+114
+13:57.890 --> 14:00.640
+we will be redirected to login page.
+
+115
+14:01.400 --> 14:07.940
+OK so now that we have implemented authorization to authorize the questions so that they can be modified
+
+116
+14:08.030 --> 14:11.980
+only by owner or by creator of the questions.
+
+117
+14:11.990 --> 14:16.450
+All right before we close this lesson let's save our work to our git repo.
+
+118
+14:16.670 --> 14:18.350
+Let's switch to our terminal
+
+119
+14:25.330 --> 14:31.150
+and here we can say git add all git commit -m
+
+120
+14:35.310 --> 14:40.080
+and I'll say implement authorization 
+
+121
+14:40.580 --> 14:42.020
+using policy
+
+122
+14:45.930 --> 14:47.270
+then push the current branch
+
+123
+14:56.410 --> 14:57.360
+OK
+
+124
+14:57.420 --> 14:59.520
+Now we can switch to our master branch
+
+125
+15:04.650 --> 15:11.260
+and here we can merge our master branch 
+to lesson-12-a or to lesson-12-b
+
+126
+15:11.280 --> 15:18.060
+So if you prefer to use gate then you can merge your master branch to lesson-12-a or to branch name
+
+127
+15:18.150 --> 15:19.490
+where are you working with gate.
+
+128
+15:19.770 --> 15:22.170
+But here I prefer to use policy
+
+129
+15:22.200 --> 15:25.680
+So here I'll merge my master branch to lesson-12-b
+
+130
+15:38.030 --> 15:43.310
+last we can push our master branch to our remote repo.

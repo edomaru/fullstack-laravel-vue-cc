@@ -1,0 +1,175 @@
+WEBVTT
+
+0
+00:01.480 --> 00:06.710
+In the previous lesson you've seen how the answer is loaded from database and then presented in our
+
+1
+00:06.710 --> 00:07.810
+application.
+
+2
+00:07.820 --> 00:13.730
+Now in this lesson we'll be doing a little bit changes in `show` view because we put the question detail
+
+3
+00:14.060 --> 00:17.430
+and all related answers together in a single file.
+
+4
+00:17.450 --> 00:23.160
+I think it would be better to split them into separate files 
+because it will make our code better organized
+
+5
+00:23.300 --> 00:30.050
+and easy to maintain. After we've done that then we'll get into building out a new feature that allows us
+
+6
+00:30.050 --> 00:33.290
+to be able to create new answer on any questions.
+
+7
+00:33.290 --> 00:46.150
+All right let's switch over to our terminal and create new branch.
+
+8
+00:46.230 --> 00:47.340
+Now let's open
+
+9
+00:47.410 --> 00:53.070
+show.blade.php
+
+10
+00:53.220 --> 00:58.520
+And here we have a bunch of code to show question body and all related answers
+
+11
+00:58.650 --> 01:01.680
+just in a single file.
+
+12
+01:01.680 --> 01:07.620
+So before we continue to build answer form 
+let's split the code from this file into a separate
+
+13
+01:07.620 --> 01:08.610
+file.
+
+14
+01:08.610 --> 01:22.960
+I think it would be better to put the question part in one file and answers part in another.
+
+15
+01:23.010 --> 01:25.390
+So here let's cut these answers part.
+
+16
+01:27.790 --> 01:29.040
+Go to views
+
+17
+01:30.230 --> 01:31.540
+and here let's create
+
+18
+01:31.540 --> 01:32.270
+new folder
+
+19
+01:35.550 --> 01:38.240
+and call it answers
+
+20
+01:41.400 --> 01:42.920
+inside this folder
+
+21
+01:43.080 --> 01:55.340
+let's create new file and call it let's say _index.blade.php again
+
+22
+01:55.430 --> 01:59.870
+here's the underscore in the front of the file name in Laravel is not necessary.
+
+23
+01:59.870 --> 02:01.480
+You don't have to follow that
+
+24
+02:01.610 --> 02:08.090
+this just my style preference to indicate that 
+this file is partial file and it will be included in
+
+25
+02:08.090 --> 02:12.090
+other view. Inside this file
+
+26
+02:12.130 --> 02:13.850
+just paste the previous code
+
+27
+02:23.150 --> 02:25.230
+here in the heading
+
+28
+02:25.290 --> 02:26.250
+let's change this
+
+29
+02:29.280 --> 02:40.440
+to`answersCount` and change this for each to `answers`.
+
+30
+02:42.500 --> 02:51.230
+Now we can switch to show.blade.php and here we can 
+include our view by calling `include`. The first argument
+
+31
+02:51.230 --> 02:54.560
+will be our partial view or child view
+
+32
+02:54.830 --> 03:09.250
+in this case `answers._index` and here because 
+we call `answersCount` and `answers`
+
+33
+03:09.330 --> 03:17.130
+So here we can define that variables by specify in the second argument an array. In here we simply map the
+
+34
+03:17.130 --> 03:21.880
+variable that will be exist in our child view with any value.
+
+35
+03:21.930 --> 03:23.670
+So `answers`
+
+36
+03:28.340 --> 03:36.750
+question answers and then `answersCount`
+
+37
+03:41.690 --> 03:44.860
+question answers
+
+38
+03:45.050 --> 03:48.540
+count. Let's save all changes.
+
+39
+03:51.210 --> 03:54.700
+And let's make sure that our show question page 
+is working as it was
+
+40
+04:04.070 --> 04:04.480
+OK
+
+41
+04:04.480 --> 04:07.040
+It's working as it was and we were ready to go.

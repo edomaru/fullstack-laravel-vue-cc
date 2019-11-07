@@ -1,0 +1,408 @@
+WEBVTT
+
+0
+00:02.500 --> 00:05.890
+In this lesson we are going to add new feature to our application
+
+1
+00:05.900 --> 00:08.350
+that allows the creator of the question to accept
+
+2
+00:08.350 --> 00:14.410
+the particular answer as the best answer. I'm sure you've 
+already know the logic behind his future because
+
+3
+00:14.410 --> 00:15.310
+we went over it in
+
+4
+00:15.310 --> 00:17.320
+the previous section of this course.
+
+5
+00:17.320 --> 00:22.990
+But now we will implement that logic and 
+make this accept button works.
+
+6
+00:23.010 --> 00:25.080
+All right let's head over to our terminal
+
+7
+00:29.250 --> 00:42.050
+and here let's create new branch by saying: 
+git checkout -b lesson-20.
+
+8
+00:42.070 --> 00:47.800
+Now let's open answers underscore index.blade.php
+
+9
+00:50.900 --> 01:05.920
+and then go to accept button. Here the button
+
+10
+01:12.920 --> 01:15.280
+So here we'll need a form and submit it
+
+11
+01:15.350 --> 01:20.600
+when the creator of the question hitting this button.
+
+12
+01:20.780 --> 01:24.550
+So here let me put this to a new line.
+
+13
+01:32.000 --> 01:34.070
+And here we can say on click
+
+14
+01:36.860 --> 01:39.900
+and firstly we need to stop the default action of this anchor
+
+15
+01:40.300 --> 01:47.060
+by calling event prevent default.
+
+16
+01:47.620 --> 01:55.100
+And then we need to select the element or the form 
+in this case we can do that with saying document
+
+17
+01:55.500 --> 02:03.310
+get element by id. the id is going to be
+
+18
+02:06.980 --> 02:09.460
+accept answer
+
+19
+02:12.260 --> 02:16.220
+and concatenate with ID of the answer to make the form unique.
+
+20
+02:27.630 --> 02:43.310
+And after we have selected a form we can submit it.
+
+21
+02:43.320 --> 02:45.220
+Now here we can define the form
+
+22
+02:45.390 --> 02:57.030
+so form the id will be accept answer followed by answer's id
+
+23
+03:02.680 --> 03:04.390
+and this should be match
+
+24
+03:08.990 --> 03:10.100
+with this
+
+25
+03:21.280 --> 03:23.500
+and then the action will be route
+
+26
+03:26.400 --> 03:32.070
+answers dot accept and pass the answer ID
+
+27
+03:39.760 --> 03:41.560
+and last the method will be post
+
+28
+03:46.970 --> 03:47.910
+close the form.
+
+29
+03:54.790 --> 03:58.200
+Actually here we need to make sure that the form is hidden
+
+30
+03:58.330 --> 04:13.070
+by specify style and inside it we'll say display none.
+
+31
+04:13.990 --> 04:22.400
+Also don't forget to add csrf token by saying `csrf` directive
+
+32
+04:22.510 --> 04:23.240
+All right
+
+33
+04:23.240 --> 04:32.140
+Now let's define this answers dot accept route. 
+Let's open routes web.php
+
+34
+04:43.450 --> 04:50.520
+and here let's define a new route by saying 
+route double colons post
+
+35
+04:50.620 --> 04:55.830
+the uri is going to be answers
+
+36
+04:56.110 --> 05:08.900
+answer accept and the action is going to be 
+accept answer controller
+
+37
+05:09.410 --> 05:10.130
+just like this
+
+38
+05:15.030 --> 05:17.540
+the name will be answers
+
+39
+05:18.510 --> 05:19.330
+dot accept
+
+40
+05:27.690 --> 05:35.100
+so ideally we need to specify what method in here 
+such as store edit or whatever
+
+41
+05:35.100 --> 05:41.760
+but for now I'll introduce you about single action controller so as the name suggest single action controller
+
+42
+05:42.000 --> 05:43.350
+is a controller
+
+43
+05:43.530 --> 05:45.430
+that only handle a single action.
+
+44
+05:45.740 --> 05:51.000
+And because we only have a single action in the controller here we don't need to specify the action
+
+45
+05:51.000 --> 05:52.380
+name.
+
+46
+05:52.410 --> 06:01.910
+Now let's create the accept answer controller using 
+artisan. Head over to our terminal and here we can
+
+47
+06:01.910 --> 06:13.420
+say: `php artisan make:controller AcceptAnswerController`
+
+48
+06:18.960 --> 06:21.540
+alright let's opened the accept answer controller
+
+49
+06:30.680 --> 06:33.270
+here let's important the namespace of the answer model
+
+50
+06:44.090 --> 06:53.940
+and here we should define our action name as 
+double underscore invoke.
+
+51
+06:54.150 --> 06:58.620
+And here we can also define an argument and type-hint to answer.
+
+52
+07:06.950 --> 07:07.770
+Inside here
+
+53
+07:07.780 --> 07:09.220
+for now let's show a message
+
+54
+07:17.470 --> 07:18.090
+so
+
+55
+07:21.570 --> 07:27.870
+when we define the action like this without any method 
+name laravel will be assume that the method will
+
+56
+07:27.870 --> 07:32.500
+be called is this invoke method.
+
+57
+07:34.520 --> 07:36.670
+All right let's save all changes
+
+58
+07:38.130 --> 07:56.140
+and let's see if it works as we expect.
+
+59
+07:56.180 --> 07:57.620
+Let's find our own question
+
+60
+08:09.830 --> 08:12.620
+and here let's randomly accept the answer as best answer
+
+61
+08:17.820 --> 08:19.180
+Ups I get error
+
+62
+08:24.780 --> 08:25.770
+let me see the token
+
+63
+08:34.660 --> 08:41.470
+here I made typo.
+
+64
+08:41.670 --> 08:52.470
+This should be csrf save reload again.
+
+65
+09:02.950 --> 09:04.050
+Now I have the token here
+
+66
+09:07.540 --> 09:09.280
+let me hit this button once again.
+
+67
+09:11.310 --> 09:11.650
+All right
+
+68
+09:11.650 --> 09:16.560
+here we have accept the answer message show up.
+
+69
+09:16.720 --> 09:19.680
+Now let's go back to invoke method.
+
+70
+09:21.570 --> 09:23.360
+And here let's remove this line
+
+71
+09:23.980 --> 09:29.860
+and here we can accept the answer as best answer by 
+modify the best_answer_id in the question model. We
+
+72
+09:30.040 --> 09:33.410
+will encapsulate that logic in the question model.
+
+73
+09:33.770 --> 09:43.250
+And here we can say answer question accept best answer
+
+74
+09:46.080 --> 09:47.320
+and pass in the answer
+
+75
+09:47.570 --> 09:48.320
+instance
+
+76
+09:53.160 --> 09:55.620
+So we will create this method shortly
+
+77
+09:55.800 --> 10:01.790
+but for now let's refresh the page by saying return back.
+
+78
+10:01.950 --> 10:06.780
+And in this case I think we don't need to show any flash message.
+
+79
+10:06.780 --> 10:11.690
+So we only need just this common. All right
+
+80
+10:11.730 --> 10:14.930
+the last thing that we should do is define this
+
+81
+10:14.950 --> 10:18.580
+Accept best answer method in our question model.
+
+82
+10:19.030 --> 10:21.070
+So let's open the question model
+
+83
+10:31.340 --> 10:31.750
+and here
+
+84
+10:31.760 --> 10:44.750
+let's create new method so public function accepts 
+best answer and provide an argument
+
+85
+10:45.060 --> 10:46.290
+answer instance in this case
+
+86
+10:52.030 --> 10:57.580
+inside this method we simply call this best answer
+
+87
+10:58.980 --> 11:03.150
+id equals answer
+
+88
+11:03.460 --> 11:05.730
+id
+
+89
+11:06.520 --> 11:09.520
+and then we can call this save
+
+90
+11:12.330 --> 11:12.820
+alright
+
+91
+11:12.880 --> 11:13.870
+let's save all changes
+
+92
+11:18.920 --> 11:36.980
+and here we have request submitted so 
+we can simply reload a page and hit continue.
+
+93
+11:37.060 --> 11:37.700
+All right
+
+94
+11:37.700 --> 11:42.870
+here we can see the answer is green color which mean 
+it has been accepted as best answer
+
+95
+11:42.920 --> 11:45.040
+Great.
+
+96
+11:45.280 --> 11:46.460
+Let me click another answer
+
+97
+11:56.870 --> 11:59.200
+and now the best answer changing to this one.

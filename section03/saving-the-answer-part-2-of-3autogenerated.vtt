@@ -1,0 +1,358 @@
+WEBVTT
+
+0
+00:01.770 --> 00:04.070
+All right now let's build the answer for them.
+
+1
+00:04.110 --> 00:11.130
+Let's go back or editor and here let's save this file
+
+2
+00:12.460 --> 00:20.180
+as _create.blade.php
+
+3
+00:20.350 --> 00:28.390
+And here in the card title let's remove the existing heading and here we simply add heading 3
+
+4
+00:32.750 --> 00:35.730
+and the text will be "Your answer"
+
+5
+00:41.770 --> 00:47.470
+remove all these and here let's add a form.
+
+6
+00:47.480 --> 00:48.620
+So form
+
+7
+00:51.570 --> 00:55.650
+let's set empty action for a while and the method will be `post`.
+
+8
+01:01.650 --> 01:02.440
+Inside this form
+
+9
+01:02.490 --> 01:08.640
+let's add `csrf_token` by utilizing `csrf` blade directive.
+
+10
+01:09.070 --> 01:14.840
+Then let's add a text area to enter answer's body 
+and we need to wrap it in bootstrap from group
+
+11
+01:24.900 --> 01:31.010
+text area class form-control
+
+12
+01:34.310 --> 01:38.970
+the rows let's say 7
+
+13
+01:39.220 --> 01:47.170
+and the name will be body.
+
+14
+01:47.260 --> 01:48.900
+Let's also add a button
+
+15
+01:49.240 --> 01:51.250
+and again let's wrap it in from group
+
+16
+02:01.670 --> 02:04.400
+button type submit
+
+17
+02:07.350 --> 02:17.730
+the classes will be `btn btn-lg` to make it bigger
+
+18
+02:17.970 --> 02:21.750
+and then `btn-outline-primary`
+
+19
+02:25.640 --> 02:32.230
+and the text is going to be submit.
+
+20
+02:32.230 --> 02:40.260
+Now let's go back to show.blade.php. And here 
+after including `answers._index` we can include
+
+21
+02:40.260 --> 02:41.210
+our new view
+
+22
+02:41.410 --> 02:50.220
+by saying include answers dot underscore create.
+
+23
+02:50.330 --> 02:54.180
+Now to make our form working we still need 
+to do a couple of things.
+
+24
+02:54.200 --> 02:56.660
+First let's open routes.php
+
+25
+02:59.610 --> 03:08.820
+and here let's define new route that will handle answer creation. Here we will not need to define special
+
+26
+03:08.820 --> 03:13.670
+route to show the form because we have included 
+our form inside other view.
+
+27
+03:13.680 --> 03:25.030
+So here we can manually define new routes to store our answer like this route post questions
+
+28
+03:27.060 --> 03:38.470
+question answers. The route handler could be
+Answers Controller at store
+
+29
+03:44.440 --> 03:45.770
+and you can also name it
+
+30
+03:45.770 --> 03:52.320
+for example answers dot store or whatever.
+
+31
+03:54.040 --> 03:56.920
+Or we can utilize nested resource routes like this
+
+32
+04:03.570 --> 04:06.430
+questions dot answers
+
+33
+04:10.350 --> 04:15.000
+and then the route handler will be answers
+
+34
+04:15.150 --> 04:18.240
+controller like so
+
+35
+04:23.590 --> 04:26.220
+now if we see our routes in our terminal
+
+36
+04:35.650 --> 04:39.780
+Whoops I get error. Actually let's generate our answers controller
+
+37
+04:48.230 --> 04:57.810
+resource model answer
+
+38
+04:57.970 --> 04:59.570
+Let's see our routes again.
+
+39
+05:06.480 --> 05:10.080
+As you can see now we have questions.
+
+40
+05:10.080 --> 05:13.820
+question answer etc.
+
+41
+05:16.090 --> 05:25.160
+And here the route name will be questions dot answers and followed by resource method.
+
+42
+05:25.160 --> 05:30.110
+Now if you go to the latest version of laravel documentation you will not find any description
+
+43
+05:30.140 --> 05:31.850
+for these resource routes.
+
+44
+05:31.880 --> 05:36.980
+I don't know why is not included in the documentation of 
+the latest version of laravel but it
+
+45
+05:36.990 --> 05:40.670
+still can be applied in the level of 5.6 as we did.
+
+46
+05:40.770 --> 05:43.640
+And I hope this feature still remain in the next version.
+
+47
+05:43.730 --> 05:49.490
+So just in case you are using the next version of laravel and this resource routes is no longer exist
+
+48
+05:49.970 --> 05:52.330
+or you don't like to use nested resource route
+
+49
+05:52.340 --> 05:55.570
+for some reasons then you just defend the route manually
+
+50
+05:55.580 --> 06:04.450
+as I showed you before. Alright here we only need store edit update and destroy method.
+
+51
+06:04.450 --> 06:07.540
+So here we can say `only`
+
+52
+06:10.100 --> 06:16.890
+store edit update and destroy
+
+53
+06:21.170 --> 06:24.130
+all we can also say `except`
+
+54
+06:30.970 --> 06:38.250
+index create and show.
+
+55
+06:38.290 --> 06:39.940
+Now if we see our routes again
+
+56
+06:45.310 --> 06:52.660
+here we only have store update destroy and edit. Next
+
+57
+06:52.670 --> 06:54.460
+let's open our answers controller
+
+58
+06:58.460 --> 07:01.660
+end here let's remove unused methods.
+
+59
+07:01.690 --> 07:02.590
+So this one
+
+60
+07:09.730 --> 07:10.390
+this one
+
+61
+07:21.130 --> 07:28.630
+and this one.
+
+62
+07:28.940 --> 07:29.260
+OK
+
+63
+07:29.280 --> 07:31.850
+let's go to store method
+
+64
+07:34.000 --> 07:46.570
+and here because in our routes we included question so here we need to capture the question by specify
+
+65
+07:46.970 --> 07:47.710
+or type-hint
+
+66
+07:47.720 --> 07:49.610
+the first argument with a question instance
+
+67
+07:56.160 --> 08:00.000
+and here before we store our answer lot's perform form validation.
+
+68
+08:04.020 --> 08:10.020
+and for now will not define it in form request but instead we'll define it in this controller because
+
+69
+08:10.040 --> 08:12.830
+we'll only need to validate the answer's body.
+
+70
+08:13.090 --> 08:15.840
+So here we can say request
+
+71
+08:19.110 --> 08:19.760
+validate
+
+72
+08:28.030 --> 08:29.060
+inside
+
+73
+08:29.060 --> 08:35.030
+here we just specify validation rule to validate the answer's body as required.
+
+74
+08:41.820 --> 08:54.550
+If the answer's body is valid then we can save it in our database by saying question answers create and pass
+
+75
+08:54.550 --> 08:55.560
+in the answer's body.
+
+76
+09:03.250 --> 09:06.270
+also will need to save the user_id who create the answer.
+
+77
+09:06.520 --> 09:09.210
+So here we can add user_id
+
+78
+09:12.470 --> 09:21.700
+and then here we can get the current user's ID by calling 
+Auth facade and followed by calling id
+
+79
+09:26.750 --> 09:28.610
+last we can redirect the previous page
+
+80
+09:31.890 --> 09:47.810
+and store the message as flash message.
+
+81
+09:47.820 --> 09:53.040
+Now here we can simplify our code by moving this validate method
+
+82
+09:58.180 --> 10:02.380
+and pass it as arguments in the create method.
+
+83
+10:07.040 --> 10:13.370
+Because since version 5.4 the validate method will return 
+array contains data that has been
+
+84
+10:13.370 --> 10:14.090
+validated
+
+85
+10:14.170 --> 10:20.780
+if validation is passed. And here we can remove
+this body from the second array.
+
+86
+10:23.150 --> 10:27.590
+And actually we can merge both these with plus operator like this.

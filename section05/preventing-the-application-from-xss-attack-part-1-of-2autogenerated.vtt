@@ -1,0 +1,437 @@
+WEBVTT
+
+0
+00:01.960 --> 00:04.620
+In this lesson we are going to fix two issues.
+
+1
+00:04.860 --> 00:11.000
+First we'll do a little fix on question excerpt in the 
+all questions page because at this time we've
+
+2
+00:11.010 --> 00:18.210
+taken the excerpt from the original question 
+body which is in Mardown format.
+
+3
+00:18.360 --> 00:20.510
+So let me randomly edit a question
+
+4
+00:27.850 --> 00:29.610
+and here I'll do a simple test
+
+5
+00:32.110 --> 00:39.740
+I'll make the first word in this question body to bold 
+in markdown to indicate the text in bold is to
+
+6
+00:39.740 --> 00:47.250
+wrap it in double asterisks like this.
+
+7
+00:47.300 --> 00:48.230
+I'll save the change.
+
+8
+00:57.160 --> 01:01.380
+and you see is still in origin on markdown format.
+
+9
+01:01.440 --> 01:03.050
+So that's the first issue.
+
+10
+01:04.300 --> 01:09.680
+Then we will also do a little fix in Show question page regarding to a security issue.
+
+11
+01:10.690 --> 01:22.080
+So let me create a new question.
+
+12
+01:22.130 --> 01:44.500
+The title let's say "how to clean our html content from malicious code and reducing cross site scripting attack".
+
+13
+01:44.730 --> 01:49.910
+And the question body I'll take from the question title and here.
+
+14
+01:49.940 --> 01:52.110
+I'll write javascript code to show alert.
+
+15
+02:10.400 --> 02:12.410
+this just a simple example
+
+16
+02:12.410 --> 02:18.480
+in practice everything in said script tag 
+can be contain harmful script.
+
+17
+02:18.620 --> 02:19.790
+I'll hit ask questions button
+
+18
+02:25.830 --> 02:27.950
+and now if I see my last question
+
+19
+02:33.590 --> 02:34.460
+I'll get javascript
+
+20
+02:34.460 --> 02:37.650
+alert pop up and that's the second issue.
+
+21
+02:37.880 --> 02:46.200
+Our application is still vulnerable from cross site 
+script or xss attack. And we need a way to clean
+
+22
+02:46.290 --> 02:49.660
+or sanitize the question body from the malicious code.
+
+23
+02:55.390 --> 03:08.130
+All right before we moving on as always 
+let's isolate our new work in new branch.
+
+24
+03:08.200 --> 03:11.930
+Now we are in new branch and we can start fixing the first issue.
+
+25
+03:14.600 --> 03:20.910
+To fix the issue what we need to do is convert the 
+markdown format to plaintext and after that we
+
+26
+03:20.910 --> 03:24.140
+can then limit the text.
+
+27
+03:24.350 --> 03:27.250
+But I don't find any library that can do the trick.
+
+28
+03:28.750 --> 03:33.460
+After doing some research and 
+experiment finally I find a simple trick.
+
+29
+03:33.460 --> 03:40.770
+So let's see how they do that.
+
+30
+03:40.930 --> 03:42.790
+Let's open questions
+
+31
+03:46.830 --> 03:48.060
+index.blade.php
+
+32
+04:00.750 --> 04:05.990
+and here in str_limit helper function call let's change
+
+33
+04:06.000 --> 04:10.800
+the question body to question body underscore html
+
+34
+04:13.560 --> 04:15.060
+remember the body html
+
+35
+04:15.090 --> 04:21.380
+It's an accessor which covert the markdown 
+format to html. And now we cannot use blade 
+
+36
+04:21.380 --> 04:24.290
+escaping statement like this because
+
+37
+04:37.320 --> 04:43.390
+we'll have the question excerpt rendered as html
+
+38
+04:43.560 --> 04:51.400
+So a simple solution is to change this to 
+blade non escaping statesman like so
+
+39
+05:06.480 --> 05:09.800
+and now we see the question excerpt back to normal.
+
+40
+05:10.140 --> 05:15.040
+But here we'll face other issues as you can see
+
+41
+05:15.230 --> 05:25.350
+here we have alert show up.
+
+42
+05:25.570 --> 05:29.040
+Now let me change the limit number so that you can see another issue.
+
+43
+05:42.980 --> 05:48.290
+As you can see now our page is broken. 
+
+44
+05:48.320 --> 05:49.190
+If we see the source
+
+45
+06:01.170 --> 06:03.230
+here we have incomplete html tag
+
+46
+06:03.510 --> 06:05.360
+that's why the page was broken.
+
+47
+06:11.520 --> 06:17.270
+So to fix this we can wrap this question body html
+
+48
+06:24.570 --> 06:33.500
+in php strip_tags function. This function will strip 
+html and php tags format string and return
+
+49
+06:33.500 --> 06:36.980
+a pure string no html or php tags at all.
+
+50
+06:38.200 --> 06:52.380
+And now it's no problem using blade escaping 
+statement or non escaping statement
+
+51
+06:54.280 --> 07:03.320
+because as I said the question excerpt now in pure string 
+and to make it more semantic we can wrap it in
+
+52
+07:03.320 --> 07:04.450
+a container.
+
+53
+07:04.490 --> 07:07.940
+It could be a paragraph or a div tag
+
+54
+07:17.440 --> 07:17.890
+here
+
+55
+07:17.890 --> 07:19.400
+the class is not necessary
+
+56
+07:19.660 --> 07:25.540
+and I won't  make any styling for this at least for now.
+But I think this much better instead of a div
+
+57
+07:25.630 --> 07:53.110
+without any attribute because it make or tag descriptive 
+readable and make it easier to maintenance.
+
+58
+07:53.120 --> 08:00.350
+So now we have displayed the 
+question excerpt properly and safely.
+
+59
+08:00.540 --> 08:02.420
+But I think this line is a bit complex
+
+60
+08:02.430 --> 08:06.500
+now. It's better to keep our view as simple as possible.
+
+61
+08:08.910 --> 08:13.080
+So instead str_limit strip_tags blah blah blah
+
+62
+08:16.040 --> 08:17.630
+here let's cut this code
+
+63
+08:22.770 --> 08:24.960
+and say question excerpt
+
+64
+08:33.750 --> 08:35.400
+now let's open question model
+
+65
+08:41.710 --> 08:42.970
+and then create a new accessor
+
+66
+08:54.610 --> 09:00.400
+so public function get excerpt attribute
+
+67
+09:06.950 --> 09:11.090
+paste the code inside here and add return in the front.
+
+68
+09:15.680 --> 09:19.200
+Don't forget to change the question to this.
+
+69
+09:23.270 --> 09:23.580
+Now
+
+70
+09:23.610 --> 09:30.180
+here we cannot call body html because we are inside the model.
+
+71
+09:30.330 --> 09:30.980
+Maybe
+
+72
+09:38.210 --> 09:39.560
+we can copy this code
+
+73
+09:44.360 --> 09:53.790
+and then paste here but don't do that because it's not follow the DRY principle. Instead let's call this
+
+74
+09:54.740 --> 09:55.620
+body html. And then
+
+75
+10:00.250 --> 10:03.720
+hear let's defend that method.
+
+76
+10:08.260 --> 10:11.230
+The method will only be called inside the model
+
+77
+10:11.230 --> 10:18.410
+And I think it will not called outside so using 
+private or protected modifier is much better.
+
+78
+10:30.250 --> 10:34.070
+And here let's cut this line
+
+79
+10:37.830 --> 10:39.020
+and paste here.
+
+80
+10:44.320 --> 10:44.920
+And now here
+
+81
+10:48.770 --> 10:54.580
+we simply call return this body html
+
+82
+11:00.100 --> 11:01.210
+Let's save all changes
+
+83
+11:05.710 --> 11:07.690
+and make sure that everything is still working fine.
+
+84
+11:28.620 --> 11:29.120
+OK
+
+85
+11:29.230 --> 11:30.610
+It's all working fine.
+
+86
+11:39.350 --> 11:45.400
+Now if you need the excerpt to be able to be changeable 
+without need to change the length inside the model
+
+87
+11:48.310 --> 11:57.050
+then you can simply cut this line and call return this excerpt
+
+88
+12:01.190 --> 12:02.820
+and then specify the default length
+
+89
+12:08.720 --> 12:15.430
+and now define the except method.
+
+90
+12:15.600 --> 12:19.290
+This should be public because 
+we'll call inside and outside the model
+
+91
+12:28.440 --> 12:30.400
+specify an argument length
+
+92
+12:30.420 --> 12:31.080
+in this case.
+
+93
+12:38.720 --> 12:40.620
+inside here just paste the previous code
+
+94
+12:43.460 --> 12:45.520
+and change the number to length.
+
+95
+12:53.460 --> 13:02.170
+So when we code question excerpt like this the 
+length of the excerpt will be 250 but just in case you
+
+96
+13:02.170 --> 13:07.520
+want to adjust to any number let's say 350
+
+97
+13:07.910 --> 13:10.190
+then you can say question excerpt
+
+98
+13:12.610 --> 13:13.370
+350
+
+99
+13:24.800 --> 13:29.030
+and now you'll see the question excerpt a bit longer.
+
+100
+13:30.000 --> 13:30.440
+OK
+
+101
+13:30.480 --> 13:34.170
+I think the  first issue has been fixed. Next let's fix
+
+102
+13:34.200 --> 13:34.920
+the second issue.
+
+103
+13:38.090 --> 13:38.450
+so

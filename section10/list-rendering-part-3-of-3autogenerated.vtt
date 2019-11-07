@@ -1,0 +1,187 @@
+WEBVTT
+
+0
+00:03.140 --> 00:06.160
+Now let's implement the v for on a single object
+
+1
+00:11.650 --> 00:17.450
+let's open list rendering four dot html and 
+here we'll do the same thing as before
+
+2
+00:17.590 --> 00:21.100
+which display a list of the top 10 frameworks and their course.
+
+3
+00:25.570 --> 00:33.340
+Now  let's switch over to our editor than 
+open list rendering four dot html.
+
+4
+00:33.440 --> 00:38.770
+Here we have the same markup but 
+the difference here is in the data
+
+5
+00:41.850 --> 00:42.940
+as we can see here
+
+6
+00:43.020 --> 00:48.030
+This is a simple form of previous data 
+but now they are stored in single object
+
+7
+00:48.210 --> 00:52.730
+So each framework and score represented in a single property.
+
+8
+00:52.930 --> 01:00.390
+The framework name as a key and the score as a value.
+
+9
+01:00.410 --> 01:02.150
+All right let's jump to our markup
+
+10
+01:06.090 --> 01:07.790
+remove these list items
+
+11
+01:11.790 --> 01:12.600
+also this one
+
+12
+01:18.170 --> 01:24.590
+here we can use the v-for directive by including the 
+index as before it should be noted here that the
+
+13
+01:24.590 --> 01:25.580
+property value
+
+14
+01:28.720 --> 01:34.100
+in this case the score will be item on the left side.
+
+15
+01:35.470 --> 01:43.340
+And the property key in this case the framework 
+name will be index on the right side.
+
+16
+01:43.420 --> 01:52.280
+So v-for equals parenthesis score comma framework of top
+
+17
+01:56.540 --> 01:57.410
+ten frameworks
+
+18
+02:00.890 --> 02:10.070
+then let's change the text to framework and 
+then we change the number to score.
+
+19
+02:15.750 --> 02:16.140
+OK
+
+20
+02:16.140 --> 02:19.780
+here we get the same result as before.
+
+21
+02:21.040 --> 02:29.580
+Finally let's look at how to implement 
+the v-for on an array of object.
+
+22
+02:29.760 --> 02:32.300
+Let's open list rendering five dot html
+
+23
+02:37.700 --> 02:40.470
+and here we will display the top ten framework in a table
+
+24
+02:43.190 --> 02:46.360
+so its framework will have a score from GitHub
+
+25
+02:46.460 --> 02:51.270
+stack over flow and overall score.
+
+26
+02:51.710 --> 02:58.230
+Let's switch over to editor an open list rendering five dot html.
+
+27
+03:01.850 --> 03:06.400
+jump to script section.
+
+28
+03:06.550 --> 03:13.200
+And here we see the top ten framework property which 
+contains array of objects each element consist of
+
+29
+03:13.420 --> 03:20.090
+name GitHub stack overflow and overall.
+
+30
+03:20.100 --> 03:28.150
+Now let's jump to the table then leave two table rows 
+because we need to iterate one table row and the
+
+31
+03:28.150 --> 03:39.750
+rest will be the table heading.
+
+32
+03:39.830 --> 03:47.360
+Here we can say v-for equals framework of top ten frameworks
+
+33
+03:52.370 --> 04:00.200
+and here to show the framework name 
+we can say framework dot name.
+
+34
+04:00.270 --> 04:09.180
+And then for the GitHub score we can say framework dot github
+
+35
+04:09.390 --> 04:23.030
+And then for the stack over flow score framework dot 
+stack overflow and the last we can say framework
+
+36
+04:24.030 --> 04:24.870
+dot overall
+
+37
+04:30.270 --> 04:31.970
+let's switch to our browser.
+
+38
+04:32.370 --> 04:40.830
+And here we will see the top 10 framework displayed
+in the table each framework has score from github stack
+
+39
+04:40.830 --> 04:45.080
+overflow and overall. Alright
+
+40
+04:45.180 --> 04:47.700
+so that's about the list rendering.
+
+41
+04:47.700 --> 04:54.450
+Hopefully from these experiments you get the idea about 
+list rendering in vue js and how to use it to display
+
+42
+04:54.450 --> 04:56.770
+different types of collection properly.

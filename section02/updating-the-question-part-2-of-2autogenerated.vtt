@@ -1,0 +1,305 @@
+WEBVTT
+
+0
+00:02.620 --> 00:04.110
+Now let's save this file
+
+1
+00:09.120 --> 00:11.750
+and we'll call it edit.blade.php
+
+2
+00:17.540 --> 00:27.340
+here we need to change the header to edit question
+
+3
+00:27.390 --> 00:35.430
+We don't need to change this link just skip that.
+
+4
+00:36.520 --> 00:47.070
+And here let's change the form action to questions dot update and pass the question instance or question
+
+5
+00:47.070 --> 00:52.780
+id.
+
+6
+00:53.440 --> 01:03.460
+Now here the http method of questions dot update needs to be put so let me show you again the routes
+
+7
+01:24.970 --> 01:33.130
+as we can see here the method is put or patch.
+
+8
+01:33.470 --> 01:43.780
+But here we cannot change this method to put like so because it will not work.
+
+9
+01:43.790 --> 01:51.500
+Instead we keep this method as post an inside this form
+
+10
+01:56.750 --> 01:57.530
+we can define
+
+11
+02:00.720 --> 02:02.270
+method field
+
+12
+02:06.270 --> 02:08.930
+put like this.
+
+13
+02:08.970 --> 02:15.210
+This will generate hidden input called the _method and the value is put once with some in the
+
+14
+02:15.210 --> 02:19.910
+form of will we all recognize that we send a put request.
+
+15
+02:20.110 --> 02:34.510
+OK last Let's change the button's text to Update question. Save the changes and let's see in our browser
+
+16
+02:37.240 --> 02:38.550
+back to all questions
+
+17
+02:41.170 --> 02:43.090
+and click the edit button.
+
+18
+02:47.150 --> 02:51.800
+Ok now we have our edit question show up
+
+19
+02:51.800 --> 03:01.590
+the title is edit question, the submit button is update question.
+
+20
+03:01.690 --> 03:03.370
+Now if we see the source
+
+21
+03:11.130 --> 03:12.270
+and find the form
+
+22
+03:17.410 --> 03:19.000
+we'll see here
+
+23
+03:19.810 --> 03:29.450
+As I said there's a hidden input _method with the value put. OK
+
+24
+03:33.330 --> 03:39.930
+one thing that we need to do in our edit form is to show the current questions information into
+
+25
+03:39.930 --> 03:42.020
+the form inputs right?
+
+26
+03:42.180 --> 03:45.500
+So here and here.
+
+27
+03:45.580 --> 03:51.160
+So let's go back to our editor switch to form
+
+28
+03:51.190 --> 03:52.060
+blade php
+
+29
+03:57.390 --> 04:01.370
+and here in the title input we have level old function calling.
+
+30
+04:01.470 --> 04:08.040
+As I said this function will retrieve flash input from the previous request and this function actually
+
+31
+04:08.070 --> 04:11.370
+receive a second argument as default value.
+
+32
+04:11.370 --> 04:13.140
+So in this case
+
+33
+04:16.430 --> 04:18.910
+we simply pass in the question title
+
+34
+04:19.030 --> 04:20.410
+as the second argument like
+
+35
+04:20.660 --> 04:31.280
+So. Sorry question title and let's do the same thing to the question body.
+
+36
+04:45.420 --> 04:55.140
+Save that and then reload the page
+
+37
+04:55.230 --> 04:55.690
+Alright
+
+38
+04:55.710 --> 05:05.940
+Now the title and the body has been populated with old questions information. Next let's try to change the
+
+39
+05:05.940 --> 05:06.450
+title
+
+40
+05:13.650 --> 05:20.410
+then click the submit button. As you may guess this will produce a blank page.
+
+41
+05:20.790 --> 05:22.990
+So let's go back to our editor one more time
+
+42
+05:30.400 --> 05:32.730
+Jump to update method.
+
+43
+05:36.130 --> 05:39.060
+First we need to validate the request right?
+
+44
+05:39.130 --> 05:51.420
+And here we simply change the type-hint of the first parameter from request to ask question request
+
+45
+05:55.020 --> 06:09.290
+and inside this method we simply say question update and then pass in the new title and body of the question.
+
+46
+06:19.660 --> 06:22.870
+And don't forget to redirect to all questions.
+
+47
+06:29.200 --> 06:33.980
+As I said in redirect function you can pass the URI
+
+48
+06:38.480 --> 06:41.260
+or chaining it with route method call
+
+49
+06:41.600 --> 06:45.250
+as we did in store method
+
+50
+06:50.140 --> 06:58.600
+after that we set up flash message.
+
+51
+06:58.970 --> 07:06.490
+let's say your question has been updated.
+
+52
+07:09.670 --> 07:14.480
+Save that and reload the page
+
+53
+07:17.690 --> 07:19.160
+hit continue.
+
+54
+07:22.840 --> 07:26.060
+All right here the update message appear
+
+55
+07:26.620 --> 07:31.240
+and the question title has changed.
+
+56
+07:31.270 --> 07:32.600
+Let's try one more time
+
+57
+07:35.460 --> 07:36.930
+edit any question
+
+58
+07:38.110 --> 07:39.550
+change the title
+
+59
+07:43.710 --> 07:45.780
+the body as well
+
+60
+07:48.430 --> 07:50.390
+And hit update question button.
+
+61
+08:04.490 --> 08:10.070
+Alright, we have successfully extended the functionality of our question form so that we can create
+
+62
+08:10.070 --> 08:15.580
+new question and update existing question and that's it for this lesson.
+
+63
+08:15.580 --> 08:19.200
+Don't forget to save your work to git repo
+
+64
+08:19.300 --> 08:22.040
+I'll flip over to my terminal
+
+65
+08:29.300 --> 08:31.720
+git add all
+
+66
+08:35.370 --> 08:45.400
+git commit -m and I'll say extend the form functionality
+
+67
+08:50.150 --> 08:54.520
+to be able to update
+
+68
+08:54.840 --> 08:55.410
+Question
+
+69
+09:00.750 --> 09:03.110
+and then push the current branch
+
+70
+09:14.440 --> 09:16.450
+switch to master branch
+
+71
+09:21.940 --> 09:24.310
+And then merge to lesson 9
+
+72
+09:32.140 --> 09:37.280
+And last push our master branch git push
+
+73
+09:37.420 --> 09:45.220
+origin master
+
+74
+09:45.470 --> 09:46.310
+OK great.
+
+75
+09:46.310 --> 09:47.560
+I'll see you in the next lesson.

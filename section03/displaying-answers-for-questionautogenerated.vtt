@@ -1,0 +1,670 @@
+WEBVTT
+
+0
+00:01.440 --> 00:07.930
+In the previous lesson we have inserted our `answers` table with some fake answers programmatically by utilizing
+
+1
+00:07.930 --> 00:10.180
+model factories and database seed.
+
+2
+00:10.440 --> 00:16.380
+Now in this lesson we will come back to the 
+show question page and display all related answers
+
+3
+00:16.380 --> 00:18.060
+on this page.
+
+4
+00:18.060 --> 00:23.340
+All right before we moving on as always 
+let's go ahead and open our terminal
+
+5
+00:26.180 --> 00:31.540
+and create new branch by saying: git checkout -b
+
+6
+00:31.760 --> 00:35.840
+And then the branch name will be lesson-15
+
+7
+00:40.410 --> 00:40.950
+OK
+
+8
+00:40.950 --> 00:47.930
+now let's open show.blade.php
+
+9
+00:48.180 --> 00:51.150
+And here we will display the answers in a new row
+
+10
+00:51.270 --> 00:58.260
+So here let's fold or hide the content of this row and blow that
+
+11
+00:58.550 --> 01:03.350
+let's create a new div and give it to class row
+
+12
+01:10.160 --> 01:11.280
+inside this div
+
+13
+01:11.540 --> 01:12.770
+let's create another div
+
+14
+01:16.380 --> 01:23.300
+and give it a class called `md-12` to make the answer in full with
+
+15
+01:29.340 --> 01:30.380
+inside this div
+
+16
+01:30.590 --> 01:32.580
+let's utilize bootstrap card component.
+
+17
+01:32.780 --> 01:37.510
+So div class card
+
+18
+01:43.200 --> 01:46.010
+Here we need to wrap the question body in `cart-body`
+
+19
+01:55.730 --> 01:56.200
+end here
+
+20
+01:56.210 --> 01:58.130
+let's also add card title
+
+21
+02:08.860 --> 02:10.480
+Inside this card title
+
+22
+02:10.540 --> 02:11.590
+let's add heading two
+
+23
+02:20.590 --> 02:58.210
+and here I'm going to show the total number of answers of the current question.
+
+24
+02:58.230 --> 03:02.980
+Let's also add horizontal rule to a separate card title with our answer.
+
+25
+03:06.160 --> 03:08.670
+And finally here we will display all answers.
+
+26
+03:08.890 --> 03:13.330
+So for each question
+
+27
+03:17.350 --> 03:21.280
+answers as
+
+28
+03:21.330 --> 03:21.820
+answer
+
+29
+03:24.590 --> 03:26.470
+and close the for each loop
+
+30
+03:35.010 --> 03:40.480
+and inside this loop we will display every 
+single answer into bootstrap media object
+
+31
+03:40.480 --> 03:45.220
+Actually this is exactly the same thing 
+as we did when displaying question item.
+
+32
+03:45.490 --> 03:49.840
+So div class `media`
+
+33
+03:55.160 --> 04:04.670
+and here we'll wrap the answer's body in 
+`media-body` class so div class `media-body`
+
+34
+04:10.430 --> 04:12.560
+and finally here we show the answer's body
+
+35
+04:23.520 --> 04:27.100
+OK save that and let's have a look.
+
+36
+04:38.320 --> 04:40.550
+Here we have two answers
+
+37
+04:40.740 --> 04:47.010
+and here we need some space between the question body and answers.
+
+38
+04:47.010 --> 04:53.620
+also we need to add horizontal rule to separate one answer with another.
+
+39
+04:53.650 --> 05:04.390
+So let's go back to our editor and here in the row 
+I'll add margin top up by utilizing bootstrap class mt
+
+40
+05:05.800 --> 05:11.680
+three and then here I'll add horizontal rule
+
+41
+05:15.360 --> 05:22.410
+save and reload again.
+
+42
+05:22.490 --> 05:23.600
+Here our answers
+
+43
+05:29.840 --> 05:31.800
+I think it's still too close.
+
+44
+05:31.970 --> 05:32.540
+So
+
+45
+05:35.840 --> 05:38.670
+I'll change this to `mt-4`
+
+46
+05:43.480 --> 05:46.850
+Reload again. OK
+
+47
+05:46.850 --> 05:47.680
+I think it's good.
+
+48
+05:51.170 --> 06:00.630
+Next let's also add other info and creation date 
+in both question body and answer item.
+
+49
+06:00.630 --> 06:05.290
+And here I'll place it on the bottom right.
+
+50
+06:05.350 --> 06:07.060
+So let's switch to our editor
+
+51
+06:11.580 --> 06:19.480
+and here after answer's body let's create a new div.
+
+52
+06:19.630 --> 06:23.920
+And as I said I'll place the author info and 
+creation date on the right.
+
+53
+06:24.040 --> 06:29.230
+So for now I'll be using `float-right`
+
+54
+06:37.890 --> 06:38.340
+here
+
+55
+06:38.380 --> 06:45.690
+firstly I'll show the answer creation date. I will be add 
+a `span` inside a paragraph because in
+
+56
+06:45.700 --> 06:48.450
+bootstrap it has some extra space on the bottom.
+
+57
+06:49.360 --> 06:58.100
+And then I'll give it the class `text-muted` to make the font color a little bit gray.
+
+58
+07:05.120 --> 07:07.850
+And here the txt will be answered
+
+59
+07:09.110 --> 07:11.800
+and then the answer's creation date.
+
+60
+07:20.710 --> 07:25.430
+Below that I'll show the author's avatar on the left and the name on the right.
+
+61
+07:25.450 --> 07:30.460
+So here I'll create another div and give it a class `media`
+
+62
+07:38.100 --> 07:38.600
+here
+
+63
+07:38.640 --> 07:41.280
+I'll create an anchor.
+
+64
+07:41.440 --> 07:42.850
+The ref will be
+
+65
+07:45.590 --> 07:46.190
+answer
+
+66
+07:48.620 --> 07:49.700
+user
+
+67
+07:49.930 --> 07:50.700
+url
+
+68
+07:56.580 --> 08:02.730
+and give it to bootstrap class `pr-2` or padding right two
+
+69
+08:11.290 --> 08:23.960
+and here I'll add I `img` and the source will be answer user avatar
+
+70
+08:28.200 --> 08:31.400
+Note here that the avatar is currently doesn't exist
+
+71
+08:31.400 --> 08:32.340
+in our model
+
+72
+08:32.460 --> 08:41.060
+And we will again define new accessor for that just in a second.
+
+73
+08:41.240 --> 08:42.930
+And lastly I'll create a new div
+
+74
+08:46.740 --> 08:52.790
+and give it a class `media-body`.
+
+75
+08:58.390 --> 08:59.120
+Again
+
+76
+08:59.190 --> 09:01.170
+I'll put the user's name in anchor
+
+77
+09:07.050 --> 09:08.830
+The href will be
+
+78
+09:08.840 --> 09:11.790
+answer user
+
+79
+09:12.390 --> 09:12.950
+url
+
+80
+09:19.160 --> 09:23.890
+and the text will be answer
+
+81
+09:24.450 --> 09:35.310
+user name
+
+82
+09:35.530 --> 09:37.850
+All right let's open question model
+
+83
+09:42.340 --> 09:43.040
+here
+
+84
+09:45.670 --> 09:51.520
+Let's copy the created_date accessor then let's open
+
+85
+09:51.610 --> 09:52.480
+Answer Model
+
+86
+09:58.140 --> 10:00.320
+and paste here.
+
+87
+10:00.400 --> 10:03.070
+Now let's open user model
+
+88
+10:09.350 --> 10:26.510
+and then here let's create new accessor so public function get avatar attribute.
+
+89
+10:26.770 --> 10:31.340
+And here we will be using Gravatar or global recognize avatar.
+
+90
+10:31.360 --> 10:37.850
+So let's switch to our browser and navigate to Gravatar dot com.
+
+91
+10:42.400 --> 10:45.370
+Let's hit how to use gravatar menu
+
+92
+10:49.200 --> 10:50.850
+choose php
+
+93
+10:54.320 --> 10:56.330
+and here let's copy this code
+
+94
+10:58.150 --> 11:00.660
+And paste inside our accessor
+
+95
+11:04.980 --> 11:06.660
+here are i'll change
+
+96
+11:06.660 --> 11:18.110
+The email's  value with current users email 
+this email and here you can provide the default avatar
+
+97
+11:18.110 --> 11:27.350
+image to somewhere. Here I want to use gravatar's 
+default image. I'll remove this and for the size I'll change
+
+98
+11:27.350 --> 11:30.690
+this to 32.
+
+99
+11:31.070 --> 11:37.690
+Let's go back to gravatar page and here we need to copy this code.
+
+100
+11:41.580 --> 11:42.520
+Paste here
+
+101
+11:43.740 --> 11:52.200
+Remove these grav_url variable and add 
+return to return the Gravatar
+
+102
+12:03.020 --> 12:09.040
+and because I have removed the default image
+
+103
+12:09.180 --> 12:14.280
+so here I also need to remove the default image variable from this query string.
+
+104
+12:22.900 --> 12:24.080
+save all changes.
+
+105
+12:26.900 --> 12:28.420
+And let's take a look.
+
+106
+12:41.230 --> 12:43.370
+Now here we have answers
+
+107
+12:43.390 --> 12:47.030
+Info avatar and answer creation date.
+
+108
+12:47.310 --> 12:48.160
+Here I think
+
+109
+12:48.160 --> 12:51.700
+the creation date and user's avatar is to close
+
+110
+12:51.750 --> 12:54.670
+So let me add margin top here so
+
+111
+12:59.680 --> 13:00.820
+let me add
+
+112
+13:01.730 --> 13:13.830
+Margin top here.
+
+113
+13:13.870 --> 13:17.530
+Now I need to move the user's name down a bit.
+
+114
+13:19.420 --> 13:20.820
+So let me add
+
+115
+13:24.000 --> 13:27.680
+`mt-1` or margin top one
+
+116
+13:35.120 --> 13:38.330
+all right I think it's a lot better. Now
+
+117
+13:38.670 --> 13:46.080
+let's also add user info and creation date 
+in bottom right of the question.
+
+118
+13:46.160 --> 13:47.960
+Let's go back to our editor.
+
+119
+13:48.680 --> 13:51.250
+And here we simply copy these lines
+
+120
+13:53.280 --> 13:54.620
+go to question body
+
+121
+14:01.750 --> 14:02.730
+and paste those in
+
+122
+14:09.050 --> 14:11.900
+save and reload the page
+
+123
+14:15.630 --> 14:17.420
+ups
+
+124
+14:17.490 --> 14:19.760
+Sorry I need to change this
+
+125
+14:24.230 --> 14:24.860
+to
+
+126
+14:24.940 --> 14:25.450
+question
+
+127
+14:28.000 --> 14:31.280
+save reload again
+
+128
+14:35.320 --> 14:37.720
+OK great. Last
+
+129
+14:37.810 --> 14:43.530
+let's see and analyze the queries that being executed 
+just to show all these answers.
+
+130
+14:43.760 --> 14:46.000
+I'll open laravel debug bar
+
+131
+14:55.250 --> 14:56.410
+as you can see here
+
+132
+14:56.480 --> 14:58.850
+there are a lot of queries being executed.
+
+133
+14:59.150 --> 15:05.200
+If you remember this is something called N+1 query problem.
+
+134
+15:05.330 --> 15:11.430
+And here we can see that it came from 
+app providers route service provider.
+
+135
+15:11.430 --> 15:23.200
+So let's switched to our editor and open route service 
+provider. And to fixed N+1 query problem we just need
+
+136
+15:23.200 --> 15:27.340
+to eager load our query by adding `with` here.
+
+137
+15:32.030 --> 15:35.090
+And then specify a the relation name
+
+138
+15:35.300 --> 15:35.910
+So here
+
+139
+15:43.230 --> 15:50.110
+we called answer user url and avatar
+
+140
+15:50.750 --> 16:02.290
+that's why here we say answers user. So from question model go to answer
+
+141
+16:02.300 --> 16:03.690
+model through answers
+
+142
+16:03.730 --> 16:04.810
+Relationship method.
+
+143
+16:04.810 --> 16:11.510
+and then from answer model go to useer model through user relationship method.
+
+144
+16:11.560 --> 16:14.180
+Save all changes and let's have a look
+
+145
+16:14.200 --> 16:15.220
+our queries again.
+
+146
+16:37.140 --> 16:39.870
+Now our queries that executed here have been reduced
+
+147
+16:43.360 --> 16:43.700
+OK
+
+148
+16:43.720 --> 16:46.330
+that's it for this lesson. In the next lesson
+
+149
+16:46.360 --> 16:54.610
+We're still working in here and we will be adding vote 
+control in the left side of the question and answer
+
+150
+16:54.610 --> 16:56.580
+item.
+
+151
+16:56.830 --> 16:57.640
+All right
+
+152
+16:57.670 --> 17:00.320
+here I'll save all changes to my git repo
+
+153
+17:00.470 --> 17:12.200
+git add all. git commit display answers for question
+
+154
+17:16.150 --> 17:20.600
+then git push origin
+
+155
+17:20.800 --> 17:23.830
+lesson-15
+
+156
+17:28.890 --> 17:29.710
+git
+
+157
+17:29.790 --> 17:31.380
+Checkout master
+
+158
+17:35.230 --> 17:37.940
+and then git merge
+
+159
+17:38.500 --> 17:40.480
+lesson-15
+
+160
+17:43.360 --> 17:44.790
+and last
+
+161
+17:45.020 --> 17:46.770
+git push
+
+162
+17:47.390 --> 17:49.690
+origin master

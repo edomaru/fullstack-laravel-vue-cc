@@ -1,0 +1,573 @@
+WEBVTT
+
+0
+00:01.970 --> 00:06.250
+In this lesson we're going to create a 
+couple of endpoints for answer resource.
+
+1
+00:06.410 --> 00:11.980
+This time we're not going to create a brand 
+new controller like we did before. Instead
+
+2
+00:12.060 --> 00:16.010
+we're going to copy our existing controller into our API folder.
+
+3
+00:16.230 --> 00:19.300
+Then we're going to make some changes on it. After that
+
+4
+00:19.380 --> 00:22.560
+we're going to make a couple of tests for that endpoints.
+
+5
+00:22.560 --> 00:23.070
+All right
+
+6
+00:23.070 --> 00:28.570
+before moving on let me go to my terminal 
+and then create a new branch for this lesson.
+
+7
+00:35.980 --> 00:37.570
+All right let's go to app
+
+8
+00:40.640 --> 00:45.650
+Http controllers then copy this answers
+
+9
+00:45.650 --> 00:46.220
+Controller
+
+10
+00:50.810 --> 00:55.830
+go to Api folder then paste the file inside
+
+11
+00:58.750 --> 00:59.830
+in this file
+
+12
+00:59.840 --> 01:03.230
+we need to adjust the namespace. On that
+
+13
+01:03.560 --> 01:12.470
+we just add Api. Also we gotta add the base controller's 
+namespace because this answers controller now
+
+14
+01:12.470 --> 01:16.730
+no longer in the same namespace with the this controller
+
+15
+01:29.400 --> 01:31.080
+now inside this class
+
+16
+01:31.080 --> 01:37.370
+we don't need this constructor because now we use 
+auth:api and we've done that in the route level
+
+17
+01:41.320 --> 01:46.120
+we can skip this method for now and we'll come back 
+here once we have created and brand new resource
+
+18
+01:46.270 --> 01:47.170
+for the answer
+
+19
+01:50.460 --> 01:54.510
+here in store method we can remove the if statement
+
+20
+02:02.790 --> 02:04.580
+as well as the return review
+
+21
+02:10.870 --> 02:13.010
+we no longer need this edit method.
+
+22
+02:13.240 --> 02:14.590
+So let's get rid of this.
+
+23
+02:22.220 --> 02:22.640
+Next
+
+24
+02:22.670 --> 02:25.890
+let's do almost the same thing in this method remove the if
+
+25
+02:25.900 --> 02:26.480
+statement
+
+26
+02:33.100 --> 02:34.080
+fix the indentation
+
+27
+02:38.360 --> 02:39.950
+and remove the return view
+
+28
+02:44.620 --> 02:45.140
+and last
+
+29
+02:45.780 --> 02:47.190
+Let's also get rid of
+
+30
+02:47.230 --> 02:48.110
+the if statement
+
+31
+02:48.150 --> 02:48.830
+In this method
+
+32
+02:59.010 --> 03:02.940
+also this return view
+
+33
+03:03.510 --> 03:08.910
+All right let's create a brand new resource 
+for transforming our answer model.
+
+34
+03:08.910 --> 03:15.390
+Let's head over to our terminal and generate 
+a brand new resource by saying php artisan
+
+35
+03:18.580 --> 03:23.780
+make resource answer resrouce.
+
+36
+03:28.110 --> 03:29.410
+Let's often the answer resource
+
+37
+03:34.390 --> 03:40.940
+now since the content for this answer resource has almost 
+the same structure with question details resource.
+
+38
+03:41.080 --> 03:42.730
+So let's open that file
+
+39
+03:47.530 --> 03:49.000
+and grab this whole lines
+
+40
+03:52.040 --> 03:53.180
+back to answer resource
+
+41
+03:55.970 --> 03:59.020
+paste here and let's make a bit change
+
+42
+03:59.050 --> 03:59.830
+to this structure
+
+43
+04:24.320 --> 04:24.890
+All right
+
+44
+04:25.000 --> 04:33.060
+now let's switch back to answers controller at the 
+top let's import the answer resource namespace
+
+45
+04:41.730 --> 04:43.770
+then here in the index method
+
+46
+04:43.770 --> 04:49.170
+firstly we can assign this command into a variable I'll call it answer
+
+47
+04:52.100 --> 05:04.480
+then add a new line. In this line we can simply return 
+answer resource collection and put the answer variable
+
+48
+05:04.510 --> 05:04.870
+in
+
+49
+05:09.770 --> 05:11.930
+here I'll change the variable to plural
+
+50
+05:17.300 --> 05:18.560
+also in store method
+
+51
+05:20.120 --> 05:26.130
+we can put this answer variable in new answer resource.
+
+52
+05:33.410 --> 05:33.740
+All right
+
+53
+05:34.000 --> 05:36.310
+I think that's all we need for this controller.
+
+54
+05:36.310 --> 05:40.680
+Now the next thing that we need to do is 
+to define some routes for this controller.
+
+55
+05:40.810 --> 05:43.030
+Let's open up api dot php
+
+56
+05:46.630 --> 05:49.130
+then here we can simply duplicate this route
+
+57
+05:52.250 --> 06:03.600
+let's change the URI to questions dot answers 
+and change the control reference to Api
+
+58
+06:06.550 --> 06:07.080
+answer
+
+59
+06:07.080 --> 06:12.110
+controller and here we still need the index action
+
+60
+06:13.010 --> 06:19.880
+So let's get rid of the excerpt from here.
+
+61
+06:19.930 --> 06:20.390
+All right
+
+62
+06:20.700 --> 06:21.590
+let's save all changes.
+
+63
+06:25.250 --> 06:27.890
+something went wrong in and answers controller.
+
+64
+06:27.950 --> 06:38.260
+Let me see that
+
+65
+06:38.370 --> 06:38.940
+I'm sorry
+
+66
+06:39.030 --> 06:41.320
+I made typo here it should be
+
+67
+06:41.490 --> 06:45.390
+`use` save. And now
+
+68
+06:45.440 --> 06:50.320
+let's make some tests in postman. All right here
+
+69
+06:50.340 --> 06:56.920
+let's create a new folder
+
+70
+06:57.180 --> 07:04.080
+I'll call it answers.
+
+71
+07:04.140 --> 07:07.020
+Now here we can duplicate this display all questions
+
+72
+07:15.280 --> 07:17.590
+then I'll move it here
+
+73
+07:23.190 --> 07:30.130
+and then I'll rename it to display all answers
+
+74
+07:34.540 --> 07:46.210
+here the method is get the path is gonna be 
+api questions one answers. Let me hit the send
+
+75
+07:46.210 --> 07:46.570
+button
+
+76
+07:53.800 --> 07:58.870
+sorry I made mistake in my routes. So let me go back to my editor
+
+77
+08:04.730 --> 08:13.050
+actually here we need to exclude the index method. So 
+I'll undo the change instead we need to have the index
+
+78
+08:13.050 --> 08:16.980
+route outside of auth:api. Duplicate this line
+
+79
+08:19.740 --> 08:22.980
+so the URI is going to be questions
+
+80
+08:23.310 --> 08:34.440
+question answers like so. And it should be 
+refer to Api answers controller
+
+81
+08:37.710 --> 08:43.740
+let me save this. Back to postman hit the send button again
+
+82
+08:50.870 --> 08:51.360
+OK
+
+83
+08:51.380 --> 08:55.160
+here I get the expected response it contains some answers.
+
+84
+08:58.350 --> 09:02.990
+OK let me save this by hitting this save button. Next
+
+85
+09:03.120 --> 09:09.630
+let's test the create answer endpoint. Here we can simply 
+duplicate this test request by hitting this down arrow
+
+86
+09:11.190 --> 09:15.850
+then hit save as option the request name is gonna be create
+
+87
+09:19.530 --> 09:20.140
+an answer
+
+88
+09:27.000 --> 09:31.940
+And we'll save it in answers folder and 
+then hit "save to answers" button.
+
+89
+09:32.910 --> 09:39.310
+Let's change the http method to post the URL is still the same.
+
+90
+09:39.350 --> 09:42.350
+We don't need to make any changes here.
+
+91
+09:42.630 --> 09:47.990
+Let's go to headers option and specify in column
+
+92
+09:48.360 --> 09:54.390
+Accept while in value column is gonna be application json.
+
+93
+09:57.530 --> 09:59.800
+let's also specify authorization
+
+94
+10:04.320 --> 10:04.960
+in value
+
+95
+10:04.960 --> 10:06.480
+It's gonna be bearer
+
+96
+10:09.330 --> 10:11.280
+let me go to get token
+
+97
+10:14.430 --> 10:15.380
+and hit the send button.
+
+98
+10:19.990 --> 10:21.970
+Let me copy the access token here
+
+99
+10:28.150 --> 10:34.990
+back to this request pass it in here and then hit the send button.
+
+100
+10:39.280 --> 10:42.590
+here I get error message because I did not provided the answer
+
+101
+10:42.590 --> 10:50.090
+body. Let's go to body section hit  the raw option
+
+102
+10:50.130 --> 10:56.010
+This is gonna be json and here let me to define the body
+
+103
+10:59.080 --> 11:01.160
+this is an answer
+
+104
+11:03.040 --> 11:03.540
+submitted
+
+105
+11:06.520 --> 11:08.930
+from postman.
+
+106
+11:09.730 --> 11:10.860
+Let's hit the send button.
+
+107
+11:14.030 --> 11:14.630
+Now I get
+
+108
+11:14.660 --> 11:15.950
+OK status
+
+109
+11:16.290 --> 11:26.080
+success message along with new answer I just created. 
+Let's save this then hit save as to duplicate the
+
+110
+11:26.080 --> 11:30.010
+request. Let's rename this to update
+
+111
+11:31.180 --> 11:31.820
+an answer
+
+112
+11:37.520 --> 11:40.050
+and then hit this save to answers.
+
+113
+11:40.530 --> 11:49.250
+Let's change the Http method to patch or put 
+then change the url by specifying  the answer.
+
+114
+11:50.670 --> 11:52.710
+We can grab that from here
+
+115
+11:59.530 --> 12:01.690
+then in body I'll say
+
+116
+12:04.560 --> 12:08.030
+I update my answer.
+
+117
+12:08.550 --> 12:09.650
+Let's hit the send button
+
+118
+12:14.690 --> 12:15.200
+okay
+
+119
+12:15.220 --> 12:18.340
+the answer has been updated successfully.
+
+120
+12:18.340 --> 12:19.530
+Let's save this request.
+
+121
+12:22.490 --> 12:27.090
+And then make the last request to test delete endpoint.
+
+122
+12:27.170 --> 12:28.270
+Let's save this request
+
+123
+12:30.810 --> 12:35.810
+Here I'll call it as delete an answer
+
+124
+12:39.770 --> 12:42.980
+and hit this save button. Then here
+
+125
+12:42.980 --> 12:52.680
+let's change http method to delete and I think we 
+don't need to make any change. In the body section
+
+126
+12:52.690 --> 12:59.290
+we can keep it or we can optionally 
+remove it by choosing this none option.
+
+127
+12:59.290 --> 13:00.370
+Just hit the send button
+
+128
+13:03.230 --> 13:04.200
+OK
+
+129
+13:04.230 --> 13:05.450
+the answer has been removed
+
+130
+13:05.450 --> 13:08.290
+successfully
+
+131
+13:08.420 --> 13:08.740
+All right
+
+132
+13:08.860 --> 13:12.310
+So now that we have complete endpoints for answer resource.
+
+133
+13:12.310 --> 13:18.640
+So until this point we now have some endpoints for 
+questions and answer resources. In the next couple of
+
+134
+13:18.640 --> 13:19.240
+lessons
+
+135
+13:19.240 --> 13:25.750
+we're gonna make other endpoints such as voting 
+question or answer favoriting question and so on.
+
+136
+13:25.750 --> 13:26.940
+So see you there.

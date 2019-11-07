@@ -1,0 +1,310 @@
+WEBVTT
+
+0
+00:02.730 --> 00:08.640
+Now it's time to make the component working 
+as before let's switch back over to our editor
+
+1
+00:12.670 --> 00:14.010
+before we moving on here
+
+2
+00:14.020 --> 00:19.420
+I want to change how passing the name into 
+vote component because it never change
+
+3
+00:19.510 --> 00:22.480
+so we don't need the dynamic binding just like so
+
+4
+00:26.280 --> 00:26.850
+let me see.
+
+5
+00:34.380 --> 00:38.390
+OK we have the same thing.
+
+6
+00:39.120 --> 00:50.490
+Let's also make changes in _answer.blade.php. Remove 
+the quote and colon because again answer should
+
+7
+00:50.490 --> 00:51.960
+be static and never change
+
+8
+00:51.960 --> 00:56.960
+in all answers.
+
+9
+00:56.980 --> 01:00.090
+All right let's switch to vote dot vue
+
+10
+01:03.820 --> 01:04.870
+jump to template
+
+11
+01:09.960 --> 01:17.640
+here in vote up button let's add v-on click prevent
+
+12
+01:20.560 --> 01:24.430
+and call vote up method.
+
+13
+01:24.510 --> 01:28.030
+Let's copy these
+
+14
+01:28.150 --> 01:37.010
+And then in the vote down button we can paste 
+the code and change the method to vote down.
+
+15
+01:37.060 --> 01:37.640
+All right
+
+16
+01:37.720 --> 01:42.780
+now let's define both vote up and vote down method in our script.
+
+17
+01:43.170 --> 01:45.660
+But before that let me see the route
+
+18
+02:10.760 --> 02:11.240
+OK
+
+19
+02:11.250 --> 02:12.900
+here we have three uri patterns
+
+20
+02:13.950 --> 02:14.800
+answers
+
+21
+02:14.920 --> 02:19.020
+answer vote questions question vote.
+
+22
+02:19.230 --> 02:21.740
+So we have to define dynamic endpoint in this case.
+
+23
+02:23.720 --> 02:24.950
+And let me copy one of those
+
+24
+02:41.920 --> 02:55.390
+here I'll define id property to store answer id or question Id.
+
+25
+02:55.650 --> 03:01.350
+And then here in computed property let's define endpoint method
+
+26
+03:05.790 --> 03:08.040
+and here we simply say return back tick
+
+27
+03:11.960 --> 03:15.600
+forward slash and I'll paste the uri pattern.
+
+28
+03:21.160 --> 03:24.970
+Here the second segment will be model id
+
+29
+03:30.260 --> 03:37.060
+and first segment will be questions or answers 
+both in plural. How can we handle this stuff?
+
+30
+03:38.900 --> 03:50.200
+The simple solution is to leave the `s` on the end 
+and change the singular name with this dot name
+
+31
+03:53.500 --> 03:57.570
+so when enter the name with `question`
+
+32
+03:57.590 --> 04:05.510
+this will be `questions` and when we enter the name 
+with `answer` this first segment will be `answers`.
+
+33
+04:05.510 --> 04:06.060
+All right
+
+34
+04:06.290 --> 04:08.090
+Let's go to methods property
+
+35
+04:16.790 --> 04:20.650
+and here let's define vote up method.
+
+36
+04:24.280 --> 04:27.980
+Now the logic will be the same with vote down
+
+37
+04:28.470 --> 04:32.950
+so here we'll call another method let's say
+
+38
+04:33.010 --> 04:33.870
+underscore vote
+
+39
+04:35.760 --> 04:38.010
+and pass in positive one
+
+40
+04:41.180 --> 04:43.720
+then let's define vote down method
+
+41
+04:49.460 --> 04:59.350
+and then call underscore vote and pass in negative one.
+
+42
+04:59.420 --> 05:01.760
+And now let's defend the underscore vote method
+
+43
+05:05.170 --> 05:13.270
+it should be has an argument here I'm going to call it vote.
+
+44
+05:13.450 --> 05:17.190
+Here we will send ajax post request by saying axios
+
+45
+05:20.340 --> 05:24.200
+post specify the request endpoint
+
+46
+05:29.160 --> 05:34.230
+and pass in the request payload.
+
+47
+05:34.250 --> 05:42.570
+So if you open vote answers controller here we need the vote
+
+48
+05:47.310 --> 05:56.600
+so here vote colon vote or you can use object 
+literal property value shorthand like this.
+
+49
+06:16.470 --> 06:19.120
+And then after the ajax requests successfully sent
+
+50
+06:19.290 --> 06:20.520
+let's show a flash message
+
+51
+06:34.510 --> 06:48.290
+and I'll put the flash message on the bottom left.
+
+52
+06:48.300 --> 06:50.280
+We also need to change the votes count
+
+53
+06:53.900 --> 07:01.020
+for now let's add the count with vote.
+
+54
+07:01.070 --> 07:03.020
+So this is a temporary solution.
+
+55
+07:03.020 --> 07:06.630
+Later we'll come back here and fix this. Alright
+
+56
+07:06.650 --> 07:08.810
+let's open vote answer controller. And
+
+57
+07:16.270 --> 07:16.560
+here
+
+58
+07:16.580 --> 07:17.700
+let's return message
+
+59
+07:17.770 --> 07:18.770
+in json response
+
+60
+07:32.500 --> 07:40.180
+message and here I'll say "thanks for the feedback"
+
+61
+07:44.690 --> 07:46.170
+OK let's save all changes
+
+62
+07:48.970 --> 07:52.610
+and let's see reload the page.
+
+63
+07:57.290 --> 08:00.450
+Let me open console to see whether I find error or not.
+
+64
+08:03.270 --> 08:03.690
+OK
+
+65
+08:03.710 --> 08:04.430
+There was no error
+
+66
+08:09.940 --> 08:10.180
+here
+
+67
+08:10.180 --> 08:11.380
+I'm going to hit the vote up
+
+68
+08:14.680 --> 08:14.950
+OK
+
+69
+08:14.950 --> 08:23.410
+The number increasing and the 
+success flossed messages show up.
+
+70
+08:23.520 --> 08:25.200
+Now I'm going to hit the vote down.
+
+71
+08:27.270 --> 08:32.090
+The number decreasing and the flash message show up.
+
+72
+08:32.350 --> 08:36.090
+Now if I tried to hit the vote up or a vote down continuously
+
+73
+08:40.900 --> 08:46.360
+the number will be increasing or decreasing.
+
+74
+08:46.370 --> 08:47.360
+So let's fix this.

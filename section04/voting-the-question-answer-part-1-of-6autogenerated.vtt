@@ -1,0 +1,399 @@
+WEBVTT
+
+0
+00:02.070 --> 00:07.230
+In the previous lesson you've learned about many to 
+many relationship and then implement that in building
+
+1
+00:07.300 --> 00:09.040
+favorite question feature.
+
+2
+00:09.060 --> 00:14.000
+Now in this lesson we're going to learn another 
+relationship and then implement that to build
+
+3
+00:14.010 --> 00:16.950
+vote question or answer future.
+
+4
+00:17.170 --> 00:22.380
+Let's see the business logic behind the vote 
+feature or how the vote system should work.
+
+5
+00:24.360 --> 00:29.130
+So a question can be voted by more 
+than one user or by many users
+
+6
+00:29.130 --> 00:39.170
+in other word. An answer can also be voted by more 
+than one user. A user can vote for more than one question.
+
+7
+00:40.320 --> 00:43.790
+As a note he or she can only vote a unique question.
+
+8
+00:46.520 --> 00:49.700
+A user can also vote more than one answer.
+
+9
+00:49.700 --> 00:54.330
+Again as a not he or she can only vote a unique answer.
+
+10
+00:54.410 --> 01:03.320
+So here a single user can vote across questions 
+and answers. Vote can be vote up if a user like
+
+11
+01:03.320 --> 01:08.090
+the question or answer or down vote
+
+12
+01:08.160 --> 01:14.000
+if a user dislike the question or answer. In database 
+perspective we can represent the vote up with
+
+13
+01:14.000 --> 01:21.230
+a positive one and we can represent the vote down with negative 1.
+
+14
+01:21.320 --> 01:24.460
+All right so now that you know how the vote system should work.
+
+15
+01:24.650 --> 01:29.090
+Do you have any idea which relationship 
+type should we implement? 
+
+16
+01:29.140 --> 01:34.530
+In my opinion there are two possible options. We can 
+use many to many relationship
+
+17
+01:34.870 --> 01:40.160
+And the second we can use many to 
+many polymorphic relationship.
+
+18
+01:40.240 --> 01:41.990
+So the first option we can implement
+
+19
+01:42.010 --> 01:44.780
+many to Many relationship as we did before
+
+20
+01:45.040 --> 01:51.640
+In this case we'll need two intermediate tables to store 
+relationship records for both users and questions
+
+21
+01:52.480 --> 01:57.580
+and users and answers.
+
+22
+01:57.670 --> 02:04.650
+The second option we can implement another relationship 
+called many to many polymorphic relationship.
+
+23
+02:04.790 --> 02:10.880
+In this case we only need one intermediate table to 
+store both relationship records and we'll need to have
+
+24
+02:10.940 --> 02:15.360
+an extra column to record the class name of the owning model
+
+25
+02:15.370 --> 02:21.380
+So from these two options I'm going to show you the 
+second option because if I choose the first one
+
+26
+02:21.500 --> 02:27.400
+Then I repeat the same thing because I have explained 
+that in the previous lesson and I'm sure you can
+
+27
+02:27.400 --> 02:28.720
+do it by yourself.
+
+28
+02:28.720 --> 02:32.400
+That's why I choose the second option so 
+that you'll find something different
+
+29
+02:32.550 --> 02:33.890
+and I hope you'll learn a lot.
+
+30
+02:35.120 --> 02:35.520
+All right
+
+31
+02:35.520 --> 02:42.990
+firstly let's open up our terminal and then create a new 
+branch to isolate our work by saying: git check
+
+32
+02:43.050 --> 02:43.690
+out
+
+33
+02:43.800 --> 02:47.520
+-b lesson-22
+
+34
+02:50.250 --> 02:50.660
+OK
+
+35
+02:50.710 --> 02:53.420
+now we are in lesson-22 branch.
+
+36
+02:53.560 --> 02:56.800
+Now let's generate new migration to create new table.
+
+37
+02:57.220 --> 03:04.370
+Here we can say: php artisan make migration
+
+38
+03:04.720 --> 03:08.250
+And here I'm going to call my table as votables.
+
+39
+03:08.260 --> 03:12.610
+So here I'll say create votables
+
+40
+03:13.800 --> 03:14.190
+table
+
+41
+03:21.220 --> 03:23.610
+Okay let's open the create_votables_table file
+
+42
+03:32.900 --> 03:33.260
+here in
+
+43
+03:33.320 --> 03:38.330
+up method let's remove the increments id 
+because it's not necessary in this case.
+
+44
+03:39.970 --> 03:44.380
+And then here we need to define a column 
+to store id of the user.
+
+45
+03:44.560 --> 03:48.430
+So table unsigned integer
+
+46
+03:52.230 --> 03:52.830
+user id
+
+47
+04:01.270 --> 04:07.560
+and then we'll need to define another column 
+to store id of the question or id of the answer.
+
+48
+04:07.780 --> 04:24.060
+So we are going to say table unsigned integer and the 
+column name should be votable id this because we call
+
+49
+04:24.330 --> 04:24.960
+our table
+
+50
+04:24.960 --> 04:27.530
+as votables
+
+51
+04:27.730 --> 04:36.000
+That's why the column name should be prefixed with 
+the singular form of the table name.
+
+52
+04:36.000 --> 04:40.870
+Let's also have votable type in string that will 
+store the class name of the owning model
+
+53
+04:51.450 --> 04:51.980
+again
+
+54
+04:52.010 --> 04:59.750
+here the column name start with the single form of the table name. Next we'll need to have a column to store
+
+55
+04:59.760 --> 05:02.890
+the vote value so table
+
+56
+05:05.920 --> 05:10.750
+tiny integer vote
+
+57
+05:13.630 --> 05:20.650
+The reason why I use tiny integer is because this column will only be contain two possible numbers positive 
+
+58
+05:20.680 --> 05:26.180
+one to represent vote up and negative 
+one to represent vote down.
+
+59
+05:26.180 --> 05:29.970
+Actually let me add a comment here. We'll keep
+
+60
+05:44.840 --> 05:52.630
+this time stamps so that we can keep track when the 
+user vote the question or answer and to prevent a
+
+61
+05:52.630 --> 05:56.730
+user to have more than one vote for a single question or answer
+
+62
+05:57.010 --> 06:03.770
+let's define unique
+
+63
+06:03.790 --> 06:16.490
+It contains user_id votable_id and votable_type.
+
+64
+06:16.980 --> 06:17.940
+Let's save all changes
+
+65
+06:21.250 --> 06:29.450
+and head over to our terminal and then run our 
+latest migration by saying: php artisan migrate
+
+66
+06:32.470 --> 06:32.910
+OK
+
+67
+06:32.930 --> 06:35.930
+Here the create votables table has been successfully migrated.
+
+68
+06:39.700 --> 06:40.150
+Next
+
+69
+06:40.150 --> 06:41.690
+let's open up the user model
+
+70
+06:53.870 --> 06:59.170
+here since we'll need to define two relationship 
+methods for questions and answers
+
+71
+07:02.040 --> 07:03.940
+so here I'm going to call the first one
+
+72
+07:03.960 --> 07:07.400
+as vote questions
+
+73
+07:12.870 --> 07:18.170
+and inside this method because user 
+morphed by question and answer model
+
+74
+07:18.450 --> 07:33.770
+so we're gonna say return this morphed by many. 
+In the first argument we specify the name of the related
+
+75
+07:33.770 --> 07:34.220
+model
+
+76
+07:38.860 --> 07:44.180
+and in the second argument we need to specify 
+the singular form of the pivot table name.
+
+77
+07:44.200 --> 07:52.500
+That's why here we specify `votable` with that eloquent 
+will recognize that the pivot table name is `votables`
+
+78
+07:53.130 --> 07:56.400
+and there will be votable_id and votable_type columns.
+
+79
+07:58.330 --> 07:59.660
+Let's duplicate this lines
+
+80
+08:06.910 --> 08:11.030
+and change the name to vote answers
+
+81
+08:13.980 --> 08:21.530
+and inside here we change the name of 
+the related model to answer. Next
+
+82
+08:21.570 --> 08:23.070
+let's open up the question model
+
+83
+08:35.870 --> 08:38.300
+and here we can define the inverse relationship method
+
+84
+08:41.240 --> 08:50.350
+and I'm going to call it `votes`.
+
+85
+08:50.400 --> 08:56.590
+Here we can say return this morph
+
+86
+08:56.830 --> 09:03.850
+to many. In the first argument we 
+specify the name of the related model
+
+87
+09:04.040 --> 09:05.590
+in this case user model
+
+88
+09:09.330 --> 09:18.200
+in the second argument we specify the 
+singular form of the pivot table name.
+
+89
+09:18.210 --> 09:25.020
+All right let's copy this method and open answer model
+
+90
+09:30.790 --> 09:31.720
+and paste the method in.

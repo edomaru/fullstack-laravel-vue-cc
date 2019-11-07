@@ -1,0 +1,112 @@
+WEBVTT
+
+0
+00:02.920 --> 00:10.280
+We can also make use of the object events to the events 
+we listen to to get more information about the event.
+
+1
+00:10.700 --> 00:16.650
+For example when we move the mouse we want to know 
+the coordinate information where the mouse is moved
+
+2
+00:16.680 --> 00:17.810
+on the page.
+
+3
+00:18.730 --> 00:23.230
+Or when we type something in the textbook we 
+want to display the value again somewhere.
+
+4
+00:24.480 --> 00:26.570
+Let's open the event handling two dot
+
+5
+00:26.600 --> 00:27.090
+html
+
+6
+00:34.910 --> 00:38.910
+here we have one big box that say's mouse over here.
+
+7
+00:38.960 --> 00:44.070
+Below that you'll find a description of x zero and y zero.
+
+8
+00:44.190 --> 00:50.270
+Later we will make use the event object to display 
+coordinate values in real time when we mouse over
+
+9
+00:50.270 --> 00:52.820
+this area.
+
+10
+00:52.900 --> 01:00.240
+Let's go back to our editor then open 
+the event handler two dot html file.
+
+11
+01:00.480 --> 01:01.560
+Here we can see
+
+12
+01:04.900 --> 01:13.310
+that inside the data property we defined x 0 
+and y 0. We will change the value of both
+
+13
+01:13.520 --> 01:17.540
+when we hover over the mouse inside the div which has id box
+
+14
+01:23.800 --> 01:33.650
+let's add in the box v-on colon mouse move 
+and then call get coordinates method
+
+15
+01:33.700 --> 01:38.960
+for example. Then in vue option we can define methods property
+
+16
+01:44.990 --> 01:47.240
+and then declare the get coordinates method in it.
+
+17
+01:51.530 --> 01:57.650
+by default vue js will pass the object event 
+in every method call in v-on directive.
+
+18
+01:57.650 --> 02:05.160
+So here we can explicitly define an argument 
+in get coordinates let's say event.
+
+19
+02:05.400 --> 02:07.590
+Then inside the method we just assign
+
+20
+02:11.360 --> 02:17.860
+event dot client x or x coordinate to the x property
+
+21
+02:25.040 --> 02:30.890
+and assign the event dot client y or 
+y coordinates in the y property save.
+
+22
+02:35.090 --> 02:35.630
+Now if we
+
+23
+02:35.650 --> 02:43.240
+however over our mouse or the blue box the value of 
+x and y will change in real time every time we move
+
+24
+02:43.240 --> 02:43.950
+the mouse.

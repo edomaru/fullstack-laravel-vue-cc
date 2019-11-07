@@ -1,0 +1,196 @@
+WEBVTT
+
+0
+00:01.560 --> 00:08.500
+After we've successfully integrated markdown editor and 
+syntax highlight in both question and answer component
+
+1
+00:08.550 --> 00:16.460
+the next thing that we need to do is to implement 
+them in this new answer component. So let's switch
+
+2
+00:16.460 --> 00:19.890
+back over to our editor.
+
+3
+00:20.130 --> 00:28.720
+here I'll run npm run watch
+
+4
+00:28.880 --> 00:31.270
+then let's open new answer component.
+
+5
+00:38.100 --> 00:39.900
+Here in script section
+
+6
+00:39.900 --> 00:42.440
+let's import the M Editor component
+
+7
+00:55.130 --> 01:05.640
+then register it in components property
+
+8
+01:05.670 --> 01:09.300
+now we can jump to our template and find the text area.
+
+9
+01:12.210 --> 01:15.690
+Here let's wrap it with m editor
+
+10
+01:18.550 --> 01:20.680
+bind the body to body
+
+11
+01:24.500 --> 01:30.220
+also name equals new dash answer
+
+12
+01:39.590 --> 01:43.260
+that's all we need to add markdow editor in this component.
+
+13
+01:43.280 --> 01:50.650
+Now let's highlight the code that possibly written in New 
+answer. As you can see here when the form submitted
+
+14
+01:51.100 --> 01:56.550
+its we'll call create method so let's jump to this create method
+
+15
+02:02.920 --> 02:08.930
+in this method we perform from AJAX call and 
+when succeed it's emitting created event to the
+
+16
+02:08.930 --> 02:09.800
+parent component.
+
+17
+02:13.510 --> 02:15.360
+So let's open
+
+18
+02:15.590 --> 02:16.730
+the answers component
+
+19
+02:20.790 --> 02:23.080
+find the new answer component
+
+20
+02:26.630 --> 02:33.100
+here we'll find on created it's called add method.
+
+21
+02:33.130 --> 02:35.740
+Now let's go to add method as you
+
+22
+02:38.610 --> 02:47.570
+can see here in this method we push our new answer to 
+answers array and then increment the answer counter
+
+23
+02:50.960 --> 02:56.210
+so here we can call this dot highlight to highlight our new answer
+
+24
+03:01.390 --> 03:03.670
+and don't forget to import the highlight mixin
+
+25
+03:16.660 --> 03:24.620
+and add it in mixins property.
+
+26
+03:24.640 --> 03:25.060
+That's it
+
+27
+03:25.770 --> 03:27.010
+now let's save all changes
+
+28
+03:30.790 --> 03:38.580
+back to our browser reload the page.
+
+29
+03:38.720 --> 03:44.500
+All right now we have markdown editor 
+in our new answer component.
+
+30
+03:44.740 --> 03:45.960
+Let me write something here
+
+31
+03:57.810 --> 04:03.290
+let me preview this answer here the script is highlighted.
+
+32
+04:03.510 --> 04:04.720
+Now I'll save this answer
+
+33
+04:08.070 --> 04:15.000
+new answer added but unfortunately the code is not highlighted.
+
+34
+04:15.010 --> 04:16.650
+Let me switch back to my editor
+
+35
+04:19.620 --> 04:21.480
+I'll open the highlight mixin
+
+36
+04:24.890 --> 04:27.080
+then here I'll console log the element
+
+37
+04:34.020 --> 04:34.680
+I'll save
+
+38
+04:38.890 --> 04:39.550
+reload the page
+
+39
+04:48.280 --> 04:52.260
+let me edit this I'll copy
+
+40
+04:57.400 --> 05:01.540
+then paste here and chance a little bit.
+
+41
+05:06.920 --> 05:08.450
+I'll open my browser console
+
+42
+05:12.840 --> 05:13.560
+and I'll hit submit
+
+43
+05:19.250 --> 05:20.920
+here in my console
+
+44
+05:20.990 --> 05:22.820
+the element is undefined.
+
+45
+05:22.890 --> 05:27.290
+Do you have any idea why this happen? 
+We'll fix this issue in the next video.
+
+46
+05:28.610 --> 05:30.420
+Let's commit our changes to our git repo.

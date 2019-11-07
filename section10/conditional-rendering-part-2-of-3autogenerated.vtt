@@ -1,0 +1,191 @@
+WEBVTT
+
+0
+00:03.750 --> 00:08.890
+Besides v-if vue js also provides another 
+mechanism for this displaying element
+
+1
+00:08.940 --> 00:14.260
+If the v-if condition does not met or 
+in other words when the v-if is false.
+
+2
+00:14.610 --> 00:18.200
+We can make use the v-else directive
+
+3
+00:18.400 --> 00:23.190
+Now let's open the conditional rendering two dot html
+
+4
+00:23.290 --> 00:28.750
+And here we have two alerts show up. 
+Let's say here we'll hide the message
+
+5
+00:28.750 --> 00:34.880
+You have some records when no record found otherwise hide the message
+
+6
+00:34.890 --> 00:40.520
+You have no any records if any records 
+found. Let's switch back over to our editor
+
+7
+00:43.200 --> 00:46.220
+then open the conditional rendering two dot html
+
+8
+00:51.010 --> 00:59.350
+and then here we just define v-else we 
+don't need to specify any values here.
+
+9
+00:59.550 --> 01:06.830
+just v-else only. Let's see now the second message disappear.
+
+10
+01:08.500 --> 01:14.060
+If we try to change the records with any values. Let's have a look
+
+11
+01:16.060 --> 01:23.990
+Now we'll have the second message appears. Besides v-if 
+and v-else vue js also provides another directive that is
+
+12
+01:24.350 --> 01:30.530
+v-else-if we can make use of this directive if we have
+more than two different elements that we want to show
+
+13
+01:30.590 --> 01:39.630
+or hide based on certain conditions. Just like v-if 
+this directive receives a boolean value when the
+
+14
+01:39.630 --> 01:48.550
+value is true the element where it is placed 
+will be shown or hidden when it's false.
+
+15
+01:48.550 --> 01:50.980
+Now let's open the conditional rendering three dot
+
+16
+01:51.100 --> 01:51.530
+html
+
+17
+01:55.460 --> 02:00.680
+and here we have three alerts show up for 
+example here we want to show the message
+
+18
+02:00.680 --> 02:02.160
+You have no any records
+
+19
+02:02.210 --> 02:06.860
+If there was no records found at all and two other alerts  hidden
+
+20
+02:09.480 --> 02:15.810
+or we want to show the message you have only one record if there is only one record found and two other
+
+21
+02:15.810 --> 02:18.730
+alerts hidden or we want to show the message
+
+22
+02:18.810 --> 02:24.420
+you have more than 1 records if there are more 
+than one record found and two other alerts will be
+
+23
+02:24.420 --> 02:34.490
+hidden. Let's switch back over to our editor then open conditional 
+rendering three dot html. In this first alert we can
+
+24
+02:34.550 --> 02:35.030
+define
+
+25
+02:38.000 --> 02:38.470
+v if
+
+26
+02:41.100 --> 02:45.360
+data length less than zero.
+
+27
+02:46.480 --> 02:50.180
+Then in the second alert
+
+28
+02:50.360 --> 02:57.340
+we can define v else if equals data dot length
+
+29
+03:00.080 --> 03:00.830
+is equals one
+
+30
+03:03.650 --> 03:11.020
+then here in the third alert we can define v else
+
+31
+03:11.030 --> 03:15.690
+Now let's see.
+
+32
+03:15.790 --> 03:17.400
+Something went wrong.
+
+33
+03:17.530 --> 03:18.170
+Let me see
+
+34
+03:23.820 --> 03:25.370
+data is not defined
+
+35
+03:25.700 --> 03:34.280
+Anyway this should be records not data because if I go to data
+
+36
+03:34.490 --> 03:36.100
+This is the record property that I mean
+
+37
+03:39.150 --> 03:43.920
+well this should be less than 1 meaning that the record is empty.
+
+38
+03:45.550 --> 03:49.910
+OK now the first alert appears.
+
+39
+03:49.950 --> 03:57.150
+Now let's try to change the value of this 
+records with one data and then have a look.
+
+40
+04:00.450 --> 04:03.460
+OK now the second alert appears.
+
+41
+04:03.610 --> 04:12.600
+Let's try to change the value of the records again 
+with two or more data and then let's have a look
+
+42
+04:12.610 --> 04:18.640
+again.
+
+43
+04:18.720 --> 04:20.030
+Now on the third alert appears.

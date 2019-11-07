@@ -1,0 +1,315 @@
+WEBVTT
+
+0
+00:01.450 --> 00:06.530
+In this video we're going to integrate syntax highlight
+to our app so that all code that we write will
+
+1
+00:06.530 --> 00:07.820
+be presented beautifully.
+
+2
+00:08.690 --> 00:12.740
+So there are many plugins out there 
+that we can choose the most popular
+
+3
+00:12.770 --> 00:22.890
+are highlight js and prims js. Both plugins has pros 
+and cons but in this lesson we'll be making use
+
+4
+00:23.070 --> 00:32.570
+this prims js. Prims js provides some beautiful 
+themes as you can see here is default theme.
+
+5
+00:32.880 --> 00:36.330
+And if I don't like it you can choose other theme such as
+
+6
+00:40.090 --> 00:40.750
+Twilight
+
+7
+00:43.260 --> 00:48.920
+coy solarized light tomorrow light etc.
+
+8
+00:50.800 --> 00:54.590
+And here we can see several websites that already used prims js.
+
+9
+00:54.760 --> 00:58.180
+That means this package is mature and reliable.
+
+10
+00:58.270 --> 01:04.480
+Also the reason why I chose this package is because 
+we've already integrated markdown it package into our
+
+11
+01:04.480 --> 01:12.370
+app and as I mentioned before that package provides 
+some plugins include prism js integration. so let's
+
+12
+01:12.370 --> 01:14.830
+navigate to npm js dot com
+
+13
+01:19.550 --> 01:20.740
+then here
+
+14
+01:20.880 --> 01:25.240
+let's find markdown it prism
+
+15
+01:30.100 --> 01:30.490
+here
+
+16
+01:31.060 --> 01:32.170
+let's hit this package
+
+17
+01:36.900 --> 01:38.730
+and copy the npm install command
+
+18
+01:42.990 --> 01:49.090
+please note that by installing this package the 
+prism js core package will also get installed.
+
+19
+01:49.090 --> 01:49.450
+Okay
+
+20
+01:49.530 --> 01:51.030
+let's go to our terminal
+
+21
+01:54.830 --> 01:59.120
+and before we moving on let's create 
+a new branch to isolate our work git
+
+22
+01:59.180 --> 02:04.690
+checkout -b lesson-45
+
+23
+02:07.750 --> 02:09.810
+okay paste the command here.
+
+24
+02:10.240 --> 02:14.190
+And don't forget to add -D flag. Hit return
+
+25
+02:17.500 --> 02:17.940
+now
+
+26
+02:17.950 --> 02:21.910
+while it's installing let's open m editor dot vue
+
+27
+02:30.570 --> 02:35.340
+then after importing markdown it package 
+let's import the markdown it prism here.
+
+28
+02:45.760 --> 02:52.090
+And then use it or integrate it with mark
+down it by saying md dot use prism
+
+29
+02:58.080 --> 02:58.310
+now
+
+30
+02:58.320 --> 03:05.140
+as I mentioned earlier the prism js provides some themes 
+and we need to apply one of them in our app. If 
+
+31
+03:05.170 --> 03:07.440
+we navigate to node modules
+
+32
+03:10.160 --> 03:12.440
+then find prism js
+
+33
+03:20.170 --> 03:24.330
+here it has themes folder and inside it we will find some themes.
+
+34
+03:28.450 --> 03:30.730
+So the way that we can do is to load
+
+35
+03:30.730 --> 03:33.610
+one css file inside our component like this
+
+36
+03:43.690 --> 03:44.190
+that's it.
+
+37
+03:44.290 --> 03:46.600
+web pack will take care of this for us.
+
+38
+03:46.600 --> 03:52.660
+But the problem is by doing this way whenever we want 
+to switch to another theme we need to change the
+
+39
+03:52.660 --> 04:01.380
+them name here and then recompile the code. So an alternative way it's a copy all these theme to a public
+
+40
+04:01.380 --> 04:09.010
+directory and then we can reference the theme in 
+our layout. We can do that manually or by defining a
+
+41
+04:09.010 --> 04:16.250
+command in webpack mix js
+
+42
+04:16.350 --> 04:17.760
+Here we can duplicate this line
+
+43
+04:21.320 --> 04:27.820
+then change it to copy which also accepts two arguments.
+
+44
+04:27.950 --> 04:35.470
+The first one is a file or directory that we will copy 
+in this case the themes directory inside node
+
+45
+04:35.470 --> 04:37.030
+modules prism js
+
+46
+04:40.720 --> 04:46.560
+and a second one is a target or a new 
+location where it will be placed. In my case 
+
+47
+04:46.570 --> 04:52.750
+I'll store it in public css prism js themes.
+
+48
+04:57.870 --> 04:58.350
+All right
+
+49
+04:58.420 --> 04:59.330
+let's save all changes
+
+50
+05:06.300 --> 05:07.820
+and if we have web pack running
+
+51
+05:08.010 --> 05:09.990
+You need to restart it to apply the changes
+
+52
+05:16.050 --> 05:17.790
+when it's finished
+
+53
+05:17.790 --> 05:19.410
+we'll find in
+
+54
+05:22.160 --> 05:26.870
+this public css directory a new folder
+
+55
+05:32.560 --> 05:36.240
+so let's open our layout app.blade.php
+
+56
+05:40.430 --> 05:41.390
+then here
+
+57
+05:41.390 --> 05:46.340
+right after loading the app dot css 
+let's then load the prism js themes.
+
+58
+05:49.720 --> 05:50.400
+Let's save
+
+59
+05:54.450 --> 05:56.190
+now if we reload the page
+
+60
+06:00.420 --> 06:01.440
+then edit the question
+
+61
+06:04.450 --> 06:05.640
+and then hit the preview tab
+
+62
+06:08.760 --> 06:11.070
+you'll see the syntax has been highlighted
+
+63
+06:14.580 --> 06:18.270
+if I go back to write tab and add another code
+
+64
+06:22.200 --> 06:27.330
+here I'll be adding css code and I'll copy the css code from prims
+
+65
+06:27.350 --> 06:27.760
+js
+
+66
+06:37.050 --> 06:40.400
+paste here.
+
+67
+06:40.520 --> 06:49.930
+Now if I hit the preview tab as you can see whatever  
+the code we write here presented beautifully.
+
+68
+06:49.930 --> 06:52.510
+Okay great.
+
+69
+06:52.510 --> 06:59.960
+I'll hit update to save the changes to database.
+
+70
+07:00.180 --> 07:06.180
+Now if you see here our code is broken 
+and the syntax highlight is not working.
+
+71
+07:06.180 --> 07:08.650
+I hope you get idea why this is happening.
+
+72
+07:08.670 --> 07:13.160
+But if we don't we'll fix this issue in the next video.
+
+73
+07:13.180 --> 07:15.710
+All right let's go commit our changes to our git repo.

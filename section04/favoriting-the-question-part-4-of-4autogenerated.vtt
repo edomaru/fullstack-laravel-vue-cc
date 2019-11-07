@@ -1,0 +1,340 @@
+WEBVTT
+
+0
+00:01.490 --> 00:09.140
+To make this favorite button working let's firstly define 
+a new routes in routes/web.php file let's open 
+
+1
+00:09.140 --> 00:09.770
+that file
+
+2
+00:17.140 --> 00:18.630
+and here let's define a new route
+
+3
+00:18.730 --> 00:20.480
+that's going to be used for favoriting
+
+4
+00:20.490 --> 00:27.400
+the question here we can say route post
+
+5
+00:27.680 --> 00:30.730
+There uri will be questions
+
+6
+00:30.820 --> 00:31.500
+question
+
+7
+00:34.530 --> 00:35.060
+favorites
+
+8
+00:38.370 --> 00:46.290
+and we'll handle the logic in favorites controller store action
+
+9
+00:51.970 --> 00:57.380
+and we might give this route a name as questions favorite.
+
+10
+01:02.440 --> 01:08.200
+And then let's define another route that's going to be used to unfavorite the question. Here we can simply
+
+11
+01:08.200 --> 01:13.100
+duplicate this line.
+
+12
+01:13.690 --> 01:21.720
+The method will be delete because we'll remove the 
+resource and I'm going to use the same uri
+
+13
+01:25.450 --> 01:28.690
+we'll handle the logic in the favorites controller destroy action
+
+14
+01:32.780 --> 01:39.990
+and we might give this route a name as questions unfavorite.
+
+15
+01:40.000 --> 01:45.390
+All right let's create this favorites controller jump to our terminal.
+
+16
+01:45.820 --> 01:53.250
+And here we can say: php artisan 
+make controller favorites controller
+
+17
+01:59.280 --> 01:59.580
+OK
+
+18
+01:59.620 --> 02:01.510
+let's open the favorites controller file
+
+19
+02:11.970 --> 02:12.450
+and in here
+
+20
+02:12.450 --> 02:14.050
+Let's first define the store method
+
+21
+02:20.530 --> 02:21.870
+type-hint the question instance
+
+22
+02:29.250 --> 02:39.850
+here we can attach the question or make it to be 
+favorited by current user by saying question favorites
+
+23
+02:43.370 --> 02:48.640
+attach auth id
+
+24
+02:52.930 --> 02:56.560
+after that we can refresh the page by calling return back
+
+25
+03:00.590 --> 03:02.590
+the second let's defend the destroy method
+
+26
+03:08.880 --> 03:16.550
+type-hint the question instance
+
+27
+03:16.660 --> 03:30.350
+and here we can remove the relationship record by saying question favorites detach auth id
+
+28
+03:33.090 --> 03:37.450
+and don't forget to reload the page.
+
+29
+03:39.420 --> 03:50.480
+And here we need to import the namespace of the question model
+
+30
+03:50.740 --> 03:53.750
+The last but not least we also need to define a constructor
+
+31
+04:04.340 --> 04:10.190
+and here we'll call authentication middleware to make 
+sure that the user that will favorite or unfavorite
+
+32
+04:10.190 --> 04:11.630
+the question has signed in
+
+33
+04:22.230 --> 04:23.120
+and the final step
+
+34
+04:23.210 --> 04:25.640
+let's go back to show.blade.php
+
+35
+04:33.830 --> 04:38.360
+and here we can distinguish the state of this 
+button by changing its color dynamically.
+
+36
+04:44.910 --> 04:46.950
+So if the user has not signed in
+
+37
+04:52.950 --> 04:54.830
+then we'll add off class
+
+38
+04:59.200 --> 05:04.540
+otherwise if the current user has signed in 
+and he has favorited the current question
+
+39
+05:11.770 --> 05:21.870
+then we'll add favorited class or we'll add nothing if 
+the current user not favorited the current question.
+
+40
+05:23.140 --> 05:27.490
+Next to make this favorite button actually 
+work we need to do two things.
+
+41
+05:27.490 --> 05:30.740
+First we need to define on click attributes. Actually
+
+42
+05:30.900 --> 05:32.590
+let's copy that from the accept button
+
+43
+05:49.690 --> 05:57.700
+paste here and change the id to favorite
+
+44
+05:58.120 --> 06:04.710
+question and change this to question id
+
+45
+06:10.670 --> 06:11.500
+the second let's
+
+46
+06:11.640 --> 06:16.820
+define a form. And again we can simply 
+copy the form from the accept control
+
+47
+06:30.680 --> 06:31.300
+paste here
+
+48
+06:34.960 --> 06:43.240
+change the id to favorite question
+
+49
+06:44.260 --> 06:45.040
+question id
+
+50
+06:48.220 --> 06:54.730
+and here we'll use this form for two purposes favorite the question and unfavorite the question.  Since we have
+
+51
+06:54.730 --> 07:00.740
+defined the same uri pattern for favoriting 
+and unfavoriting the question
+
+52
+07:00.860 --> 07:05.520
+So here
+
+53
+07:06.550 --> 07:26.200
+So here we can specify the uri instead of route name.
+
+54
+07:26.340 --> 07:31.140
+And here we can check if the current question is 
+favorited then will we define delete method
+
+55
+07:52.310 --> 07:53.910
+all right let's save all changes
+
+56
+07:57.340 --> 08:01.250
+and see if it work as we expect
+
+57
+08:01.330 --> 08:02.470
+Let me reload this page
+
+58
+08:07.580 --> 08:07.860
+here
+
+59
+08:07.870 --> 08:10.650
+I have this button in light gray color.
+
+60
+08:10.960 --> 08:11.980
+So let me see
+
+61
+08:14.860 --> 08:15.610
+OK
+
+62
+08:15.840 --> 08:18.330
+This should be auth guest
+
+63
+08:23.760 --> 08:24.580
+reload again.
+
+64
+08:30.020 --> 08:35.480
+Here the button in yellow color which means 
+the current user has favorited this question.
+
+65
+08:35.540 --> 08:37.130
+Now if I hit this button
+
+66
+08:42.670 --> 08:48.360
+the button's color changed and the favorites count is decreasing.
+
+67
+08:48.510 --> 08:49.350
+If I hit this again
+
+68
+08:54.860 --> 09:00.380
+the color turns to yellow and the favorites count increasing.
+
+69
+09:00.420 --> 09:02.080
+Let me see another question.
+
+70
+09:12.120 --> 09:13.110
+And then I'll hit this button
+
+71
+09:18.170 --> 09:19.310
+OK great.
+
+72
+09:20.800 --> 09:24.700
+Let me copy this url and I'll open
+
+73
+09:27.770 --> 09:29.000
+incognito window
+
+74
+09:35.740 --> 09:36.690
+paste here.
+
+75
+09:43.520 --> 09:48.640
+As you can see the favorite button's color 
+a bit light gray. And if I hit this button
+
+76
+09:53.000 --> 09:54.350
+I'll be taken to the login form
+
+77
+10:01.200 --> 10:02.060
+OK great
+
+78
+10:02.220 --> 10:08.100
+We have successfully implemented many to many 
+relationship and make the favorite button really working.
+
+79
+10:08.100 --> 10:13.200
+Let's take a break and we'll continue our journey and add another feature to our application in a next
+
+80
+10:13.200 --> 10:14.490
+lesson.

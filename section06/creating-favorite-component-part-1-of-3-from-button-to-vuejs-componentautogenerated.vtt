@@ -1,0 +1,269 @@
+WEBVTT
+
+0
+00:01.590 --> 00:07.320
+In this lesson we're going to rewrite the favourite button 
+into vue js component and make it more interactive
+
+1
+00:07.410 --> 00:09.420
+by implementing ajax.
+
+2
+00:09.420 --> 00:14.010
+All right let's open up our terminal and then create new branch
+
+3
+00:21.550 --> 00:27.770
+Now let's open up shared _favorite.blade.php
+
+4
+00:31.360 --> 00:33.430
+and here let's copy this in anchor tag
+
+5
+00:39.000 --> 00:45.830
+and then let's go to assets js components 
+folder and create new component.
+
+6
+00:47.300 --> 00:49.190
+let's called the Favorite.vue add
+
+7
+00:54.870 --> 00:59.180
+template tag and paste the code
+
+8
+01:05.660 --> 01:06.340
+here
+
+9
+01:06.420 --> 01:09.140
+We are going to utilize the vue js v-on directive
+
+10
+01:09.280 --> 01:11.020
+So let's remove this on click attribute
+
+11
+01:21.770 --> 01:31.780
+and here the favorite button depends 
+on is favorited and favorites count
+
+12
+01:31.970 --> 01:36.840
+and also authentication to determine 
+the additional class for the anchor.
+
+13
+01:37.310 --> 01:39.250
+So let's provide that in our script.
+
+14
+01:42.310 --> 01:43.810
+so let's add script tag
+
+15
+01:46.390 --> 01:56.590
+define props property and it should be contains question.
+
+16
+01:56.870 --> 01:58.530
+And then let's define data method
+
+17
+02:02.030 --> 02:03.140
+return object
+
+18
+02:06.300 --> 02:09.950
+and inside here let's define is favorited
+
+19
+02:12.190 --> 02:17.400
+And it hold this question is favorited
+
+20
+02:21.330 --> 02:34.730
+then count and it hold this question favorites count.
+
+21
+02:34.890 --> 02:39.830
+Note that both of these are accessor 
+so letter we'll have to define them in
+
+22
+02:39.920 --> 02:40.890
+appends attribute
+
+23
+02:40.890 --> 02:42.050
+in the question model
+
+24
+02:45.060 --> 02:51.920
+now the temporary solution for dealing with authentication 
+is by define a variable let's say signed in
+
+25
+02:55.020 --> 02:58.020
+and here I'll set the value with true. Later
+
+26
+02:58.020 --> 03:00.660
+we'll come back here and fix this.
+
+27
+03:00.900 --> 03:02.630
+Now we can define computed property
+
+28
+03:12.290 --> 03:20.820
+and inside here let's define a method to put this logic.
+
+29
+03:21.080 --> 03:22.500
+Let's call it classes
+
+30
+03:27.540 --> 03:29.180
+here we simply return an array
+
+31
+03:34.270 --> 03:35.310
+contains classes
+
+32
+03:39.500 --> 03:42.250
+favorite mt-2`
+
+33
+03:51.030 --> 03:57.750
+and then for the last class it will be `off` if user not signed
+
+34
+03:57.750 --> 04:06.500
+in otherwise it will be `favorited` if user has signed 
+in and has favorited the question or it will
+
+35
+04:06.500 --> 04:17.040
+be nothing if two conditions not met.
+
+36
+04:17.160 --> 04:21.180
+So if user not signed in return off
+
+37
+04:25.530 --> 04:33.580
+or if user has signed in and the question 
+has been favorited return fovorited class.
+
+38
+04:33.710 --> 04:37.650
+otherwise return empty.
+
+39
+04:37.730 --> 04:47.340
+Now we can go back to our template and change  
+the span's text with count as we defined here. 
+
+40
+04:50.880 --> 04:53.070
+Then let's remove everything inside class attribute
+
+41
+04:58.760 --> 05:01.310
+and then bind the class attribute to classes
+
+42
+05:04.470 --> 05:13.660
+like we have defined in computed property here 
+and here we should use class binding. Alright 
+
+43
+05:13.660 --> 05:21.540
+now we can go to app.js in assets folder 
+and register our favorite component.
+
+44
+05:34.420 --> 05:34.960
+Now let's
+
+45
+05:34.980 --> 05:40.480
+open up _vote.blade.php shared folder
+
+46
+05:47.560 --> 06:06.820
+and here we can replace this with our new favorite component.
+
+47
+06:06.840 --> 06:08.700
+Next we can open question model
+
+48
+06:12.410 --> 06:16.180
+and add is favorited and favorites count inside appends attribute.
+
+49
+06:21.340 --> 06:21.790
+All right let's
+
+50
+06:21.860 --> 06:22.670
+save all changes
+
+51
+06:25.480 --> 06:26.410
+and have a look.
+
+52
+06:28.510 --> 06:32.340
+Here I haven't run the webpack so let me run that
+
+53
+06:42.150 --> 06:42.580
+OK
+
+54
+06:42.660 --> 06:45.390
+Let's have a look reload the page.
+
+55
+06:49.410 --> 06:50.640
+I'll open developer tool
+
+56
+06:53.880 --> 06:54.200
+here
+
+57
+06:54.220 --> 06:57.100
+I have no error if I go to
+
+58
+06:57.100 --> 06:57.810
+vue dev tool
+
+59
+07:02.250 --> 07:04.160
+here I can  see the favorite component.
+
+60
+07:11.760 --> 07:13.280
+it look no difference
+
+61
+07:17.180 --> 07:19.790
+But if I change the sign in to false
+
+62
+07:23.120 --> 07:30.720
+and then reload the page here will see 
+the icons color turns to a bit like gray.
+
+63
+07:31.220 --> 07:34.110
+OK here let me change the signed in back to true.

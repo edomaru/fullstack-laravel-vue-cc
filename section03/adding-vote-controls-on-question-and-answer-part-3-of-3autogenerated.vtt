@@ -1,0 +1,537 @@
+WEBVTT
+
+0
+00:02.370 --> 00:09.450
+Let's go to `assets/sass` folder and open `app.scss` file.
+
+1
+00:13.990 --> 00:16.300
+here let's select our votes control element
+
+2
+00:21.200 --> 00:28.070
+and firstly let's set the `min-with` to let's say 60 pixels
+
+3
+00:30.660 --> 00:33.830
+min width
+
+4
+00:34.200 --> 00:39.850
+So this will make sure that the width of our vote control 
+not getting narrow if the votes counter in
+
+5
+00:39.850 --> 00:41.220
+a small number.
+
+6
+00:41.220 --> 00:44.120
+And then let's set the margin right
+
+7
+00:46.820 --> 00:53.080
+to 30 pixels and then make the text align
+
+8
+00:58.050 --> 00:59.580
+to center.
+
+9
+01:01.840 --> 01:13.560
+Then here let's also custom the font color to gray 700. 
+Where this variable come from?
+
+10
+01:13.840 --> 01:15.960
+This come from
+
+11
+01:16.100 --> 01:17.100
+let's go to
+
+12
+01:17.150 --> 01:22.420
+node_modules and open bootstrap
+
+13
+01:26.980 --> 01:34.770
+go to sass folder.
+
+14
+01:34.890 --> 01:37.590
+And if you open _variables
+
+15
+01:42.560 --> 01:45.010
+here we can see some color variables.
+
+16
+01:45.020 --> 01:48.380
+And here the gray 700
+
+17
+01:48.800 --> 01:53.300
+So feel free to choose the color you like but here I'll choose these gray
+
+18
+01:53.330 --> 01:56.140
+700
+
+19
+01:56.220 --> 01:57.340
+All right
+
+20
+01:57.870 --> 02:00.260
+let's also select span and anchor element
+
+21
+02:03.600 --> 02:05.790
+and change the display as block element
+
+22
+02:11.040 --> 02:12.290
+save all changes.
+
+23
+02:13.850 --> 02:15.450
+And let's have a look.
+
+24
+02:24.670 --> 02:25.750
+All right
+
+25
+02:26.090 --> 02:33.530
+Now we have more space between vote controls and question 
+the text align center and elements inside
+
+26
+02:33.590 --> 02:38.030
+are display as block element. OK let's make further styling.
+
+27
+02:41.890 --> 02:45.370
+Let's select only span element and define css rule
+
+28
+02:51.740 --> 02:55.760
+if you remember span in vote controllers are used to place number
+
+29
+02:58.640 --> 03:01.100
+so here and here
+
+30
+03:04.270 --> 03:08.560
+here I'm going to make this bigger and  
+I'm gonna make this smaller
+
+31
+03:12.290 --> 03:18.330
+so here I can write ampersand dot votes-count.
+
+32
+03:19.660 --> 03:23.100
+Remember that ampersand represents the parent selector.
+
+33
+03:23.260 --> 03:32.230
+So this will produced selector like this
+
+34
+03:33.220 --> 03:38.260
+and here I'll set the font size to 25 pixels
+
+35
+03:41.590 --> 03:43.790
+and then let's also have favorites-count
+
+36
+03:50.150 --> 03:55.670
+and then set the font size to 12 pixels
+
+37
+04:02.190 --> 04:02.960
+next
+
+38
+04:03.040 --> 04:05.680
+let's define css rule for anchors
+
+39
+04:06.420 --> 04:12.040
+So this one this one and this one.
+
+40
+04:12.150 --> 04:21.130
+And here we will apply the same style to them so here we can select them just using element type like this
+
+41
+04:22.360 --> 04:27.220
+and this will select all controls because they are anchor elements.
+
+42
+04:27.250 --> 04:33.240
+You can also select them with the most specific because maybe in the future you will be add other anchors
+
+43
+04:33.520 --> 04:36.350
+and you don't want them to get applied the style.
+
+44
+04:36.580 --> 04:38.680
+So you can do like this
+
+45
+04:41.640 --> 04:51.020
+vote-up vote- down and favorite.
+
+46
+04:51.530 --> 04:54.170
+And here you can specify the style
+
+47
+04:54.170 --> 05:00.620
+but in this case we will not need to add any anchors 
+just vote-up vote-down and favorite.
+
+48
+05:00.680 --> 05:08.390
+So here we can simply use just this type selector and we don't have to specify the classes.
+
+49
+05:12.190 --> 05:14.270
+Also we don't need to remove that classes
+
+50
+05:14.290 --> 05:16.590
+In our view just keep them.
+
+51
+05:16.600 --> 05:22.450
+Sometimes we need to define classes or other attributes in our element just to make our markup semantic
+
+52
+05:22.780 --> 05:26.570
+or to make our markup easier to read and easier to maintenance.
+
+53
+05:27.280 --> 05:30.100
+Ok here let's change the cursor to pointer
+
+54
+05:36.240 --> 05:42.960
+and change the text color to gray 600
+
+55
+05:46.620 --> 05:52.690
+next let's also define css rule for off class.
+
+56
+05:52.780 --> 05:54.310
+Also when the element hovered
+
+57
+05:59.130 --> 06:04.060
+and here let's change the text color to be a bit light gray
+
+58
+06:11.950 --> 06:17.550
+and then let's define another rule that's going to be used to indicate that the question is being
+
+59
+06:17.590 --> 06:18.470
+favorited
+
+60
+06:18.490 --> 06:21.850
+So here the class will be favorited
+
+61
+06:30.920 --> 06:36.580
+And here let's change the text color to yellow
+
+62
+06:38.360 --> 06:39.470
+or warning
+
+63
+06:42.230 --> 06:43.090
+like so.
+
+64
+06:43.460 --> 06:45.740
+So this color came from
+
+65
+06:52.050 --> 06:52.650
+here
+
+66
+06:56.660 --> 06:57.360
+and here.
+
+67
+07:02.180 --> 07:10.540
+And here we will make sure that this class can only be applied to element that has favorite class.
+
+68
+07:10.670 --> 07:15.790
+That's why here we need to define favorite
+
+69
+07:20.010 --> 07:21.870
+and then move these
+
+70
+07:25.270 --> 07:26.450
+inside here.
+
+71
+07:29.190 --> 07:36.190
+Save all changes wait for a second.
+
+72
+07:36.420 --> 07:38.480
+Here it say "Build successful"
+
+73
+07:38.490 --> 07:41.160
+Now let's have a look reload the page
+
+74
+07:44.530 --> 07:45.810
+as you can see here
+
+75
+07:45.990 --> 07:48.270
+the vote counts look bigger
+
+76
+07:48.370 --> 07:50.960
+Well favorites count smaller.
+
+77
+07:51.080 --> 07:58.180
+Here we can see the vote up color a bit dark gray while the vote down off has a bit light gray color.
+
+78
+07:58.400 --> 08:03.530
+And here I think we need more space between favorite
+
+79
+08:03.540 --> 08:08.810
+icon with vote down icon
+
+80
+08:19.520 --> 08:24.090
+so here I'll add margin top two
+
+81
+08:28.530 --> 08:28.700
+And here I'll
+
+82
+08:28.710 --> 08:40.070
+also try to add favorited class.
+
+83
+08:40.070 --> 08:40.880
+All right
+
+84
+08:40.880 --> 08:43.160
+I think it's look better.
+
+85
+08:43.340 --> 08:49.590
+Now let's copy this control to our answer item.
+
+86
+08:49.800 --> 08:51.220
+Let's go back to our editor
+
+87
+08:59.220 --> 09:00.890
+select this lines.
+
+88
+09:02.620 --> 09:03.300
+Copy
+
+89
+09:06.030 --> 09:06.780
+and then
+
+90
+09:10.250 --> 09:11.170
+and then paste here
+
+91
+09:19.090 --> 09:27.520
+and here we'll keep the vote up votes count and vote down. All we need to do is make a little change
+
+92
+09:28.200 --> 09:42.140
+title from question to answer and we don't need this favorite control. Actually let's change this class
+
+93
+09:42.220 --> 09:43.880
+to vote
+
+94
+09:44.030 --> 09:44.690
+accept
+
+95
+09:51.300 --> 09:52.970
+and then change the title
+
+96
+09:57.050 --> 10:08.390
+let's say "Mark this answer as best answer" and here 
+let's change the icon to
+
+97
+10:11.380 --> 10:15.680
+check.
+
+98
+10:16.500 --> 10:23.130
+So this control allows the creator of the question to accept the particular answer as best answer
+
+99
+10:23.750 --> 10:27.620
+and this control will be has two possible conditions.
+
+100
+10:27.620 --> 10:29.110
+The answer not accepted
+
+101
+10:29.270 --> 10:31.520
+and we need to add vote-accept class.
+
+102
+10:31.790 --> 10:35.280
+And when the answer has been accepted we need to add vote
+
+103
+10:35.300 --> 10:36.260
+accepted.
+
+104
+10:36.260 --> 10:40.460
+All right let's save the change and see how it looks like
+
+105
+10:47.120 --> 10:48.580
+OK here it is.
+
+106
+10:53.810 --> 10:58.620
+Now let's go back to our editor and here
+
+107
+10:59.050 --> 11:06.610
+let's change this to vote-accepted and then switch to app.scss
+
+108
+11:10.130 --> 11:14.110
+and here let's define new css rule for vote-accepted
+
+109
+11:22.990 --> 11:25.630
+here we simply change the text color to
+
+110
+11:25.950 --> 11:26.380
+green
+
+111
+11:31.700 --> 11:35.590
+again this green variable is come from bootstrap variables.
+
+112
+11:35.780 --> 11:36.740
+Save all changes
+
+113
+11:43.100 --> 11:46.860
+reload the page.
+
+114
+11:46.990 --> 11:51.470
+All right now the accept control is in green color.
+
+115
+11:51.760 --> 11:56.300
+So as I said this green color will indicate that the answer has been accepted.
+
+116
+12:00.400 --> 12:06.040
+But of course there should be only one answer as accepted answer and we will implement that
+
+117
+12:06.040 --> 12:09.150
+in other section of this course.
+
+118
+12:09.230 --> 12:13.980
+All right so now that we have vote controls 
+added both in question and answer.
+
+119
+12:14.030 --> 12:18.910
+While implementation of these controls will be discussed in other section of this course.
+
+120
+12:19.430 --> 12:20.390
+OK that's it
+
+121
+12:20.480 --> 12:24.400
+Let's close this lesson and save what we made today 
+into our git repo
+
+122
+12:27.440 --> 12:27.980
+first
+
+123
+12:27.980 --> 12:35.380
+let's stop the webpack by hitting control+c
+
+124
+12:35.620 --> 12:41.420
+then git add all. git commit
+
+125
+12:41.940 --> 12:45.080
+-m and say a message
+
+126
+12:58.460 --> 12:59.000
+here
+
+127
+12:59.040 --> 13:01.470
+I'll push my current branch to my remote server
+
+128
+13:13.040 --> 13:14.510
+and then switch to master branch
+
+129
+13:20.300 --> 13:21.920
+and merge to lesson-16
+
+130
+13:28.370 --> 13:28.700
+and last
+
+131
+13:28.700 --> 13:30.530
+I'll push my master branch to remote server

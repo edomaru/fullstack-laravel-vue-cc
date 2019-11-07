@@ -1,0 +1,433 @@
+WEBVTT
+
+0
+00:01.890 --> 00:08.420
+In the previous lesson we've created answers component 
+and implemented vue js list rendering to loop all answers.
+
+1
+00:08.540 --> 00:12.950
+Now I think it's not ideal to show all answers on the first load.
+
+2
+00:12.950 --> 00:17.390
+That's why in this lesson we need to limit 
+the answers that will be displayed.
+
+3
+00:17.390 --> 00:25.290
+So there will be a number of answers displayed initially 
+and we will provide a button below that. Once
+
+4
+00:25.320 --> 00:31.060
+user hit the button a number of 
+answers will be added on the page.
+
+5
+00:31.090 --> 00:32.320
+All right as always
+
+6
+00:32.320 --> 00:37.880
+Let's open up our terminal and create new branch by saying
+
+7
+00:38.020 --> 00:39.160
+git checkout
+
+8
+00:39.210 --> 00:42.930
+-b lesson-37
+
+9
+00:45.840 --> 00:46.470
+OK
+
+10
+00:46.560 --> 00:48.390
+Firstly let's open
+
+11
+00:48.720 --> 00:49.800
+answers dot vue
+
+12
+01:01.470 --> 01:04.930
+and right underneath answer component let's add a div
+
+13
+01:07.710 --> 01:12.260
+I'm going to make it center so here I 
+can utilize bootstrap class text center
+
+14
+01:15.350 --> 01:17.540
+and I want to add bootstrap margin top three
+
+15
+01:20.370 --> 01:21.140
+inside here let's
+
+16
+01:21.240 --> 01:28.820
+add a button the class will be btn btn outline secondary
+
+17
+01:33.460 --> 01:38.450
+and a text will be "load more answers"
+
+18
+01:39.760 --> 01:40.240
+All right
+
+19
+01:40.310 --> 01:41.020
+let's save this
+
+20
+01:44.290 --> 01:46.060
+actually I need to run web back.
+
+21
+01:47.810 --> 01:49.220
+So npm run
+
+22
+01:49.220 --> 01:49.640
+watch
+
+23
+02:00.040 --> 02:02.350
+OK here we have a button
+
+24
+02:02.860 --> 02:07.030
+As I said we will not display entire answers on the first load.
+
+25
+02:07.060 --> 02:09.930
+We will limit only a number of answers displayed
+
+26
+02:10.120 --> 02:20.580
+And once this load more answer button hit 
+a number of other answers will be added.
+
+27
+02:20.640 --> 02:22.770
+Next up we need to split the query
+
+28
+02:22.780 --> 02:29.110
+For getting the question detail and getting all 
+related answers into two distinct queries.
+
+29
+02:29.310 --> 02:35.430
+So the first one will be used to find the question 
+object and the second one will be used to fetch all
+
+30
+02:35.430 --> 02:37.490
+answers based on question id
+
+31
+02:37.530 --> 02:45.750
+that being sent. When the load more answer button hit 
+we'll make use the same request or same query as 
+
+32
+02:45.750 --> 02:47.160
+the second one.
+
+33
+02:47.280 --> 02:57.400
+So let's switch back over to our editor 
+and then open route service provider.
+
+34
+02:57.570 --> 03:00.350
+Here we have a query to find the question
+
+35
+03:03.900 --> 03:11.760
+and it's eager loaded to answers dot use and user.
+
+36
+03:11.780 --> 03:18.480
+Now here we only need to find the question instance 
+so let's remove the `with` method from here.
+
+37
+03:23.380 --> 03:34.820
+Next let's open up questions show blade php. Here 
+in answers component we don't need the pass all
+
+38
+03:34.820 --> 03:40.410
+answers because we'll fetch them internally through ajax. Instead
+
+39
+03:40.430 --> 03:43.010
+here we need to specify question property
+
+40
+03:48.040 --> 03:50.280
+and pass in the question instance to it
+
+41
+03:53.160 --> 04:00.180
+Now of course we need to make a bit change in answers 
+component. Le'ts switch to answers component
+
+42
+04:03.220 --> 04:05.870
+here in props let's remove the answers
+
+43
+04:05.920 --> 04:07.240
+and count from array
+
+44
+04:08.960 --> 04:18.590
+because as I said we'll fetch all answers inside 
+component and then here let's add question.
+
+45
+04:18.750 --> 04:25.090
+So now we'll have question as input 
+and then let's define data method
+
+46
+04:29.270 --> 04:31.380
+inside here let's return an object
+
+47
+04:36.320 --> 04:40.020
+and then inside this object let's define question id property.
+
+48
+04:40.100 --> 04:41.240
+to hold question id
+
+49
+04:46.470 --> 04:58.330
+and then count property to hold answers 
+count from question instance.
+
+50
+04:58.360 --> 05:05.530
+And lastly let's also add answers property that will be 
+used to store all answers and it will empty array
+
+51
+05:05.530 --> 05:06.290
+by default.
+
+52
+05:12.270 --> 05:19.560
+Next, we need new endpoints to fetch all 
+answers so let's open up routes web php
+
+53
+05:22.260 --> 05:24.160
+then let's find answers resource
+
+54
+05:31.010 --> 05:35.140
+and here let's remove the index from exception list
+
+55
+05:35.860 --> 05:42.300
+because now we will need the answer 
+index route to fetch all answers.
+
+56
+05:42.300 --> 05:44.510
+Now we can open answers controller
+
+57
+05:51.850 --> 05:52.400
+and here
+
+58
+05:55.440 --> 05:56.610
+let's define index method
+
+59
+06:02.740 --> 06:05.860
+and provide an argument to represent question instance
+
+60
+06:15.460 --> 06:28.250
+in here we simply say turn question get all answers 
+and paginate them with simple paginate method.
+
+61
+06:33.400 --> 06:36.680
+And for now I'll enter  three or three answers
+
+62
+06:36.680 --> 06:41.120
+will be displyed each request.
+
+63
+06:41.300 --> 06:46.040
+Don't forget because when we show 
+answer we'll also show user info
+
+64
+06:46.160 --> 06:48.680
+so here we need to eager load to user modal
+
+65
+07:03.320 --> 07:09.230
+here I realized that I missed something I have 
+to make sure that all methods in this controller
+
+66
+07:09.510 --> 07:12.560
+except the index method needs the user to sign in
+
+67
+07:15.650 --> 07:17.950
+so here let's add constructor
+
+68
+07:27.170 --> 07:30.100
+and call middleware
+
+69
+07:36.480 --> 07:38.330
+except index method
+
+70
+07:49.450 --> 07:50.610
+let me save all changes
+
+71
+07:57.290 --> 08:00.410
+Now let's test our endpoint in our answers component
+
+72
+08:10.340 --> 08:10.860
+and here
+
+73
+08:10.920 --> 08:18.190
+let's utilize vue js created method.
+
+74
+08:18.330 --> 08:24.220
+So this method called after the instance is created and 
+it's generally used for fetching data from backend
+
+75
+08:24.250 --> 08:25.040
+API.
+
+76
+08:25.320 --> 08:35.080
+Here we'll call fetch method which we
+will define shortly and pass in the URI
+
+77
+08:35.310 --> 08:37.140
+In this case questions
+
+78
+08:40.670 --> 08:41.390
+question Id
+
+79
+08:45.340 --> 08:47.350
+answers.
+
+80
+08:49.880 --> 08:51.580
+Now let's define methods property
+
+81
+08:59.980 --> 09:10.690
+and inside here let's define the fetch method.
+
+82
+09:10.800 --> 09:14.160
+It needs an argument to receive endpoint or request URI
+
+83
+09:21.320 --> 09:34.960
+and then inside this method we send ajax request 
+by saying axios dot get and pass in the endpoint.
+
+84
+09:35.120 --> 09:37.930
+And here we need to capture the ajax response.
+
+85
+09:45.530 --> 09:52.970
+For now let's console log the response.
+
+86
+09:52.990 --> 10:00.240
+let's save all changes and then switch 
+back over to our browser open console
+
+87
+10:06.190 --> 10:09.720
+reload the page
+
+88
+10:09.960 --> 10:14.390
+I got error url of undefined.
+
+89
+10:14.770 --> 10:18.030
+OK we'll fix shortly here we can see the response
+
+90
+10:18.040 --> 10:21.110
+object which contains some properties
+
+91
+10:27.320 --> 10:30.680
+and if we see the data property
+
+92
+10:30.890 --> 10:39.230
+It contains some properties for pagination purpose 
+and you'll find another data property which hold
+
+93
+10:39.260 --> 10:41.330
+all answers.
+
+94
+10:41.340 --> 10:47.680
+So from this response object we'll need to take this data 
+property and push everything inside to answers
+
+95
+10:47.690 --> 10:48.620
+array
+
+96
+10:49.200 --> 10:50.370
+And then we will need
+
+97
+10:50.470 --> 10:54.430
+next page URL to load more answers.
+
+98
+10:54.460 --> 10:56.450
+Note that if the next page URL is
+
+99
+10:56.470 --> 10:59.500
+null that's mean there are no more answers to be loaded.
+
+100
+11:03.260 --> 11:05.210
+OK let's fix this error.

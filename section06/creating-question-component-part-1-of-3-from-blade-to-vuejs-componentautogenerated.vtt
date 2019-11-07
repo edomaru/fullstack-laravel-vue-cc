@@ -1,0 +1,263 @@
+WEBVTT
+
+0
+00:01.690 --> 00:08.080
+After we have successfully rewritten the answers part 
+on this page now it's time to rewrite this question
+
+1
+00:08.080 --> 00:10.190
+part into vue js component.
+
+2
+00:12.150 --> 00:18.180
+We'll also need to add additional functionalities so that 
+we can update or delete question without need to go
+
+3
+00:18.210 --> 00:19.970
+to all questions page.
+
+4
+00:19.980 --> 00:21.840
+All right let's open up our terminal
+
+5
+00:24.830 --> 00:31.890
+then create new branch git checkout -b lesson 41.
+
+6
+00:33.740 --> 00:36.510
+And then run way back npm run
+
+7
+00:36.770 --> 00:37.180
+watch
+
+8
+00:44.660 --> 00:45.150
+OK.
+
+9
+00:45.170 --> 00:49.030
+Firstly let's open up show blade php file
+
+10
+00:54.390 --> 00:57.120
+and here let's fold this row div
+
+11
+01:01.370 --> 01:07.730
+select then cut and add question 
+component that we will create shortly.
+
+12
+01:23.920 --> 01:31.690
+Now we can go to assets js components and create new file
+
+13
+01:34.830 --> 01:50.350
+here I'm going to call question dot vue. Here inside 
+this file let's add template and paste the code.
+
+14
+01:50.580 --> 01:57.180
+Since we are in vue file let's make some changes 
+or convert the blade syntax to vue js syntax.
+
+15
+01:57.210 --> 02:08.170
+Firstly let's change the heading's text to title 
+and then change the href of this anchor
+
+16
+02:11.840 --> 02:13.940
+forward slash questions
+
+17
+02:20.050 --> 02:29.260
+And then here the vote and user info 
+components depend on question instance.
+
+18
+02:29.330 --> 02:33.030
+So let's select the model attribute of both
+
+19
+02:33.350 --> 02:34.510
+remove the mustaches 
+
+20
+02:42.100 --> 02:44.010
+and also remove the dollar sign
+
+21
+02:47.820 --> 02:53.250
+and then let's replace this code with a div
+
+22
+02:57.340 --> 03:02.220
+v html equals body html.
+
+23
+03:05.300 --> 03:06.250
+All right
+
+24
+03:06.320 --> 03:07.900
+now let's end script section
+
+25
+03:16.910 --> 03:22.560
+then define props property and then add question.
+
+26
+03:25.970 --> 03:27.770
+Let's also add data method
+
+27
+03:30.860 --> 03:31.810
+return an object
+
+28
+03:35.530 --> 03:37.920
+then here let's add some properties
+
+29
+03:37.970 --> 03:38.450
+title
+
+30
+03:41.570 --> 03:42.750
+to hold question's title
+
+31
+03:48.050 --> 03:55.980
+then body to hold question's body
+
+32
+03:56.150 --> 04:02.180
+And then body html to hold question's body underscore html
+
+33
+04:09.150 --> 04:09.470
+OK
+
+34
+04:09.490 --> 04:10.800
+that's it for now.
+
+35
+04:10.900 --> 04:15.710
+The next thing that we need to do is 
+register this component. For now
+
+36
+04:15.770 --> 04:17.700
+let's register it globally in app
+
+37
+04:17.720 --> 04:18.520
+dot js
+
+38
+04:18.630 --> 04:19.820
+So let's open that file
+
+39
+04:30.680 --> 04:31.900
+duplicate this line
+
+40
+04:34.940 --> 04:37.460
+and change the name to question
+
+41
+04:40.550 --> 04:42.020
+and then the file name to
+
+42
+04:45.460 --> 04:50.210
+question dot vue.
+
+43
+04:50.260 --> 04:50.740
+All right
+
+44
+04:50.740 --> 04:52.520
+we have created question component
+
+45
+04:52.720 --> 05:00.450
+we have registered it globally in this app.js and we have called it in show blade php
+
+46
+05:01.240 --> 05:02.780
+Now let's save all changes
+
+47
+05:07.880 --> 05:08.690
+and let's have a look.
+
+48
+05:12.360 --> 05:13.110
+Reload the page.
+
+49
+05:17.010 --> 05:22.620
+Ups the question body empty and I'm 
+sure you already know what's going on.
+
+50
+05:22.620 --> 05:33.520
+Before I fix that let me open vue developer tool
+
+51
+05:33.760 --> 05:39.680
+Now we can see there are two components below 
+root component question and answers component.
+
+52
+05:41.990 --> 05:42.880
+OK
+
+53
+05:43.220 --> 05:44.850
+Now let's fix this issue.
+
+54
+05:45.090 --> 05:47.090
+Let's switch over to our editor.
+
+55
+05:49.510 --> 05:52.530
+And then open question model
+
+56
+05:59.420 --> 06:04.210
+here in appends attribute let's register the body html accessor.
+
+57
+06:12.790 --> 06:13.330
+Reload
+
+58
+06:16.440 --> 06:16.930
+OK
+
+59
+06:16.930 --> 06:19.630
+now the question body come back.
+
+60
+06:19.630 --> 06:21.040
+Let me check the vote controls
+
+61
+06:35.210 --> 06:35.740
+OK
+
+62
+06:35.760 --> 06:37.360
+everything seems good.

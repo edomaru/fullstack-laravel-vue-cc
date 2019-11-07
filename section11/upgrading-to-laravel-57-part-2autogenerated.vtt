@@ -1,0 +1,471 @@
+WEBVTT
+
+0
+00:01.230 --> 00:07.380
+As a final step let's go to Github compression tools
+to see other changes that possibly not covered
+
+1
+00:07.410 --> 00:08.750
+in this guide.
+
+2
+00:08.880 --> 00:14.460
+As I mentioned before the changes that are not covered 
+in this upgrade guide could be not required.
+
+3
+00:14.880 --> 00:21.300
+So this lesson possibly optional to you and you can 
+skip this but if you want to make sure that your
+
+4
+00:21.300 --> 00:25.520
+project's files in sync you can follow this lesson.
+
+5
+00:25.560 --> 00:28.680
+All right let's go to GitHub comparison tool
+
+6
+00:32.210 --> 00:39.380
+and here we can ignore these dot editor config by hitting this icon.
+
+7
+00:39.380 --> 00:47.100
+Also this dot env example dot git ignore and
+
+8
+00:52.880 --> 01:00.730
+here in register controller file there is a bit 
+changes in validation rules in the prior version
+
+9
+01:00.740 --> 01:06.900
+the rules are written in string while a new version  it's written in array.
+
+10
+01:07.800 --> 01:13.450
+It's no problem if you not update but in 
+this case I prefer to change these to array.
+
+11
+01:13.920 --> 01:19.630
+So I'll hit this icon and view file in New tab
+
+12
+01:25.490 --> 01:27.170
+here I'll copy this lines
+
+13
+01:31.790 --> 01:35.230
+back to my editor open register
+
+14
+01:35.240 --> 01:35.880
+controller
+
+15
+01:41.330 --> 01:46.880
+and replace this validation rules. Back to our browser
+
+16
+01:54.290 --> 01:54.960
+here
+
+17
+01:55.130 --> 02:01.280
+verification controller added in new version and 
+we have already added so we can hide this
+
+18
+02:05.970 --> 02:08.890
+now in kernel dot php file
+
+19
+02:09.090 --> 02:20.010
+there is a bit change in auth. Previously it referred to 
+eliminate of middleware authenticate class but now it
+
+20
+02:20.010 --> 02:23.640
+referred to app http middleware
+
+21
+02:23.670 --> 02:25.020
+authenticate class
+
+22
+02:30.900 --> 02:39.090
+so back to our editor then open kernel in app http folder
+
+23
+02:44.960 --> 02:45.230
+here
+
+24
+02:45.260 --> 02:49.730
+let's change the auth key to refer to app
+
+25
+02:53.070 --> 03:01.130
+http middleware authenticate. Back to our browser
+
+26
+03:01.530 --> 03:09.360
+we have added the verified key so let's 
+copy only this middleware priority
+
+27
+03:16.160 --> 03:19.510
+back to our editor and here
+
+28
+03:20.560 --> 03:22.850
+let's paste the code here.
+
+29
+03:29.630 --> 03:30.740
+Switch back to our browser
+
+30
+03:37.720 --> 03:40.890
+and here let's copy entire code in this file
+
+31
+03:47.140 --> 03:51.080
+back to our editor navigate to
+
+32
+03:53.870 --> 04:03.460
+http middleware create new file and call it authenticate
+
+33
+04:08.330 --> 04:10.570
+inside this file just paste the code.
+
+34
+04:17.660 --> 04:19.420
+All right back to our browser
+
+35
+04:24.030 --> 04:36.260
+hide this file and here in verify csrf token we 
+will find new property called add http cookie
+
+36
+04:36.290 --> 04:37.120
+copy this line
+
+37
+04:42.380 --> 04:43.970
+back to our editor
+
+38
+04:44.490 --> 04:45.770
+find
+
+39
+04:45.770 --> 04:46.430
+Verify
+
+40
+04:46.440 --> 04:50.850
+csrf token and paste the code
+
+41
+04:54.570 --> 04:57.310
+head over to our browser
+
+42
+04:57.840 --> 04:58.850
+hide this file
+
+43
+05:03.360 --> 05:08.220
+also this file because as you can see is only switch the method
+
+44
+05:08.220 --> 05:08.790
+position.
+
+45
+05:12.830 --> 05:18.920
+we have updated this file so we can also skip this file.
+
+46
+05:19.120 --> 05:23.100
+We've also updated this app user
+
+47
+05:23.100 --> 05:32.140
+but here we'll find casts property defined contain 
+email verified at so let's copy these lines
+
+48
+05:35.220 --> 05:40.220
+back to our editor open user php
+
+49
+05:43.290 --> 05:44.180
+and paste here
+
+50
+05:47.800 --> 05:49.420
+switch back to our browser
+
+51
+05:52.170 --> 05:53.110
+hide this file
+
+52
+05:55.990 --> 06:06.130
+now here there is a bit change in bootstap app.php previously it call real path and so on like this
+
+53
+06:07.910 --> 06:13.120
+but now it call dollar underscore env
+
+54
+06:13.170 --> 06:13.890
+blah blah blah.
+
+55
+06:14.420 --> 06:15.960
+So let's copy this line
+
+56
+06:20.450 --> 06:21.490
+back to our editor
+
+57
+06:23.480 --> 06:28.670
+open app in bootstrap folder
+
+58
+06:33.220 --> 06:34.000
+and here
+
+59
+06:34.060 --> 06:39.290
+let's replace this line.
+
+60
+06:39.420 --> 06:41.280
+Hit this file
+
+61
+06:41.290 --> 06:43.830
+also this file because we've updated it
+
+62
+06:43.830 --> 06:44.370
+this file
+
+63
+06:49.720 --> 06:51.860
+now in config app.php
+
+64
+06:51.870 --> 06:54.940
+there is a big change in comment
+
+65
+06:55.180 --> 06:57.640
+I don't care with this
+
+66
+06:57.670 --> 07:00.850
+instead I'll copy this asset url
+
+67
+07:06.940 --> 07:11.780
+open app.php in config
+
+68
+07:14.690 --> 07:18.000
+and I'll place beneath this URL
+
+69
+07:25.040 --> 07:26.330
+also copy these lines
+
+70
+07:34.690 --> 07:36.850
+and I'll paste below this one.
+
+71
+07:48.470 --> 07:49.190
+All right
+
+72
+07:49.340 --> 07:52.610
+for the rest of the config files I won't talking anything
+
+73
+07:52.610 --> 07:54.440
+and maybe I'll fast forward the video
+
+74
+10:12.920 --> 10:13.410
+OK
+
+75
+10:13.540 --> 10:21.370
+here in user factory we need to import the eliminate support SDR.
+
+76
+10:21.600 --> 10:28.810
+That's copy this land back to our editor sir.
+
+77
+10:29.260 --> 10:30.060
+Factory
+
+78
+10:41.430 --> 10:49.080
+then we need to replace this as the random too as TR Colin Colin random
+
+79
+11:09.460 --> 11:10.280
+no Hillary.
+
+80
+11:10.310 --> 11:14.870
+We need to update the depth dependencies for our assets.
+
+81
+11:14.870 --> 11:17.720
+The first one is a lot of Onyx.
+
+82
+11:17.810 --> 11:29.180
+We need to change to four point all point seven then we need to update the villages version to two point
+
+83
+11:29.400 --> 11:31.270
+five when 17
+
+84
+11:53.910 --> 11:56.300
+and then we need to add these three lines
+
+85
+12:13.570 --> 12:16.870
+here in PSP units we the to change
+
+86
+12:19.820 --> 12:25.370
+the Q driver to Q connection and the value is still the same
+
+87
+12:38.480 --> 12:38.980
+right
+
+88
+12:42.170 --> 12:44.720
+we can skip this file.
+
+89
+12:45.040 --> 12:50.000
+Also this file and the SPG folder
+
+90
+12:56.260 --> 13:10.090
+we don't need this file also this file and here in resources jazz up the jazz there is a big change
+
+91
+13:10.450 --> 13:12.260
+in registering component.
+
+92
+13:12.310 --> 13:19.180
+Maybe we don't need to update these abilities but just to note that when registering compiling using
+
+93
+13:19.180 --> 13:24.250
+require a function make sure you check in with default
+
+94
+13:36.190 --> 13:37.590
+now in Misrata.
+
+95
+13:37.600 --> 13:42.640
+Yes that's a big change when requiring proper chess.
+
+96
+13:44.900 --> 13:47.390
+So now it's inside the tri cache
+
+97
+13:55.800 --> 13:56.910
+so I spoke these
+
+98
+14:00.150 --> 14:01.740
+inside here
+
+99
+14:07.420 --> 14:09.220
+we don't need to change these file
+
+100
+14:12.520 --> 14:13.330
+also.
+
+101
+14:13.330 --> 14:14.170
+This file
+
+102
+14:19.060 --> 14:20.350
+and for the validation
+
+103
+14:22.950 --> 14:30.340
+I think we don't need to change anything because squalid change in space
+
+104
+14:36.510 --> 14:37.950
+yeah we can skip this file
+
+105
+14:45.640 --> 14:48.300
+we don't need this file.
+
+106
+14:48.530 --> 14:56.660
+Also this file this file and here we've already update this file.
+
+107
+14:56.820 --> 14:57.390
+All right.
+
+108
+14:57.490 --> 14:58.690
+I think that's all we need.
+
+109
+14:59.560 --> 15:10.490
+We can now go back to our editor and several file changes.
+
+110
+15:10.690 --> 15:12.260
+Now we can go back to our terminal
+
+111
+15:16.590 --> 15:24.920
+and run into m run dev to install dependency packages for our asset.
+
+112
+15:25.060 --> 15:29.380
+Sure I get error because I've updated some packages versions.
+
+113
+15:29.640 --> 15:36.870
+Also add three new packages so the fix this way to run npm install
+
+114
+15:44.820 --> 15:50.340
+the next video we are going to test our app and make sure all functionality still working properly.

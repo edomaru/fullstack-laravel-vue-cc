@@ -1,0 +1,367 @@
+WEBVTT
+
+0
+00:02.400 --> 00:11.060
+Let's open the class bindings one dot html. 
+Here we have a box in cyan color if we inspect
+
+1
+00:11.070 --> 00:14.820
+element
+
+2
+00:15.000 --> 00:24.000
+It has bootstrap class bg info. What we'll do here is 
+change the class to bg primary when user mouse
+
+3
+00:24.000 --> 00:25.230
+over to the box.
+
+4
+00:30.620 --> 00:37.080
+Otherwise if the user mouse out from the box
+the background color will turn back to bg info.
+
+5
+00:37.480 --> 00:39.080
+OK let's do that.
+
+6
+00:40.810 --> 00:48.970
+Let's switch back over to our editor then open 
+the class bindings one dot html file. In the books
+
+7
+00:49.020 --> 00:50.330
+There are two classes
+
+8
+00:52.840 --> 00:54.760
+row and bg info
+
+9
+00:55.090 --> 01:00.370
+Here we're going to leave the row class on the country
+
+10
+01:00.540 --> 01:04.080
+let's cut the bg-info class then let's add
+
+11
+01:07.260 --> 01:12.870
+v-bind colon class equals then here
+
+12
+01:13.980 --> 01:21.890
+we'll pass an object as an argument but before that we 
+should remember we'll need two different classes here.
+
+13
+01:21.910 --> 01:28.480
+One class will be applied when mouse 
+over and another class when most out.
+
+14
+01:28.750 --> 01:34.110
+So before we define that class we can 
+firstly define in the data property
+
+15
+01:38.490 --> 01:43.570
+a property to hold the state whether 
+the user is hovering mouse or not.
+
+16
+01:43.930 --> 01:50.710
+Let's say hovered and it should be false by default.
+
+17
+01:55.230 --> 02:00.110
+Then we can change its value on mouse over
+
+18
+02:04.320 --> 02:13.360
+and on mouse out. Then we can change its 
+value on mouse over event and on mouse out.
+
+19
+02:13.380 --> 02:21.000
+So here we just replace the hovered's value to true.
+And on mouse out we change the hovered's value
+
+20
+02:21.030 --> 02:27.610
+back to false.
+
+21
+02:27.630 --> 02:30.940
+Now we can define the classes in the object argument.
+
+22
+02:34.560 --> 02:41.800
+The first one is bg info. This class will be 
+applied when hovered property is false.
+
+23
+02:45.540 --> 02:53.330
+Then the bg primary will be applied when hovered is true.
+
+24
+02:53.340 --> 02:54.340
+Now let's have a look
+
+25
+02:57.010 --> 02:57.770
+actually
+
+26
+02:57.880 --> 02:58.970
+let me clean this up.
+
+27
+03:14.220 --> 03:15.000
+As you can see
+
+28
+03:15.120 --> 03:20.040
+now the background color has turn 
+to blue or applied bg primary class.
+
+29
+03:20.040 --> 03:20.780
+In this case.
+
+30
+03:31.650 --> 03:38.230
+But unfortunately when mouse out 
+the color doesn't change. Let me see.
+
+31
+03:38.370 --> 03:42.310
+Sorry I made a typo it should be hovered
+
+32
+03:42.330 --> 03:46.810
+So it should be matches with the property that we defined here.
+
+33
+03:46.950 --> 03:47.460
+Save
+
+34
+03:52.370 --> 03:57.950
+now here the class still bg info and if I now hover over the box
+
+35
+03:57.950 --> 04:02.820
+the background color turns to bg primary. If I mouse out of the box
+
+36
+04:04.200 --> 04:06.470
+It's now back to bg info.
+
+37
+04:10.550 --> 04:11.060
+Next
+
+38
+04:11.090 --> 04:16.120
+let's open the class bindings two dot html.
+
+39
+04:16.240 --> 04:17.570
+Here we have the exact same app.
+
+40
+04:17.590 --> 04:20.950
+We'll change the background color to bg primary
+
+41
+04:21.130 --> 04:27.370
+when we mouse over the box and change back the 
+background color to bg info when mouse out the box.
+
+42
+04:27.520 --> 04:31.020
+But the difference here we will define the class in array.
+
+43
+04:37.080 --> 04:38.510
+Let's copy everything
+
+44
+04:40.240 --> 04:46.990
+then pasted it in the class bindings two dot html. 
+Because all we need to do here is changing the class
+
+45
+04:46.990 --> 04:48.060
+banding.
+
+46
+04:48.130 --> 04:57.280
+So as I mentioned before to apply classes in array 
+we just define the class name as array element.
+
+47
+04:57.730 --> 05:05.280
+But here we need to check the state of the hovered 
+property to determine a single class. If it was true
+
+48
+05:05.620 --> 05:10.900
+then the class will be bg info otherwise bg primary.
+
+49
+05:11.430 --> 05:17.120
+So let's change this as array opening and closing
+
+50
+05:23.710 --> 05:25.570
+then inside it we can check
+
+51
+05:29.160 --> 05:34.640
+if hovered is true
+
+52
+05:34.740 --> 05:40.050
+then the class will be bg primary.
+
+53
+05:40.310 --> 05:47.330
+Otherwise the classes will be bg info.
+
+54
+05:47.350 --> 05:53.100
+I don't think we need to change other part so let's save that.
+
+55
+05:53.300 --> 05:57.550
+Now if you try to hover over the box 
+the background color changes.
+
+56
+05:57.740 --> 06:04.990
+if we mouse out the box the background color back to 
+original color. So the result here is exactly the same but
+
+57
+06:04.990 --> 06:07.390
+the difference here we defined the classes
+
+58
+06:07.550 --> 06:08.290
+in array.
+
+59
+06:08.660 --> 06:13.150
+Alright now let's try to define a 
+single class in a string. Let's open
+
+60
+06:13.150 --> 06:16.950
+class binding 3 dot html
+
+61
+06:17.020 --> 06:19.670
+Here we have an alert primary.
+
+62
+06:19.810 --> 06:24.800
+if we select the class here
+
+63
+06:24.960 --> 06:28.100
+then the alert style should be change.
+
+64
+06:28.180 --> 06:35.200
+For example if we choose the secondary option then 
+the alert here will turn to alert secondary and
+
+65
+06:35.200 --> 06:36.100
+so on.
+
+66
+06:37.040 --> 06:38.690
+Let's switch back over to our editor.
+
+67
+06:41.610 --> 06:49.120
+Here we have alert alert primary. So the class 
+that we need to make dynamic is alert primary.
+
+68
+06:49.120 --> 06:54.250
+It depends on what we choose in select option. Let's cut
+
+69
+06:58.060 --> 06:59.750
+then add here bind class
+
+70
+07:04.330 --> 07:07.460
+here because we only need to apply a single class
+
+71
+07:07.810 --> 07:16.710
+We can pass it as a string. Now since we need to 
+take the value from select option then apply it here
+
+72
+07:17.240 --> 07:27.060
+so before that let's firstly define it in the data 
+property for example alert type and give it
+
+73
+07:27.060 --> 07:32.780
+a default value as alert primary.
+
+74
+07:32.790 --> 07:36.030
+Now we can pass into our class binding the alert type.
+
+75
+07:41.290 --> 07:42.640
+Let's save.
+
+76
+07:43.100 --> 07:46.340
+Then back to our browser.
+
+77
+07:47.000 --> 07:48.610
+OK so far so good.
+
+78
+07:48.620 --> 07:54.340
+The last thing that we need to do here is to make use 
+input binding from the select element to the alert
+
+79
+07:54.540 --> 07:55.420
+type.
+
+80
+07:55.490 --> 08:00.370
+Here we can simply use v-model then alert type.
+
+81
+08:04.370 --> 08:08.160
+save. Let's have a look
+
+82
+08:13.030 --> 08:21.050
+I'll choose the secondary option. The alert turns to the 
+secondary. Now I'll choose other option success,
+
+83
+08:21.250 --> 08:25.340
+danger, warning.
+
+84
+08:26.220 --> 08:28.700
+OK that's about class binding.

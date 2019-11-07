@@ -1,0 +1,211 @@
+WEBVTT
+
+0
+00:01.690 --> 00:07.060
+In this lesson we are going to consume all questions 
+API  endpoint and use it in this questions page
+
+1
+00:07.080 --> 00:08.520
+component.
+
+2
+00:08.530 --> 00:14.320
+We already have the UI for displaying all questions 
+in blade file so we can easily bring the mark up
+
+3
+00:14.320 --> 00:18.820
+from there and put them in our questions page component.
+
+4
+00:18.820 --> 00:20.410
+All right let's go to our terminal
+
+5
+00:25.620 --> 00:26.100
+and here I'll
+
+6
+00:26.140 --> 00:35.070
+create a new branch to isolate all changes today.
+
+7
+00:35.140 --> 00:39.790
+Now let's run laravel mix by saying NPM run watch
+
+8
+00:44.240 --> 00:49.590
+firstly let's pull open the js bootstrap dot
+
+9
+00:49.600 --> 00:50.030
+js
+
+10
+00:58.340 --> 01:05.700
+and here right after this line let's add window
+
+11
+01:05.750 --> 01:14.700
+axios defaults base URL equals http
+
+12
+01:15.410 --> 01:22.910
+colon localhost eight thousand api
+
+13
+01:23.430 --> 01:30.500
+So here we set the base URL to localhost eight thousand api.
+
+14
+01:30.990 --> 01:36.420
+By doing this way every time we call our API endpoint 
+somewhere in our components we don't need to
+
+15
+01:36.420 --> 01:38.280
+call the full URL.
+
+16
+01:38.350 --> 01:41.470
+All we have to do is call the rest of the endpoint.
+
+17
+01:41.520 --> 01:49.380
+For example let's say we want to consume all questions 
+endpoint which is localhost eight thousand api
+
+18
+01:49.440 --> 01:51.790
+questions.
+
+19
+01:51.840 --> 01:58.050
+Now here we can simply call axios get questions
+
+20
+02:02.740 --> 02:11.240
+so I hope that will make sense to you. But this code 
+probably work only in our development in production
+
+21
+02:11.240 --> 02:14.800
+the base URL no longer pointed to localhost right?
+
+22
+02:14.870 --> 02:17.010
+So how can we do that?
+
+23
+02:17.090 --> 02:20.270
+Well that's very easy actually.
+
+24
+02:20.270 --> 02:27.600
+Here we can add before this static URL let's say window
+
+25
+02:30.310 --> 02:31.180
+urls
+
+26
+02:33.600 --> 02:39.770
+api then we will add double pipes.
+
+27
+02:39.780 --> 02:47.580
+This means if window dot URLs dot api empty 
+or undefined then this static URL is going to be
+
+28
+02:47.580 --> 02:51.500
+used as axios base URL
+
+29
+02:51.530 --> 02:54.740
+Now let's pull spa.blade.php
+
+30
+02:57.710 --> 03:09.030
+and here after window auth let's define window 
+dot urls. Now the reason why I call it you URLs
+
+31
+03:09.150 --> 03:19.110
+instead of API URL is because I might define other 
+URL not just for API so window URLs equals
+
+32
+03:20.280 --> 03:23.670
+and instead of calling json encode
+
+33
+03:23.750 --> 03:29.520
+actually since laravel version 5. 5 we can 
+also use json blade directive like so
+
+34
+03:33.450 --> 03:37.740
+posse in an array and inside here
+
+35
+03:37.770 --> 03:51.340
+let's add the api and the value will be taken from url api
+
+36
+03:51.340 --> 03:53.650
+Let's also change this json encode
+
+37
+03:56.630 --> 04:03.940
+to json and remove this let's also move this
+
+38
+04:08.600 --> 04:09.310
+in here
+
+39
+04:12.410 --> 04:15.290
+then rename to login
+
+40
+04:20.030 --> 04:29.850
+so here because we move this and changed 
+to login let's open router index dot js
+
+41
+04:33.120 --> 04:38.850
+and change this to window Urls login.
+
+42
+04:41.490 --> 04:41.770
+Alrihg
+
+43
+04:41.780 --> 04:42.760
+let several all changes
+
+44
+04:47.740 --> 04:51.180
+back to our browser and reload.
+
+45
+04:52.880 --> 04:56.970
+Let me hit this log in. OK
+
+46
+04:57.050 --> 04:58.130
+It's still working.
+
+47
+05:00.270 --> 05:00.670
+All right
+
+48
+05:00.850 --> 05:04.050
+So now that we have our API base URL set up.
+
+49
+05:04.050 --> 05:06.880
+Now let's working on questions page component.

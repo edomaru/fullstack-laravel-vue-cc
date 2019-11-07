@@ -1,0 +1,534 @@
+WEBVTT
+
+0
+00:01.100 --> 00:08.480
+In this lesson I'm going to show you how to upgrade laravel app from Version five point seven to version five
+
+1
+00:08.490 --> 00:09.380
+point eight.
+
+2
+00:09.450 --> 00:17.010
+And as always here I have already opened the upgrade 
+guide from laravel official documentation as reference.
+
+3
+00:17.010 --> 00:22.810
+Like I said in the previous upgrade guide, to upgrade 
+Laravel app you can follow in two different options.
+
+4
+00:22.920 --> 00:31.500
+You can read and follow every step from the top all 
+the way down or you can go to bottom open this
+
+5
+00:31.650 --> 00:32.880
+github comparison tool
+
+6
+00:36.130 --> 00:41.110
+hit file changes and compare those changes
+
+7
+00:41.120 --> 00:41.870
+side by side
+
+8
+00:45.020 --> 00:45.860
+in this lesson.
+
+9
+00:46.160 --> 00:52.490
+firstly we'll follow the first option because by using 
+this we will know what changes that we need and
+
+10
+00:52.490 --> 01:00.950
+don't need to play in our app and how those changes 
+impact our app. And then when we reach at the end of
+
+11
+01:00.950 --> 01:08.480
+the guide we'll be using the Github comparison tool 
+to see some changes that may be not required and
+
+12
+01:08.500 --> 01:10.130
+not covered in upgrade guide
+
+13
+01:10.340 --> 01:13.880
+but just to make sure that our application's files are in sync.
+
+14
+01:15.130 --> 01:15.630
+Okay
+
+15
+01:16.010 --> 01:22.950
+let's open up our terminal and change the 
+working directory to our Laravel app.
+
+16
+01:23.120 --> 01:29.630
+And as always let's isolate our work into new branch 
+so we can always revert back to a previous version
+
+17
+01:29.630 --> 01:32.480
+just in case we are got unwanted error after upgrade.
+
+18
+01:36.320 --> 01:41.720
+here I'm going to call it laravel dash v
+
+19
+01:41.970 --> 01:44.300
+five point eight.
+
+20
+01:48.140 --> 01:49.280
+All right
+
+21
+01:49.480 --> 01:53.990
+back to Laravel guide. Let's jump to the top
+
+22
+02:01.490 --> 02:02.220
+and here
+
+23
+02:02.760 --> 02:08.870
+let's begin by updating the dependencies. Here we 
+need to update Laravel framework dependency to five
+
+24
+02:08.980 --> 02:11.040
+point eight.
+
+25
+02:11.250 --> 02:18.330
+Also we need to examine any third party packages 
+that consume by our app and verify we are using
+
+26
+02:18.330 --> 02:22.050
+the proper version for laravel 5.8. To do this
+
+27
+02:22.050 --> 02:23.640
+Let's head over to our editor
+
+28
+02:26.400 --> 02:32.770
+open composer.json. Then here
+
+29
+02:32.780 --> 02:38.960
+let's change the laravel framework vision to five point eight.
+
+30
+02:39.170 --> 02:43.630
+Let's see what else that we need to 
+change in this file back to our browser.
+
+31
+02:46.330 --> 02:54.920
+Go to Github comparison tools then find composer.json.
+
+32
+02:57.190 --> 03:08.860
+Here we need to update Nuno maduro collison form 
+version 2 to version 3 and php unit from version
+
+33
+03:08.860 --> 03:27.450
+7.0 to 7.5.
+
+34
+03:27.470 --> 03:34.610
+Here we have laravel debug bar but currently 
+the version 3.2 is still the current version. So we
+
+35
+03:34.610 --> 03:36.600
+don't need to change this.
+
+36
+03:36.630 --> 03:38.810
+All right let's save the change
+
+37
+03:41.460 --> 03:42.580
+back to our terminal.
+
+38
+03:44.600 --> 03:50.060
+And here let's update our dependency packages by typing composer
+
+39
+03:50.430 --> 03:50.940
+update
+
+40
+03:54.120 --> 03:55.210
+while it's updating
+
+41
+03:55.260 --> 04:00.510
+we can head over to Laravel upgrade 
+guide and follow the next step.
+
+42
+04:02.410 --> 04:09.960
+Let's see the application contract section. Here in the 
+environment method because we did not implement
+
+43
+04:10.050 --> 04:12.630
+this contract so we can skip this.
+
+44
+04:16.220 --> 04:19.370
+Then here we see added methods
+
+45
+04:20.550 --> 04:27.240
+to illuminate contract foundation application. Again 
+we did not implement this interface so we can
+
+46
+04:27.240 --> 04:31.450
+skip this.
+
+47
+04:31.560 --> 04:32.850
+Let's see the authentication
+
+48
+04:35.410 --> 04:43.020
+here in password reset notification 
+route parameter when using laravel 5.7
+
+49
+04:43.030 --> 04:51.880
+The token is passed to the route helper without explicit name. But in a Laravel 5.8 the token is passed
+
+50
+04:51.880 --> 04:53.530
+to the route helper explicitly.
+
+51
+04:55.960 --> 05:04.590
+Here because we did not define the password 
+dot reset manually so we can skip this. Next
+
+52
+05:05.170 --> 05:07.510
+let's see new default password length.
+
+53
+05:07.930 --> 05:11.280
+As you can see the likelihood of impact is high
+
+54
+05:14.040 --> 05:22.230
+the required password length when choosing or resetting a 
+password was changed to add characters. So let's switch
+
+55
+05:22.230 --> 05:23.460
+over to our editor
+
+56
+05:26.490 --> 05:39.420
+then open register controller. Here let's change 
+this to eight and we don't need to do anything
+
+57
+05:39.590 --> 05:48.400
+with reset password controller because the validation 
+rules defined in Laravel framework. Back
+
+58
+05:48.510 --> 05:49.340
+to our browser
+
+59
+05:54.450 --> 05:56.880
+and here we can skip this cache section
+
+60
+06:00.920 --> 06:04.200
+the likelihood of impact could be very height.
+
+61
+06:04.500 --> 06:08.610
+But since we are not using this currently we can skip the section.
+
+62
+06:17.220 --> 06:19.050
+here in collection section.
+
+63
+06:19.050 --> 06:24.780
+The add method has been removed again since we did not extending the collection.
+
+64
+06:24.780 --> 06:32.980
+We can skip this also we can ignore these for square method because we did not extending it.
+
+65
+06:35.580 --> 06:44.670
+We can skip this console section as well as container.
+
+66
+06:44.850 --> 06:53.460
+Let's see the data section and quoted my sequel JSON values likelihood of impact is low the query builder
+
+67
+06:53.850 --> 07:02.130
+will no return and quoted JSON values when using my sequel and more IDB we can skip this
+
+68
+07:05.720 --> 07:12.690
+single light likelihood of impact medium so if you're using all the sequel version.
+
+69
+07:12.950 --> 07:22.400
+Make sure you update it to second version three point eight point eight or higher migration in big increments
+
+70
+07:24.590 --> 07:26.050
+level 5 when 8.
+
+71
+07:26.080 --> 07:33.970
+Now using big increments method on 80 columns definition this method produce unsigned big integer primary
+
+72
+07:33.970 --> 07:38.380
+key are increment as noted here.
+
+73
+07:38.390 --> 07:41.750
+This will not affect any existing code in our project.
+
+74
+07:41.780 --> 07:47.560
+Just to be aware that 4 in your column must be of the same type probably in a prior version.
+
+75
+07:47.600 --> 07:55.340
+We were using unsigned integer to define our foreign key but now we need to define it as unsigned big
+
+76
+07:55.400 --> 07:55.910
+integer
+
+77
+07:59.400 --> 08:00.810
+now in all connection.
+
+78
+08:00.850 --> 08:08.640
+We can skip this it's physically fix the monthly words model names ending to be correctly pluralist.
+
+79
+08:12.740 --> 08:16.940
+Here we can also skip this because we did not use a custom before to model
+
+80
+08:20.270 --> 08:21.440
+the load count method.
+
+81
+08:21.560 --> 08:27.250
+Edit in a lock and model since we did not define this such method we don't have to worry about this
+
+82
+08:30.180 --> 08:43.280
+we can skip this one this one and this one next in environment verbal passing now the hash symbol will
+
+83
+08:43.280 --> 08:45.220
+be considered as a command.
+
+84
+08:46.010 --> 08:55.640
+So in the previous version if you define the reveal value as full hash bar then you have the value as
+
+85
+08:55.700 --> 08:59.900
+it is through hash bar.
+
+86
+08:59.900 --> 09:07.300
+But now if you define the same value you will have only foo because hash bar 3.
+
+87
+09:07.340 --> 09:14.990
+Ask men so to preserve the previous behavior you have to wrap the values in quotes.
+
+88
+09:15.310 --> 09:19.900
+I'm sure I don't have these values so I'll move on to the next section
+
+89
+09:23.070 --> 09:25.900
+here we can skip this event section.
+
+90
+09:26.050 --> 09:27.850
+It's also the exception handling
+
+91
+09:34.890 --> 09:35.850
+now in male.
+
+92
+09:35.860 --> 09:42.480
+There was a change in modern file directory so if you have placed well overall smackdown.
+
+93
+09:42.570 --> 09:47.110
+Male components using vendor call and published command.
+
+94
+09:47.130 --> 10:00.390
+You should rename the resource vs vendor male market and directory to text and so on we can skip this
+
+95
+10:04.190 --> 10:06.410
+and then we can skip these cute section
+
+96
+10:11.550 --> 10:12.290
+these requests.
+
+97
+10:12.300 --> 10:12.860
+Also
+
+98
+10:16.270 --> 10:17.310
+routing as well
+
+99
+10:20.000 --> 10:21.200
+and Sessions
+
+100
+10:26.770 --> 10:28.410
+now here in support section.
+
+101
+10:28.410 --> 10:34.280
+We can see that whole array and as the Oracle Little Helper has been deprecated.
+
+102
+10:34.760 --> 10:44.360
+So now we should use eliminate support R for array and eliminate support stream for string.
+
+103
+10:44.450 --> 10:48.610
+For example we used to call as the r underscore slug.
+
+104
+10:48.650 --> 10:51.780
+Now we should call as the r Colin Cullen.
+
+105
+10:51.860 --> 11:00.610
+Select here id say the impact of this change has been marked as medium so the helper has been moved
+
+106
+11:01.660 --> 11:09.880
+to the new or for helper package which overs a backwards compatibility layer for all the global array
+
+107
+11:09.910 --> 11:11.530
+and string functions.
+
+108
+11:11.530 --> 11:13.090
+So let's hit this lean
+
+109
+11:20.490 --> 11:20.880
+copy.
+
+110
+11:20.880 --> 11:22.610
+This cancels in command.
+
+111
+11:23.100 --> 11:24.560
+So we stole our terminal
+
+112
+11:27.460 --> 11:31.030
+paste and hit return back to upgrade guide
+
+113
+11:34.180 --> 11:38.250
+and here we can skip this this one
+
+114
+11:43.180 --> 11:45.100
+let's also skip this testing
+
+115
+11:47.630 --> 11:48.530
+validation
+
+116
+11:52.950 --> 11:53.490
+and view
+
+117
+11:56.770 --> 12:00.770
+and then here in notification the likelihood of impact is high.
+
+118
+12:02.560 --> 12:09.270
+The next small and select notification channels has been extracted into first part of packages to use
+
+119
+12:09.270 --> 12:11.870
+these channels in your application.
+
+120
+12:12.240 --> 12:14.600
+Require the following packages.
+
+121
+12:14.960 --> 12:21.370
+So let's copy this command switch store terminal paste.
+
+122
+12:25.590 --> 12:28.590
+Copy the package name from the second command
+
+123
+12:33.300 --> 12:37.230
+in a space paste and return
+
+124
+12:40.930 --> 12:41.320
+all right.
+
+125
+12:41.580 --> 12:47.640
+While it's installing we can go to get hub comparison tool and see other changes that could be not cover
+
+126
+12:47.640 --> 12:48.870
+in this gate.
+
+127
+12:48.930 --> 12:50.670
+But this step is could be optional.

@@ -1,0 +1,200 @@
+WEBVTT
+
+0
+00:02.240 --> 00:07.880
+When listening for keyboard events we often need to 
+check which key that pressed by a user on the keyboard
+
+1
+00:08.300 --> 00:16.520
+to determine which code to be executed. Vue js allows 
+us to add a modifier to the v-on directive specifically
+
+2
+00:16.550 --> 00:17.110
+for the keyboard
+
+3
+00:17.200 --> 00:25.020
+event. Because this modifier is specifically for 
+keyboard event it is better known as key modifier.
+
+4
+00:25.140 --> 00:31.270
+Let's open the event handling four dot html.
+
+5
+00:31.360 --> 00:32.990
+If we look at this application
+
+6
+00:33.020 --> 00:34.830
+It's similar to the previous one.
+
+7
+00:34.840 --> 00:40.530
+The difference here is that at the bottom 
+there is only one input without a button.
+
+8
+00:41.530 --> 00:47.700
+Later when we type something and then press the 
+enter key it will immediately be added to the list.
+
+9
+00:49.680 --> 00:54.930
+or when we press the escape key, what 
+we type in the text box will be reset.
+
+10
+00:56.690 --> 01:07.030
+Let's switch over to our editor then open 
+the event handling four dot html file.
+
+11
+01:07.190 --> 01:10.160
+If you see the text box is in a div element
+
+12
+01:12.880 --> 01:17.310
+so to make it able to add something 
+that we type in the text box to the list
+
+13
+01:17.560 --> 01:19.300
+when a user press enter
+
+14
+01:19.510 --> 01:20.720
+we can define here
+
+15
+01:23.290 --> 01:27.890
+v-on colon key up
+
+16
+01:28.060 --> 01:32.560
+then we add a modifier 13 which is the key code of the enter key.
+
+17
+01:33.780 --> 01:37.220
+Then we call the handle submit method.
+
+18
+01:39.760 --> 01:45.640
+So if you want to handle keyboard event of certain keys 
+besides the enter key then you need to know the
+
+19
+01:45.640 --> 01:49.010
+key code. To do that
+
+20
+01:49.020 --> 01:53.190
+You can go to key code dot info
+
+21
+01:56.770 --> 02:01.600
+in here you can find out the key code of 
+any key that you press on the keyboard.
+
+22
+02:09.090 --> 02:10.080
+Beside that
+
+23
+02:10.150 --> 02:21.200
+vue js also provides an alias for the enter key so he 
+can change this 13 to enter. Here in handle submit
+
+24
+02:21.200 --> 02:26.930
+method
+
+25
+02:27.060 --> 02:40.880
+we can assure that the user has type something before actually add it to the list. If this framework trim or if the framework name
+
+26
+02:40.880 --> 02:45.150
+entered in the text box is not empty then move this lines.
+
+27
+02:45.210 --> 02:45.830
+inside the if
+
+28
+02:49.150 --> 02:51.800
+let's save and switch back over to our browser.
+
+29
+02:58.040 --> 02:59.080
+Try to enter something
+
+30
+03:03.460 --> 03:11.440
+we'll see new framework on the list when we press the enter key.
+
+31
+03:11.440 --> 03:15.100
+Now let's add another modifier to the input to do something else
+
+32
+03:15.100 --> 03:18.350
+when we press the escape key.
+
+33
+03:18.520 --> 03:19.870
+Let's go back to our editor
+
+34
+03:23.450 --> 03:24.460
+and inside
+
+35
+03:27.390 --> 03:32.970
+the input we can add another v-on keyup
+
+36
+03:35.740 --> 03:42.580
+and then specify dot esc modifier that is modifier for escape key.
+
+37
+03:43.000 --> 03:48.760
+Then let's call clear text method for 
+example. In this methods property
+
+38
+03:53.460 --> 03:54.950
+let's define the clear text method
+
+39
+03:59.950 --> 04:05.250
+and inside this method let's clear the framework property's value.
+
+40
+04:13.650 --> 04:15.990
+Now if you tried to type something in the text box
+
+41
+04:19.770 --> 04:25.330
+and then press the escape key everything 
+inside the text box will be reset immediately.
+
+42
+04:26.810 --> 04:34.580
+Now beside enter and esc alias modifier vue js 
+also provides other aliases such as tab, delete
+
+43
+04:34.790 --> 04:42.260
+capture both delete and bask space 
+keys, space, up, down, left and right.
+
+44
+04:43.490 --> 04:43.990
+Alright
+
+45
+04:44.120 --> 04:46.340
+that's about event handling in vue js.

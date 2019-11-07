@@ -1,0 +1,439 @@
+WEBVTT
+
+0
+00:02.130 --> 00:08.270
+In this lesson we are going to consume the create 
+question API endpoint in our single page application.
+
+1
+00:08.460 --> 00:17.640
+So we already have the form in blade file so we will take 
+the code from this file and create a new component.
+
+2
+00:17.670 --> 00:23.250
+Then we're going to define a new route 
+in our routes.js file for that component.
+
+3
+00:23.250 --> 00:25.320
+All right let's head over to our terminal
+
+4
+00:28.860 --> 00:30.870
+and here let me create a new git branch
+
+5
+00:37.880 --> 00:38.510
+OK
+
+6
+00:38.610 --> 00:42.150
+now let's run level mix by saying: npm run watch
+
+7
+00:46.570 --> 00:47.510
+All right
+
+8
+00:47.580 --> 00:48.420
+first thing first
+
+9
+00:49.730 --> 00:57.600
+here in questions create.blade.php let's copy 
+everything inside this section content
+
+10
+01:01.510 --> 01:09.350
+and then let's go to js pages directory and 
+inside this directory let's create a new file
+
+11
+01:12.470 --> 01:13.720
+let's call it
+
+12
+01:13.730 --> 01:18.650
+create question page dot vue
+
+13
+01:24.570 --> 01:25.190
+add template
+
+14
+01:28.810 --> 01:29.710
+and paste the markup.
+
+15
+01:40.640 --> 01:43.760
+Let's firstly change this link to router link
+
+16
+01:49.990 --> 01:52.230
+the target it's gonna be question
+
+17
+01:52.330 --> 01:58.650
+so here we can bind the to attribute in pass object
+
+18
+02:03.660 --> 02:07.700
+specify name and set it to questions.
+
+19
+02:10.840 --> 02:17.190
+The class is gonna be btn btn outline secondary
+
+20
+02:22.110 --> 02:27.600
+and the text is gonna be "back to all questions"
+
+21
+02:37.230 --> 02:39.010
+and here we can cut this form
+
+22
+02:43.160 --> 02:49.340
+and instead we'll call question form 
+component which we will create shortly.
+
+23
+02:58.380 --> 02:59.040
+Let's add
+
+24
+02:59.080 --> 02:59.480
+script
+
+25
+03:06.020 --> 03:11.990
+here let's import the question form from 
+components question from dot vue.
+
+26
+03:15.300 --> 03:24.440
+In here let's register the question from 
+by saying  components question form.
+
+27
+03:24.440 --> 03:26.600
+All right let's actually create the question form.
+
+28
+03:30.410 --> 03:35.180
+Go to js components. In here
+
+29
+03:35.180 --> 03:41.810
+let's create a brand new file. Here it 
+is gonna be a question form dot vue.
+
+30
+03:48.430 --> 03:48.720
+Here
+
+31
+03:48.760 --> 03:54.130
+let's add template then inside here let's add a form
+
+32
+04:11.730 --> 04:15.560
+here when the form submitted we will call handle submit.
+
+33
+04:17.850 --> 04:24.750
+Now for the form element let's create that 
+from questions underscore form blade php.
+
+34
+04:28.220 --> 04:28.580
+Here
+
+35
+04:28.600 --> 04:32.290
+let's grab everything except this csrf.
+
+36
+04:37.710 --> 04:46.590
+back to question form and here inside the form 
+we can replace this with the previous markup.
+
+37
+04:50.740 --> 04:51.650
+Let's indent a little bit.
+
+38
+04:59.870 --> 05:04.640
+Here in our component value and 
+id attributes are no longer needed.
+
+39
+05:04.790 --> 05:05.960
+So let's get rid of that
+
+40
+05:16.580 --> 05:24.200
+instead we'll need to perform model 
+binding. So v-model equals title
+
+41
+05:29.950 --> 05:33.910
+now for the class let's move this logic into method
+
+42
+05:40.340 --> 05:43.790
+and we'll say error
+
+43
+05:43.790 --> 05:47.980
+class and we will pass in title.
+
+44
+05:51.670 --> 05:56.010
+We will need to perform class binding 
+by adding colon before the class.
+
+45
+06:00.620 --> 06:01.600
+Here
+
+46
+06:01.770 --> 06:03.740
+let's remove this if blade statement
+
+47
+06:12.730 --> 06:15.850
+and then here we can add v
+
+48
+06:15.860 --> 06:16.220
+If
+
+49
+06:18.720 --> 06:20.780
+errors
+
+50
+06:21.770 --> 06:26.000
+title at 0 index
+
+51
+06:29.550 --> 06:34.340
+so Laravel return validation error message in array.
+
+52
+06:34.500 --> 06:37.100
+That's why we call that like this way.
+
+53
+06:39.450 --> 06:44.810
+Now here we can replace this error message with errors
+
+54
+06:46.820 --> 06:52.810
+title zero. All right
+
+55
+06:53.150 --> 07:00.290
+let's do almost the same thing to the question 
+body. Let's remove this id this id attribute
+
+56
+07:03.740 --> 07:04.810
+bind the class attribute
+
+57
+07:08.530 --> 07:09.660
+and replace it content
+
+58
+07:19.630 --> 07:23.320
+and replace its content to error
+
+59
+07:23.320 --> 07:29.620
+class then pass in body.
+
+60
+07:29.800 --> 07:43.930
+Don't forget to add v-model equals body, 
+and we can remove this from here.
+
+61
+07:43.940 --> 07:45.740
+Here we can simply copy these lines
+
+62
+07:51.720 --> 07:56.350
+and paste here and then replace
+
+63
+07:56.350 --> 07:59.170
+from title to body.
+
+64
+08:04.160 --> 08:09.170
+Last let's change this php variable by simply remove the $ sign.
+
+65
+08:13.360 --> 08:13.920
+Okay
+
+66
+08:13.950 --> 08:16.950
+here we need to define three properties.
+
+67
+08:16.950 --> 08:17.280
+So
+
+68
+08:17.280 --> 08:17.880
+title,
+
+69
+08:20.430 --> 08:25.920
+body, then errors. So let's define them in data method.
+
+70
+08:30.050 --> 08:30.650
+Add script
+
+71
+08:34.210 --> 08:35.530
+then add data method
+
+72
+08:38.770 --> 08:39.940
+here we will return an object
+
+73
+08:43.380 --> 08:43.850
+in here
+
+74
+08:43.850 --> 08:46.790
+let's define title with empty string.
+
+75
+08:49.450 --> 08:58.790
+Also body with empty string and errors in object.
+
+76
+08:59.580 --> 09:06.440
+Here we're gonna have title with empty 
+array and body also in empty array.
+
+77
+09:16.080 --> 09:22.370
+Let's also defined handle submit. So let's add methods property
+
+78
+09:25.380 --> 09:27.510
+inside here let's define the handle submit
+
+79
+09:31.630 --> 09:33.160
+but we'll leave it empty for now.
+
+80
+09:42.240 --> 09:44.610
+Next let's define this error class method
+
+81
+09:53.190 --> 09:57.360
+this method will accept one argument in my case I call it column.
+
+82
+10:00.330 --> 10:07.530
+This method simply return an array. This 
+array will contain bootstrap form control
+
+83
+10:11.050 --> 10:17.950
+then it also contain is-invalid class if there 
+is an error message specific for this column.
+
+84
+10:28.960 --> 10:34.570
+Last, we need to define the button text. 
+We will place it in computed property
+
+85
+10:40.250 --> 10:42.320
+so here let's define computed
+
+86
+10:47.380 --> 10:49.810
+then in here let's define the button text
+
+87
+10:54.520 --> 11:00.190
+for now let's simply return static text "ask question".
+
+88
+11:07.480 --> 11:12.760
+Now let's open up router routes.js file.
+
+89
+11:18.260 --> 11:20.060
+Lets duplicate this import statement
+
+90
+11:25.260 --> 11:30.150
+and then let's rename to create question page.
+
+91
+11:35.860 --> 11:39.820
+In here let's map our component to a 
+route by adding a new route record.
+
+92
+11:43.690 --> 11:54.360
+Here we can simply duplicate the existing one. Let's 
+change the path to questions create. The component
+
+93
+11:54.390 --> 11:59.700
+is gonna be create question page.
+
+94
+12:02.430 --> 12:10.790
+And then let's give it a name question dot create. All 
+right now we have a new route record that mapped
+
+95
+12:10.790 --> 12:19.700
+the path to the create question question page component. 
+Let's called this route in question page. Let's open questions
+
+96
+12:20.330 --> 12:20.900
+page
+
+97
+12:23.720 --> 12:26.940
+and here let's replace this link to router link.
+
+98
+12:48.510 --> 12:50.280
+All right let's say save all this changes.
+
+99
+12:55.470 --> 12:59.340
+Back to the browser and reload
+
+100
+13:04.600 --> 13:12.260
+now if we hit this Ask Question button, here 
+we'll have a question from show up, awesome.
+
+101
+13:12.280 --> 13:12.780
+All right
+
+102
+13:12.870 --> 13:16.230
+the next thing that we need to do is 
+to make this form actually functional.

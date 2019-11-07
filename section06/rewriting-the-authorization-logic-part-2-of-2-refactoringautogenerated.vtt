@@ -1,0 +1,189 @@
+WEBVTT
+
+0
+00:04.690 --> 00:08.330
+Now, I'll undo the change.
+
+1
+00:08.620 --> 00:10.680
+I'll keep calling can accept here.
+
+2
+00:18.400 --> 00:22.360
+And I'll put the authorization checking in this method
+
+3
+00:25.200 --> 00:29.940
+here we can say return this dot
+
+4
+00:29.970 --> 00:30.620
+authorize accept
+
+5
+00:36.330 --> 00:37.400
+this answer
+
+6
+00:41.530 --> 00:44.930
+let's save and let's make sure everything is working fine.
+
+7
+01:01.100 --> 01:01.460
+OK
+
+8
+01:01.480 --> 01:02.830
+so far so good.
+
+9
+01:10.290 --> 01:16.080
+Now let's refactor our app dot js file by moving 
+the authorization logic into another place.
+
+10
+01:17.670 --> 01:21.660
+So let's go to assets
+
+11
+01:21.930 --> 01:22.730
+js folder
+
+12
+01:25.490 --> 01:31.780
+and create a new directory here I'm going to call authorization
+
+13
+01:38.210 --> 01:42.990
+now let's move the policies dot js 
+file into our authorization directory
+
+14
+01:50.360 --> 01:51.580
+here will get the error
+
+15
+01:51.590 --> 02:03.550
+but don't worry we'll fix shortly
+
+16
+02:03.840 --> 02:08.980
+after that let's create new file
+
+17
+02:09.060 --> 02:11.280
+I'm going to call it authorize
+
+18
+02:11.340 --> 02:11.780
+dot js
+
+19
+02:17.840 --> 02:20.330
+and we'll place the authorization logic inside here.
+
+20
+02:21.730 --> 02:24.510
+I'll switch to app.js
+
+21
+02:27.170 --> 02:28.640
+select the authorization logic
+
+22
+02:39.020 --> 02:40.200
+and paste here.
+
+23
+02:47.200 --> 02:48.450
+And here I'll make  a simple
+
+24
+02:48.460 --> 02:51.460
+vue js plug in like this export default
+
+25
+02:54.230 --> 02:57.050
+install vue options
+
+26
+03:01.720 --> 03:06.660
+and then move the authorize function inside here.
+
+27
+03:10.110 --> 03:13.430
+And here we don't need to import the vue js instance
+
+28
+03:15.360 --> 03:19.710
+because the view here this refers to vue in this argument
+
+29
+03:25.120 --> 03:31.540
+and here I also want to place the signed variable 
+in the vue js prototype so that it can be accessible
+
+30
+03:31.900 --> 03:45.710
+in all components.
+
+31
+03:45.700 --> 03:51.400
+Now we can go back to app.js and utilize our authorization plug in
+
+32
+03:57.540 --> 03:59.780
+Firstly let's import the authorize file
+
+33
+04:20.300 --> 04:35.020
+and then integrated with vue js by saying vue use authorization.
+
+34
+04:35.140 --> 04:36.450
+One last more thing.
+
+35
+04:37.540 --> 04:45.590
+Since we have defined the signed in in vue js 
+prototype so let's open favorite component
+
+36
+04:55.150 --> 05:00.210
+and then here we don't need this signed 
+in in this computed property anymore.
+
+37
+05:05.410 --> 05:06.410
+Save all changes
+
+38
+05:12.140 --> 05:15.030
+and let's see if everything working fine as we expect.
+
+39
+05:35.660 --> 05:36.560
+There is no error
+
+40
+05:47.730 --> 05:50.120
+OK great we have successfully rewritten
+
+41
+05:50.130 --> 05:55.710
+the authorization policy into javascript and it's really 
+working in vue js components. In the next lesson
+
+42
+05:55.720 --> 06:01.940
+and we are going to continue building our project 
+and rewrite the vote control into vue js component.
+
+43
+06:02.320 --> 06:07.530
+So let's commit all changes to our git repo and 
+then take a quick break and join me in the next
+
+44
+06:07.530 --> 06:08.190
+lesson.

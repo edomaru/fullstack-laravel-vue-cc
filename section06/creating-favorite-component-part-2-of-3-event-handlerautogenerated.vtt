@@ -1,0 +1,374 @@
+WEBVTT
+
+0
+00:02.680 --> 00:06.820
+All right now let's write the logic to make 
+this favorite component actually working
+
+1
+00:17.760 --> 00:21.060
+here let's v-on click dot prevent
+
+2
+00:23.930 --> 00:29.650
+because this button will handle two different actions based on value of the use is favorited property
+
+3
+00:29.660 --> 00:31.340
+So I'm going to call it toggle
+
+4
+00:38.250 --> 00:39.780
+let's define methods property
+
+5
+00:47.240 --> 00:49.180
+and here let's define the toggle method.
+
+6
+00:58.480 --> 01:03.780
+Is the question is favorited we'll call another 
+method destory method in this case
+
+7
+01:07.030 --> 01:08.810
+otherwise we'll call crate method.
+
+8
+01:15.800 --> 01:17.190
+let's define the destroy method
+
+9
+01:22.320 --> 01:24.720
+and for now let's decrement the favorite count.
+
+10
+01:31.660 --> 01:41.920
+And then change the is favorited to false.
+
+11
+01:41.960 --> 01:43.230
+Let's copy this method.
+
+12
+01:50.570 --> 01:51.280
+Paste here
+
+13
+01:54.710 --> 01:56.060
+and chance to create
+
+14
+01:59.460 --> 02:02.330
+here we need to increment in the favorites count
+
+15
+02:06.110 --> 02:08.330
+and change the is favorited to true
+
+16
+02:12.270 --> 02:16.050
+let's save these and let's have a look.
+
+17
+02:26.630 --> 02:42.090
+Let me inspect elemnt so that I can 
+see the changes of the class attribute
+
+18
+02:42.100 --> 02:43.720
+Now if I hit the favorite button
+
+19
+02:48.130 --> 02:54.540
+you'll see the favorited class added 
+and the favorites count increments.
+
+20
+02:54.540 --> 02:55.580
+Now if I hit again
+
+21
+03:00.030 --> 03:04.990
+the number decrement and the favorited class gone.
+
+22
+03:05.010 --> 03:05.820
+All right
+
+23
+03:05.950 --> 03:08.200
+Now let's make this changes persistence.
+
+24
+03:11.740 --> 03:21.730
+Let's reopen the _favorite.blade.php file and here 
+we need this URI for both favorite on unfavorite 
+
+25
+03:21.730 --> 03:22.680
+the question.
+
+26
+03:27.540 --> 03:31.130
+So let's copy this URI for this purpose
+
+27
+03:31.310 --> 03:33.980
+we'll need the same URI but different methods.
+
+28
+03:34.100 --> 03:39.530
+When favoriting the question we'll need post but 
+when unfavoriting the question will need delete
+
+29
+03:40.920 --> 03:42.990
+back to Favorite.vue I'll
+
+30
+03:46.230 --> 03:47.660
+jump to data method
+
+31
+03:51.630 --> 03:54.850
+and here I'll assign the question id to id property.
+
+32
+03:59.390 --> 04:01.310
+And then jump to a computed property
+
+33
+04:04.800 --> 04:07.190
+and let's define new method endpoint
+
+34
+04:07.190 --> 04:07.890
+in this case
+
+35
+04:14.560 --> 04:16.080
+and here we is simply returns the URI.
+
+36
+04:24.450 --> 04:41.460
+Let's change the question id to this id
+
+37
+04:41.470 --> 04:43.630
+now we can go to destroy method
+
+38
+04:47.130 --> 04:57.340
+and in this method we can make delete ajax 
+call by saying axios delete this endpoint
+
+39
+05:02.130 --> 05:04.360
+then let's chain in with then method
+
+40
+05:12.810 --> 05:15.200
+here we can move this lines inside
+
+41
+05:15.230 --> 05:19.750
+then method
+
+42
+05:19.890 --> 05:26.490
+So after deletion succeed decrement the favorites 
+count and change the is favorited to false
+
+43
+05:29.300 --> 05:30.740
+and then in create method
+
+44
+05:33.640 --> 05:40.440
+we can make post ajax call by saying axios post this endpoint
+
+45
+05:47.210 --> 05:48.900
+then let's chain in with then method
+
+46
+05:56.180 --> 05:59.060
+then move these lines inside here
+
+47
+06:03.210 --> 06:09.170
+Here I think we need to show flash message on this 
+component because changing the color on the icon I
+
+48
+06:09.180 --> 06:10.710
+think is more than enough.
+
+49
+06:10.890 --> 06:17.160
+But if you want to show the flash message 
+I'm sure you already know how to do that.
+
+50
+06:17.250 --> 06:20.220
+Next up let's open favorites controller
+
+51
+06:30.670 --> 06:30.960
+here
+
+52
+06:30.980 --> 06:36.350
+we don't need to return anything 
+for both store and destroy method.
+
+53
+06:36.420 --> 06:37.600
+So here we can select them
+
+54
+06:45.510 --> 06:47.270
+and remove them.
+
+55
+06:49.170 --> 06:55.900
+Or we can keep them and return json response 
+explicitly such as we did in the previous lesson.
+
+56
+06:59.300 --> 07:02.210
+If request expects json
+
+57
+07:07.490 --> 07:10.270
+and then return response json
+
+58
+07:18.720 --> 07:21.610
+here because we don't need anything to return
+
+59
+07:21.840 --> 07:30.120
+So here we can set null and we can specify 
+header status 204 which indicate that the
+
+60
+07:30.120 --> 07:32.140
+action was executed successfully
+
+61
+07:32.340 --> 07:33.930
+but there's no content to return
+
+62
+07:39.190 --> 07:40.440
+let's save all changes
+
+63
+07:43.500 --> 07:44.190
+and give it a shot.
+
+64
+07:57.960 --> 07:58.660
+Hit the star 
+
+65
+07:58.670 --> 07:59.200
+icon
+
+66
+08:02.220 --> 08:04.350
+I get error.
+
+67
+08:04.350 --> 08:05.490
+Let me see in the console
+
+68
+08:08.120 --> 08:12.510
+here I have error internal server error let me see in the network tab
+
+69
+08:16.270 --> 08:23.720
+expexts json doesn't exist.
+
+70
+08:23.810 --> 08:25.500
+Sorry I made typo here.
+
+71
+08:28.380 --> 08:30.730
+It should be expects json save
+
+72
+08:36.000 --> 08:37.410
+I'll  clear here
+
+73
+08:39.190 --> 08:39.850
+also here
+
+74
+08:42.610 --> 08:44.100
+I'll hit the star icon again.
+
+75
+08:45.270 --> 08:46.830
+And now I get another error.
+
+76
+08:49.360 --> 08:50.990
+Let me see in network tab
+
+77
+08:55.310 --> 08:56.240
+Here's the error
+
+78
+08:56.390 --> 08:57.340
+Duplicate entry
+
+79
+08:57.350 --> 08:58.550
+Blah blah blah.
+
+80
+09:00.310 --> 09:03.760
+This because we only allowed to favorite the question once.
+
+81
+09:04.070 --> 09:05.580
+So here I need to refresh the page
+
+82
+09:11.310 --> 09:19.500
+here the icon's color has turned to yellow and the favorites count increment hit again now the color
+
+83
+09:19.590 --> 09:22.550
+turns to Gray and the favorites count decrement.
+
+84
+09:23.190 --> 09:24.430
+And if you take a look here
+
+85
+09:32.100 --> 09:35.680
+here we can see the request being sent.
+
+86
+09:35.740 --> 09:40.430
+The method is delete and the response no content
+
+87
+09:43.240 --> 09:44.000
+if we hit again
+
+88
+09:47.630 --> 09:49.640
+the request method is post.
+
+89
+09:49.680 --> 09:50.520
+Okay great.

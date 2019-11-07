@@ -1,0 +1,571 @@
+WEBVTT
+
+0
+00:01.580 --> 00:07.410
+In the last video we've made change our route 
+behavior in the backend to load only a single page
+
+1
+00:07.770 --> 00:09.890
+for any request comes in.
+
+2
+00:10.320 --> 00:14.790
+Now in this video we're going to install 
+vue router and then define some routes
+
+3
+00:20.860 --> 00:31.980
+Okay let's install the vue router by saying 
+npm install vue router capital d. Alright
+
+4
+00:32.170 --> 00:35.130
+while that processing let's create some vue components
+
+5
+00:39.800 --> 00:46.490
+now you could create the component inside the components directory like we did before but this component
+
+6
+00:46.610 --> 00:48.630
+will represent an entire page.
+
+7
+00:48.680 --> 00:53.060
+So I think it will be better to place this 
+component into separate directory.
+
+8
+00:55.850 --> 00:56.710
+Actually
+
+9
+00:56.720 --> 01:04.590
+here we already have that directory and 
+we also have question page dot vue inside.
+
+10
+01:04.610 --> 01:07.830
+So let's put our new components inside here.
+
+11
+01:08.510 --> 01:09.560
+Let's create a new file
+
+12
+01:12.850 --> 01:19.340
+let's call it questions page dot vue.
+
+13
+01:19.990 --> 01:29.500
+So questions in plural this file will be used 
+to display all the questions in our application.
+
+14
+01:29.530 --> 01:30.680
+Let's create another file
+
+15
+01:36.040 --> 01:41.340
+this file is going to display all the questions 
+and answers of the current users logged in.
+
+16
+01:41.440 --> 01:47.560
+So here let's call it my posts page
+
+17
+01:47.680 --> 01:57.010
+dot vue. All right in this file for now let's add 
+a simple markup let's add a template tag
+
+18
+02:00.300 --> 02:01.140
+inside here
+
+19
+02:01.140 --> 02:02.970
+let's add a message in a heading one
+
+20
+02:11.640 --> 02:14.130
+let's copy everything here.
+
+21
+02:15.190 --> 02:19.980
+Go to questions page then paste it in here
+
+22
+02:23.240 --> 02:32.500
+and change this to questions page. All right now 
+that we have three components inside this pages
+
+23
+02:32.500 --> 02:39.140
+directory. We can think of these files like 
+view files in our laravel backend application.
+
+24
+02:39.340 --> 02:48.260
+So in order to show them we need to provided some 
+routes in our frontend. So to do that here in js folder
+
+25
+02:48.560 --> 02:49.610
+let's create a new folder
+
+26
+02:52.970 --> 03:04.730
+here I'm going to call it router. Then inside this
+directory let's get a brand new file let's call it index
+
+27
+03:04.770 --> 03:05.300
+dot js
+
+28
+03:08.070 --> 03:08.660
+in here
+
+29
+03:08.710 --> 03:10.200
+let's firstly import the vue
+
+30
+03:17.250 --> 03:19.550
+then we also need to import the vue route
+
+31
+03:29.720 --> 03:35.990
+this file is basically going to be install and instantiate 
+the vue router and for the routes definition
+
+32
+03:36.250 --> 03:38.780
+we'll place them in separate file.
+
+33
+03:38.780 --> 03:40.400
+So here let's import that file
+
+34
+03:47.590 --> 03:53.670
+this file is currently doesn't exist and will create that file shortly.
+
+35
+03:53.950 --> 03:54.850
+All right
+
+36
+03:55.000 --> 03:57.890
+the vue router  basically is a plug in.
+
+37
+03:57.940 --> 04:04.180
+So we need to integrate to vue by saying vue use vue router.
+
+38
+04:11.790 --> 04:24.430
+Next let's instantiate the vue router by saying new 
+vue router. We can assign this into a variable let's
+
+39
+04:24.430 --> 04:27.160
+say router
+
+40
+04:32.420 --> 04:39.680
+then here we can specify at least two options 
+for the vue router instance. The first one is mode
+
+41
+04:42.540 --> 04:46.290
+the default mode is hash mode which is use the URL hash
+
+42
+04:49.060 --> 04:50.800
+so you will have something like this
+
+43
+04:54.420 --> 04:56.310
+or like this
+
+44
+04:59.890 --> 05:05.360
+so having this route will not need the page reload 
+when the URL changes but I think this not look
+
+45
+05:05.360 --> 05:11.880
+so good. To use normal URL we can set the mode to history
+
+46
+05:14.790 --> 05:19.960
+next we need to define some routes and we'll do that in the routes file.
+
+47
+05:20.250 --> 05:28.540
+So here we can say routes routes 
+or we can simply say just routes
+
+48
+05:32.860 --> 05:38.910
+now to make this vue router actually work we need 
+to  pass the vue router instance in the option of
+
+49
+05:38.910 --> 05:40.400
+the vue instance.
+
+50
+05:40.410 --> 05:46.860
+So here we can export the router instance 
+by saying export default router
+
+51
+05:50.370 --> 05:54.720
+Alright now let's create in this router directory a new file
+
+52
+05:57.450 --> 06:04.290
+we'll call it routes routes dot js and we'll define the actual routes here.
+
+53
+06:08.820 --> 06:09.850
+Okay here
+
+54
+06:09.870 --> 06:18.810
+Firstly let's import every single component inside 
+pages directory. So import questions page
+
+55
+06:21.480 --> 06:26.820
+from here we are inside routes directory
+
+56
+06:26.940 --> 06:29.580
+So we need to go up one level
+
+57
+06:29.580 --> 06:33.570
+Then pages then questions
+
+58
+06:33.570 --> 06:33.990
+page.
+
+59
+06:45.040 --> 06:51.080
+let's duplicate this line 2 times then here
+
+60
+06:51.240 --> 06:58.290
+let's select the component name by 
+hitting the common D or control D
+
+61
+06:58.290 --> 07:06.660
+Then let's replace to question page let's continue by select
+
+62
+07:07.280 --> 07:16.570
+this last line and then replace with my posts page.
+
+63
+07:16.660 --> 07:19.370
+All right now we have three components loaded.
+
+64
+07:19.820 --> 07:24.440
+The next thing that we need to do is map every 
+single component to the respective route
+
+65
+07:27.530 --> 07:29.420
+we can do that in an array.
+
+66
+07:29.420 --> 07:40.090
+So const routes equals array then inside this array we 
+can map the route path to the component represented
+
+67
+07:40.180 --> 07:52.450
+in object. So here we'll need path and this path is 
+going to be root path or forward slash then we'll
+
+68
+07:52.450 --> 07:55.910
+need to tell which component that will map to this route.
+
+69
+07:56.280 --> 08:02.420
+Here will say component equals questions
+
+70
+08:03.730 --> 08:04.180
+page.
+
+71
+08:07.390 --> 08:10.590
+Now we also need to define the name for this route.
+
+72
+08:10.690 --> 08:16.060
+You can think of the name here like name route 
+when you're working with laravel route
+
+73
+08:16.990 --> 08:18.300
+So here
+
+74
+08:18.430 --> 08:26.390
+name and this route is going to be home. Okay
+
+75
+08:26.470 --> 08:31.490
+so now we have a route definition to map 
+the root route to the questions page.
+
+76
+08:31.660 --> 08:36.750
+So whenever we visit the route route this component will be returned.
+
+77
+08:36.790 --> 08:39.130
+Now let's duplicate this route definition
+
+78
+08:43.440 --> 08:49.670
+add comma here here. The path is gonna be questions
+
+79
+08:50.880 --> 08:54.520
+The component that will be mapped is 
+gonna be the same with the root path
+
+80
+08:54.520 --> 09:00.300
+Questions page. You could possibly map the root path 
+to the other component if you want but in my case
+
+81
+09:00.540 --> 09:05.290
+I'll have two routes which return the same component. Okay
+
+82
+09:05.310 --> 09:10.830
+here we'll call this route as questions in plural
+
+83
+09:14.040 --> 09:14.770
+let's duplicate
+
+84
+09:14.950 --> 09:15.570
+once again
+
+85
+09:20.330 --> 09:26.020
+change the path to let's say my posts
+
+86
+09:30.200 --> 09:33.950
+we'll map this path to my posts
+
+87
+09:33.950 --> 09:37.910
+page and we'll call it
+
+88
+09:40.570 --> 09:47.120
+my posts. Let's duplicate the route definition one more time.
+
+89
+09:52.010 --> 09:55.800
+The path is gonna be questions
+
+90
+09:58.240 --> 10:01.720
+forward slash colon slug.
+
+91
+10:02.590 --> 10:06.130
+So this is something called dynamic route matching.
+
+92
+10:06.130 --> 10:12.710
+Probably it's similar with route parameter 
+in a laravel so this basically similar with
+
+93
+10:15.540 --> 10:17.190
+slug in level.
+
+94
+10:24.510 --> 10:24.980
+Alright
+
+95
+10:25.020 --> 10:35.590
+we are map the path to question page 
+singular and for the name let's call it
+
+96
+10:39.030 --> 10:41.850
+questions dot show.
+
+97
+10:43.010 --> 10:49.350
+OK now we have our routes defined the last thing that 
+we need to do here is to export the routes because
+
+98
+10:49.350 --> 10:54.810
+remember we'll call this file in our router index
+
+99
+11:01.830 --> 11:05.130
+export default routes
+
+100
+11:10.760 --> 11:11.850
+OK
+
+101
+11:11.920 --> 11:17.890
+Now to make the vue router actually work we need 
+to pass in its instance in our main JavaScript file
+
+102
+11:18.280 --> 11:23.890
+so let's open the app dot js in resources
+
+103
+11:23.910 --> 11:24.340
+js
+
+104
+11:28.580 --> 11:30.350
+in here let's
+
+105
+11:30.460 --> 11:36.200
+Important the router by saying import router from
+
+106
+11:38.700 --> 11:39.300
+router
+
+107
+11:42.660 --> 11:48.510
+please note that we don't need to specify the index 
+dot js in here and that's probably the benefit of
+
+108
+11:48.510 --> 11:49.650
+following the convention.
+
+109
+11:50.040 --> 11:56.620
+So just in case you name it with other name 
+then you would need to specify the full name.
+
+110
+11:56.620 --> 11:57.150
+All right
+
+111
+11:57.150 --> 12:01.880
+here in vue configuration we can pass in the router instance.
+
+112
+12:08.320 --> 12:08.570
+Now
+
+113
+12:08.590 --> 12:13.840
+the last thing that we need to do is to actually show the matches component in our view.
+
+114
+12:13.840 --> 12:17.800
+So let's jump into spa.blade.php
+
+115
+12:21.190 --> 12:26.690
+and here we can leverage the router vue component 
+that will render the match component for the given
+
+116
+12:26.690 --> 12:29.920
+path.  Now let's save all changes
+
+117
+12:34.850 --> 12:43.490
+I'll reopen my terminal okay here the vue router 
+installed and now I'll run npm run watch
+
+118
+12:50.040 --> 12:54.270
+all right head back to browser.
+
+119
+12:54.960 --> 13:02.750
+Let's visit questions
+
+120
+13:02.820 --> 13:04.480
+There we go
+
+121
+13:04.530 --> 13:08.640
+We get questions page show up if we go to Home page
+
+122
+13:11.430 --> 13:12.850
+we'll get the same thing.
+
+123
+13:12.960 --> 13:19.900
+Now let's ciair my posts.
+
+124
+13:19.930 --> 13:23.310
+Sure enough we'll get the current users post page.
+
+125
+13:23.530 --> 13:24.730
+Now if we go to
+
+126
+13:28.360 --> 13:30.760
+questions test
+
+127
+13:34.600 --> 13:36.440
+here we will get nothing.
+
+128
+13:36.440 --> 13:38.170
+Let me open browser console.
+
+129
+13:41.400 --> 13:42.350
+Here
+
+130
+13:42.610 --> 13:43.820
+I get error.
+
+131
+13:44.050 --> 13:49.220
+Probably we need to make some tweak in our question 
+page component and we'll fix that later on.
+
+132
+13:50.790 --> 13:54.660
+But overall we have our routes displaying 
+the components properly.

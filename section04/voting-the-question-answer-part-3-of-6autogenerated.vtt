@@ -1,0 +1,322 @@
+WEBVTT
+
+0
+00:03.050 --> 00:03.470
+All right
+
+1
+00:03.470 --> 00:07.090
+so now that you know how to work with 
+many to many polymorphic relationship.
+
+2
+00:07.360 --> 00:11.040
+Now it's time to use that in one application.
+
+3
+00:11.840 --> 00:13.100
+Let's open the user model
+
+4
+00:23.210 --> 00:25.230
+and here I'm going to define new method
+
+5
+00:26.950 --> 00:29.760
+public function here
+
+6
+00:29.770 --> 00:31.920
+I'm going to call it vote
+
+7
+00:31.990 --> 00:34.210
+the question
+
+8
+00:37.360 --> 00:40.550
+the first argument will be question instance.
+
+9
+00:45.870 --> 00:47.670
+And the second argument is the vote
+
+10
+00:53.070 --> 00:55.370
+actually
+
+11
+00:55.540 --> 01:02.360
+let me change this to vote question 
+because I think this more simpler
+
+12
+01:02.590 --> 01:05.270
+but of course you can name it with other names you like.
+
+13
+01:05.620 --> 01:10.980
+So the votes questions in plural is our relationship method.
+
+14
+01:11.410 --> 01:19.990
+And here the vote question in singular will be our 
+customer method that place all vote logic or how the user 
+
+15
+01:20.050 --> 01:21.990
+vote the question and other stuff.
+
+16
+01:23.760 --> 01:29.520
+Here when the current user is going to vote a 
+particular question then we need to make sure that
+
+17
+01:29.550 --> 01:33.480
+he or she hasn't vote it before.
+
+18
+01:33.520 --> 01:36.550
+If yes then the existing vote record will be updated
+
+19
+01:37.010 --> 01:41.100
+otherwise new record will be inserted.
+
+20
+01:41.310 --> 01:44.580
+If you remember to do this kind of stuff we can use
+
+21
+01:49.320 --> 01:49.940
+this query
+
+22
+01:53.670 --> 02:01.950
+so here firstly let's call this then vote questions.
+
+23
+02:03.520 --> 02:11.190
+Here in plural which is the relationship method. 
+And then let's assign this to a variable.
+
+24
+02:11.190 --> 02:14.560
+I'm going to call it vote questions
+
+25
+02:19.720 --> 02:28.480
+and then here we can say if vote questions where
+
+26
+02:31.030 --> 02:34.850
+votable id is
+
+27
+02:34.850 --> 02:35.860
+question id
+
+28
+02:39.350 --> 02:43.080
+and then exists
+
+29
+02:44.560 --> 02:50.840
+then here we update the record by saying vote questions
+
+30
+02:51.350 --> 02:57.810
+update existing pivot question
+
+31
+03:00.040 --> 03:01.470
+and then vote vote
+
+32
+03:07.370 --> 03:07.870
+else
+
+33
+03:11.170 --> 03:15.790
+we insert new record by saying vote questions
+
+34
+03:17.970 --> 03:24.280
+attach question and then vote
+
+35
+03:26.990 --> 03:29.310
+vote.
+
+36
+03:32.920 --> 03:38.860
+Next after a user vote a question we need 
+to recount the total number of votes right?
+
+37
+03:38.940 --> 03:41.170
+Do you have any idea how to do that?
+
+38
+03:41.760 --> 03:47.370
+Here we cannot utilize eloquent event because it cannot 
+be applied in many to many relationship model.
+
+39
+03:47.370 --> 03:52.200
+So in this case we need to do that manually 
+and it's very straightforward actually.
+
+40
+03:52.410 --> 03:59.130
+We only need to sum up between the number of votes up 
+and number of votes down and then assigning it to
+
+41
+03:59.130 --> 04:05.280
+votes count column in question model so firstly last call question
+
+42
+04:08.030 --> 04:10.120
+load vote
+
+43
+04:11.790 --> 04:22.100
+to refresh the votes relationship and then we 
+can the sum the vote down by saying question votes
+
+44
+04:25.150 --> 04:27.510
+where pivot
+
+45
+04:30.230 --> 04:31.960
+vote one
+
+46
+04:35.500 --> 04:45.020
+and here I'm using sum vote. Here I'm using sum 
+instead of count because count method will count
+
+47
+04:45.120 --> 04:48.940
+the total number of votes in return positive number.
+
+48
+04:49.200 --> 04:55.740
+While sum method will sum the votes and will 
+returns both a negative number or positive number
+
+49
+04:58.500 --> 05:00.940
+then we can assign it to a variable
+
+50
+05:01.140 --> 05:04.680
+let's say down votes
+
+51
+05:08.150 --> 05:15.930
+and here I'll type cast to integer to make sure 
+that the value is integer because
+
+52
+05:22.030 --> 05:23.680
+here I see it was in string
+
+53
+05:27.110 --> 05:28.540
+less duplicate look this line
+
+54
+05:31.760 --> 05:32.880
+and change to up
+
+55
+05:35.990 --> 05:38.250
+vote
+
+56
+05:38.580 --> 05:48.120
+Actually this should be negative one.
+
+57
+05:48.330 --> 05:49.340
+I made a typo
+
+58
+05:49.450 --> 05:52.620
+this should be up votes.
+
+59
+05:52.810 --> 05:59.090
+So we need to sum both of these down votes and up 
+votes and assign it to votes count and we can do that
+
+60
+05:59.090 --> 06:05.540
+like this question votes count
+
+61
+06:08.980 --> 06:21.080
+up votes plus down votes. And the last 
+save changes into our database by saying 
+
+62
+06:21.350 --> 06:23.860
+question
+
+63
+06:24.000 --> 06:31.250
+save.
+
+64
+06:31.450 --> 06:35.710
+And here we can make this more simpler like this
+
+65
+06:40.090 --> 06:48.330
+down votes and then change this to up
+
+66
+06:51.530 --> 06:57.220
+votes. All right now we can switch to question model
+
+67
+07:03.890 --> 07:05.020
+and here we need to define up
+
+68
+07:08.300 --> 07:09.020
+votes
+
+69
+07:14.160 --> 07:22.870
+and here we simply say return this 
+and then paste the previous code.
+
+70
+07:26.060 --> 07:32.150
+The reason why I don't call the sum method in here is 
+because we probably need to display the collection
+
+71
+07:32.150 --> 07:39.950
+of users that has voted up the question instead of showing the total number of users.
+
+72
+07:39.950 --> 07:41.270
+Let's duplicate this method
+
+73
+07:46.810 --> 07:50.950
+and change to down vote
+
+74
+07:51.940 --> 07:52.250
+Here
+
+75
+07:52.250 --> 07:58.760
+The vote should be 1 for up votes and -1 for down votes

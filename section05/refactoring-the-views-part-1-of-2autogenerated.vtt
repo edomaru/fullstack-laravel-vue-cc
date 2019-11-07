@@ -1,0 +1,196 @@
+WEBVTT
+
+0
+00:01.630 --> 00:05.730
+In a previous lesson we've implemented 
+DRY principle in our models.
+
+1
+00:05.800 --> 00:08.000
+Now in this lesson we are going to implement that
+
+2
+00:08.020 --> 00:17.780
+in our application's views because you see here we 
+wrote the same code for author info on question and
+
+3
+00:18.020 --> 00:19.580
+answer repeatedly.
+
+4
+00:19.790 --> 00:28.160
+Also for vote question and vote answer.
+
+5
+00:28.170 --> 00:32.950
+All right let's go ahead and open our 
+terminal and then create new branch
+
+6
+00:40.440 --> 00:40.800
+OK
+
+7
+00:40.820 --> 00:48.890
+Firstly let's open up answers index.blade.php
+
+8
+00:49.050 --> 00:50.920
+and then let's find author info.
+
+9
+01:04.270 --> 01:13.550
+OK here let's put these lines into other view 
+and here we'll include that by saying include
+
+10
+01:16.580 --> 01:29.190
+shared dot author. Here we need to pass two values 
+the first one is model and it will hold the current model
+
+11
+01:29.390 --> 01:31.050
+instance.
+
+12
+01:31.260 --> 01:32.610
+In this case answer
+
+13
+01:37.440 --> 01:38.760
+and the second is label
+
+14
+01:42.210 --> 01:49.960
+and it will be answered.
+
+15
+01:49.970 --> 02:02.040
+Now let's go to this folder and create new folder 
+and let's call it shared as we called here
+
+16
+02:07.270 --> 02:16.950
+and then inside his folder let's create new file 
+and let's call it underscore author blade php
+
+17
+02:21.890 --> 02:24.320
+and then inside this file just paste the code.
+
+18
+02:33.490 --> 02:38.260
+Here let's replace this with label that we passed in here.
+
+19
+02:53.250 --> 02:55.230
+And then let's select all answer instances
+
+20
+03:02.160 --> 03:07.360
+and replace them with model. Alright let's save all changes
+
+21
+03:10.700 --> 03:13.070
+and let's see if everything is working fine.
+
+22
+03:25.530 --> 03:25.890
+OK
+
+23
+03:25.900 --> 03:27.550
+It's working as it was.
+
+24
+03:27.550 --> 03:30.490
+Now let's do something to here and here
+
+25
+03:30.490 --> 03:34.430
+we also need to change the layout like we have here.
+
+26
+03:39.620 --> 03:44.360
+So let's open up questions index.blade.php
+
+27
+03:51.190 --> 03:57.280
+sorry I mean questions show.blade.php 
+so here that we need to open
+
+28
+04:04.800 --> 04:08.510
+OK here so let's remove these lines
+
+29
+04:12.110 --> 04:13.160
+and then create new row
+
+30
+04:20.490 --> 04:22.060
+here let's create three col-4
+
+31
+04:33.710 --> 04:34.760
+and in the third column
+
+32
+04:38.240 --> 04:46.280
+we can include our new view by saying include shared dot author
+
+33
+04:50.770 --> 04:57.410
+the model will be question and the label will be asked
+
+34
+05:04.720 --> 05:07.110
+Save that and let's see
+
+35
+05:18.150 --> 05:19.680
+here the layout has changed
+
+36
+05:23.420 --> 05:28.930
+and everything is fine. Now let's also 
+refactor the code for this vote controls.
+
+37
+05:29.300 --> 05:38.300
+As you can see in the UI we have the similar controls 
+for the question and answer. The difference here
+
+38
+05:38.990 --> 05:44.270
+we have favorite button only on the question and we have
+
+39
+05:47.080 --> 05:49.720
+and we have accept answer button only on the answer item
+
+40
+05:58.820 --> 06:00.080
+but if we see in the markup
+
+41
+06:05.380 --> 06:07.240
+we find there are many differences
+
+42
+06:07.300 --> 06:16.800
+in html attribute like title and then the id and action.
+
+43
+06:16.820 --> 06:17.950
+So what do you think?
+
+44
+06:18.050 --> 06:23.650
+Do we need to create two views for each vote question 
+and vote answer or do we need to create only
+
+45
+06:23.660 --> 06:25.910
+one view for both question and answer?

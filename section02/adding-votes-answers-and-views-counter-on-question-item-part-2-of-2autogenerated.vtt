@@ -1,0 +1,491 @@
+WEBVTT
+
+0
+00:03.080 --> 00:10.250
+Now, let's style this `status` counter.
+Here we'll need three styles for three conditions.
+
+1
+00:10.250 --> 00:13.180
+The first condition when the question has no answer
+
+2
+00:13.490 --> 00:17.200
+this counter will look like this no border at all.
+
+3
+00:17.330 --> 00:22.610
+Then a second one when the question has been answered it has green border.
+
+4
+00:22.700 --> 00:29.060
+And then the third one when the question has been answered and accepted as best answer it has a green
+
+5
+00:29.060 --> 00:30.350
+background.
+
+6
+00:30.350 --> 00:32.440
+All right let's go back to our editor
+
+7
+00:36.850 --> 00:39.830
+and here we need to define at least two variables.
+
+8
+00:40.000 --> 00:43.180
+So let's open this variables dot
+
+9
+00:43.550 --> 00:44.670
+scss
+
+10
+00:47.560 --> 00:47.980
+And here
+
+11
+00:48.010 --> 00:49.530
+Let's define a variable
+
+12
+00:49.630 --> 00:59.050
+let's say `color-green` and the color in `rgb`
+
+13
+01:02.540 --> 01:10.410
+95 for red 187 for green
+
+14
+01:12.890 --> 01:17.660
+and one hundred twenty six for the blue
+
+15
+01:22.440 --> 01:27.020
+this will result a light green color
+
+16
+01:27.980 --> 01:33.960
+then the second variable will be `color-white`
+
+17
+01:35.820 --> 01:43.640
+then the value we can simply use hexadecimal
+
+18
+01:43.710 --> 01:53.530
+Now back to `app.scss` and here in `counters` let's select `status` class
+
+19
+02:01.690 --> 02:17.390
+and inside this, let's define other class. Here we start with ampersand and then the class name `unanswered`
+
+20
+02:17.590 --> 02:20.440
+This will make sure that this class is not stand alone
+
+21
+02:20.440 --> 02:22.230
+I mean it should be called like these
+
+22
+02:24.960 --> 02:32.960
+class `status unanswered` like this.
+
+23
+02:33.310 --> 02:37.930
+OK
+
+24
+02:40.360 --> 02:47.770
+and here we simply define border none. Next
+
+25
+02:47.800 --> 02:48.880
+let's define another class
+
+26
+02:52.160 --> 02:52.480
+answered
+
+27
+02:57.650 --> 03:00.480
+and here will make green border so border
+
+28
+03:03.120 --> 03:09.900
+one pixel solid and then `color-green`.
+
+29
+03:13.830 --> 03:14.390
+And last
+
+30
+03:14.420 --> 03:21.010
+let's also set the text color to green: color `color-green`.
+
+31
+03:24.010 --> 03:25.080
+Last
+
+32
+03:25.130 --> 03:29.820
+Let's define another class ampersand dot
+
+33
+03:32.770 --> 03:33.760
+answered
+
+34
+03:36.580 --> 03:36.960
+accepted
+
+35
+03:41.830 --> 03:45.170
+here we don't need to set border color
+
+36
+03:45.290 --> 03:48.250
+Instead we need to change the background color to green.
+
+37
+03:48.330 --> 03:53.160
+So background `color-green`
+
+38
+03:56.800 --> 04:08.040
+and we need to change the text color to white: color `color-white`. Save the changes
+
+39
+04:10.500 --> 04:11.020
+also
+
+40
+04:14.260 --> 04:20.470
+here I got error because I I haven't save this. So save that
+
+41
+04:23.420 --> 04:25.880
+OK now will successfully
+
+42
+04:29.270 --> 04:29.760
+now
+
+43
+04:29.810 --> 04:32.310
+now let's try to apply this classes in our view
+
+44
+04:38.690 --> 04:40.550
+actually we don't need to try
+
+45
+04:40.610 --> 04:48.150
+unanswered class because it will make any difference. Here let's just add answered
+
+46
+04:53.860 --> 04:54.250
+save.
+
+47
+04:57.840 --> 04:58.640
+reload the page
+
+48
+05:04.350 --> 05:09.450
+and oh here we have green border on Answer counter.
+
+49
+05:09.630 --> 05:10.980
+Now let's try another class
+
+50
+05:14.980 --> 05:18.530
+here let's change this to answered
+
+51
+05:19.080 --> 05:21.850
+accepted. Save
+
+52
+05:24.900 --> 05:28.520
+reload the page.
+
+53
+05:28.530 --> 05:29.270
+All right
+
+54
+05:29.430 --> 05:38.450
+now we have green background on answer counter.
+Here I think we need to add more space between answer
+
+55
+05:38.620 --> 05:41.100
+and views counter
+
+56
+05:41.350 --> 05:44.820
+so here
+
+57
+05:48.240 --> 05:51.850
+let's define another class 
+
+58
+05:51.990 --> 05:54.300
+outside status
+
+59
+05:54.690 --> 05:55.080
+view
+
+60
+05:57.970 --> 06:00.450
+and here let's set margin to to
+
+61
+06:03.700 --> 06:06.480
+let's say 10 pixels
+
+62
+06:10.330 --> 06:10.740
+save
+
+63
+06:14.490 --> 06:18.840
+it get compiled. Reload again
+
+64
+06:21.470 --> 06:24.030
+OK great. Last
+
+65
+06:24.080 --> 06:30.450
+let's actually apply the style for this answer counter dynamically
+
+66
+06:30.540 --> 06:33.010
+So do that let's go back to our editor
+
+67
+06:37.180 --> 06:38.860
+go to index.blade.php
+
+68
+06:43.990 --> 06:47.980
+and change this to
+
+69
+06:50.740 --> 06:51.430
+question
+
+70
+06:55.410 --> 06:56.900
+let's say status
+
+71
+07:00.540 --> 07:02.790
+then let's open question model
+
+72
+07:14.060 --> 07:17.200
+and here let's define a new accessor
+
+73
+07:22.740 --> 07:26.370
+So remember an accessor always start with `get`
+
+74
+07:27.240 --> 07:33.930
+and then attribute name, in this case `status` and end with Attribute
+
+75
+07:41.730 --> 07:46.120
+here we need to return three different classes for three conditions
+
+76
+07:46.120 --> 07:54.730
+So if and then we check is the `answers` is great than zero
+
+77
+08:02.940 --> 08:09.640
+then we return answered class
+
+78
+08:13.410 --> 08:17.020
+and here we also need to check if the best answer Id is not
+
+79
+08:17.020 --> 08:36.670
+null here we can write if this best answer Id like this
+
+80
+08:39.720 --> 08:41.010
+and then return
+
+81
+08:43.800 --> 08:46.850
+answered accepted
+
+82
+08:46.850 --> 08:47.190
+class
+
+83
+08:51.750 --> 08:52.540
+and lastly
+
+84
+08:56.990 --> 08:59.380
+outside if statement that's mean
+
+85
+08:59.410 --> 09:00.810
+there's no answer
+
+86
+09:00.850 --> 09:04.090
+We return unanswered
+
+87
+09:09.890 --> 09:12.210
+OK save
+
+88
+09:14.590 --> 09:15.440
+actually
+
+89
+09:15.520 --> 09:16.920
+let's save all changes.
+
+90
+09:23.450 --> 09:23.970
+Reload the page
+
+91
+09:27.960 --> 09:42.390
+as you can see now the style has been applied dynamically to question.
+
+92
+09:42.680 --> 09:44.390
+Let me open phpmyadmin
+
+93
+09:47.550 --> 09:49.630
+here I'll see my questions
+
+94
+09:53.560 --> 10:03.650
+Now I'll change one of them and the answer will be zero.
+
+95
+10:03.740 --> 10:09.780
+Save and reload again.
+
+96
+10:14.720 --> 10:15.650
+OK
+
+97
+10:15.830 --> 10:21.190
+As you can see now the style has been applied dynamically to question's answer counter.
+
+98
+10:21.200 --> 10:21.730
+All right
+
+99
+10:21.830 --> 10:24.160
+I think it's enough for this lesson.
+
+100
+10:24.320 --> 10:26.730
+Let's save our work to our git repository.
+
+101
+10:26.780 --> 10:28.370
+Let's switch to our terminal
+
+102
+10:32.450 --> 10:38.540
+here we need to stop laravel mix otherwise our assets will get compelled when we switch to master
+
+103
+10:38.540 --> 10:39.250
+branch
+
+104
+10:39.560 --> 10:42.530
+So I'll hit Control C to stop
+
+105
+10:46.010 --> 10:49.930
+and now we can type: git add all
+
+106
+10:52.940 --> 10:56.270
+git commit -m
+
+107
+10:57.130 --> 11:01.430
+And I'll say add votes, answer and
+
+108
+11:05.940 --> 11:07.560
+views counter
+
+109
+11:10.350 --> 11:12.360
+to question item
+
+110
+11:18.120 --> 11:24.170
+then I'll push my current branch to remote repo. git push origin
+
+111
+11:24.510 --> 11:32.730
+lesson-6
+
+112
+11:33.210 --> 11:37.190
+OK now we can switch to our master branch. git
+
+113
+11:37.290 --> 11:39.620
+checkout master.
+
+114
+11:40.380 --> 11:47.100
+And then merge the master branch to the lesson-6 branch: git merge
+
+115
+11:47.520 --> 11:50.730
+lesson-6
+
+116
+11:53.570 --> 11:54.640
+and last 
+
+117
+11:54.670 --> 11:58.780
+push our master branch to our remote repo: git push origin
+
+118
+11:58.890 --> 11:59.280
+master
+
+119
+12:06.180 --> 12:07.500
+Okay great in the
+
+120
+12:07.650 --> 12:12.180
+next lesson we'll be continue our coding journey by building question form.
+
+121
+12:12.390 --> 12:13.990
+So join me there.

@@ -1,0 +1,349 @@
+WEBVTT
+
+0
+00:03.190 --> 00:05.940
+So to fix the second issue
+
+1
+00:05.970 --> 00:14.560
+We can utilize third party package called 
+purifier made by me web studio.
+
+2
+00:14.680 --> 00:23.760
+You can go to this link or simply googling "laravel purifier"
+
+3
+00:30.180 --> 00:31.320
+And then choose this one
+
+4
+00:39.230 --> 00:39.710
+OK
+
+5
+00:39.750 --> 00:41.460
+Firstly let's install this package
+
+6
+00:46.680 --> 00:51.150
+we can copy this command and run in our terminal
+
+7
+00:58.040 --> 01:00.500
+after download finish we can see the usage
+
+8
+01:08.870 --> 01:09.190
+here
+
+9
+01:09.200 --> 01:17.950
+If you're using laravel version 5 to 5.4 you need 
+to register the provider in config app.php file.
+
+10
+01:18.120 --> 01:26.330
+But if you're using larvel version five point five or 
+above you don't need to add the provider because
+
+11
+01:26.360 --> 01:29.910
+it will be out auto discovered.
+
+12
+01:29.930 --> 01:35.770
+Now let's see the configuration to use 
+your own settings publish config.
+
+13
+01:36.740 --> 01:38.670
+And here we can simply copy this command
+
+14
+01:43.540 --> 01:59.180
+and run in our terminal.
+
+15
+01:59.320 --> 02:12.640
+And now if you go to config folder you'll find purifier.php
+
+16
+02:12.710 --> 02:20.420
+So here you can adjust what html attribute to be 
+allowed css allowed properties and much more
+
+17
+02:31.170 --> 02:32.880
+now to utilize this package
+
+18
+02:32.890 --> 02:44.440
+we can simply call clean helper or purifier facade and 
+followed by clean and then pass in the string we're going
+
+19
+02:44.460 --> 02:46.090
+to clean.
+
+20
+02:46.220 --> 02:46.670
+All right
+
+21
+02:46.670 --> 02:50.990
+before we applied this in our application 
+let's see how it work and tinker.
+
+22
+03:01.510 --> 03:01.880
+Here I'll
+
+23
+03:01.930 --> 03:02.920
+define a variable 
+
+24
+03:06.720 --> 03:08.450
+and the value will contain paragraph
+
+25
+03:17.490 --> 03:18.630
+and also javascript alert.
+
+26
+03:31.920 --> 03:36.850
+now let's call clean and pass in the str variable.
+
+27
+03:43.340 --> 03:44.180
+As you can see
+
+28
+03:44.300 --> 03:51.510
+now the malicious code the javascript alert has 
+been cleaned. And you can also call like this way
+
+29
+03:58.800 --> 04:01.450
+and we get the same thing.
+
+30
+04:01.510 --> 04:07.510
+Now let me redefine the str variable.
+
+31
+04:07.750 --> 04:18.740
+But now I'll specify a style in the paragraph tag.
+
+32
+04:25.380 --> 04:27.480
+Now what happen if I call clean helper
+
+33
+04:32.460 --> 04:34.350
+the style attribute is still exists.
+
+34
+04:35.860 --> 04:38.600
+OK let me redefine the str variable one more time
+
+35
+04:46.390 --> 04:51.460
+and this time I want to define class attributes
+
+36
+04:51.590 --> 04:56.980
+let's say foo what happen if I call a clean helper.
+
+37
+05:00.010 --> 05:04.280
+The class attribute is gone this because in our config
+
+38
+05:16.790 --> 05:18.300
+In html allowed
+
+39
+05:18.320 --> 05:25.700
+it only contains p style so only style attribute that allowed inside
+
+40
+05:25.790 --> 05:27.510
+P tag.
+
+41
+05:27.740 --> 05:32.230
+Now let me change this to P style class
+
+42
+05:35.110 --> 05:39.680
+this mean style or classes attribute inside p tag are allowed.
+
+43
+05:39.770 --> 05:40.610
+Save the change.
+
+44
+05:43.330 --> 05:44.450
+restart the tinker
+
+45
+05:51.430 --> 05:55.090
+let me redefine the variable.
+
+46
+05:55.240 --> 05:59.720
+Here it is now if I clear the string
+
+47
+06:03.570 --> 06:06.900
+the class attribute is still in place. OK
+
+48
+06:06.900 --> 06:07.920
+I hope you got the idea.
+
+49
+06:14.680 --> 06:18.640
+now to clean the body of the question 
+we can do that in two different ways.
+
+50
+06:19.800 --> 06:24.260
+First we can clean the question body before it's saved into our database.
+
+51
+06:24.360 --> 06:30.090
+The second we can clean the question 
+body before it rendered to the page.
+
+52
+06:30.220 --> 06:34.110
+I think both ways are equally valid but I prefer the second way
+
+53
+06:34.120 --> 06:40.750
+for some reasons. If I follow the first way the 
+question that will be stored is not the original and
+
+54
+06:40.750 --> 06:46.450
+that could be missing parts because it contains the 
+tags that are not allowed as I defined in the config
+
+55
+06:46.450 --> 06:47.190
+file.
+
+56
+06:47.530 --> 06:53.280
+Meanwhile if I used the second way the original question is stored in the database although the malicious
+
+57
+06:53.290 --> 06:59.360
+code could also be stored but I can safely 
+display to the page by calling clean function.
+
+58
+06:59.650 --> 07:06.250
+And I also able to manage which tags that are allowed 
+and which are not allowed so that I can get the
+
+59
+07:06.250 --> 07:07.850
+best result that I want.
+
+60
+07:09.190 --> 07:12.010
+And the second way is also much simpler.
+
+61
+07:12.010 --> 07:13.510
+All I need to do is
+
+62
+07:18.570 --> 07:25.830
+find get body html attribute
+
+63
+07:26.080 --> 07:28.830
+All I need to do is call clean helper
+
+64
+07:32.930 --> 07:34.490
+and pass in the body
+
+65
+07:34.500 --> 07:41.710
+html
+
+66
+07:41.720 --> 07:43.670
+Now if I go to question page
+
+67
+07:50.720 --> 07:54.540
+now I will not have javascript alert or other malicious code.
+
+68
+07:59.650 --> 08:03.930
+Now just in case you prefer the first way then 
+you can simply define access of like this
+
+69
+08:14.780 --> 08:18.780
+public function set body attribute
+
+70
+08:23.280 --> 08:24.350
+and define an argument
+
+71
+08:31.130 --> 08:35.000
+and here you can simply call this attributes
+
+72
+08:37.620 --> 08:38.100
+body
+
+73
+08:43.350 --> 08:47.540
+clean value and that's it.
+
+74
+08:47.560 --> 08:53.290
+Every time you create or update the question the question body will be cleaned from malicious code.
+
+75
+08:53.680 --> 08:55.500
+OK I'll comment this accessor
+
+76
+08:58.290 --> 09:01.610
+because as I said I prefer the second way.
+
+77
+09:01.770 --> 09:02.270
+Alright
+
+78
+09:02.270 --> 09:07.430
+we have successfully fixed the two issues that we 
+talked in the beginning and I think our application
+
+79
+09:07.520 --> 09:08.840
+is much more secure..
+
+80
+09:12.140 --> 09:13.790
+And now we can open our answer model
+
+81
+09:22.100 --> 09:23.690
+and clean the body html attribute
+
+82
+09:33.200 --> 09:35.930
+And with that let's commit the changes to our git repo.

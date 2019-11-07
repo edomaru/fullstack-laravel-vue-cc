@@ -1,0 +1,408 @@
+WEBVTT
+
+0
+00:00.960 --> 00:07.560
+In this lesson we're going to consume the current user's 
+post API endpoint and display the response in
+
+1
+00:07.560 --> 00:07.870
+this
+
+2
+00:07.860 --> 00:09.590
+My posts page.
+
+3
+00:09.800 --> 00:15.650
+All right let's go ahead and open up our terminal then here
+
+4
+00:15.730 --> 00:17.050
+I'm going to create a new branch
+
+5
+00:24.450 --> 00:34.060
+now let's fire up the laravel mix.
+
+6
+00:34.340 --> 00:34.910
+All right
+
+7
+00:34.910 --> 00:41.520
+first thing first let's build user interface for my posts page here
+
+8
+00:41.600 --> 00:44.390
+let's navigate to get bootstrap dot com
+
+9
+00:47.690 --> 00:49.300
+go to documentation
+
+10
+00:52.840 --> 00:54.070
+then components
+
+11
+00:57.820 --> 01:01.810
+card and let's find navigation
+
+12
+01:05.730 --> 01:14.150
+and here we'll add something like this in our application.
+So let's copy this markup back to our editor
+
+13
+01:15.580 --> 01:20.460
+then open my post page dot vue
+
+14
+01:25.120 --> 01:29.110
+let's remove this and add container
+
+15
+01:31.890 --> 01:33.240
+inside this container
+
+16
+01:33.280 --> 01:33.900
+let's add a row
+
+17
+01:36.990 --> 01:43.440
+and inside this row let's add col-md-12 to have full with
+
+18
+01:46.610 --> 01:48.560
+then inside here just paste the markup
+
+19
+01:53.630 --> 01:54.720
+let's indent a little bit
+
+20
+02:04.420 --> 02:14.620
+so here for the first nav item let's change to all, 
+for the second one it is gonna be questions
+
+21
+02:20.720 --> 02:25.380
+remove these and duplicate
+
+22
+02:28.890 --> 02:37.370
+and here it's going to be answers.
+
+23
+02:37.450 --> 02:42.280
+All right let's save this changes and let's see how that look.
+
+24
+02:49.420 --> 02:49.820
+All right
+
+25
+02:52.720 --> 03:02.630
+Now let's change the content here. Back 
+to get bootstrap dot com, go to list group
+
+26
+03:05.960 --> 03:10.210
+on the right side let's hit this flush menu.
+
+27
+03:13.570 --> 03:16.200
+So here we'll bring this UI to display
+
+28
+03:16.200 --> 03:24.390
+our questions and answers. So let's 
+copy this markup back to our editor.
+
+29
+03:29.470 --> 03:33.030
+Here in card body let's select everything
+
+30
+03:36.320 --> 03:37.190
+then paste the little group
+
+31
+03:47.690 --> 03:48.120
+here
+
+32
+03:48.140 --> 03:51.380
+let's keep one list group item and remove the rest.
+
+33
+03:57.830 --> 04:02.130
+Let's remove the text and here
+
+34
+04:02.170 --> 04:04.180
+let's split this into three parts.
+
+35
+04:06.710 --> 04:07.880
+So let's add another row
+
+36
+04:11.270 --> 04:12.290
+inside this row
+
+37
+04:12.290 --> 04:14.360
+let's add bootstrap col class
+
+38
+04:18.140 --> 04:19.240
+inside this column
+
+39
+04:19.240 --> 04:24.610
+let's add two things will add a span and it's going to has class
+
+40
+04:24.610 --> 04:27.760
+let's say posts badge
+
+41
+04:30.940 --> 04:36.220
+and another class to indicate that the 
+question is accepted so accepted.
+
+42
+04:41.180 --> 04:45.670
+This span basically indicate an item is a question or answer.
+
+43
+04:45.750 --> 04:56.350
+It it's a question is going to be Q, if it's answer is 
+gonna be A. Let's duplicate this span. Here let's add
+
+44
+04:56.370 --> 04:57.520
+a space from the left
+
+45
+04:57.530 --> 05:08.990
+span by adding bootstrap margin left class maybe 
+ml four. Then I'll replace this with votes count
+
+46
+05:12.430 --> 05:17.570
+then I'm gonna change the text to let's say 10.
+
+47
+05:18.610 --> 05:18.880
+All right
+
+48
+05:19.810 --> 05:25.870
+Let's add another column this column 
+will be hold the question title.
+
+49
+05:25.870 --> 05:31.510
+So here I'm gonna add col-md-9 in here
+
+50
+05:31.690 --> 05:32.770
+let me add a dummy text
+
+51
+05:39.890 --> 05:41.700
+let's add another column here
+
+52
+05:41.720 --> 05:43.730
+I'm going to use bootstrap col class
+
+53
+05:46.770 --> 05:56.910
+and I want to make the text inside on the 
+right so text right. Here we'll show a date
+
+54
+06:05.740 --> 06:12.890
+OK let me select these and duplicate two times
+
+55
+06:16.660 --> 06:27.420
+and I'll make change a bit
+
+56
+06:27.490 --> 06:30.370
+Now if we save this and see in our browser
+
+57
+06:36.270 --> 06:41.200
+OK here we have three items displayed like this.
+
+58
+06:41.230 --> 06:45.340
+Now let's style this back to our editor.
+
+59
+06:46.380 --> 06:52.510
+And here instead of defining this css in global 
+app.scss file here I'm going to define in this
+
+60
+06:52.510 --> 06:53.050
+component
+
+61
+06:59.360 --> 07:12.930
+so here let's add style let's change the lang to scss 
+and let's also add scoped to make sure that our
+
+62
+07:12.930 --> 07:15.300
+style only get applied in this component.
+
+63
+07:21.670 --> 07:25.120
+Firstly let's define a sass variable here
+
+64
+07:25.120 --> 07:42.940
+I'm gonna call color green and I'll set it to grba  ninety 
+five one hundred eighty seven one hundred twenty
+
+65
+07:42.940 --> 07:43.420
+six
+
+66
+07:48.370 --> 07:48.820
+okay
+
+67
+07:48.820 --> 07:51.160
+now let's define the votes count css rule
+
+68
+07:55.780 --> 07:56.080
+here
+
+69
+07:56.140 --> 07:57.040
+let's set the border
+
+70
+08:03.760 --> 08:06.350
+then let's custom the display to inline block
+
+71
+08:13.150 --> 08:14.230
+by doing this way
+
+72
+08:14.230 --> 08:21.610
+the span will act like normal span which is inline 
+but it's has the ability to have with padding and
+
+73
+08:21.610 --> 08:22.420
+so on.
+
+74
+08:24.040 --> 08:25.030
+Let's set the min with
+
+75
+08:27.680 --> 08:33.490
+to let's say 40 pixels.
+
+76
+08:33.740 --> 08:36.980
+Then let's set the text alignment to center
+
+77
+08:42.950 --> 08:43.360
+Alright
+
+78
+08:43.640 --> 08:45.710
+let's also define accepted css rule
+
+79
+08:50.580 --> 08:50.950
+and here
+
+80
+08:50.960 --> 08:54.340
+when accepted we'll set the background color to a color green.
+
+81
+08:59.880 --> 09:02.400
+Then we'll change the border color to color green
+
+82
+09:10.800 --> 09:12.870
+and we'll change the text color to a white.
+
+83
+09:22.510 --> 09:24.520
+Let's define another css rule
+
+84
+09:24.540 --> 09:25.320
+in this case
+
+85
+09:27.960 --> 09:28.680
+post badge.
+
+86
+09:33.200 --> 09:35.510
+Actually let me duplicate these
+
+87
+09:39.290 --> 09:41.510
+change the name to post badge
+
+88
+09:45.640 --> 09:45.850
+here
+
+89
+09:45.850 --> 09:53.230
+let's change this to with and it's gonna be twenty five pixels
+
+90
+09:59.350 --> 10:02.560
+then to make a circle let's add border radius
+
+91
+10:05.960 --> 10:08.060
+and set it to one hundred percent.
+
+92
+10:15.550 --> 10:22.790
+Let's remove the background and change the color to color green
+
+93
+10:26.750 --> 10:30.300
+Let's save and let's see how that look
+
+94
+10:37.000 --> 10:37.520
+All right
+
+95
+10:37.700 --> 10:40.230
+I think this much better.
+
+96
+10:40.550 --> 10:46.730
+So now that we have user interface to display current 
+user's posts. Let's now consume or backend API
+
+97
+10:47.040 --> 10:50.180
+and display the result in this component to make it dynamic.

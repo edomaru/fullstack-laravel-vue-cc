@@ -1,0 +1,163 @@
+WEBVTT
+
+0
+00:01.640 --> 00:06.930
+In the previous lessons you've seen how to store 
+some values that will use in the vue js application
+
+1
+00:07.220 --> 00:09.380
+by defining them in data property.
+
+2
+00:09.590 --> 00:13.850
+We can then retrieve the values and display them in our template.
+
+3
+00:13.970 --> 00:22.430
+Now in other use case we might need to manipulate one 
+or some of values before render to the page. For example
+
+4
+00:22.520 --> 00:29.170
+we might have first name and last name defined in data 
+property then maybe we need to display full name
+
+5
+00:29.210 --> 00:36.230
+in our template. Here we can do that 
+by using string interpolation like this.
+
+6
+00:36.350 --> 00:43.040
+This is OK but it's limited only single expression. 
+If we need to show the full name in other places
+
+7
+00:44.450 --> 00:47.570
+then we might need to copy and paste that expression.
+
+8
+00:47.900 --> 00:51.690
+And this will produce repeated code in our app.
+
+9
+00:51.700 --> 01:00.310
+Now let's say we also need to show the full name 
+in uppercase and add a space between characters.
+
+10
+01:00.360 --> 01:07.510
+Here we can do that like this. Or we 
+can do it more simpler just like this.
+
+11
+01:07.580 --> 01:12.160
+But once again this will make our 
+template messy and not declarative
+
+12
+01:12.200 --> 01:14.900
+It doesn't really describe what we were trying to do.
+
+13
+01:15.740 --> 01:22.940
+So you have to consider that your views or templates 
+should only be concerned with displaying data.
+
+14
+01:23.050 --> 01:28.420
+If you find that a piece of data needs a bit of 
+computation before it's rendered to the page
+
+15
+01:28.810 --> 01:30.830
+then you have two alternatives.
+
+16
+01:31.030 --> 01:36.320
+The first one is to apply the logic in methods property.
+
+17
+01:36.490 --> 01:43.450
+So from the previous example we can define let's say 
+full name upper with space and place the of logic
+
+18
+01:43.450 --> 01:44.020
+in it.
+
+19
+01:44.800 --> 01:52.210
+Then in your template you can call full 
+name upper with space parentheses.
+
+20
+01:52.380 --> 01:59.740
+The second one is to place the logic in computed property. Computed properties are defined in the computed
+
+21
+01:59.740 --> 02:01.680
+property of vue option.
+
+22
+02:01.840 --> 02:07.720
+And in here you you define the same function as before 
+but now in your template you can call the computed
+
+23
+02:07.720 --> 02:09.260
+property just like this
+
+24
+02:10.470 --> 02:12.060
+full name upper with space
+
+25
+02:12.220 --> 02:15.340
+just like property that you define in data property.
+
+26
+02:15.340 --> 02:20.800
+You don't need parentheses when calling computed 
+property and vue js will automatically invokes the
+
+27
+02:20.800 --> 02:27.120
+function behind the scene. Besides that a 
+computed party has a following features
+
+28
+02:27.120 --> 02:29.270
+First the computation will be cached
+
+29
+02:29.310 --> 02:33.030
+that means the function will not rerun if not necessary.
+
+30
+02:33.030 --> 02:40.550
+It's prevent useless computation. The second it will only 
+automatically update as needed when dependent
+
+31
+02:40.550 --> 02:43.020
+properties inside the function has changed.
+
+32
+02:43.310 --> 02:47.900
+So that's about a brief intro about computed 
+properties. The computer properties
+
+33
+02:47.930 --> 02:53.840
+basically are data in vue instance or vue components 
+that depends on some calculation on other
+
+34
+02:53.840 --> 02:55.420
+data.
+
+35
+02:55.460 --> 02:56.900
+All right let's see an action.

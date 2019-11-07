@@ -1,0 +1,466 @@
+WEBVTT
+
+0
+00:02.230 --> 00:03.650
+Hello and welcome back.
+
+1
+00:03.970 --> 00:10.020
+so now we have index page listing all the questions, 
+we have ask question form to create a question
+
+2
+00:10.210 --> 00:16.000
+we have edit question form to edit existing question,
+and we have delete button to delete particular
+
+3
+00:16.000 --> 00:17.110
+question.
+
+4
+00:17.140 --> 00:23.670
+Now let's go ahead and build our show question page which will show the individual question.
+
+5
+00:23.790 --> 00:33.010
+So here this would lead us to show question page or show the detail of the particular question.
+
+6
+00:33.000 --> 00:41.400
+Also instead of using this question id in this URL 
+we will be using questions slug to make our
+
+7
+00:41.520 --> 00:46.320
+URL prettier or make our URL  more SEO friendly.
+
+8
+00:46.320 --> 00:50.570
+So let's go ahead and build that.
+
+9
+00:50.620 --> 00:50.980
+All right
+
+10
+00:50.980 --> 00:57.830
+the first thing we're going to do is isolate 
+our work today in a new branch. Here
+
+11
+00:57.910 --> 01:09.370
+We'll do that by saying git check out -b lesson-11
+
+12
+01:09.660 --> 01:14.640
+And the next thing you need to do because as I said we will be using slug instead of id of
+
+13
+01:14.640 --> 01:20.920
+the question is to change the show 
+question route to receive slug instead of id.
+
+14
+01:21.270 --> 01:33.130
+So let me head over to other terminal and see the routes 
+by typing php artisan route list name questions.
+
+15
+01:35.770 --> 01:37.310
+So here the routes that we have.
+
+16
+01:37.570 --> 01:44.980
+And here we need a way to change this route parameter of questions dot show to receive slug instead
+
+17
+01:44.980 --> 01:46.300
+of ID.
+
+18
+01:46.450 --> 01:49.810
+In other hand we will keep the other routes as they are.
+
+19
+01:49.840 --> 01:50.870
+Do you have an idea?
+
+20
+01:52.190 --> 01:58.430
+So let's switch to our editor and open routes web
+
+21
+01:58.730 --> 01:59.500
+php
+
+22
+02:04.330 --> 02:22.030
+I think the best way to do that is to exclude the 
+show routes in our resource route like this
+
+23
+02:22.360 --> 02:33.400
+and here we need to define the show routes manually.
+Route get questions and the route parameter let's
+
+24
+02:33.400 --> 02:42.170
+say slug then it will be handled by questions controller
+
+25
+02:45.400 --> 02:51.710
+show method and we need to give the same name to this route as
+
+26
+02:55.590 --> 02:59.750
+question dot
+
+27
+02:59.870 --> 03:04.340
+show like this one
+
+28
+03:09.450 --> 03:11.260
+Save that
+
+29
+03:11.490 --> 03:13.150
+And now if we see our routes again
+
+30
+03:18.400 --> 03:25.750
+we see the route parameter of the show question is no longer `question` but `slug`. And the route name is
+
+31
+03:25.750 --> 03:27.560
+same as before.
+
+32
+03:27.580 --> 03:33.820
+So by doing this we keep our question routes to receive ID but not for a show question route it will
+
+33
+03:33.820 --> 03:40.330
+receive the string or slug in this case and we'll be implementing route model binding to get the question
+
+34
+03:40.360 --> 03:44.000
+by slug. Let's go to app
+
+35
+03:47.320 --> 03:52.230
+providers. And open route service provider
+
+36
+03:55.020 --> 03:55.470
+here let's
+
+37
+03:55.500 --> 04:05.750
+Import the question model name space.
+
+38
+04:05.990 --> 04:14.140
+And here we can bind our custom route parameter by saying route bind
+
+39
+04:17.310 --> 04:19.170
+this method needs two arguments.
+
+40
+04:19.170 --> 04:23.780
+The first argument is our customer argument slug
+
+41
+04:27.210 --> 04:33.540
+and in second argument we can define 
+a closure or anonymous function
+
+42
+04:37.880 --> 04:45.060
+which receive one argument let's call it slug.
+
+43
+04:45.170 --> 04:48.390
+And inside here we can say get a question
+
+44
+04:53.060 --> 04:59.550
+where slug matches with the value that we pass in here.
+
+45
+05:03.050 --> 05:13.040
+And we need to call first to get a single record then we can assign it to a variable.
+
+46
+05:13.040 --> 05:15.050
+For example question
+
+47
+05:19.080 --> 05:23.990
+and after that we simply return the question if it's not empty.
+
+48
+05:31.340 --> 05:33.430
+otherwise we show 404 error page
+
+49
+05:41.100 --> 05:44.030
+or we can even simplify all of these like so
+
+50
+05:59.150 --> 06:04.940
+Alright, the next thing that we need to do is changing the question URL in our view.
+
+51
+06:05.110 --> 06:06.250
+So if you remember
+
+52
+06:21.400 --> 06:25.500
+in here we call question url
+
+53
+06:25.630 --> 06:30.910
+So we have encapsulated our question URL into URL accessor in our question
+
+54
+06:30.910 --> 06:32.450
+model.
+
+55
+06:32.490 --> 06:34.810
+So let's open the question model
+
+56
+06:39.750 --> 06:40.870
+go to get
+
+57
+06:40.870 --> 06:43.020
+url attribute
+
+58
+06:43.170 --> 06:49.800
+And here is simply change the second argument of route function helper from id to slug
+
+59
+06:52.350 --> 06:53.460
+save all changes
+
+60
+06:56.510 --> 07:09.480
+and let's see our show URL.
+
+61
+07:09.500 --> 07:14.970
+Now you can see here we have slug in our URL 
+and we still get a blank page.
+
+62
+07:15.140 --> 07:20.850
+This is great because that means our 
+route model binding is working.
+
+63
+07:20.880 --> 07:24.010
+Let's open question
+
+64
+07:26.080 --> 07:34.940
+controller and go to show method.
+
+65
+07:35.120 --> 07:44.650
+And here I tried to die dump for example question body like this.
+
+66
+07:46.100 --> 07:47.510
+And reload the page
+
+67
+07:50.490 --> 07:54.370
+ok we see our question body here.
+
+68
+07:54.550 --> 08:00.420
+Let's go back to our editor get rid of this line.
+
+69
+08:00.420 --> 08:05.990
+And before we return to show view here we need to increment the number of viewers right?
+
+70
+08:06.010 --> 08:10.690
+So here we can say question increment
+
+71
+08:13.560 --> 08:19.320
+views. This line is equivalent with this command
+
+72
+08:23.070 --> 08:24.320
+question
+
+73
+08:24.720 --> 08:38.550
+views equals question views plus 1 and then question save Luckily Laravel provide a better
+
+74
+08:38.550 --> 08:39.020
+way.
+
+75
+08:39.120 --> 08:45.610
+So we can simplify this just in one line.
+
+76
+08:45.610 --> 08:46.450
+All right after that
+
+77
+08:46.750 --> 08:48.070
+let's return the view
+
+78
+08:52.480 --> 08:58.260
+questions dot show and pass in the question object
+
+79
+09:05.620 --> 09:09.520
+now let's create a new view to show the individual question.
+
+80
+09:09.550 --> 09:10.250
+Let's open
+
+81
+09:13.650 --> 09:14.850
+create.blade.php
+
+82
+09:18.010 --> 09:19.360
+and save this file
+
+83
+09:20.360 --> 09:21.570
+as show
+
+84
+09:21.610 --> 09:22.450
+blade php
+
+85
+09:30.850 --> 09:34.530
+Here let's change the heading to heading one
+
+86
+09:42.400 --> 09:43.510
+and then question title
+
+87
+09:51.110 --> 09:53.860
+and here I'll keep the link to go to index page
+
+88
+09:56.820 --> 09:57.770
+and inside here
+
+89
+09:57.810 --> 09:59.160
+let's delete everything.
+
+90
+10:03.740 --> 10:13.090
+And we can show that question body like this question body or because the body of the question
+
+91
+10:13.180 --> 10:15.040
+is in markdown syntax
+
+92
+10:15.040 --> 10:29.640
+So let's call body_html instead.
+
+93
+10:29.820 --> 10:37.490
+So this will be a new accessor where encapsulates 
+the markdown to html conversion.
+
+94
+10:37.500 --> 10:40.400
+All right let's switch to a question model
+
+95
+10:48.040 --> 10:49.570
+and in here
+
+96
+10:50.590 --> 11:02.200
+let's define a new accessor public function get body html attribute
+
+97
+11:08.430 --> 11:15.070
+and in here we need to convert the markdown syntax to html by utilizing Parsedown library which
+
+98
+11:15.070 --> 11:20.050
+came by default since Laravel version 5.5. In prior version
+
+99
+11:20.050 --> 11:28.630
+we need to use external library like grahamcampbell markdown. But in Laravel version 5.5 or above using
+
+100
+11:28.630 --> 11:30.630
+this library is more than enough.
+
+101
+11:30.830 --> 11:34.080
+So return parsedown
+
+102
+11:37.130 --> 11:45.960
+double colons instance text and pass in the question body
+
+103
+11:49.230 --> 11:50.210
+save all changes
+
+104
+11:54.790 --> 11:56.710
+and reload page
+
+105
+12:01.230 --> 12:04.170
+all right here our question detail.
+
+106
+12:04.570 --> 12:06.030
+Let me see another question.
+
+107
+12:14.690 --> 12:15.890
+Okay great.
+
+108
+12:15.890 --> 12:22.340
+and I think that's enough for this lesson. 
+In the future lessons, we'll come back here and we'll be
+
+109
+12:22.370 --> 12:30.440
+adding some controls such as vote up, vote down, favourite the question and accept the question. And we will
+
+110
+12:30.440 --> 12:34.910
+also display all answers that related to the current question.
+
+111
+12:35.600 --> 12:41.360
+So now that have implemented the full set of CRUD functionality in our application. In the next lesson
+
+112
+12:41.500 --> 12:47.900
+we will be implement authorization so that the question can only be modified by the creator of the question.

@@ -1,0 +1,316 @@
+WEBVTT
+
+0
+00:03.320 --> 00:05.180
+In this lesson we are going to rewrite
+
+1
+00:05.310 --> 00:10.330
+the authorization policy into javascript and 
+fix one issue in accept answer component
+
+2
+00:14.140 --> 00:15.530
+so let's go to app
+
+3
+00:18.980 --> 00:31.370
+policies folder then open answer policy.
+
+4
+00:31.570 --> 00:41.750
+We see that update and delete method contains the 
+same logic which compare both id of the user with
+
+5
+00:41.750 --> 00:43.680
+the user id of the answer.
+
+6
+00:45.810 --> 00:50.940
+And it's similar to a question policy. So later in our javascript we'll
+
+7
+00:51.160 --> 00:54.570
+create only a single method to write this logic
+
+8
+00:58.110 --> 00:59.730
+for the accept method
+
+9
+00:59.730 --> 01:06.330
+It matches ID of the user with user ID in the related question.
+
+10
+01:06.330 --> 01:13.060
+All right let's switch over to our terminal and then 
+create new branch by saying git checkout -b lesson
+
+11
+01:13.130 --> 01:14.250
+thirty four.
+
+12
+01:17.280 --> 01:21.340
+and run web pack by saying npm run watch.
+
+13
+01:26.310 --> 01:30.130
+Now let's go to assets
+
+14
+01:30.180 --> 01:35.520
+js folder and then create new file.
+
+15
+01:35.730 --> 01:38.520
+I'll call it policies dot js
+
+16
+01:46.150 --> 01:48.600
+inside here let's define a new method.
+
+17
+01:48.860 --> 01:50.950
+And he called it modify
+
+18
+01:54.250 --> 01:56.750
+this method needs two arguments.
+
+19
+01:56.950 --> 02:06.340
+The first one is user to represent the 
+current user and a second one is model.
+
+20
+02:06.370 --> 02:13.210
+The reason why I call it model instead of answer is 
+because this argument can be received both answer
+
+21
+02:13.300 --> 02:14.000
+and question
+
+22
+02:19.570 --> 02:31.540
+and inside here we simply say return user 
+dot id is equal model dot user underscore ID.
+
+23
+02:37.420 --> 02:37.980
+All right
+
+24
+02:38.140 --> 02:44.770
+let's also define another method accept. 
+There will be two arguments.
+
+25
+02:44.990 --> 02:50.180
+User and answer. Here
+
+26
+02:50.180 --> 02:57.700
+I'm not call it model because this 
+method is specific to answer model.
+
+27
+02:57.790 --> 03:06.230
+And inside here we simply say return user dot id is equals answer
+
+28
+03:08.100 --> 03:11.060
+dot question dot user id
+
+29
+03:15.490 --> 03:17.280
+Let's open app dot js file
+
+30
+03:23.650 --> 03:30.730
+and here let's import the policies file that 
+we just created by saying import policies
+
+31
+03:33.060 --> 03:36.120
+from policies.
+
+32
+03:41.410 --> 03:44.970
+Now I want to define a function that 
+can be called in template like this
+
+33
+03:47.730 --> 03:52.390
+authorize modify answer
+
+34
+03:55.790 --> 03:58.910
+so to do that we can modify vue js prototype like this
+
+35
+03:59.860 --> 04:05.310
+Vue dot prototype dot authorize equals function
+
+36
+04:09.160 --> 04:11.810
+policy model
+
+37
+04:16.580 --> 04:19.210
+so prototype is a way to inherit the class.
+
+38
+04:19.220 --> 04:26.310
+And by doing this we add authorize function directly to 
+component instance without any injection mechanism.
+
+39
+04:26.700 --> 04:37.740
+Ok firstly we need to make sure that the user has 
+successfully signed in. So he can say if not not user
+
+40
+04:37.920 --> 04:38.830
+signed in
+
+41
+04:42.430 --> 04:50.760
+then return false.
+
+42
+04:51.050 --> 04:53.750
+And before we call the methods in policies
+
+43
+04:54.050 --> 05:01.430
+let's make another check if fistly we need to make 
+sure that the method name in the first argument
+
+44
+05:01.430 --> 05:02.630
+is a string.
+
+45
+05:02.700 --> 05:10.240
+Here we can say type of policy is equal
+
+46
+05:10.240 --> 05:10.800
+String
+
+47
+05:14.470 --> 05:17.790
+and then we need  to make sure that the model is an object.
+
+48
+05:18.100 --> 05:19.060
+And here we can say
+
+49
+05:22.470 --> 05:25.940
+type of model
+
+50
+05:28.970 --> 05:38.220
+is equal object
+
+51
+05:38.310 --> 05:40.360
+Now if both conditions met
+
+52
+05:40.640 --> 05:52.550
+Here we can pull the current user object by saying 
+window dot auth dot user as we defined in 
+
+53
+05:56.330 --> 05:56.770
+here.
+
+54
+05:59.430 --> 06:03.960
+Actually this should be user.
+
+55
+06:04.150 --> 06:04.930
+Sorry for the
+
+56
+06:04.970 --> 06:05.240
+typo
+
+57
+06:09.610 --> 06:13.090
+And then assigned to a variable user in this case
+
+58
+06:22.040 --> 06:27.800
+and last we can say return and then policies
+
+59
+06:31.880 --> 06:32.690
+policy
+
+60
+06:35.510 --> 06:36.220
+user
+
+61
+06:39.800 --> 06:47.650
+model. So policies holds all methods in policies dot js file.
+
+62
+06:47.680 --> 06:52.940
+That means if we call something like this
+
+63
+06:53.230 --> 07:03.000
+authorize modify answer this will be policies modify
+
+64
+07:05.840 --> 07:11.180
+user model or it similar with this command
+
+65
+07:13.240 --> 07:25.190
+policies dot modify user model.
+
+66
+07:25.250 --> 07:28.960
+All right now we can open accept dot vue
+
+67
+07:40.540 --> 07:43.760
+and here we can call the authorize function like this.
+
+68
+07:44.000 --> 07:44.680
+authorize accept
+
+69
+07:49.200 --> 07:52.460
+answer. Let's save all changes
+
+70
+07:57.670 --> 07:58.300
+and have a look
+
+71
+08:06.040 --> 08:07.610
+now the accept button disappear.
+
+72
+08:10.470 --> 08:16.640
+This because the question is not my own 
+question or own by current user signed in
+
+73
+08:19.480 --> 08:21.360
+If i see my own question
+
+74
+08:27.560 --> 08:29.090
+here the accept button appear.

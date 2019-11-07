@@ -1,0 +1,153 @@
+WEBVTT
+
+0
+00:02.020 --> 00:09.570
+What we handling an event we can also modify the event we listen. For example when we're handling the submit event
+
+1
+00:09.630 --> 00:17.180
+on the form because the default action of the form 
+is to directly send data to the server then maybe
+
+2
+00:17.180 --> 00:22.250
+you want to stop it and instead make 
+AJAX call to send the request.
+
+3
+00:22.320 --> 00:28.280
+In this case we usually make use of the event dot prevent 
+default in the event handling method that we define.
+
+4
+00:28.860 --> 00:34.980
+But it would be better if the method is purely about 
+data logic rather than having to deal with DOM
+
+5
+00:34.980 --> 00:37.830
+event details. For that we can use
+
+6
+00:37.940 --> 00:46.580
+event modifier in the v-on directive. Note that the 
+modifier is called after directive and is denoted
+
+7
+00:46.670 --> 00:48.970
+by a dot.
+
+8
+00:49.150 --> 00:51.290
+Let's open the event handling three dot
+
+9
+00:51.350 --> 00:51.830
+html.
+
+10
+00:55.460 --> 01:06.200
+Here we have a form with an input and a submit button. 
+If we try to click the submit button it will display an alert.
+
+11
+01:06.200 --> 01:07.520
+After we hit the OK button
+
+12
+01:08.890 --> 01:11.180
+It then will be send to the server.
+
+13
+01:12.210 --> 01:18.380
+Now let's go back to our editor then open 
+the event handling three dot html file.
+
+14
+01:21.710 --> 01:28.300
+In the form we can see an event handling for the 
+submit event which is call the handle submit method
+
+15
+01:33.510 --> 01:41.070
+then the handle submit method we call javascript 
+alert. Now let's modify the v-on submit
+
+16
+01:45.320 --> 01:51.660
+by adding dot prevent modifier.
+
+17
+01:51.810 --> 01:54.690
+Let's save that
+
+18
+01:54.830 --> 02:04.670
+Now if we hit the submit button again the alert show up 
+but the default action that is send data directly to server
+
+19
+02:05.030 --> 02:05.900
+will be stopped.
+
+20
+02:07.510 --> 02:09.010
+So now in the handle submit
+
+21
+02:11.880 --> 02:20.530
+we can remove the alert and instead let's add a new 
+framework that we might enter in the text box into
+
+22
+02:20.530 --> 02:21.970
+the favorite framework property.
+
+23
+02:43.920 --> 02:54.480
+After that we can reset the value of framework property  
+this dot framework equals empty. Then let's define
+
+24
+02:54.690 --> 03:01.610
+the framework in the data property.
+
+25
+03:01.670 --> 03:16.340
+And finally let's bind the framework property into our input form.
+
+26
+03:16.360 --> 03:18.160
+Now let's go back to our browser
+
+27
+03:21.580 --> 03:26.690
+and then try to enter any framework 
+name then hit the submit button.
+
+28
+03:30.320 --> 03:35.000
+as you can see the framework name that we answered 
+in the text box will be immediately added to the
+
+29
+03:35.000 --> 03:36.120
+list.
+
+30
+03:36.290 --> 03:42.050
+And because we defined the event handler to the submit 
+event we can also be able to type any framework name
+
+31
+03:44.340 --> 03:49.580
+then press enter key to directly add it to the list.
+
+32
+03:49.680 --> 03:59.620
+Now besides prevent vue js also provides other modifiers 
+such as stop, capture, self, ones and passive.
+
+33
+04:00.020 --> 04:04.550
+If you need to know more details about this modifiers you can check out this link.

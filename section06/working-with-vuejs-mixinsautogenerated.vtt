@@ -1,0 +1,617 @@
+WEBVTT
+
+0
+00:02.400 --> 00:06.290
+In this lesson we're gonna be using something called mixins.
+
+1
+00:06.580 --> 00:12.640
+If you read in vue js official guide mixins are a 
+flexible way to distribute reusable functionalities
+
+2
+00:12.880 --> 00:19.210
+for vue components and mixin object can contain any 
+component options when a component uses a mixin
+
+3
+00:19.560 --> 00:24.370
+all options in the mixing will be mixed 
+into components own options.
+
+4
+00:24.370 --> 00:31.090
+So in the simple term I can say that mixins allows you 
+to share some functionalities across components
+
+5
+00:31.210 --> 00:33.350
+throughout the application.
+
+6
+00:33.500 --> 00:42.470
+Alright let's open up our terminal and then 
+create new branch git checkout -b lesson
+
+7
+00:42.530 --> 00:45.760
+42.
+
+8
+00:45.930 --> 00:47.570
+Then let's also run web pack
+
+9
+00:47.590 --> 00:49.360
+by saying npm run
+
+10
+00:49.410 --> 00:49.830
+watch
+
+11
+00:54.240 --> 01:00.940
+Okay now let's go to assets js folder 
+and then let's create new folder
+
+12
+01:04.140 --> 01:10.290
+and let's call it mixins inside this folder
+
+13
+01:10.380 --> 01:11.360
+let's create new file
+
+14
+01:14.520 --> 01:14.820
+here
+
+15
+01:14.820 --> 01:16.330
+I'm gonna call it
+
+16
+01:16.560 --> 01:17.280
+I don't know
+
+17
+01:17.280 --> 01:22.390
+I have no idea I just call it modification dot
+
+18
+01:22.600 --> 01:26.540
+js of course you can call it whatever you like. In here
+
+19
+01:26.540 --> 01:37.470
+let's create javascript module to export 
+object by saying export default
+
+20
+01:37.510 --> 01:40.300
+now we can open the question and answer
+
+21
+01:40.300 --> 01:47.890
+side by side so that we can easily analyze the 
+duplicates or similar code and put them in our mixin
+
+22
+02:08.680 --> 02:17.340
+here in data method we can see the editing 
+property both in answer and question.
+
+23
+02:17.340 --> 02:25.430
+So let's copy these here in a modification 
+dot js let's define the data method.
+
+24
+02:27.910 --> 02:31.000
+return an object and paste the editing
+
+25
+02:36.520 --> 02:42.180
+here we cannot put the body and body html 
+in our mixin because they are different
+
+26
+02:53.240 --> 03:02.760
+here in computer property we will find is invalid and 
+endpoint in both answer and question but their
+
+27
+03:02.760 --> 03:05.320
+implementation a bit different.
+
+28
+03:05.320 --> 03:06.790
+So here we don't need to touch them
+
+29
+03:16.700 --> 03:19.110
+next here in methods property
+
+30
+03:19.130 --> 03:26.900
+we have similar functionalities in edit and cancel methods 
+both methods in both component has to modify
+
+31
+03:27.350 --> 03:29.270
+the editing property.
+
+32
+03:29.270 --> 03:32.990
+In my opinion we can define both method in our mixin
+
+33
+03:46.520 --> 03:51.170
+but since the setter and getter code in both places are different
+
+34
+03:55.160 --> 03:59.150
+so here we can encapsulate them in other methods
+
+35
+04:05.020 --> 04:08.800
+let's say set edit cache
+
+36
+04:13.600 --> 04:14.270
+and then here
+
+37
+04:19.190 --> 04:23.900
+let's say restore from cache
+
+38
+04:27.340 --> 04:31.240
+so in each component we need to define both
+
+39
+04:31.360 --> 04:38.730
+edit cache and restore from cache or we can also 
+define both methods here as empty method like this
+
+40
+04:53.270 --> 04:54.900
+letter in the component
+
+41
+04:54.970 --> 05:07.680
+where we include the mixin we need to override these 
+methods or implement their actual functionalities.
+
+42
+05:07.920 --> 05:08.790
+Okay next
+
+43
+05:08.890 --> 05:14.770
+let's also copy this update method into our mixin
+
+44
+05:15.070 --> 05:20.160
+Note that the different in this part is this payload
+
+45
+05:32.170 --> 05:43.380
+so here we can replace this with this dot payload that 
+means in a component we only need to define the payload
+
+46
+05:43.380 --> 05:46.320
+method and specify what data to be sent
+
+47
+05:50.660 --> 05:51.380
+or again
+
+48
+05:51.380 --> 05:57.440
+here we can define the payload method in our mixin 
+as empty method so that we know that we will need to
+
+49
+05:57.540 --> 06:14.440
+override this method in the component but this is not necessary.
+
+50
+06:14.960 --> 06:17.930
+Let's also copy the destroy method into our mixin
+
+51
+06:32.640 --> 06:37.790
+note that the different part in this method is the code in yes button
+
+52
+06:44.550 --> 06:47.760
+so let's replace these with
+
+53
+06:51.170 --> 06:52.270
+this dot delete
+
+54
+06:55.820 --> 07:02.060
+outside the destroy method we can define
+the delete method as empty method.
+
+55
+07:05.510 --> 07:11.510
+Again this is not necessary. But I think it will helps us 
+to know which method that we need to redefine in
+
+56
+07:11.750 --> 07:15.650
+the component where we include our mixin. All right
+
+57
+07:15.770 --> 07:18.620
+now let's include our mixing in the answer dot vue
+
+58
+07:27.070 --> 07:29.410
+firstly let's import the mixin in here
+
+59
+07:47.620 --> 07:58.880
+then here we can add mixins which accepts an array 
+and we can add the modification mixin inside
+
+60
+07:58.880 --> 07:59.020
+it
+
+61
+08:04.250 --> 08:07.910
+then here in data we can remove the editing property
+
+62
+08:11.200 --> 08:13.660
+because we've defined it in our mixin
+
+63
+08:17.710 --> 08:19.770
+now inside this methods property
+
+64
+08:19.810 --> 08:23.080
+let's redefine some methods and remove some.
+
+65
+08:23.110 --> 08:26.040
+Here we have defined the edit in our mixin
+
+66
+08:26.470 --> 08:31.230
+what we need to do is to redefine the set edit cache.
+
+67
+08:31.370 --> 08:34.040
+Here we can simply change the edit method
+
+68
+08:35.650 --> 08:38.140
+to set edit cache
+
+69
+08:41.200 --> 08:53.320
+here we can keep this line and remove this line.
+Let's also change this cancel method to restore from
+
+70
+08:53.330 --> 08:59.110
+cache keep this line and remove this line.
+
+71
+09:02.060 --> 09:02.700
+Next
+
+72
+09:02.720 --> 09:07.250
+here we have defined the update method 
+in our mixin all we have to do here
+
+73
+09:07.890 --> 09:08.850
+Is to cut this code
+
+74
+09:12.000 --> 09:13.190
+remove this update method
+
+75
+09:16.820 --> 09:18.670
+then redefine the payload method.
+
+76
+09:26.280 --> 09:32.340
+Inside this method let's add return 
+statement and paste the previous code.
+
+77
+09:36.280 --> 09:37.250
+Next
+
+78
+09:37.420 --> 09:39.940
+let's cut these axios dot delete
+
+79
+09:42.940 --> 09:44.180
+remove the destroy method
+
+80
+09:49.000 --> 09:50.710
+and redefine the delete method.
+
+81
+09:54.370 --> 09:56.470
+Inside this method just paste the previous code.
+
+82
+10:01.840 --> 10:07.540
+One thing that I missed here is to show 
+the success message after deletion.
+
+83
+10:07.540 --> 10:12.890
+So let me copy from here and then paste here.
+
+84
+10:17.620 --> 10:17.910
+All right
+
+85
+10:18.300 --> 10:19.980
+I think that's all we need.
+
+86
+10:19.990 --> 10:32.370
+Let's give it a safe and let's make sure that 
+everything's still working just fine.
+
+87
+10:32.400 --> 10:39.170
+Let me randomly select a question.
+
+88
+10:39.230 --> 10:46.370
+Now let's open our browser console and 
+make sure we don't have any errors. Okay
+
+89
+10:46.430 --> 10:47.250
+I have no errors.
+
+90
+10:50.560 --> 10:52.270
+Now let's edit any random answer.
+
+91
+10:59.490 --> 11:00.660
+Modify something here
+
+92
+11:03.130 --> 11:05.980
+then let's hit the cancel button to undo the change
+
+93
+11:09.450 --> 11:16.970
+let's hit the edit button again and 
+make sure the content's not change.
+
+94
+11:16.990 --> 11:18.580
+Now let's modify the answer.
+
+95
+11:26.910 --> 11:29.070
+Then hit the update button to save the changes
+
+96
+11:35.620 --> 11:38.890
+let me reload the page to make sure the changes is persistence.
+
+97
+11:43.260 --> 11:45.380
+OK so far so good.
+
+98
+11:45.430 --> 11:47.190
+Last let's remove the answer.
+
+99
+11:54.990 --> 11:56.170
+Something went wrong.
+
+100
+11:56.220 --> 11:57.840
+Let me reopen my browser console
+
+101
+12:01.180 --> 12:02.950
+here I have error data
+
+102
+12:02.950 --> 12:06.380
+is not defined. Let me see
+
+103
+12:10.400 --> 12:12.670
+OK here I have res in argument
+
+104
+12:13.960 --> 12:22.690
+So here I need to call res dot data.
+
+105
+12:22.730 --> 12:25.160
+I'm sure this answer has been removed.
+
+106
+12:25.340 --> 12:26.420
+So let me reload the page.
+
+107
+12:32.090 --> 12:32.780
+Then here
+
+108
+12:32.780 --> 12:34.790
+let me try to remove another answer.
+
+109
+12:38.920 --> 12:42.560
+Hit yes. OK great
+
+110
+12:45.380 --> 12:48.370
+now we can do the same thing to question component.
+
+111
+12:48.550 --> 12:50.330
+Let's switch back over to our editor
+
+112
+12:57.210 --> 12:58.710
+here in question component
+
+113
+13:01.450 --> 13:03.940
+firstly let's import our modification mixin
+
+114
+13:14.210 --> 13:18.110
+then here let's add the mixins property
+
+115
+13:22.010 --> 13:25.070
+and then add the modification mixin inside the array
+
+116
+13:30.030 --> 13:33.330
+then here in data method let's remove the editing property
+
+117
+13:37.590 --> 13:40.060
+we don't need to touch the computed property
+
+118
+13:40.110 --> 13:45.210
+Just keep that next inside the methods property
+
+119
+13:45.230 --> 13:55.510
+we can change the edit to set edit cache. 
+Keep these lines and remove the rest.
+
+120
+13:57.260 --> 14:00.380
+Then here we can replace the cancel method
+
+121
+14:02.300 --> 14:18.810
+to restore from cache. Keep these lines and remove 
+this line. Here inside the update method let's cut the
+
+122
+14:18.810 --> 14:19.470
+payload part
+
+123
+14:23.520 --> 14:24.260
+remove the method
+
+124
+14:27.260 --> 14:30.370
+then redefine or override the payload method
+
+125
+14:34.980 --> 14:35.880
+inside this method
+
+126
+14:36.180 --> 14:39.480
+let's add return statement and paste the payload.
+
+127
+14:43.480 --> 14:44.760
+Last inside
+
+128
+14:44.800 --> 14:45.850
+the destroy method
+
+129
+14:46.420 --> 14:51.030
+let's cut the axios dot delete and set time out.
+
+130
+14:54.920 --> 14:55.990
+Remove the method
+
+131
+14:58.710 --> 15:01.240
+and then redefine the delete method.
+
+132
+15:04.310 --> 15:06.780
+Inside this method just paste the previous code.
+
+133
+15:12.400 --> 15:12.990
+Alright
+
+134
+15:13.100 --> 15:16.190
+let's give it a safe and let's make sure that we have an error.
+
+135
+15:22.560 --> 15:23.340
+Reload the page.
+
+136
+15:27.750 --> 15:32.930
+Let's open our browser console. Great we have no errors.
+
+137
+15:36.040 --> 15:37.540
+Now let's edit the question
+
+138
+15:41.240 --> 15:42.320
+let's make changes here
+
+139
+15:52.140 --> 15:54.510
+and hit the cancel button to undo the change
+
+140
+15:58.580 --> 16:05.660
+let's hit the edit button again and make sure the content is not change okay.
+
+141
+16:05.830 --> 16:07.880
+No let's make changes one more time.
+
+142
+16:15.980 --> 16:27.750
+And then hit the update button to 
+save the changes to our database.
+
+143
+16:27.820 --> 16:28.610
+Okay great.
+
+144
+16:31.060 --> 16:38.680
+We've successfully DRY our script by utilizing 
+view mixins and now our code look more clean.
+
+145
+16:38.700 --> 16:42.900
+All right let's end this lesson and save 
+all files changes to our git repo.

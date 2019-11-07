@@ -1,0 +1,216 @@
+WEBVTT
+
+0
+00:03.030 --> 00:08.540
+In production there's no .env file present 
+because this file is not committed to
+
+1
+00:08.540 --> 00:09.270
+our source code
+
+2
+00:09.280 --> 00:18.070
+right? Instead here in heroku cli we can manage our 
+config variables by utilizing heroku config command.
+
+3
+00:20.910 --> 00:29.380
+The Heroku config:get used to show the value 
+of certain config variable, and to set the config
+
+4
+00:29.380 --> 00:39.480
+variable we can use heroku config:set key equals value.
+
+5
+00:39.480 --> 00:45.090
+You can also set up some config variables in 
+one line by separating the config var by space.
+
+6
+00:48.230 --> 00:52.580
+All right, now let's set up the config 
+variables for our database credential
+
+7
+00:55.810 --> 01:06.130
+heroku config:set db underscore username
+equals I'll copy the user name from here.
+
+8
+01:13.870 --> 01:20.440
+I'll add backslash so that I can write the code in 
+new line and to make the code readable. But this
+
+9
+01:20.440 --> 01:26.820
+could be work only on UNIX machine. 
+Then db underscore password
+
+10
+01:29.980 --> 01:35.440
+equals I'll copy this long string
+
+11
+01:45.150 --> 01:45.870
+and paste here
+
+12
+01:51.470 --> 01:56.700
+then db underscore host equals
+
+13
+02:01.170 --> 02:02.100
+I'll copy the host
+
+14
+02:10.740 --> 02:11.540
+and paste here
+
+15
+02:17.130 --> 02:23.810
+then db underscore port equals 5 4 3 2
+
+16
+02:27.030 --> 02:34.310
+and last db underscore database equals I'll copy the database
+
+17
+02:39.800 --> 02:43.490
+and paste here. Now hit return
+
+18
+02:49.980 --> 02:56.040
+everything seems good. As you can see here 
+the config variables that we have so far.
+
+19
+02:58.940 --> 03:06.050
+Next we also need to add additional config variables. If you're using postgresql like me you need to change the
+
+20
+03:06.170 --> 03:14.130
+database connection to pgsql because remember 
+Laravel by default using mysql database.
+
+21
+03:17.400 --> 03:28.350
+So here let's add new config variable heroku 
+config:set db underscore connection equals
+
+22
+03:28.860 --> 03:29.730
+pgsql
+
+23
+03:38.090 --> 03:38.600
+Also
+
+24
+03:38.600 --> 03:45.590
+we need to set up the config variable for our application 
+key. Heroku config:set app underscore key
+
+25
+03:45.590 --> 03:52.550
+equals I'll switch to my editor then copy
+
+26
+03:59.260 --> 04:01.040
+and then here just paste the string.
+
+27
+04:07.100 --> 04:12.730
+To show our current config variables we can write heroku config
+
+28
+04:17.930 --> 04:23.880
+as you see here's the config variables that we have so far.
+
+29
+04:24.100 --> 04:29.550
+OK now we can actually migrate our database 
+using artisan command. Here on production
+
+30
+04:29.550 --> 04:37.500
+we can write heroku run and then followed 
+by artisan command php artisan
+
+31
+04:37.510 --> 04:38.100
+migrate
+
+32
+04:45.750 --> 04:52.400
+here we will get confirmation message. Answer yes and hit return
+
+33
+04:55.080 --> 04:56.240
+whoops I get error
+
+34
+04:58.980 --> 05:04.160
+here I made a mistake in database host. As you can see here
+
+35
+05:04.170 --> 05:06.030
+I included this port number.
+
+36
+05:12.460 --> 05:14.800
+So let me see the database URL again
+
+37
+05:24.220 --> 05:31.580
+and I'll copy database host from here to here before colon.
+
+38
+05:31.860 --> 05:33.320
+The port number should be excluded.
+
+39
+05:34.780 --> 05:52.620
+I'll copy then I'll run heroku config:set 
+db underscore host equals paste.
+
+40
+05:52.810 --> 05:59.880
+Now I'll rerun the migrate command by 
+saying heroku run php artisan migrate
+
+41
+06:04.820 --> 06:07.770
+answer yes and hit return
+
+42
+06:14.020 --> 06:14.530
+okay
+
+43
+06:14.650 --> 06:19.820
+everything seems good. Now let's go 
+back to our browser and reload page
+
+44
+06:25.240 --> 06:25.560
+here
+
+45
+06:25.570 --> 06:34.270
+our page shows up but unfortunately we'll get 
+a broken page. If we open our browser console.
+
+46
+06:34.320 --> 06:40.070
+Here we have other errors this requests 
+have been blocked mixed content
+
+47
+06:40.190 --> 06:43.280
+blah blah blah insecure script and insecure style sheet.
+
+48
+06:44.800 --> 06:47.260
+Okay we'll fix this issue in the next lesson.

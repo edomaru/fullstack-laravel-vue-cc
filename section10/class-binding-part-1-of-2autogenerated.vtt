@@ -1,0 +1,220 @@
+WEBVTT
+
+0
+00:01.610 --> 00:08.520
+In the previous lesson we have learned how to display 
+or hide elements conditionally by using v-if 
+
+1
+00:08.520 --> 00:11.370
+v-else or v-show directive.
+
+2
+00:11.370 --> 00:17.460
+Now another common thing that we might encounter in 
+modern web development is adding or removing classes
+
+3
+00:17.580 --> 00:26.290
+in certain elements. If you might have used jQuery then 
+you can do that by making use the add class method
+
+4
+00:26.530 --> 00:32.800
+to add classes to certain elements or remove class 
+method to remove classes from certain elements.
+
+5
+00:32.800 --> 00:33.430
+In this lesson
+
+6
+00:33.430 --> 00:39.760
+we're going to learn how to do this stuff in vue js.
+So in vue js we can make use of a technique
+
+7
+00:39.790 --> 00:41.820
+called class binding.
+
+8
+00:41.830 --> 00:48.610
+So class binding is a mechanism for dynamically applying 
+one or several classes to a particular element.
+
+9
+00:49.830 --> 00:59.120
+We can use the v-bind colon class directive followed by 
+argument. Or we can simply write colon class equal
+
+10
+00:59.280 --> 01:01.930
+argument. The argument itself
+
+11
+01:02.080 --> 01:09.820
+can be an object, array or string. If you want to apply 
+it conditionally more than one class to element
+
+12
+01:10.180 --> 01:15.200
+then you can pass an object as argument. 
+On the left side is a class name.
+
+13
+01:15.670 --> 01:17.930
+While the right side is a boolean value.
+
+14
+01:18.640 --> 01:23.470
+So a class will be applied when the value on the right side is true.
+
+15
+01:23.500 --> 01:31.060
+On the contrary if the value is false then the 
+class will not be applied to the element. Now
+
+16
+01:31.070 --> 01:40.010
+for example I have a div and I blind the class tribute 
+to my classes. The my classes here for example
+
+17
+01:40.130 --> 01:42.470
+can be defined in the data property.
+
+18
+01:42.500 --> 01:44.250
+Here we have alert with condition
+
+19
+01:44.250 --> 01:46.430
+true then alert info class
+
+20
+01:46.430 --> 01:51.000
+also true and alert dark is false.
+
+21
+01:51.010 --> 01:58.720
+Now when the page is rendered this div will have alert and 
+alert-info classes because besides alert dark everything
+
+22
+01:58.720 --> 02:01.460
+is true. Next
+
+23
+02:01.470 --> 02:04.340
+let's see how to pass in an array as an argument.
+
+24
+02:06.140 --> 02:09.930
+So in array we can define one or more classes.
+
+25
+02:10.220 --> 02:17.230
+The difference against objects is that all classes 
+that define will be applied to the element.
+
+26
+02:17.390 --> 02:20.320
+The following example is almost the same as before.
+
+27
+02:20.330 --> 02:27.430
+The difference is my classes now contains array as 
+you can see here we just define the class name as
+
+28
+02:27.450 --> 02:30.090
+array elements separated by a comma.
+
+29
+02:30.110 --> 02:37.460
+So as my classes that defined are alert and alert dark 
+then when the page is rendered the div element will
+
+30
+02:37.460 --> 02:39.330
+be looked like this div class
+
+31
+02:39.620 --> 02:41.610
+alert alert-dark.
+
+32
+02:41.670 --> 02:44.890
+Now what if we want to pass an array as class argument
+
+33
+02:45.110 --> 02:48.380
+but we also want to conditionally apply a certain class?
+
+34
+02:48.380 --> 02:57.310
+We can do that like this if the condition is met we 
+specify a class or if not met then we define an empty
+
+35
+02:57.310 --> 03:00.130
+string or another class.
+
+36
+03:00.210 --> 03:06.870
+If we take a look at this example here in this 
+div the class attribute bound to my classes.
+
+37
+03:06.880 --> 03:13.680
+Then here if the condition was false then 
+the class that will be return is text-dark.
+
+38
+03:14.170 --> 03:21.260
+Otherwise if the condition was true then 
+the class that will be returned is text white.
+
+39
+03:21.260 --> 03:26.390
+So when the page is rendered this 
+div element will be has text dark
+
+40
+03:26.460 --> 03:33.460
+if we assume the condition is false or if the condition is true then this div element will be has text
+
+41
+03:33.490 --> 03:36.010
+white class. Now
+
+42
+03:36.100 --> 03:40.820
+if you want to bind only a single class 
+to element then you can pass a string.
+
+43
+03:41.020 --> 03:46.260
+Here we bind the class attribute to my class in my class
+
+44
+03:46.260 --> 03:54.500
+we can define a class name text center like so. When 
+the page is rendered the div element will be has
+
+45
+03:55.170 --> 03:56.540
+text center class.
+
+46
+03:57.030 --> 03:58.970
+OK that's about class binding
+
+47
+03:59.120 --> 04:03.950
+We can dynamically apply one or several 
+classes to a particular element.
+
+48
+04:05.880 --> 04:07.260
+Now let's see in action.

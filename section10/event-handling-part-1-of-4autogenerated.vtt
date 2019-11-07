@@ -1,0 +1,189 @@
+WEBVTT
+
+0
+00:01.790 --> 00:05.640
+In this lesson we'll learn about the event handling in vue js
+
+1
+00:05.640 --> 00:12.490
+Actually we have used the event handling in the previous 
+lesson but this time we'll discuss it in more depth.
+
+2
+00:13.140 --> 00:17.460
+So event is something that happens inside the HTML element.
+
+3
+00:17.460 --> 00:21.000
+It can be triggered by the browser or by the user.
+
+4
+00:21.000 --> 00:24.810
+For example the page has finished loaded a button clicked
+
+5
+00:26.290 --> 00:33.410
+An input changes because the user type something 
+in it mouse move or a form submitted.
+
+6
+00:34.730 --> 00:39.950
+When an event occurs we might want to 
+do something by excluding javascript code.
+
+7
+00:39.950 --> 00:42.600
+Actually here there are two things.
+
+8
+00:42.620 --> 00:45.370
+First listen listen to the event.
+
+9
+00:45.930 --> 00:51.130
+And second do something or handling the event.
+
+10
+00:51.220 --> 00:59.820
+So we do something to listen the event. In vue js we 
+can handle events using the v-on directive and define
+
+11
+00:59.860 --> 01:03.230
+javascript code to be executed when the event is triggered.
+
+12
+01:04.110 --> 01:05.880
+v-on requires an argument
+
+13
+01:06.010 --> 01:09.380
+that is the name of the event that we want to listen to.
+
+14
+01:10.260 --> 01:18.900
+For example click or other available events such 
+as double click mouse move mouse out etc.
+
+15
+01:19.310 --> 01:28.330
+Then we can define javascript expression in it. Vue js also 
+provides a shorthand syntax for the 'v-on:' which is '@'
+
+16
+01:28.330 --> 01:36.240
+symbol. Now let's open the event handling one dot html.
+
+17
+01:36.340 --> 01:41.860
+And here we have three js frameworks listed 
+and each item has a button for voting.
+
+18
+01:44.740 --> 01:45.100
+Later
+
+19
+01:45.100 --> 01:51.520
+we will make use the v-on click on each button so 
+that when we click it the number of votes for each
+
+20
+01:51.520 --> 01:54.480
+framework will be increasing.
+
+21
+01:54.480 --> 01:56.420
+Now let's switch over to our editor.
+
+22
+01:57.880 --> 02:01.290
+Then open up the event handling one dot html file. In a
+
+23
+02:03.860 --> 02:04.310
+button
+
+24
+02:04.360 --> 02:05.910
+we can add an event handler
+
+25
+02:06.130 --> 02:07.920
+that is when we click it
+
+26
+02:07.930 --> 02:12.500
+the number of vote will be increasing v on click
+
+27
+02:16.920 --> 02:17.770
+framework
+
+28
+02:23.380 --> 02:24.920
+votes plus plus.
+
+29
+02:30.790 --> 02:32.720
+Now let's switch back over to our browser
+
+30
+02:35.870 --> 02:40.550
+and now if we click on each button the 
+number of votes will be increasing
+
+31
+02:50.070 --> 02:54.540
+the javascript expression that we defined 
+in the event can be a complex logic.
+
+32
+02:54.580 --> 02:58.150
+Maybe it consists of several lines of code.
+
+33
+02:58.190 --> 03:01.870
+Therefore in this v-on directive we can also call a method name
+
+34
+03:01.970 --> 03:04.830
+that we want to call. In this v-on click
+
+35
+03:04.850 --> 03:05.890
+let's change to up vote and pass
+
+36
+03:12.540 --> 03:18.720
+the framework in.
+
+37
+03:18.790 --> 03:21.040
+We could also use the v-on shorthand syntax
+
+38
+03:23.910 --> 03:31.260
+just @ symbol to make it much simpler.
+
+39
+03:31.480 --> 03:34.450
+Then in vue option we can define methods property
+
+40
+03:39.690 --> 03:41.230
+then create the up vote method
+
+41
+03:49.820 --> 03:50.810
+inside the method
+
+42
+03:50.810 --> 03:57.330
+we do almost the same thing as before 
+framework dot vote plus plus
+
+43
+04:00.790 --> 04:07.530
+if we go back to our browser and click 
+on each button it looks no difference.

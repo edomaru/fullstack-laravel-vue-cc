@@ -1,0 +1,345 @@
+WEBVTT
+
+0
+00:02.480 --> 00:08.030
+All right the last thing that we need to do is to authorize 
+this accept answer button because as you
+
+1
+00:08.030 --> 00:13.110
+remember only the user that created the question 
+can accept the particular answer
+
+2
+00:13.130 --> 00:14.850
+as best answer right?
+
+3
+00:14.930 --> 00:28.190
+So let's go back to our editor and re-open answer policy.
+
+4
+00:28.650 --> 00:30.180
+Let's duplicate the existing method
+
+5
+00:35.740 --> 00:39.910
+and then change this to let's say accept
+
+6
+00:44.110 --> 00:49.670
+here we need to match the current user ID with the user ID that create the question.
+
+7
+00:49.690 --> 00:57.570
+So here we can change the right side to answer question
+
+8
+00:58.160 --> 01:00.680
+user id
+
+9
+01:00.930 --> 01:02.690
+Now let's go back to accept
+
+10
+01:02.700 --> 01:03.570
+Answer controller
+
+11
+01:06.300 --> 01:22.660
+and here we can authorize this action by saying this authorize accept answer.
+
+12
+01:22.700 --> 01:26.300
+Finally let's go back to underscore index.blade.php
+
+13
+01:31.070 --> 01:34.680
+and here we can check if the current user can accept the answer
+
+14
+01:54.630 --> 01:55.600
+save all changes
+
+15
+02:00.110 --> 02:00.770
+here
+
+16
+02:00.820 --> 02:01.780
+Let's reload the page
+
+17
+02:08.070 --> 02:08.400
+here
+
+18
+02:08.470 --> 02:10.690
+the accept button still appear
+
+19
+02:11.250 --> 02:13.110
+Now let's go back to all questions
+
+20
+02:19.060 --> 02:21.510
+and find the question that owned by other user
+
+21
+02:30.970 --> 02:37.110
+as you can see the accept control is hidden. 
+Actually here we need to show the green check
+
+22
+02:37.150 --> 02:41.530
+icon only to the answer that has been accepted as best answer
+
+23
+02:41.780 --> 02:47.840
+so that anyone that see this question can know which 
+answer that has been accepted as best answer.
+
+24
+02:48.010 --> 03:01.480
+So let me go back to previous question.
+
+25
+03:01.590 --> 03:04.130
+So this question is created by current user
+
+26
+03:04.260 --> 03:06.820
+and here an answer has been accepted as best
+
+27
+03:06.840 --> 03:07.780
+answer
+
+28
+03:07.860 --> 03:10.300
+So as I said we need to show the green check
+
+29
+03:10.350 --> 03:15.360
+icon to mark this answer as best answer 
+to anyone that see this question.
+
+30
+03:15.990 --> 03:18.240
+So to do that let's go back to our editor
+
+31
+03:21.450 --> 03:23.850
+and here we can
+
+32
+03:23.850 --> 03:32.440
+add `else` which means the user is not the 
+authenticated to accept this answer.
+
+33
+03:32.440 --> 03:33.070
+Inside this
+
+34
+03:33.070 --> 03:38.750
+we can add if statement to check if the answer is accepted as
+
+35
+03:38.760 --> 03:40.190
+best answer or not.
+
+36
+03:52.190 --> 03:52.790
+If yes
+
+37
+03:52.960 --> 03:54.360
+then we can show the green check
+
+38
+03:54.350 --> 04:00.970
+icon. Here we can simply copy this and paste here.
+
+39
+04:03.930 --> 04:08.950
+And then let's change the title
+
+40
+04:09.020 --> 04:09.800
+let's say
+
+41
+04:13.510 --> 04:15.470
+the question owner
+
+42
+04:17.960 --> 04:20.300
+accepted accepted this
+
+43
+04:20.300 --> 04:21.010
+Answer as best
+
+44
+04:21.100 --> 04:22.120
+answer
+
+45
+04:23.450 --> 04:27.710
+And then we don't need this on click
+
+46
+04:28.230 --> 04:30.200
+so let's remove it.
+
+47
+04:36.040 --> 04:36.680
+OK
+
+48
+04:36.950 --> 04:41.720
+now we can go back to answer model and define this accessor
+
+49
+04:51.460 --> 04:52.900
+here let's define new accessor
+
+50
+04:56.080 --> 05:00.930
+get is best attribute.
+
+51
+05:04.930 --> 05:10.560
+Here the logic for this accessor is almost 
+the same with this get status attribute
+
+52
+05:10.560 --> 05:11.850
+So let me cut this
+
+53
+05:19.990 --> 05:24.160
+and change to return
+
+54
+05:24.160 --> 05:29.390
+this is best
+
+55
+05:29.500 --> 05:32.950
+And here I can define another method
+
+56
+05:35.210 --> 05:37.610
+Is best
+
+57
+05:39.710 --> 05:43.510
+and simply say return and paste the previous code.
+
+58
+05:45.380 --> 05:50.180
+Now here in this accessor we can simply say return
+
+59
+05:50.300 --> 05:56.070
+this is best like so.
+
+60
+05:56.120 --> 05:56.660
+All right
+
+61
+05:56.670 --> 06:00.370
+let's save all changes.
+
+62
+06:00.430 --> 06:02.640
+Sorry I have double `return` here.
+
+63
+06:05.420 --> 06:06.570
+Save.
+
+64
+06:07.200 --> 06:14.880
+Now let's make sure everything is working as it was.
+
+65
+06:15.110 --> 06:16.360
+Whoops I got error.
+
+66
+06:17.500 --> 06:22.260
+end for each
+
+67
+06:22.380 --> 06:23.060
+Let me see
+
+68
+06:25.870 --> 06:26.720
+OK here
+
+69
+06:27.860 --> 06:33.580
+It should be `@endif` save reload again.
+
+70
+06:39.260 --> 06:43.220
+OK it's working as it was. Now let me copy
+
+71
+06:43.230 --> 06:48.510
+this url and then I'll open
+
+72
+06:51.220 --> 06:52.100
+Incognito window
+
+73
+06:57.600 --> 06:59.970
+and paste the url here.
+
+74
+07:08.470 --> 07:13.900
+As you can see the green check icon appears 
+to indicate that this answer is accepted.
+
+75
+07:13.930 --> 07:15.560
+Now let me see another question.
+
+76
+07:30.430 --> 07:32.130
+And here we don't see the green check
+
+77
+07:32.130 --> 07:35.200
+icon because none of this answer has been accepted.
+
+78
+07:35.190 --> 07:35.900
+as best answer.
+
+79
+07:42.470 --> 07:42.940
+All right
+
+80
+07:42.950 --> 07:48.440
+We have successfully added a new feature to our application that allows the creator or owner of the
+
+81
+07:48.440 --> 07:50.880
+question to accept the particular answer
+
+82
+07:50.920 --> 07:54.750
+as best answer. Now you can save your changes to your git repo
+
+83
+07:54.890 --> 07:57.680
+take a quick break and then go to the next lesson.

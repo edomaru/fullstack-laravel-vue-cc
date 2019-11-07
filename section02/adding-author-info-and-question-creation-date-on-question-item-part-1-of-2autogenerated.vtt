@@ -1,0 +1,422 @@
+WEBVTT
+
+0
+00:01.230 --> 00:02.990
+Hello and welcome back.
+
+1
+00:03.060 --> 00:08.940
+now that we have index page listing all questions,
+let's go ahead and add user information as well as 
+
+2
+00:08.940 --> 00:12.530
+question creation date in every single question.
+
+3
+00:12.840 --> 00:19.050
+So in this lesson you'll learn how to use eloquent accessor, how to format the timestamp, and how to use
+
+4
+00:19.130 --> 00:23.190
+eager loading to alleviates N + 1 query problem.
+
+5
+00:23.190 --> 00:25.190
+All right before we moving on.
+
+6
+00:25.260 --> 00:27.400
+let's go ahead on open our terminal
+
+7
+00:32.240 --> 00:32.680
+and here
+
+8
+00:32.710 --> 00:34.660
+let's create a new branch
+
+9
+00:34.960 --> 00:36.890
+git checkout -b
+
+10
+00:37.270 --> 00:38.560
+and then the branch name
+
+11
+00:38.700 --> 00:43.350
+lesson-5
+
+12
+00:43.390 --> 00:51.030
+now, let's head over to our editor. Open question index.blade.php
+
+13
+00:54.190 --> 00:56.760
+and jump to `media-body`
+
+14
+00:59.940 --> 01:04.010
+and here let's put the question title into an anchor tag
+
+15
+01:08.550 --> 01:09.170
+like so
+
+16
+01:21.090 --> 01:27.060
+in `href` attribute let's change this to
+
+17
+01:29.570 --> 01:31.330
+question
+
+18
+01:31.390 --> 01:34.960
+url
+
+19
+01:35.200 --> 01:42.090
+We haven't defined `url` attribute in our questions table but letter we'll be defined that only in
+
+20
+01:42.130 --> 01:44.160
+our question model.
+
+21
+01:44.170 --> 01:50.550
+So in this case we want do like this route
+
+22
+01:50.620 --> 01:55.290
+questions.show
+
+23
+01:55.340 --> 02:08.770
+question id. But we'll make simplify our view by encapsulating it in the Question model
+
+24
+02:09.900 --> 02:14.480
+So question url
+
+25
+02:16.960 --> 02:17.500
+Next
+
+26
+02:17.500 --> 02:17.860
+let's add a paragraph
+
+27
+02:24.410 --> 02:32.060
+and we give a class `lead` a class that provided by bootstrap to make the text a little bigger
+
+28
+02:38.430 --> 02:40.530
+Then inside this we'll say asked
+
+29
+02:44.550 --> 02:48.000
+by and then an anchor tag
+
+30
+02:54.750 --> 02:57.940
+the href will be
+
+31
+02:58.780 --> 03:02.480
+question user url
+
+32
+03:06.610 --> 03:11.740
+and then the text will be question
+
+33
+03:12.480 --> 03:14.360
+user name
+
+34
+03:18.860 --> 03:25.520
+so that a little information of the user or author that created the question that we add for now
+
+35
+03:25.520 --> 03:28.010
+Next let's edit a creation date
+
+36
+03:31.010 --> 03:31.720
+here
+
+37
+03:31.750 --> 03:35.920
+I'll put it in small tag
+
+38
+03:39.560 --> 03:50.650
+I'll give it a class `text-muted` to make the text a little gray and the content will be question
+
+39
+03:51.270 --> 03:56.160
+and then let's say created_date
+
+40
+04:01.300 --> 04:06.300
+so here we have some attributes which doesn't exist in our models
+
+41
+04:06.880 --> 04:18.240
+`url` in question model. Then `url` in user model and created date in the question
+
+42
+04:18.240 --> 04:18.950
+model.
+
+43
+04:19.520 --> 04:24.130
+OK, let's start define the `url` attribute first
+
+44
+04:24.210 --> 04:25.560
+Let's open the question model
+
+45
+04:30.110 --> 04:34.370
+and inside this model let's define the url attribute.
+
+46
+04:34.860 --> 04:39.950
+Actually here we will not define a real attribute,
+but instead we will define an accessor
+
+47
+04:40.250 --> 04:46.760
+So basically accessors allow us to format Eloquent attribute values when we retrieve them on model
+
+48
+04:46.760 --> 04:47.870
+instances.
+
+49
+05:00.510 --> 05:05.510
+So to define accessor we start with `get`,
+and then the attribute name
+
+50
+05:05.520 --> 05:11.710
+in this case `Url` and last, accessor should be end with `Attribute`
+
+51
+05:19.180 --> 05:21.120
+and inside this, we simply return
+
+52
+05:21.160 --> 05:24.070
+url for this question by simply call
+
+53
+05:26.900 --> 05:38.760
+return route "questions.show" and then pass the question id. Since we're inside the question model
+
+54
+05:38.760 --> 05:45.810
+here we simply call this id
+
+55
+05:45.950 --> 05:51.770
+So by doing this, as if we have `url` attribute in this Question model. And it will return
+
+56
+05:51.790 --> 05:53.960
+url for the current question
+
+57
+05:54.080 --> 05:56.090
+Makes sense right?
+
+58
+05:56.090 --> 05:59.360
+OK, let's also define another accessor for `created_date`
+
+59
+06:03.210 --> 06:08.510
+so get created date
+
+60
+06:08.590 --> 06:20.370
+attribute
+
+61
+06:20.660 --> 06:27.850
+So here we define the attribute name in camel case,
+but when we call it as we did in our view
+
+62
+06:32.460 --> 06:34.740
+we only need to call it in snake case.
+
+63
+06:40.740 --> 06:41.350
+Actually
+
+64
+06:41.370 --> 06:50.510
+here we can define as `CreatedAt` like the existing attribute in our model
+
+65
+06:50.820 --> 06:57.810
+But, by doing this we will get formatted date whenever we call the `created_at`. Here I want to keep that with
+
+66
+06:57.810 --> 06:59.310
+original value.
+
+67
+06:59.340 --> 07:00.990
+That's why I call it with other name
+
+68
+07:04.050 --> 07:05.250
+created_date in this case
+
+69
+07:08.170 --> 07:19.470
+OK inside this, we simply return this created_at. And since the `created_at` and `updated_at` attribute treated
+
+70
+07:19.470 --> 07:21.670
+by eloquent as carbon object
+
+71
+07:21.690 --> 07:24.740
+so here we can format it with any date format
+
+72
+07:24.990 --> 07:31.260
+But here I want to format it like two days ago a month ago or something like that.
+
+73
+07:31.260 --> 07:41.220
+So here I'll call `diffForHumans` method
+
+74
+07:41.660 --> 07:43.530
+Let me actually show it to you.
+
+75
+07:43.830 --> 07:45.020
+I'll save all changes
+
+76
+07:48.520 --> 07:55.070
+and then, I'll open tinker: php artisan tinker
+
+77
+07:59.790 --> 08:00.740
+And here
+
+78
+08:01.010 --> 08:03.290
+I'll get the first question
+
+79
+08:03.450 --> 08:05.560
+q equals
+
+80
+08:06.120 --> 08:19.340
+App Question first. OK let me show the created_at q created_at
+
+81
+08:20.200 --> 08:22.770
+as you can see it's a carbon instance
+
+82
+08:23.020 --> 08:29.990
+now I'll format it using diffForHumans q created_at
+
+83
+08:30.850 --> 08:34.830
+diffForHumans
+
+84
+08:35.460 --> 08:36.780
+OK
+
+85
+08:37.090 --> 08:40.130
+And how it presented in human readable date.
+
+86
+08:40.150 --> 08:42.700
+You can also format it using format like so
+
+87
+08:46.520 --> 08:56.100
+format and the format let's say d m y.
+
+88
+08:56.690 --> 09:01.560
+Now you see the date is presented in day month and year format.
+
+89
+09:01.610 --> 09:03.740
+I hope that makes sense.
+
+90
+09:03.740 --> 09:09.870
+Let me exit the tinker and back to my editor
+
+91
+09:10.500 --> 09:11.160
+Okay
+
+92
+09:11.210 --> 09:14.840
+Now let's also define `url` accessor in the `User` model
+
+93
+09:17.590 --> 09:19.610
+actually let's simply copy
+
+94
+09:19.610 --> 09:24.830
+this accessor. Open the user model
+
+95
+09:28.480 --> 09:33.270
+and then paste it here.
+
+96
+09:33.320 --> 09:35.760
+Now, since we haven't any routes for user
+
+97
+09:35.870 --> 09:38.090
+so for now let's comment this line
+
+98
+09:42.540 --> 09:46.130
+and return a hash like this.
+
+99
+09:46.610 --> 09:54.820
+OK let's save all changes and see how it look like. Reload the page
+
+100
+09:59.850 --> 10:09.610
+OK here we have author of the question 
+and then the date in human readable format.
+
+101
+10:09.810 --> 10:11.370
+And if you try to click the title
+
+102
+10:14.340 --> 10:24.700
+here we see that the URL was changed, but we will got blank page. This because so far we only modified `index`
+
+103
+10:24.700 --> 10:27.820
+method, and other methods are still empty.

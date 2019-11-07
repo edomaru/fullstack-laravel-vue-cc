@@ -1,0 +1,109 @@
+WEBVTT
+
+0
+00:01.940 --> 00:09.200
+We've pushed our code to Heroku but we get error message when we open our app in our browser. This because
+
+1
+00:09.380 --> 00:11.600
+we still have a couple of things to do.
+
+2
+00:11.630 --> 00:17.870
+The first one we need to create a database for our production 
+app. Heroku provides different  cloud databases
+
+3
+00:18.080 --> 00:20.380
+such as posgre and mysql via
+
+4
+00:20.450 --> 00:29.390
+add-on. To create mysql database we need 
+cleardb  mysql addon. This addon is free for
+
+5
+00:29.390 --> 00:35.950
+limited 5 megabyte database size and 10 database 
+connections and we also need to supply our credit card
+
+6
+00:36.110 --> 00:45.130
+even if we choose free plan. If you never mind then 
+you can install that addon by running this command
+
+7
+00:45.890 --> 00:56.140
+heroku addon colon create cleardb colon ignite. 
+Or an alternative way is to use postgre database
+
+8
+00:56.290 --> 00:58.880
+via heroku-postgresql addon.
+
+9
+00:58.930 --> 01:06.580
+This addon is also free and we don't need to supply 
+our credit card. To do that we can say heroku addon
+
+10
+01:06.580 --> 01:10.690
+colon create heroku dash postgresql
+
+11
+01:14.050 --> 01:17.680
+colon hobby dash dev.
+
+12
+01:17.730 --> 01:24.690
+So basically the left side is the adon's name and 
+the right side is kind of a plan that we'll be using
+
+13
+01:25.860 --> 01:30.870
+in this case I'll be making use this heroku-postgresql:hobby-dev.
+
+14
+01:37.300 --> 01:44.360
+Alright now we have database created in the cloud.
+The next thing that we need to do is to configure the
+
+15
+01:44.360 --> 01:52.740
+credentials of our newly created database in our production app. Please note in the output here that
+
+16
+01:52.740 --> 02:05.350
+Heroku created config variables called database URL. To
+see its value we can call heroku config colon get database
+
+17
+02:05.800 --> 02:06.340
+URL.
+
+18
+02:10.650 --> 02:18.570
+Here we can see the full URL of our database. Now 
+in Laravel application instead of database URL
+
+19
+02:18.570 --> 02:30.680
+we need config variables such as db host, db port, db database, db username and db password. So how
+
+20
+02:30.680 --> 02:38.300
+can we set them from this URL? Well we can 
+extract the values from this database URL by
+
+21
+02:38.310 --> 02:39.240
+following this form
+
+22
+02:43.570 --> 02:51.510
+if you're using mysql database the URL's form will 
+be similar like this. A<ll right let's set up these
+
+23
+02:51.520 --> 02:53.850
+values into our new config variables.

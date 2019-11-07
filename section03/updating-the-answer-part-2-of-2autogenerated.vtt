@@ -1,0 +1,207 @@
+WEBVTT
+
+0
+00:01.750 --> 00:05.960
+And the last thing that we need to do 
+is create our answers dot edit view.
+
+1
+00:05.960 --> 00:11.320
+So let's open _create.blade.php
+
+2
+00:14.950 --> 00:16.700
+here we have only one input
+
+3
+00:16.900 --> 00:20.850
+and I think we won't need to add other input in the future.
+
+4
+00:20.890 --> 00:26.830
+So here we don't need to split the form into separate file 
+as we did before and we simply save this
+
+5
+00:26.830 --> 00:35.760
+file as new file and call it edit.blade.php
+
+6
+00:39.310 --> 00:39.660
+again
+
+7
+00:39.670 --> 00:45.430
+don't confuse with this file naming this as my current style preference and it will not affect to our
+
+8
+00:45.430 --> 00:47.610
+laravel  application to work
+
+9
+00:47.620 --> 00:48.080
+All right
+
+10
+00:48.080 --> 00:52.920
+here let's replace the existing heading to Heading 1
+
+11
+00:58.290 --> 01:01.260
+and the text is going to be editing
+
+12
+01:01.590 --> 01:05.230
+answer for question
+
+13
+01:10.520 --> 01:12.270
+question title.
+
+14
+01:19.390 --> 01:25.210
+And here the form action will be questions dot answers dot
+
+15
+01:25.690 --> 01:32.400
+update. And pass in array contains question id and answer id
+
+16
+01:37.820 --> 01:44.300
+and don't forget here we need to define method field 
+to tell laravel what method we will be used
+
+17
+01:44.390 --> 01:46.130
+to perform this action.
+
+18
+01:46.140 --> 01:54.610
+Here you can utilize blade directive method and the method will be `put` on a `patch`. Here
+
+19
+01:54.650 --> 01:57.300
+since we only have one attributes we updated
+
+20
+01:57.430 --> 01:59.590
+I think `patch` is better.
+
+21
+01:59.590 --> 02:03.250
+So if you have multiple attributes to be updated it is better to use
+
+22
+02:03.250 --> 02:04.150
+`put`
+
+23
+02:04.390 --> 02:05.760
+But if you have only one
+
+24
+02:05.830 --> 02:07.430
+The `patch` is perfect choice.
+
+25
+02:16.950 --> 02:32.190
+Let's show the old answer by calling old body and then 
+pass in the answer body in the second argument.
+
+26
+02:37.260 --> 02:43.560
+Here we also need to change the bottom's text to update.
+
+27
+02:43.570 --> 02:44.100
+All right
+
+28
+02:44.110 --> 02:52.750
+save all changes.
+
+29
+02:53.980 --> 02:56.710
+Ups this is not what I expected.
+
+30
+02:56.710 --> 02:59.500
+So let me see.
+
+31
+02:59.600 --> 03:10.610
+And yeah we need to extend from our layout. So let me open questions edit.blade.php and here
+
+32
+03:10.660 --> 03:12.160
+let's copy these lines
+
+33
+03:15.890 --> 03:18.100
+and paste here.
+
+34
+03:18.100 --> 03:22.560
+Select from here all the way down. Cut
+
+35
+03:25.310 --> 03:30.870
+close the container and end section
+
+36
+03:34.930 --> 03:36.880
+and then paste inside here
+
+37
+03:45.310 --> 03:46.240
+save
+
+38
+03:47.620 --> 03:48.210
+reload again.
+
+39
+03:52.330 --> 03:59.750
+Alright here our answer edit form and here the existing answer fill the text area. Let's change
+
+40
+03:59.750 --> 04:00.410
+something here
+
+41
+04:03.290 --> 04:04.450
+and hit update button
+
+42
+04:10.200 --> 04:12.400
+here we have success message
+
+43
+04:12.530 --> 04:13.950
+"Your answer has been updated".
+
+44
+04:17.720 --> 04:20.130
+And here it has been changed.
+
+45
+04:20.630 --> 04:21.550
+Okay great.
+
+46
+04:21.560 --> 04:28.140
+So no we almost implement a full set of crud functionality 
+for answer. One that we haven't implemented
+
+47
+04:28.140 --> 04:32.220
+yet is the delete answer and we'll do that in the next lesson.
+
+48
+04:32.220 --> 04:32.750
+All right
+
+49
+04:32.770 --> 04:36.900
+let's save all changes into our git repo 
+and I'll see you in the next lesson.

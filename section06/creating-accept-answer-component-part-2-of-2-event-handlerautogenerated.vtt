@@ -1,0 +1,310 @@
+WEBVTT
+
+0
+00:03.990 --> 00:07.650
+Now let's make this button functional. Let's switch over
+
+1
+00:07.690 --> 00:13.530
+to our editor. And here in accept 
+component we can go to template
+
+2
+00:16.900 --> 00:23.570
+here we can add v-on click dot prevent equals create
+
+3
+00:30.110 --> 00:31.660
+so we'll call create method
+
+4
+00:31.670 --> 00:37.600
+when this button is clicked. And here 
+I'll change this v-on: to @ symbol
+
+5
+00:44.020 --> 00:44.430
+and here
+
+6
+00:47.560 --> 00:51.260
+I'm going to add id property to hold answer id
+
+7
+00:56.250 --> 00:58.210
+and then let's define methods property
+
+8
+01:10.550 --> 01:11.550
+and inside here
+
+9
+01:11.720 --> 01:13.070
+let's define create method.
+
+10
+01:16.170 --> 01:24.420
+Here we'll make ajax post request by saying 
+axios dot post and let me see the route
+
+11
+01:45.900 --> 01:47.770
+OK here's the route that we need
+
+12
+01:48.690 --> 01:49.350
+Let's copy
+
+13
+02:00.420 --> 02:01.560
+and then paste here.
+
+14
+02:08.280 --> 02:11.490
+And change this answer to this id
+
+15
+02:22.620 --> 02:25.440
+then when success will show a flash message
+
+16
+02:38.860 --> 02:45.820
+here the time out will be three seconds and I'll 
+place the flash message on the bottom left
+
+17
+02:58.880 --> 03:04.940
+and also we need to change the is best to true 
+and the temporary solution is by saying
+
+18
+03:04.950 --> 03:11.040
+this is best equal true.
+
+19
+03:11.150 --> 03:13.270
+Again this is just temporary solution
+
+20
+03:13.370 --> 03:17.080
+and in the future lesson we'll come back here and fix this issue.
+
+21
+03:19.230 --> 03:23.340
+last we can open accept answer controller
+
+22
+03:31.540 --> 03:33.690
+here we'll return json response
+
+23
+03:34.180 --> 03:36.250
+if the expected response is json
+
+24
+03:52.020 --> 03:53.610
+and here I'll return a message
+
+25
+03:56.770 --> 03:59.050
+and I'm going to say "you have accepted
+
+26
+04:02.430 --> 04:04.530
+this answer as best answer".
+
+27
+04:07.460 --> 04:10.190
+one last thing let's reopen the answer model
+
+28
+04:21.310 --> 04:23.770
+and add is best in this appends attribute
+
+29
+04:32.800 --> 04:33.870
+and give it a try.
+
+30
+04:36.520 --> 04:40.840
+To test this you have to find a question 
+that own by the current user signed in
+
+31
+04:44.570 --> 04:45.540
+reload the page. I'll hit
+
+32
+04:56.370 --> 04:57.390
+this accept answer.
+
+33
+05:00.700 --> 05:06.730
+Something went wrong. Here I have two 
+accept buttons. This is not what we expect.
+
+34
+05:07.100 --> 05:08.090
+Let's see our code
+
+35
+05:11.980 --> 05:13.530
+switch to accept dot vue
+
+36
+05:23.110 --> 05:23.500
+ok
+
+37
+05:23.570 --> 05:28.660
+Firstly here we need to change these to
+
+38
+05:28.670 --> 05:32.220
+This is best because as you can see
+
+39
+05:35.420 --> 05:36.830
+after we hit the button
+
+40
+05:37.130 --> 05:39.090
+we change the is best to true
+
+41
+05:39.260 --> 05:46.010
+So is best initially store the is best from answer 
+instance but then when we hit the accept button we
+
+42
+05:46.010 --> 05:47.330
+change it true
+
+43
+05:47.420 --> 05:55.940
+That's why I accepted method relies on the local is best 
+property and then in this classes method it doesn't relies
+
+44
+05:56.030 --> 06:01.820
+on the accepted method because it does not care 
+whether a current user can accept the question or not.
+
+45
+06:02.030 --> 06:04.580
+Instead it depends on local is best
+
+46
+06:09.230 --> 06:10.270
+we need to change
+
+47
+06:10.370 --> 06:11.730
+this to accepted
+
+48
+06:16.580 --> 06:23.120
+because remember this elements only appear if the 
+current user has no authorization to accept the answer
+
+49
+06:23.450 --> 06:25.440
+and the answer has been accepted as best
+
+50
+06:25.560 --> 06:26.030
+answer.
+
+51
+06:34.130 --> 06:35.130
+Reload again.
+
+52
+06:38.750 --> 06:41.750
+Here we can see that this answer accepted as best answer.
+
+53
+06:42.020 --> 06:44.100
+indicate in green color.
+
+54
+06:44.530 --> 06:47.390
+Now if we hit the accept button on another answer
+
+55
+06:50.450 --> 06:57.450
+here we have flash message pop up 
+and the icon's color turns to green.
+
+56
+06:57.450 --> 06:59.820
+Now here we'll have two answers in green color
+
+57
+07:04.090 --> 07:05.440
+but if we reload the page
+
+58
+07:10.760 --> 07:17.390
+we'll have one answer Mark as best answer. We'll 
+leave this issue and we'll come back to fix this issue
+
+59
+07:17.720 --> 07:18.920
+in the upcoming lesson.
+
+60
+07:21.170 --> 07:24.000
+Now if you see other question by anyone else
+
+61
+07:35.900 --> 07:40.290
+here we'll also see the accept appear. 
+Of course if we hit the button
+
+62
+07:43.740 --> 07:49.410
+we don't see any changes or flash message. 
+if we open the developer tool
+
+63
+07:54.120 --> 07:59.920
+here we have error forbidden response which 
+means we have an authorization error. 
+
+64
+08:00.480 --> 08:06.600
+So in this case you could be catch the error and 
+show it into error flash message. But I think we don't
+
+65
+08:06.600 --> 08:07.500
+need to do that.
+
+66
+08:08.660 --> 08:13.880
+Because in the next lesson we are going to rewrite the authorization logic into javascript code and this
+
+67
+08:13.880 --> 08:15.310
+issue should  be fixed.
+
+68
+08:18.870 --> 08:19.260
+OK
+
+69
+08:19.310 --> 08:19.940
+That's it.
+
+70
+08:20.210 --> 08:21.630
+Let's take a break.
+
+71
+08:21.650 --> 08:23.300
+Don't forget to commit all changes
+
+72
+08:23.390 --> 08:26.430
+to your bit repo. So I'll see you in the next lesson.

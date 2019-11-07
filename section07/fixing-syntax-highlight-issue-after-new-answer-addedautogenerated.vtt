@@ -1,0 +1,286 @@
+WEBVTT
+
+0
+00:01.450 --> 00:08.000
+After a couple of minutes searching I finally realized 
+that ref will not work with reactive data binding
+
+1
+00:08.110 --> 00:11.350
+as noted in this vue js api here.
+
+2
+00:11.500 --> 00:14.860
+So here we need to find other alternatives.
+
+3
+00:14.860 --> 00:21.430
+Maybe the easiest way is to call highlight all 
+under method to re-scan all DOM elements.
+
+4
+00:21.430 --> 00:28.240
+But again I don't want to choose that way because in 
+my opinion re scanning all DOM to highlight our code
+
+5
+00:28.450 --> 00:31.950
+after a new enter added is not make sense.
+
+6
+00:32.020 --> 00:33.870
+Maybe we can use the classic way
+
+7
+00:34.510 --> 00:41.650
+I mean we'll be making use the id tribute to the element 
+then select the element with the javascript get
+
+8
+00:41.680 --> 00:42.980
+element by id method.
+
+9
+00:43.240 --> 00:44.370
+So let's do that
+
+10
+00:44.980 --> 00:47.590
+let's switch over to our editor.
+
+11
+00:47.650 --> 00:55.130
+Don't forget to run npm run watch 
+then open the answer component.
+
+12
+01:03.410 --> 01:03.890
+Here
+
+13
+01:03.990 --> 01:14.870
+lets bind the attributes to unique name. Remember unique name will generate a string contains answer
+
+14
+01:14.870 --> 01:17.240
+and id of the answer. Next
+
+15
+01:17.360 --> 01:21.360
+let's jump to highlight mixin. Here
+
+16
+01:21.380 --> 01:25.470
+let's modify this highlight method definition again.
+
+17
+01:25.520 --> 01:31.970
+First let's define an argument let's say 
+id and it should be empty by default
+
+18
+01:34.700 --> 01:35.030
+here
+
+19
+01:35.060 --> 01:35.960
+Let's cut this
+
+20
+01:40.520 --> 01:43.630
+then here if the id is empty
+
+21
+01:47.890 --> 02:00.430
+we'll assigned to el variable from this refs body 
+html. Otherwise if id is not empty we'll select
+
+22
+02:00.430 --> 02:08.290
+the element by utilizing the document dot get element by id
+
+23
+02:11.320 --> 02:13.380
+and pass in the id from argument.
+
+24
+02:16.480 --> 02:16.990
+That's it
+
+25
+02:18.070 --> 02:24.520
+So basically what we did here is to make this highlight 
+method to be more flexible. When we call this
+
+26
+02:24.520 --> 02:26.560
+method without passing id
+
+27
+02:26.740 --> 02:35.620
+this method will select element by ref or reference. 
+And when we need to select element by id we need
+
+28
+02:35.620 --> 02:40.300
+to call this highlight method add passing the id.
+
+29
+02:40.400 --> 02:42.950
+Now let's go back to answers component
+
+30
+02:49.140 --> 02:50.700
+then here in highlight
+
+31
+02:50.700 --> 02:56.390
+method call let's specify the id as answer
+
+32
+02:59.560 --> 03:00.610
+answer dot id.
+
+33
+03:04.890 --> 03:06.010
+Le'ts save all changes
+
+34
+03:09.850 --> 03:13.720
+back to our browser I get error
+
+35
+03:20.410 --> 03:23.350
+let me change this to `let` save
+
+36
+03:27.330 --> 03:30.180
+back to our browser reload the page
+
+37
+03:32.910 --> 03:34.630
+let's open our browser console
+
+38
+03:37.970 --> 03:39.440
+again I'll copy this answer
+
+39
+03:45.020 --> 03:46.010
+and then paste here
+
+40
+03:56.650 --> 03:57.240
+I'll hit submit
+
+41
+04:00.440 --> 04:01.670
+here in console.
+
+42
+04:01.670 --> 04:06.350
+I get null and the syntax highlight
+
+43
+04:06.380 --> 04:08.070
+still not working.
+
+44
+04:08.090 --> 04:09.980
+Do you have any idea why this happened?
+
+45
+04:14.810 --> 04:22.400
+So this occurred because vue js performs DOM updates 
+asynchronously so I can simply say that when
+
+46
+04:22.400 --> 04:29.780
+we perform ajax call and get respond back the new answer object then pushed to the answers array because
+
+47
+04:29.780 --> 04:30.530
+the answers array
+
+48
+04:30.540 --> 04:35.260
+is reactive vue js will will perform DOM updates asynchronously.
+
+49
+04:35.570 --> 04:39.140
+But before it's finished this highlight method is being called
+
+50
+04:43.080 --> 04:49.530
+so in order to wait until vue js has finished updating 
+the DOM we can use the vue js next tick
+
+51
+04:49.530 --> 04:50.310
+method like this
+
+52
+04:57.920 --> 05:01.820
+then move the highlight method call inside here
+
+53
+05:05.740 --> 05:06.400
+let's save
+
+54
+05:09.590 --> 05:10.250
+reload the page
+
+55
+05:16.710 --> 05:18.060
+again I'll copy this answer
+
+56
+05:25.410 --> 05:26.130
+and paste here
+
+57
+05:30.940 --> 05:32.020
+let's hit the submit button
+
+58
+05:35.340 --> 05:36.420
+okay great.
+
+59
+05:36.450 --> 05:38.760
+Here we see the element appears in the console
+
+60
+05:43.030 --> 05:47.360
+and our new answer is being highlighted. Now
+
+61
+05:47.400 --> 05:53.670
+the last more thing that we need to do is here the 
+load more answer button. Here if we hit the button
+
+62
+05:55.210 --> 05:57.640
+some answers will be added to the page
+
+63
+05:57.820 --> 06:01.820
+but here you see the code is not highlighted.
+
+64
+06:01.870 --> 06:07.240
+Also I found another issue sometimes if I reload the page
+
+65
+06:11.890 --> 06:19.210
+here you'll see the syntax highlight is not working. 
+So we'll fix these issues in the next video.
+
+66
+06:19.210 --> 06:19.690
+All right
+
+67
+06:19.750 --> 06:21.940
+let's commit our changes into our git repo.

@@ -1,0 +1,176 @@
+WEBVTT
+
+0
+00:02.860 --> 00:10.520
+Now before we end this lesson I'm going to show you another 
+directive to show or hide the element. The directive
+
+1
+00:10.560 --> 00:18.390
+is v show. This v show directive it's almost the same 
+as the v-if which is displaying the element if the
+
+2
+00:18.390 --> 00:23.940
+condition that is passed is true or hiding 
+the element if the condition is false.
+
+3
+00:25.100 --> 00:27.610
+So what's the difference between these two.
+
+4
+00:27.620 --> 00:29.000
+Now to answer this question
+
+5
+00:32.770 --> 00:35.870
+let's open the conditional rendering four dot html
+
+6
+00:41.470 --> 00:49.550
+here we have two alerts and two buttons. We will show 
+or hide each alert if we click on each of these buttons
+
+7
+00:49.760 --> 00:54.240
+and we'll see the difference in how 
+each element is rendered in the page.
+
+8
+00:54.250 --> 00:59.310
+Let's switch back over to our editor then
+open conditional rendering four dot html
+
+9
+01:06.830 --> 01:10.970
+inside this data property there are two properties
+
+10
+01:11.200 --> 01:20.400
+show alert  primary and show alert secondary and both 
+of them are true. Now in this alert primary let's define
+
+11
+01:20.520 --> 01:21.190
+v if
+
+12
+01:24.200 --> 01:25.270
+show alert primary
+
+13
+01:29.340 --> 01:36.520
+and then on the alert secondary let's 
+define v show show alert secondary.
+
+14
+01:39.900 --> 01:43.590
+Now let's chance its property when 
+we click on each of these buttons
+
+15
+01:48.020 --> 01:51.160
+here we can call v-on colon click
+
+16
+01:55.990 --> 02:03.110
+then here we will replace it's value with 
+the inverse value show alert primary
+
+17
+02:06.640 --> 02:20.820
+equals not show alert primary. Then here we can 
+change the second button to show alert secondary.
+
+18
+02:20.830 --> 02:21.460
+Now let's see
+
+19
+02:26.290 --> 02:27.400
+something wrong.
+
+20
+02:30.570 --> 02:32.530
+Sorry I forgot to add equals here.
+
+21
+02:34.350 --> 02:37.330
+Save that. OK
+
+22
+02:37.350 --> 02:38.760
+before we move on
+
+23
+02:38.940 --> 02:40.740
+let's open our web developer tools
+
+24
+02:44.720 --> 02:50.710
+then here I will put the window on the right side so 
+that I can see how each element will be rendered.
+
+25
+02:54.650 --> 02:55.940
+I'll hit the v-if button.
+
+26
+02:58.560 --> 03:01.750
+Now here we can see the elements are gone.
+
+27
+03:01.770 --> 03:03.510
+So it's completely removed.
+
+28
+03:03.900 --> 03:06.420
+Now I'll hit the button.
+
+29
+03:06.510 --> 03:08.670
+Now we can see the elements still there.
+
+30
+03:09.030 --> 03:12.590
+But here it's hidden by adding css display property
+
+31
+03:12.600 --> 03:19.970
+if I hit again one more time the display property 
+will be removed from the element but the v-if
+
+32
+03:22.110 --> 03:25.980
+the element will be added to the page or remove from the page.
+
+33
+03:25.980 --> 03:30.850
+So that's the difference between v-if and 
+we v-show in manipulating the elements.
+
+34
+03:30.870 --> 03:35.340
+So in general there is no significant 
+difference between v-if and v-show.
+
+35
+03:35.430 --> 03:38.020
+Now you might be asking when do we use v-if
+
+36
+03:38.190 --> 03:42.790
+and when do we use the v-show. To find the answer
+
+37
+03:42.790 --> 03:46.220
+you can check out the vue js official documentation here.
+
+38
+03:51.280 --> 03:52.370
+OK that's it.
+
+39
+03:52.390 --> 03:53.680
+I'll see you in the next lesson.

@@ -1,0 +1,290 @@
+WEBVTT
+
+0
+00:04.410 --> 00:11.630
+Now obviously this favorite button should work only for  
+signed in user so to fix this let's switch back over to
+
+1
+00:11.730 --> 00:15.920
+our editor go to favorite.vue
+
+2
+00:21.420 --> 00:30.780
+and here in toggle method we can check if 
+the user not sign in like so if not signed in
+
+3
+00:34.830 --> 00:36.330
+then we'll show warning message
+
+4
+00:41.620 --> 00:45.480
+here I'm going to say please login to favorite
+
+5
+00:52.660 --> 00:55.660
+this question.
+
+6
+00:55.780 --> 01:01.460
+The title is going to be warning and here I'll define some options
+
+7
+01:04.700 --> 01:05.930
+here I'll set the time out
+
+8
+01:06.020 --> 01:07.100
+to three seconds and I'll
+
+9
+01:12.130 --> 01:14.320
+place the flash message on the bottom left
+
+10
+01:26.660 --> 01:33.560
+and don't forget to add return statement otherwise 
+the code outside if statement will be keep executed
+
+11
+01:37.260 --> 01:38.280
+Let's have the change
+
+12
+01:44.010 --> 01:47.270
+and Firstly let's make sure everything is still working fine.
+
+13
+01:57.720 --> 01:59.260
+OK it's still working fine.
+
+14
+02:01.020 --> 02:03.390
+No let me change the sign in to false
+
+15
+02:10.590 --> 02:11.490
+reload again.
+
+16
+02:17.740 --> 02:20.700
+Here are the icon's color turns to light gray.
+
+17
+02:21.340 --> 02:22.270
+If I hit this icon here I
+
+18
+02:25.300 --> 02:27.350
+get a warning message on the bottom left.
+
+19
+02:27.370 --> 02:27.750
+Great
+
+20
+02:34.320 --> 02:35.670
+now to finish this lesson
+
+21
+02:35.800 --> 02:37.790
+let's fix this authentication issue.
+
+22
+02:38.940 --> 02:43.490
+Right now we hard coded  it here.
+
+23
+02:43.630 --> 02:50.300
+Now the way that we can do is to get the current user 
+info from the session and store it to somewhere
+
+24
+02:50.360 --> 02:53.810
+so that it will be accessible in javascript code.
+
+25
+02:53.810 --> 02:57.660
+Do you have any idea? in this case
+
+26
+02:57.730 --> 03:02.620
+I think the best way to do that is to store the
+current user info into javascript window global
+
+27
+03:02.640 --> 03:06.810
+object.
+
+28
+03:06.900 --> 03:10.070
+So let's open layouts app.blade.php
+
+29
+03:25.420 --> 03:27.460
+and here let's move this script to the bottom.
+
+30
+03:34.870 --> 03:40.800
+Let's remove the defer attribute because 
+now we'll place our script on the bottom.
+
+31
+03:41.020 --> 03:44.490
+And before we load this app.js file Let's add another script
+
+32
+03:53.110 --> 03:56.710
+and here of some of the current user info in window global object
+
+33
+04:01.920 --> 04:09.220
+and then auth or you can call it whatever you like of course.
+
+34
+04:09.490 --> 04:11.860
+In this case we'll use blade non escaping syntax
+
+35
+04:17.270 --> 04:19.900
+because this auth needs pure data in javascript
+
+36
+04:19.930 --> 04:20.390
+Object
+
+37
+04:25.990 --> 04:34.780
+this auth will store sign in to store the 
+state of the user in boolean value
+
+38
+04:41.700 --> 04:42.390
+and user
+
+39
+04:45.100 --> 04:53.990
+to store the current user sign in an object.
+
+40
+04:54.110 --> 04:55.820
+And we need to convert this to json
+
+41
+04:59.940 --> 05:02.080
+using php json function like this
+
+42
+05:07.280 --> 05:10.450
+so that they will be recognized by javascript.
+
+43
+05:10.710 --> 05:13.660
+Let's save and have a look.
+
+44
+05:17.270 --> 05:21.080
+Reload the page.
+
+45
+05:21.270 --> 05:22.380
+And then view page source.
+
+46
+05:36.270 --> 05:46.860
+as you can see here the window auth holds object 
+contains sign in and user. The sign in is true because
+
+47
+05:46.890 --> 05:53.870
+I have already signed in and the user holds current object.
+
+48
+05:53.880 --> 05:56.530
+Now we can switch to favorite.vue
+
+49
+05:59.720 --> 06:06.000
+remove the signed in from this data method 
+and then inside the computer property
+
+50
+06:08.890 --> 06:10.030
+let's defined signed in method
+
+51
+06:17.880 --> 06:21.200
+and here we simply return window auth
+
+52
+06:25.060 --> 06:25.750
+signed in
+
+53
+06:39.430 --> 06:40.330
+reload the page
+
+54
+06:44.050 --> 06:44.410
+OK
+
+55
+06:44.420 --> 06:46.830
+I think it's still working as it was.
+
+56
+06:46.900 --> 06:47.900
+Now let me copy this
+
+57
+06:47.900 --> 06:52.980
+URL and then I'll open incognito window
+
+58
+06:57.010 --> 06:58.360
+and then I'll paste the URL
+
+59
+07:04.190 --> 07:08.400
+as you can see here the color of the 
+favorite button looks a bit like gray.
+
+60
+07:08.730 --> 07:09.750
+And if I hit that
+
+61
+07:12.950 --> 07:14.490
+I'll get a warning message.
+
+62
+07:18.900 --> 07:19.420
+All right
+
+63
+07:19.450 --> 07:24.830
+We have successfully created or I can say rewrite 
+our favorite button into vue js components
+
+64
+07:25.000 --> 07:30.990
+and it also worked as before but now it doesn't 
+need to reload the page to see the change.
+
+65
+07:31.360 --> 07:37.620
+and this makes our application more interactive. In the 
+next lesson we are going to rewrite the accept answer
+
+66
+07:37.620 --> 07:39.660
+button into vue js component.
+
+67
+07:40.030 --> 07:41.950
+So let's commit our changes
+
+68
+07:42.160 --> 07:44.710
+then take a break and join me in the next lesson.

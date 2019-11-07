@@ -1,0 +1,433 @@
+WEBVTT
+
+0
+00:01.540 --> 00:07.130
+In the previous lesson we have finally completed the first stage in building our project which is displaying
+
+1
+00:07.130 --> 00:10.330
+all questions from our database to our application. 
+
+2
+00:10.320 --> 00:15.960
+I'm sure, so far You have learned many things or at least you have reviewed what you have learned before.
+
+3
+00:15.990 --> 00:19.230
+Now it's time to continue into the next stage in building our project.
+
+4
+00:19.410 --> 00:23.290
+that is adding new feature that allows us to create new question.
+
+5
+00:23.700 --> 00:29.040
+So in this lesson we're building the question form, and we'll continue validating the form and saving the
+
+6
+00:29.040 --> 00:31.520
+question to database in the next lesson.
+
+7
+00:33.250 --> 00:38.700
+Alright, let's open up our terminal and again here
+
+8
+00:38.710 --> 00:41.760
+let's create a new branch: git
+
+9
+00:42.200 --> 00:44.760
+checkout -b
+
+10
+00:45.080 --> 00:48.720
+and then the branch name will be `lesson-7`
+
+11
+00:52.510 --> 00:53.410
+OK
+
+12
+00:53.520 --> 00:57.900
+firstly let's add a button on the top right here
+
+13
+00:57.960 --> 01:03.740
+this button will be "ask question", a button to create new question.
+
+14
+01:03.870 --> 01:05.670
+All right let's head over to our editor
+
+15
+01:09.330 --> 01:11.240
+open index.blade.php
+
+16
+01:15.920 --> 01:24.480
+and jump to `card-header` and here we'll place the heading on the left and the button on the right
+
+17
+01:24.480 --> 01:30.930
+In the prior version of bootstrap we can utilize `pull-left` class to place element on the left and `pull-right` class to place
+
+18
+01:30.930 --> 01:31.940
+element on the right.
+
+19
+01:31.980 --> 01:34.800
+but now in bootstrap 4 we can utilize flexbox
+
+20
+01:47.550 --> 01:58.870
+so div class `d-flex` and then to make the content of both sides in the same base line
+
+21
+01:58.870 --> 02:01.420
+here we can add: align
+
+22
+02:03.950 --> 02:05.540
+items center
+
+23
+02:08.160 --> 02:08.590
+like so
+
+24
+02:15.980 --> 02:22.420
+let's move this to here and we'll place it in heading two
+
+25
+02:29.160 --> 02:40.480
+and then add a new div with class `ml-auto` or margin left auto so that the button inside it
+
+26
+02:40.830 --> 02:42.120
+will be positioned in the right
+
+27
+02:47.230 --> 02:50.120
+and here
+
+28
+02:50.150 --> 02:59.280
+Let's add an anchor the target or href attribute will be
+
+29
+03:04.500 --> 03:11.740
+route questions.create
+
+30
+03:12.070 --> 03:14.380
+If you're not sure which route you will use
+
+31
+03:14.620 --> 03:24.220
+Just go to your terminal and type php artisan route:list
+
+32
+03:28.900 --> 03:38.140
+and you can also filter the routes by specify name tag equals and then the name
+
+33
+03:38.140 --> 03:40.090
+In this case questions
+
+34
+03:43.450 --> 03:50.140
+here you can see all routes for the questions and here question create
+
+35
+03:52.930 --> 04:01.560
+will be mapped to questions control at create action.
+
+36
+04:03.400 --> 04:07.750
+OK let's give it classes
+
+37
+04:10.150 --> 04:17.360
+btn btn-outline-secondary
+
+38
+04:22.510 --> 04:25.930
+and the next will be ask question
+
+39
+04:29.440 --> 04:32.580
+save the changes and let's see
+
+40
+04:40.050 --> 04:46.500
+All right here we have all questions heading on the left and the button on the right side.
+
+41
+04:46.860 --> 04:53.400
+And if you see they are in the same baseline.
+
+42
+04:53.670 --> 05:01.700
+Now if you click on the button we'll get a blank page because the create method in our questions controller is
+
+43
+05:01.700 --> 05:03.360
+currently empty.
+
+44
+05:03.590 --> 05:06.040
+Alright back to our editor
+
+45
+05:07.640 --> 05:11.610
+and open questions control
+
+46
+05:16.460 --> 05:17.700
+jump to create method
+
+47
+05:23.300 --> 05:23.730
+here
+
+48
+05:23.760 --> 05:27.570
+let's define a variable to hold empty question object
+
+49
+05:27.900 --> 05:39.800
+So question equals new question and then return a view
+
+50
+05:44.220 --> 05:53.520
+questions create and pass the question object to this view using compact
+
+51
+05:56.820 --> 05:57.890
+question
+
+52
+06:01.580 --> 06:04.150
+Now let's switch to index.blade.php
+
+53
+06:04.160 --> 06:09.310
+and save this as
+
+54
+06:11.870 --> 06:13.220
+create
+
+55
+06:13.750 --> 06:17.850
+blade php save
+
+56
+06:21.120 --> 06:23.260
+here let's change the heading to
+
+57
+06:27.250 --> 06:30.650
+ask question
+
+58
+06:33.500 --> 06:46.010
+and here we'll need to change this "Ask Question" to let's say "Back to all questions"
+
+59
+06:48.830 --> 06:50.270
+and change the route
+
+60
+06:50.280 --> 06:52.140
+to questions
+
+61
+06:52.190 --> 06:53.350
+dot index
+
+62
+07:02.820 --> 07:09.450
+and here inside `card-body` let's get rid of all contents
+
+63
+07:19.640 --> 07:21.080
+and for now let's just show
+
+64
+07:21.090 --> 07:24.750
+a message "question form"
+
+65
+07:28.670 --> 07:30.220
+save all changes
+
+66
+07:32.340 --> 07:39.650
+And let's see how it look like.
+
+67
+07:39.760 --> 07:44.710
+Here we have "Ask question" on the left and "back to all questions" button on the right.
+
+68
+07:45.660 --> 07:52.200
+And here we have question form show up here.
+
+69
+07:52.520 --> 07:52.990
+OK
+
+70
+07:53.040 --> 07:55.860
+Now let's change this text with actual form
+
+71
+08:01.050 --> 08:02.860
+here let's get rid of this line
+
+72
+08:06.610 --> 08:07.800
+and define a form
+
+73
+08:07.970 --> 08:12.820
+So form action
+
+74
+08:16.370 --> 08:23.800
+and it will be route questions dot store
+
+75
+08:26.530 --> 08:34.700
+and then specify method attribute and it will be post in this case
+
+76
+08:44.580 --> 08:45.620
+inside this form
+
+77
+08:45.630 --> 08:46.530
+let's add a div
+
+78
+08:49.510 --> 08:56.390
+and give it bootstrap class `form-group`
+
+79
+09:03.550 --> 09:05.450
+Inside this we'll need a label
+
+80
+09:08.810 --> 09:12.050
+for question title
+
+81
+09:14.870 --> 09:17.850
+and then the label's text will be
+
+82
+09:17.930 --> 09:20.580
+Question title.
+
+83
+09:22.880 --> 09:34.310
+And we also need text input so input type text the name will be title
+
+84
+09:37.340 --> 09:44.420
+and then the ID will be a question title
+
+85
+09:45.200 --> 09:55.930
+And the class will be bootstrap form control
+
+86
+09:57.440 --> 09:58.810
+OK let's duplicate these
+
+87
+10:10.480 --> 10:16.810
+change the question title to question buddy.
+
+88
+10:17.140 --> 10:24.430
+Actually this for and id attributes aren't necessary in this case by defining them
+
+89
+10:24.430 --> 10:26.650
+is more semantic I think.
+
+90
+10:26.800 --> 10:37.060
+And then here change that text to "explain your question"
+
+91
+10:39.850 --> 10:44.720
+here for the question body we need a text area instead of text input.
+
+92
+10:45.160 --> 10:51.140
+So let's remove this and add text area
+
+93
+10:54.500 --> 10:57.580
+the name will be body
+
+94
+10:58.830 --> 11:05.350
+The ID will be question-body let's set row attribute
+
+95
+11:08.990 --> 11:24.730
+let's say 10 rows and the class will be form control.
+
+96
+11:24.780 --> 11:28.060
+I think we only need this inputs at least for now
+
+97
+11:28.190 --> 11:31.070
+and we'll need a button to submit our question.
+
+98
+11:31.220 --> 11:40.240
+So let's add another form group.
+
+99
+11:44.870 --> 11:46.410
+and in here let's add a button
+
+100
+11:49.640 --> 12:06.500
+specify the type as submit and then give it classes btn btn-ounline-primary and make it a little
+
+101
+12:06.500 --> 12:09.330
+bigger
+
+102
+12:09.340 --> 12:12.200
+by specify btn-lg class
+
+103
+12:15.290 --> 12:17.150
+and then the text will be
+
+104
+12:17.240 --> 12:21.090
+let's say ask this question
+
+105
+12:26.600 --> 12:41.310
+OK save all this and let's see.
+
+106
+12:41.530 --> 12:43.150
+This should be `rows` I think
+
+107
+12:43.200 --> 12:48.770
+Save reload again OK great.

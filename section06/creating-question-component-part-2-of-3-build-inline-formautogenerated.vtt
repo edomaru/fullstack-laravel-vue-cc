@@ -1,0 +1,525 @@
+WEBVTT
+
+0
+00:02.240 --> 00:08.240
+The next thing that you need to do is adding functionality 
+that allows us to easily modify our question
+
+1
+00:08.690 --> 00:16.040
+so that we can edit or remove the question without 
+need to go to questions page. To do that here we'll
+
+2
+00:16.050 --> 00:22.130
+need to add edit and delete button like we have in answer here.
+
+3
+00:22.500 --> 00:24.580
+So let's switch back over to our editor
+
+4
+00:28.090 --> 00:30.000
+and open answer dot vue
+
+5
+00:38.550 --> 00:47.740
+here let's copy these buttons switch to question dot vue.
+
+6
+00:47.910 --> 00:52.380
+And then let's paste the buttons inside this first col four
+
+7
+01:04.490 --> 01:06.970
+here we can simply replace the answer
+
+8
+01:07.100 --> 01:08.270
+in authorize function to
+
+9
+01:12.540 --> 01:16.910
+question. Next
+
+10
+01:17.070 --> 01:23.770
+let's add a form inside the component.
+
+11
+01:23.850 --> 01:29.490
+The question form that we will build is a bit different 
+with the answer form. Here we will need a text
+
+12
+01:29.490 --> 01:35.630
+box to edit the question title and a 
+text area to edit the question body.
+
+13
+01:35.710 --> 01:45.050
+That's why the form will be outside this card body.
+
+14
+01:45.110 --> 01:54.400
+So let's duplicate this card body
+
+15
+01:54.490 --> 01:59.550
+The first one is for our question form 
+and it should be visible if editing
+
+16
+02:10.710 --> 02:14.370
+then let's change this element to the form
+
+17
+02:24.230 --> 02:26.820
+and then the second one should be invisible
+
+18
+02:26.930 --> 02:27.530
+if editing.
+
+19
+02:37.630 --> 02:41.410
+OK here in card title let's remove everything
+
+20
+02:47.130 --> 02:56.610
+and then add a text input.
+
+21
+02:56.660 --> 03:00.870
+Let's add bootstrap class form control
+
+22
+03:04.270 --> 03:07.780
+and also add form control lg
+
+23
+03:11.390 --> 03:12.520
+to make it more bigger.
+
+24
+03:16.810 --> 03:20.630
+And then bind this input to question title via v-model
+
+25
+03:33.750 --> 03:34.120
+here
+
+26
+03:34.130 --> 03:36.070
+I think we don't need to show the vote
+
+27
+03:36.320 --> 03:37.440
+so let's remove it.
+
+28
+03:47.540 --> 04:01.760
+For the text area and buttons let's 
+simply copy from answer component
+
+29
+04:01.820 --> 04:02.600
+Let's copy
+
+30
+04:12.570 --> 04:13.640
+and paste here.
+
+31
+04:22.720 --> 04:24.750
+Let's also copy this event handler
+
+32
+04:30.370 --> 04:38.420
+and paste in this form.
+
+33
+04:38.430 --> 04:39.690
+Now we can jump to our script
+
+34
+04:44.800 --> 04:46.990
+and then here in data method
+
+35
+04:49.980 --> 04:51.360
+let's define editing properly
+
+36
+04:54.500 --> 04:55.810
+and it make it false by default
+
+37
+04:59.420 --> 05:03.470
+then let's also define id to store the question id
+
+38
+05:11.470 --> 05:16.360
+and then we also need a property that 
+will hold the question before modified.
+
+39
+05:16.570 --> 05:19.100
+And here I'm going to call it before edit cache
+
+40
+05:22.980 --> 05:28.470
+and it should be an empty object because letter 
+will hold title and body of the question here.
+
+41
+05:34.780 --> 05:35.400
+Next let's add
+
+42
+05:35.490 --> 05:36.630
+computed property
+
+43
+05:40.720 --> 05:45.260
+and inside here let's define is invalid method.
+
+44
+05:49.730 --> 05:52.910
+Here let's do almost the same thing as we did before
+
+45
+05:53.050 --> 06:02.200
+return this dot body dot length less than ten.
+
+46
+06:02.410 --> 06:13.930
+And then let's add another condition or 
+this dot title dot length is less than ten
+
+47
+06:20.610 --> 06:27.360
+and then here I'll also define endpoint method.
+
+48
+06:27.570 --> 06:31.960
+This will return the URI for update question.
+
+49
+06:42.600 --> 06:47.100
+OK next let's add methods property
+
+50
+06:52.340 --> 06:53.790
+and define edit method.
+
+51
+06:56.470 --> 07:00.520
+Here before editing let's store the 
+old question in before edit cache
+
+52
+07:20.540 --> 07:29.860
+and then change the editing state to true.
+
+53
+07:30.030 --> 07:32.300
+Then let's define cancel method
+
+54
+07:39.230 --> 07:40.440
+and before cancelling
+
+55
+07:40.580 --> 07:43.100
+let's restore the old question title and body
+
+56
+07:43.100 --> 07:43.880
+respectfully.
+
+57
+08:00.190 --> 08:03.070
+And then change the state of the editing to false
+
+58
+08:10.460 --> 08:13.000
+and last let's define the update method.
+
+59
+08:16.470 --> 08:26.460
+In this method will make ajax  call by saying axios dot 
+put. We use put instead of patch because we'll need to
+
+60
+08:26.600 --> 08:28.820
+update the title and body of the question
+
+61
+08:37.810 --> 08:48.830
+so body from this body and then title from this title.
+
+62
+08:54.100 --> 08:56.860
+Just in case or client side validation is not working
+
+63
+08:57.410 --> 09:00.790
+let's show the server side validation 
+error message in flash message
+
+64
+09:30.420 --> 09:31.540
+and then when succeed
+
+65
+09:37.390 --> 09:56.090
+we need to replace the local body html with 
+body html that come from ajax response.
+
+66
+09:56.150 --> 09:58.510
+Then let's also show success flash message
+
+67
+10:14.340 --> 10:26.590
+and then change the editing states to 
+false so that the form will be invisible.
+
+68
+10:26.600 --> 10:30.830
+Now we need to make the ajax response to contain this
+
+69
+10:30.860 --> 10:35.210
+body html and message.
+
+70
+10:35.240 --> 10:38.810
+So let's open up questions controller
+
+71
+10:44.300 --> 10:45.560
+go to update method
+
+72
+10:52.270 --> 10:54.690
+And here let's provide json response
+
+73
+10:54.730 --> 10:56.650
+if the request expects to be json
+
+74
+11:12.490 --> 11:13.230
+add a message
+
+75
+11:16.220 --> 11:18.840
+and again let's copy the message from here
+
+76
+11:27.350 --> 11:29.580
+and then body underscore html
+
+77
+11:33.880 --> 11:41.780
+and the value is from question body underscore html.
+
+78
+11:42.780 --> 11:44.550
+All right let's save all
+
+79
+11:44.640 --> 11:44.940
+changes
+
+80
+11:48.420 --> 11:49.770
+and give it a try.
+
+81
+11:52.890 --> 11:53.720
+Reload the page.
+
+82
+12:01.750 --> 12:02.770
+Oops I get error
+
+83
+12:08.700 --> 12:11.120
+destroy it's not defined on the instance
+
+84
+12:12.260 --> 12:15.010
+Well I forgot to define the destroy method.
+
+85
+12:15.110 --> 12:22.940
+So let's switch back over to our editor. 
+Actually let's switch to answer dot vue
+
+86
+12:25.580 --> 12:27.080
+find the destroy method
+
+87
+12:34.600 --> 12:36.240
+let's select the method definition
+
+88
+12:41.800 --> 12:46.070
+and then copy back to question component
+
+89
+12:52.490 --> 13:04.280
+and here let's paste the code.
+
+90
+13:04.430 --> 13:12.670
+Now here when the question is removed we need to 
+redirect the page to all questions page. So what we
+
+91
+13:12.670 --> 13:15.520
+have to do is to show the flash message
+
+92
+13:36.180 --> 13:42.140
+and here we need to set the time out to maybe 
+two seconds so that we can see the flash message.
+
+93
+13:50.560 --> 13:58.090
+And then after that we can redirect it to all questions 
+page. Here let's utilize javascript set time
+
+94
+13:58.090 --> 13:58.300
+out
+
+95
+14:01.430 --> 14:07.880
+and set the time to three seconds so to the 
+command will be executed after three seconds.
+
+96
+14:14.690 --> 14:24.000
+And then here we can redirect to questions page 
+by saying window dot location dot href equals forward
+
+97
+14:24.000 --> 14:28.550
+slash questions.
+
+98
+14:28.580 --> 14:35.840
+All right now we can switch back to questions 
+controller. Jump to destroy method
+
+99
+14:42.430 --> 14:44.910
+and here let's provide json response.
+
+100
+14:56.410 --> 14:59.020
+Inside here we only need to return message
+
+101
+15:02.260 --> 15:04.140
+and we can copy from here
+
+102
+15:17.180 --> 15:18.210
+reload the page
+
+103
+15:24.420 --> 15:24.850
+OK
+
+104
+15:24.930 --> 15:26.090
+Now we have no error.
+
+105
+15:31.430 --> 15:36.800
+Now before I try to edit and delete the 
+question here I'll get to all questions page
+
+106
+15:43.880 --> 15:44.940
+then I'll create new
+
+107
+15:44.960 --> 15:59.310
+one.
+
+108
+15:59.550 --> 16:03.730
+Now I can try the edit or remove functionality to this question.
+
+109
+16:06.760 --> 16:11.470
+Firstly let's try to edit the question change something
+
+110
+16:16.240 --> 16:18.330
+and then here I'll hit the cancel button
+
+111
+16:21.190 --> 16:24.920
+let me see the question. OK
+
+112
+16:24.920 --> 16:27.310
+the question has not change. Now
+
+113
+16:27.330 --> 16:29.010
+I'll make change to this question again
+
+114
+16:35.200 --> 16:36.730
+and now hit the update button.
+
+115
+16:41.600 --> 16:42.370
+OK here
+
+116
+16:42.400 --> 16:44.040
+the question has changed.
+
+117
+16:44.110 --> 16:52.190
+Let me reload the page to make sure that the change 
+is persistence. Here I get this error because the change
+
+118
+16:52.190 --> 16:53.970
+has affected the question slug
+
+119
+16:54.200 --> 16:56.450
+So here I need to go to all questions page.
+
+120
+16:59.370 --> 16:59.770
+OK
+
+121
+16:59.780 --> 17:05.380
+the changes is persistence.
+
+122
+17:05.430 --> 17:07.130
+Now let's try to hit the delete button
+
+123
+17:10.720 --> 17:14.510
+hit yes
+
+124
+17:14.680 --> 17:19.840
+The flash message show up and then it will 
+be redirect to all questions page. Great

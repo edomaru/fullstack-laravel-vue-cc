@@ -1,0 +1,365 @@
+WEBVTT
+
+0
+00:01.830 --> 00:02.630
+In the last lesson
+
+1
+00:02.700 --> 00:06.080
+we have successfully added new feature to our application
+
+2
+00:06.310 --> 00:07.910
+that allows us to create new question
+
+3
+00:08.010 --> 00:09.770
+We've learned how to build a form
+
+4
+00:09.900 --> 00:13.630
+we've learn how to implement form validation to validate the question
+
+5
+00:13.680 --> 00:18.170
+and we've also learn how to save the valid question into our database.
+
+6
+00:18.210 --> 00:23.400
+Now in this lesson we'll continue building our project and extending the functionality of the question
+
+7
+00:23.400 --> 00:28.070
+form so that we can also update any existing questions.
+
+8
+00:28.080 --> 00:29.180
+All right as always.
+
+9
+00:29.230 --> 00:32.110
+let's isolate our work to a new branch.
+
+10
+00:32.370 --> 00:34.650
+So let's go ahead and open our terminal
+
+11
+00:38.230 --> 00:40.060
+And here we can say git
+
+12
+00:40.160 --> 00:44.790
+checkout -b and the brand name
+
+13
+00:44.870 --> 00:46.510
+Lesson 9
+
+14
+00:52.080 --> 00:52.490
+OK
+
+15
+00:52.510 --> 00:59.800
+firstly we need to add edit link on the question item. And here I think it would be better to place it on
+
+16
+00:59.800 --> 01:00.910
+the right side
+
+17
+01:02.140 --> 01:09.040
+of the question title this almost the same thing as we did here.
+
+18
+01:09.100 --> 01:10.930
+So let's head over to our editor
+
+19
+01:14.610 --> 01:17.470
+open index.blade.php
+
+20
+01:20.520 --> 01:31.220
+and jump to media body.
+
+21
+01:32.200 --> 01:34.000
+And then here let's define a new div
+
+22
+01:40.270 --> 01:48.250
+and give it two classes d-flex align items
+
+23
+01:48.270 --> 01:48.930
+center
+
+24
+01:56.770 --> 02:01.440
+let's move the question title here.
+
+25
+02:09.610 --> 02:11.890
+And here we'll place the link on the right site.
+
+26
+02:11.940 --> 02:13.550
+So let's define another div
+
+27
+02:17.590 --> 02:24.590
+and give it a class ml-auto or margin left
+
+28
+02:24.590 --> 02:25.010
+auto
+
+29
+02:30.770 --> 02:33.300
+and inside this div, let's define an anchor
+
+30
+02:36.410 --> 02:39.960
+the href will be
+
+31
+02:45.330 --> 02:49.020
+route question
+
+32
+02:51.400 --> 02:55.480
+edit and then pass in the question Id
+
+33
+03:06.030 --> 03:07.360
+give it some classes
+
+34
+03:08.700 --> 03:21.080
+`btn` and than `btn-sm` to make it a little smaller then `btn-outline-info`.
+
+35
+03:26.240 --> 03:27.930
+And the text will be edit
+
+36
+03:32.230 --> 03:39.510
+save that and reload to page.
+
+37
+03:39.530 --> 03:44.580
+Now here we have the edit button appear on each question
+
+38
+03:48.420 --> 03:55.050
+Actually, this shouldn't be happened. Because, that means everyone that has signed in can modify any questions
+
+39
+03:55.490 --> 03:57.060
+that belonging by anyone else
+
+40
+03:57.060 --> 04:03.650
+right? For now we'll leave this issue, and in the future lesson we'll fix that by implementing authorization
+
+41
+04:03.650 --> 04:12.850
+to every single question, so that only the owner of the question that able to modify.
+
+42
+04:13.000 --> 04:20.640
+All right now if we click this of course we all got a blank page.
+
+43
+04:20.690 --> 04:22.580
+So let's go back to our editor
+
+44
+04:25.870 --> 04:27.420
+open questions controller
+
+45
+04:32.540 --> 04:35.370
+an go to edit method
+
+46
+04:42.490 --> 04:48.850
+Here if we notice in the url we pass id of the Question
+
+47
+04:49.180 --> 04:56.190
+But here in the `edit` method, it's type-hinted to Question model.
+
+48
+04:56.200 --> 05:01.810
+So, by doing this, Laravel will automatically inject the Question model instance that has an ID
+
+49
+05:01.810 --> 05:05.700
+matching the corresponding value from the request uri.
+
+50
+05:06.100 --> 05:11.980
+But if it's not found in the database then it will return 404 error.
+
+51
+05:12.040 --> 05:18.260
+So it's similar with this
+
+52
+05:18.310 --> 05:19.580
+edit id
+
+53
+05:21.100 --> 05:24.780
+And then here we'll we find the question by id like this
+
+54
+05:40.250 --> 05:53.160
+But here we simplify that by type-hint the parameter with Question model
+
+55
+05:53.180 --> 05:56.840
+So here we can return view
+
+56
+05:59.760 --> 06:01.610
+questions dot
+
+57
+06:02.130 --> 06:05.400
+edit and then we pass in the question object
+
+58
+06:14.600 --> 06:17.990
+OK here we return questions.edits view
+
+59
+06:18.140 --> 06:30.140
+so let's create that file. Actually let's open questions create.blade.php and latter we will duplicate this file
+
+60
+06:30.530 --> 06:33.440
+and we'll save it as edit.blade.php
+
+61
+06:33.530 --> 06:39.470
+But before we do that we need to put the form inputs as well as the submit button into separate file
+
+62
+06:39.830 --> 06:46.970
+or partial file because when we create new question or edit the question we will be have the same form
+
+63
+06:46.970 --> 06:58.610
+elements but the differences could be in title, text of the button, form action and method.
+
+64
+06:58.660 --> 07:02.140
+So let's collapse all from groups
+
+65
+07:11.320 --> 07:12.680
+actually we'll
+
+66
+07:12.910 --> 07:13.680
+also need to move
+
+67
+07:13.720 --> 07:18.760
+The cscf blade directive so select these cut
+
+68
+07:24.740 --> 07:26.430
+and inside questions
+
+69
+07:26.430 --> 07:28.800
+folder let's create new file
+
+70
+07:33.030 --> 07:40.910
+_form.blade.php again the underscore in the front of the file name is not necessary but
+
+71
+07:41.030 --> 07:50.760
+it just to indicate that the file is partial file and it needs to be included in other view. OK here
+
+72
+07:50.870 --> 07:52.210
+Just paste them in
+
+73
+08:00.930 --> 08:04.890
+and since this file will be shared to create an edit file
+
+74
+08:04.890 --> 08:08.220
+that's why we'll need to make the submit button's text dynamic.
+
+75
+08:08.430 --> 08:09.060
+So
+
+76
+08:11.840 --> 08:12.910
+let's change this
+
+77
+08:16.430 --> 08:16.930
+to
+
+78
+08:19.920 --> 08:22.970
+button text
+
+79
+08:25.800 --> 08:29.170
+now in that create.blade.php
+
+80
+08:29.490 --> 08:36.510
+We can call the _form.blade.php file by saying at include
+
+81
+08:40.120 --> 08:46.930
+questions dot underscore form. In here
+
+82
+08:46.980 --> 08:54.240
+we can also pass in the data to this partial view by specifying it in the second parameter.
+
+83
+08:54.990 --> 09:10.440
+So in this case we'll pass array contains buttonText as a key and then the value will be ask question
+
+84
+09:15.100 --> 09:15.880
+OK
+
+85
+09:16.160 --> 09:16.940
+Save all these
+
+86
+09:21.930 --> 09:23.920
+and let's see if everything is still working
+
+87
+09:27.360 --> 09:28.870
+back to all questions
+
+88
+09:32.810 --> 09:34.980
+And click ask questions button
+
+89
+09:39.280 --> 09:39.850
+Alright
+
+90
+09:39.850 --> 09:40.990
+It's working as it was.

@@ -1,0 +1,228 @@
+WEBVTT
+
+0
+00:03.550 --> 00:08.640
+In this lesson are going to AJAXify or implementing 
+Ajax on delete answer button.
+
+1
+00:08.640 --> 00:11.530
+So it doesn't need to refresh the page to see the changes.
+
+2
+00:12.950 --> 00:19.770
+All right let's switch over to our terminal and 
+then create new branch to isolate our work today.
+
+3
+00:26.850 --> 00:30.000
+Don't forget to run webpack by saying: npm run
+
+4
+00:30.030 --> 00:30.390
+watch
+
+5
+00:37.860 --> 00:38.360
+OK
+
+6
+00:38.410 --> 00:41.340
+firstly let's open _answer.blade.php
+
+7
+00:44.360 --> 00:45.660
+and then find the delete button
+
+8
+00:51.080 --> 00:51.520
+OK
+
+9
+00:51.520 --> 00:52.150
+Here it is.
+
+10
+00:55.870 --> 00:58.770
+Because we are going to send the delete request through Ajax
+
+11
+00:58.780 --> 01:01.360
+so here we can move this delete button outside the form.
+
+12
+01:06.870 --> 01:08.030
+And now we can remove the form
+
+13
+01:12.780 --> 01:13.170
+here
+
+14
+01:13.200 --> 01:14.280
+let's cut the confirm
+
+15
+01:17.760 --> 01:28.240
+and remove the on click atttribute.
+
+16
+01:28.350 --> 01:30.400
+And let's also remove the type attribute.
+
+17
+01:32.560 --> 01:36.620
+When we click this button we'll call destroy method.
+
+18
+01:37.690 --> 01:41.160
+Now we can open Answer.vue file
+
+19
+01:50.600 --> 01:54.130
+and inside this methods property let's define the destroy method.
+
+20
+02:00.990 --> 02:05.310
+Inside here let's confirm the deletion by 
+paste the confirm to this if statement.
+
+21
+02:11.220 --> 02:13.090
+And here let's remove the return statement.
+
+22
+02:17.360 --> 02:20.390
+And inside this if statement we can call axios
+
+23
+02:20.660 --> 02:27.690
+and delete method and URI  will be the same with update method.
+
+24
+02:27.730 --> 02:35.230
+So here it will be this endpoint and we will define it shortly.
+
+25
+02:49.700 --> 02:55.610
+And then when the deletion success we also need toremove 
+the answer from the DOM and show a message that
+
+26
+02:55.610 --> 02:57.440
+sent back from our server.
+
+27
+02:57.830 --> 03:02.800
+And here's the temporary solution that do 
+the trick is by using jQuery fade out method.
+
+28
+03:03.960 --> 03:07.870
+Specify duration to determine how long the animation will run.
+
+29
+03:12.100 --> 03:16.750
+And we can also specify callback or what 
+to do once the animation is complete
+
+30
+03:21.550 --> 03:23.260
+for now let's show a message in alert.
+
+31
+03:36.250 --> 03:38.830
+Now let me cut the URI from this update method.
+
+32
+03:41.510 --> 03:45.700
+And replace it with this endpoint
+
+33
+03:51.370 --> 03:56.130
+now inside the computed property 
+let's create the endpoint method
+
+34
+04:00.780 --> 04:06.650
+and here we simply return the URI.  
+Last Let's open answers controller
+
+35
+04:11.530 --> 04:13.150
+then go to destroy method.
+
+36
+04:17.180 --> 04:20.080
+And here we can say if request
+
+37
+04:22.760 --> 04:23.730
+expects json
+
+38
+04:32.010 --> 04:33.890
+then we return json response
+
+39
+04:42.580 --> 04:43.740
+and it contains a message
+
+40
+04:48.120 --> 04:49.780
+and I'll copy the message from here.
+
+41
+04:54.610 --> 04:55.840
+All right let's save all changes.
+
+42
+05:01.700 --> 05:02.420
+Reload the page.
+
+43
+05:07.380 --> 05:12.280
+Hit the delete button and hit OK.
+
+44
+05:17.960 --> 05:23.310
+The deleted answer fade out and we have alert pop up.
+
+45
+05:23.400 --> 05:26.740
+Let's reload the page to see if the answer is completely removed
+
+46
+05:35.840 --> 05:36.640
+OK great
+
+47
+05:36.650 --> 05:38.760
+we have successfully implemented ajax on
+
+48
+05:38.770 --> 05:39.720
+delete button
+
+49
+05:39.770 --> 05:45.310
+Now it doesn't need to load the page after 
+any answer removed to see the change.
+
+50
+05:45.320 --> 05:51.020
+However this is not vue js way and this only temporary 
+solution in upcoming lesson we'll come back
+
+51
+05:51.020 --> 05:53.570
+here and we'll see the better way doing this stuff
+
+52
+05:53.710 --> 06:00.590
+using vue js  reactive system. OK in the next lesson we 
+are going to beautify the alert message as well as confirm
+
+53
+06:00.590 --> 06:05.570
+message so that it will make one application more interesting and look more professional.

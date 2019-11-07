@@ -1,0 +1,417 @@
+WEBVTT
+
+0
+00:02.420 --> 00:07.750
+In this lesson we're going to beautify the flash message 
+as well as confirm message so that it will make
+
+1
+00:07.750 --> 00:12.470
+our application more interesting and 
+look more professional. To do that
+
+2
+00:12.490 --> 00:16.150
+well not to install third party package called izi toast.
+
+3
+00:16.150 --> 00:19.940
+So this is the izi toast official website as you can see
+
+4
+00:19.960 --> 00:25.690
+this package provides some different types of 
+messages that you can try out such as success
+
+5
+00:29.150 --> 00:29.600
+warning
+
+6
+00:32.430 --> 00:34.270
+error etc.
+
+7
+00:37.960 --> 00:41.920
+and this package is the same package
+but with the vue js integration.
+
+8
+00:42.130 --> 00:43.620
+So this package is built on top
+
+9
+00:43.660 --> 00:48.160
+izi toast to make integration with the vue js more easier.
+
+10
+00:48.180 --> 00:52.870
+So instead of install this package  we're going to install this one
+
+11
+01:08.120 --> 01:09.160
+let's copy this command
+
+12
+01:12.090 --> 01:13.260
+go to our terminal
+
+13
+01:17.680 --> 01:19.870
+and before we paste and run the command
+
+14
+01:19.870 --> 01:22.120
+don't forget to isolate our work in new branch
+
+15
+01:29.150 --> 01:29.780
+also
+
+16
+01:29.830 --> 01:31.790
+let's run npm run watch
+
+17
+01:37.890 --> 01:39.240
+here I'll open new terminal
+
+18
+01:44.580 --> 01:50.100
+paste and -D to indicate that this package is for development only
+
+19
+01:55.650 --> 01:56.630
+while it's install
+
+20
+01:56.730 --> 01:57.900
+let's see the configuration
+
+21
+02:07.120 --> 02:08.110
+here we need to import
+
+22
+02:08.110 --> 02:11.530
+the vue izi toast core package
+
+23
+02:11.660 --> 02:13.360
+izi toast stylesheet
+
+24
+02:13.590 --> 02:18.160
+and use it in vue instance. So let's copy this line
+
+25
+02:23.010 --> 02:29.200
+let's switch over to our editor and we'll place 
+them in the main javascript file which is app.js
+
+26
+02:32.780 --> 02:33.980
+Let's open that file.
+
+27
+02:38.650 --> 02:39.910
+And Paste the code here.
+
+28
+02:47.710 --> 02:49.070
+Now let's see how to use it.
+
+29
+02:57.210 --> 03:05.050
+OK here we can call this toast and then 
+you can call show, info, success etc.
+
+30
+03:05.670 --> 03:12.600
+The first argument is the message and the second
+one is title and the third one is the option
+
+31
+03:17.260 --> 03:18.900
+let's open Answer.vue
+
+32
+03:22.640 --> 03:24.990
+and go to update method
+
+33
+03:29.810 --> 03:35.220
+and here let's replace this alert with this toast
+
+34
+03:35.560 --> 03:42.110
+success. This will be the message let's specify the title success
+
+35
+03:42.130 --> 03:42.760
+In this case.
+
+36
+03:47.340 --> 03:51.130
+And here also I'll specify option time out to three seconds
+
+37
+03:56.270 --> 03:57.240
+let's copy this line
+
+38
+04:00.800 --> 04:06.110
+and paste inside this catch method change the message to error
+
+39
+04:09.270 --> 04:16.720
+here we need to change error response data message.
+
+40
+04:16.960 --> 04:18.400
+The title will be error
+
+41
+04:22.080 --> 04:27.270
+and remove this line. Now let's do 
+the same thing to destroy method
+
+42
+04:31.400 --> 04:34.670
+select alert and replace with izi toast
+
+43
+04:37.550 --> 04:38.820
+alright let's save all changes
+
+44
+04:42.200 --> 04:43.360
+and let's give it a try.
+
+45
+04:49.790 --> 04:50.740
+reload the page
+
+46
+04:54.140 --> 04:55.280
+edit an answer
+
+47
+04:59.330 --> 05:00.190
+and hit update button.
+
+48
+05:04.180 --> 05:05.000
+as you can see
+
+49
+05:05.050 --> 05:11.630
+now we have beautiful flash message on the bottom left.
+
+50
+05:11.740 --> 05:18.310
+Now if you want to custom the position of 
+the flash message go to izi toast official 
+
+51
+05:18.310 --> 05:28.640
+web site and go to documentation.
+
+52
+05:28.800 --> 05:38.890
+Here you can find various options that you can adjust to custom the flash message behaviour.
+
+53
+05:39.010 --> 05:43.010
+Before we try to delete an answer let's 
+also change a native confirm with
+
+54
+05:43.020 --> 05:44.300
+izi toast.
+
+55
+05:44.680 --> 05:47.090
+So if you see in the izi toast official Web site
+
+56
+05:49.990 --> 05:51.860
+it provides a confirm like this.
+
+57
+05:54.290 --> 05:58.320
+Here we don't need select instead will show yes no cancel button
+
+58
+06:01.470 --> 06:02.460
+So let's see the code
+
+59
+06:14.360 --> 06:15.720
+copy everything here.
+
+60
+06:19.120 --> 06:20.430
+Got to destory method
+
+61
+06:23.870 --> 06:24.640
+and paste here
+
+62
+06:37.650 --> 06:42.420
+here we don't need this functions so let's remove them from here.
+
+63
+06:47.430 --> 06:48.650
+Let's move this lines
+
+64
+06:53.680 --> 06:55.480
+inside yes callback function here
+
+65
+07:01.280 --> 07:01.690
+and here
+
+66
+07:01.690 --> 07:16.460
+we don't need this confirm anymore.
+
+67
+07:16.470 --> 07:16.950
+All right
+
+68
+07:17.000 --> 07:23.580
+let's save this and give it a try.
+
+69
+07:23.590 --> 07:24.560
+Reload the page
+
+70
+07:27.330 --> 07:28.860
+and try to delete an answer.
+
+71
+07:31.490 --> 07:34.890
+It's not working
+
+72
+07:34.930 --> 07:36.250
+Let me open my console
+
+73
+07:43.770 --> 07:44.120
+here
+
+74
+07:44.130 --> 07:44.950
+I forgot to change
+
+75
+07:44.980 --> 07:48.860
+this izi toast here
+
+76
+07:48.890 --> 07:52.220
+I need to change this to this toast
+
+77
+08:01.280 --> 08:07.050
+and here let's cut this message and put it in the first argument.
+
+78
+08:07.670 --> 08:08.960
+And let's also add title
+
+79
+08:14.700 --> 08:15.640
+and reload the page
+
+80
+08:19.300 --> 08:19.820
+OK
+
+81
+08:19.830 --> 08:22.880
+Now I have no error.
+
+82
+08:22.930 --> 08:27.210
+I'll hit the delete button.
+
+83
+08:27.280 --> 08:29.360
+Now we have beautiful confirmation pop up.
+
+84
+08:29.700 --> 08:30.750
+If I hit yes
+
+85
+08:33.460 --> 08:34.720
+Nothing changed
+
+86
+08:35.160 --> 08:40.610
+And here in the console we have another error 
+cannot read property endpoint of undefined.
+
+87
+08:41.870 --> 08:47.360
+Let me see my code.
+
+88
+08:47.470 --> 08:53.500
+All right here we need to change this function to arrow 
+function because when we are using function
+
+89
+08:54.750 --> 08:58.120
+`this` will refer to the object that was created inside this function.
+
+90
+09:00.070 --> 09:05.720
+While in arrow function `this` will refer to the value of 
+`this` in the environment where the error function
+
+91
+09:05.720 --> 09:06.280
+is defined
+
+92
+09:12.870 --> 09:15.230
+let's save and give it another try.
+
+93
+09:24.460 --> 09:25.290
+Delete an answer
+
+94
+09:29.460 --> 09:34.510
+and hit yes.
+
+95
+09:34.550 --> 09:37.970
+Now the deleted answer disappear 
+and the flash message show up.
+
+96
+09:43.250 --> 09:46.240
+All right so now we have successfully integrated izi toast
+
+97
+09:46.250 --> 09:51.110
+in our application and it make our flash message 
+and confirmation dialog much beautiful.
+
+98
+09:54.290 --> 09:59.560
+In the next lesson we're going to rewrite 
+this favourite button into vue js component.
+
+99
+09:59.570 --> 10:02.660
+So let's commit all changes and I'll see you in a second.

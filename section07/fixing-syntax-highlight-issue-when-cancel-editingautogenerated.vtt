@@ -1,0 +1,382 @@
+WEBVTT
+
+0
+00:01.590 --> 00:07.280
+In the last video we've successfully fixed the syntax 
+highlight issue after a page loaded. But then we
+
+1
+00:07.280 --> 00:09.320
+find another issue
+
+2
+00:09.320 --> 00:11.730
+the syntax highlight is not working
+
+3
+00:11.850 --> 00:13.010
+after I made change
+
+4
+00:16.740 --> 00:20.810
+or after I cancel editing.
+
+5
+00:25.790 --> 00:33.400
+After a couple of minutes searching I finally found 
+methods called highlight all and highlight all under.
+
+6
+00:33.530 --> 00:39.170
+So basically the content is loaded latter in this 
+case loaded asynchronously will not highlighted
+
+7
+00:41.050 --> 00:46.690
+so to fix this we can apply the syntax highlight to 
+all of our code in the page by re-scanning the
+
+8
+00:46.690 --> 00:52.980
+entire DOM by using this highlight all method. But 
+I think it will not make sense re-scanning the entire
+
+9
+00:52.990 --> 00:56.110
+DOM just to update a question or an answer.
+
+10
+00:56.770 --> 01:01.420
+So in this case I prefer to use highlight all other method.
+
+11
+01:01.510 --> 01:05.750
+This method allows us to re-scan 
+everything under a certain element.
+
+12
+01:05.830 --> 01:11.850
+For example we can highlight the code by scanning 
+everything under a div element with a class body
+
+13
+01:11.860 --> 01:12.800
+html.
+
+14
+01:12.820 --> 01:14.590
+I think this make much sense
+
+15
+01:14.590 --> 01:19.520
+instead of scanning entire DOM. So we'll 
+be using this highlight all under method
+
+16
+01:19.540 --> 01:24.310
+in this case. Now the next question is where we call this method.
+
+17
+01:24.310 --> 01:25.090
+Do you have any idea?
+
+18
+01:30.470 --> 01:36.980
+in my opinion the best way to call it is cancel or 
+restore from cache method because they will be
+
+19
+01:37.010 --> 01:38.570
+call when we hit the cancel button.
+
+20
+01:39.690 --> 01:44.130
+And another place is after updating which is in update method.
+
+21
+01:45.450 --> 01:47.170
+All right let's go back to our editor
+
+22
+01:52.760 --> 02:00.550
+here I'll need to run the web pack npm run watch.
+
+23
+02:00.650 --> 02:02.530
+Now let's open the question dot vue
+
+24
+02:10.970 --> 02:11.510
+okay
+
+25
+02:11.590 --> 02:16.240
+As I already mentioned that we will be making 
+use this highlight all under method.
+
+26
+02:16.240 --> 02:23.810
+This method receives at least an argument which is 
+the element where we will highlight our code. So here
+
+27
+02:23.930 --> 02:26.920
+the first thing that we need to do is to identify the element
+
+28
+02:26.920 --> 02:37.180
+right? Now you may be thinking to add id attribute 
+in here so that we can utilize the document get
+
+29
+02:37.240 --> 02:39.310
+element by id function.
+
+30
+02:39.310 --> 02:46.360
+You can do that but in vue js instead of id here 
+we can utilize vue js special attribute call ref.
+
+31
+02:46.570 --> 02:52.350
+This attribute is used to register a reference 
+to an element or a child component.
+
+32
+02:52.360 --> 02:53.590
+Now we can jump to our script
+
+33
+02:57.170 --> 03:10.350
+find the restore from cache and here we can get our 
+referenced element by saying this dot dollar refs
+
+34
+03:11.170 --> 03:16.730
+dot body html. And we can assign it into a variable
+
+35
+03:22.500 --> 03:24.460
+for now let's console log this element
+
+36
+03:34.020 --> 03:35.340
+switch back to our browser
+
+37
+03:38.710 --> 03:39.490
+reload a page
+
+38
+03:43.370 --> 03:44.990
+and open the browser console
+
+39
+03:48.920 --> 03:56.460
+here I have 404 error. I'll fix this shortly 
+for now let's hit the edit button
+
+40
+04:00.700 --> 04:01.840
+hit cancel button
+
+41
+04:05.720 --> 04:24.630
+here I get el undefined. Do we have any idea why we get this?
+
+42
+04:24.800 --> 04:33.880
+Well if you remember when editing the component 
+which shows the body html is completely removed.
+
+43
+04:33.880 --> 04:37.660
+that means no element with reference body html at the time
+
+44
+04:40.490 --> 04:45.160
+the component will be added to the page 
+as soon as we hit the cancel or save button.
+
+45
+04:48.690 --> 04:56.570
+That's why we'll find nothing and we'll get undefined in 
+the console. May be we need to keep the component
+
+46
+04:56.750 --> 04:58.490
+to stay in place.
+
+47
+04:58.730 --> 05:00.800
+So let's switch back over to our editor
+
+48
+05:05.380 --> 05:10.500
+then here let's find the v-if directive
+
+49
+05:13.710 --> 05:24.750
+and let's replace this with v-show. Remember that using 
+v-show will make the component to get rendered
+
+50
+05:24.930 --> 05:26.420
+and remain in the DOM.
+
+51
+05:26.430 --> 05:27.300
+It only toggle
+
+52
+05:27.330 --> 05:29.580
+display css property of the element.
+
+53
+05:30.780 --> 05:32.490
+Let's also find
+
+54
+05:32.550 --> 05:45.180
+v-else and replace this with v-show but this 
+element should be visible if not editing.
+
+55
+05:45.440 --> 05:52.240
+Also we need to make sure that this form 
+can only be accessed by authorized users.
+
+56
+05:58.170 --> 06:02.130
+Let's save and try one more time.
+
+57
+06:06.670 --> 06:07.370
+Reload the page
+
+58
+06:18.810 --> 06:20.360
+as you can see now we have
+
+59
+06:20.360 --> 06:29.510
+element appears here. So we can switch back 
+to our editor back to restore from cache
+
+60
+06:32.270 --> 06:44.130
+let's replace this console log with prism dot highlight all under el.
+
+61
+06:47.210 --> 06:52.400
+Also let's make sure this method will 
+be called if the element is not undefined.
+
+62
+06:57.120 --> 06:57.900
+Now in the top
+
+63
+07:01.110 --> 07:05.130
+we can import the prism js package.
+
+64
+07:06.000 --> 07:11.090
+All right let's save the change and let's give it another try
+
+65
+07:19.420 --> 07:20.500
+I'll edit the question
+
+66
+07:24.680 --> 07:29.180
+then I'll hit cancel button. OK
+
+67
+07:29.190 --> 07:35.040
+our code is still syntax highlighting 
+great. Now before I end this video
+
+68
+07:35.040 --> 07:39.310
+I want to fix this small issue here I have 4 0 4 error.
+
+69
+07:39.420 --> 07:45.960
+It seems that it failed to load the prism dot css 
+file. But the strange here the prism js theme
+
+70
+07:45.990 --> 07:46.980
+successfully applied.
+
+71
+07:49.840 --> 07:56.730
+So let me open the app blade php inside layouts directory
+
+72
+08:00.730 --> 08:10.590
+I'm sure there's no problem with css file 
+reference here I'll go to public css directory.
+
+73
+08:13.900 --> 08:23.190
+Sorry I made typo here I missed the s letter. It 
+should be prism js themes. So let me remove this
+
+74
+08:23.190 --> 08:23.670
+folder
+
+75
+08:28.330 --> 08:31.000
+then I'll go to webpack mix js
+
+76
+08:36.620 --> 08:46.810
+and here I'll change this to prism js themes.
+Let's save and I need to restart the web pack.
+
+77
+08:55.770 --> 09:01.470
+Now the reason why the prism js themes successfully 
+applied although the file reference was wrong
+
+78
+09:01.470 --> 09:08.040
+is because I imported the css file here. 
+so actually I need to remove this line
+
+79
+09:11.540 --> 09:12.590
+I'll save the changes.
+
+80
+09:16.330 --> 09:17.730
+I'll switch back to my browser
+
+81
+09:20.870 --> 09:21.700
+and reload the page
+
+82
+09:27.170 --> 09:32.810
+okay here the syntax highlight is still
+working and the 4 0 4 error is gone
+
+83
+09:32.810 --> 09:38.940
+Great. In the next video we're going to make another mixin
+
+84
+09:42.730 --> 09:50.080
+and put this code to it so that we can apply this 
+mechanism not only after updating or cancelling the
+
+85
+09:50.080 --> 09:55.680
+question but also in other components. Alright
+
+86
+09:55.830 --> 09:57.840
+let's commit our changes to our git repo.

@@ -1,0 +1,148 @@
+WEBVTT
+
+0
+00:00.580 --> 00:07.350
+In this lesson we're going to learn about style binding. 
+The style binding is a mechanism for dynamically
+
+1
+00:07.350 --> 00:14.490
+applying one or more css style definitions to 
+a particular element. To do so we can use the
+
+2
+00:14.740 --> 00:17.140
+v-bind colon style directive
+
+3
+00:18.230 --> 00:26.700
+then pass an argument or we can use the shorthand 
+syntax just colon style then pass in the argument.
+
+4
+00:26.930 --> 00:32.060
+The argument here can be an object or an array. First up
+
+5
+00:32.270 --> 00:35.220
+let's see how to define css styles in object
+
+6
+00:35.390 --> 00:38.650
+and pass it as style binding argument.
+
+7
+00:38.660 --> 00:47.310
+Now here we defined the css style as key value 
+pair where the key is css property and value is
+
+8
+00:47.310 --> 00:49.990
+the value of css property.
+
+9
+00:50.000 --> 00:57.050
+So here we can specify one or more css properties 
+as we do in the regular css but one thing
+
+10
+00:57.050 --> 01:04.730
+to be noticed here is because generally css property 
+can consist of one or several words separated
+
+11
+01:04.740 --> 01:05.890
+by dash
+
+12
+01:06.020 --> 01:13.610
+then we can safely write it in camel case such as 
+font size like so. Or it can be written in snake case
+
+13
+01:14.240 --> 01:17.130
+but it must be enclosed in quotation marks.
+
+14
+01:19.150 --> 01:27.310
+So for background color for example we can write in camel case 
+like this or in snake case background dash color just like
+
+15
+01:27.310 --> 01:31.840
+we write in normal css. Let's see an example.
+
+16
+01:32.710 --> 01:41.020
+Here we do style bending to my classes then in data 
+property for example we defined my classes as an
+
+17
+01:41.020 --> 01:50.220
+object contains color blue, padding two pixels. When 
+the page is rendered the div will have style color
+
+18
+01:50.430 --> 01:54.450
+blue, padding two pixels.
+
+19
+01:54.460 --> 02:00.270
+Next up we can style binding and pass in css style as array.
+
+20
+02:00.290 --> 02:07.070
+This usually when we need to apply several style 
+definitions so maybe we define some groups of style
+
+21
+02:07.190 --> 02:15.650
+such as custom style 1, custom style 2 and so on then 
+from some of these styles we can combine them into
+
+22
+02:15.650 --> 02:19.050
+an element by defining them in an array like this.
+
+23
+02:20.590 --> 02:31.720
+For example here I have a div and it's style binding to a 
+and b where a and b defined in data property. a contains
+
+24
+02:31.720 --> 02:35.670
+color white then b font size 12 pixels
+
+25
+02:37.180 --> 02:41.500
+Here I only to find one css property for every single style.
+
+26
+02:41.650 --> 02:49.630
+But in practice we can define more than one css 
+property. Now a and b will be merged so that when
+
+27
+02:49.630 --> 02:55.520
+the page is rendered this div will have style color white font size 12 pixels.
+
+28
+02:55.560 --> 02:56.180
+All right
+
+29
+02:56.190 --> 03:02.260
+that's all about style bindings. We can dynamically 
+apply inline css to element by passing css 
+
+30
+03:02.260 --> 03:04.760
+styles in object or array
+
+31
+03:04.800 --> 03:07.240
+if we need to combine several styles.
+
+32
+03:07.240 --> 03:08.810
+OK let's see in action.

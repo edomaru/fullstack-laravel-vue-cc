@@ -1,0 +1,288 @@
+WEBVTT
+
+0
+00:01.270 --> 00:07.370
+In this video we're going to make this text area to 
+automatically resize its height based on the text
+
+1
+00:07.430 --> 00:13.970
+that contains inside it so that we can see entire body 
+of the question without need to scroll up or down
+
+2
+00:13.970 --> 00:14.860
+the text area.
+
+3
+00:15.860 --> 00:16.230
+All right
+
+4
+00:16.320 --> 00:19.560
+firstly let's navigate to this URL.
+
+5
+00:27.710 --> 00:28.010
+Here
+
+6
+00:28.010 --> 00:30.140
+let's copy the Installation Command
+
+7
+00:35.570 --> 00:36.860
+switch to our terminal.
+
+8
+00:40.840 --> 00:41.170
+Here
+
+9
+00:41.180 --> 00:44.060
+I'll run web pack by saying npm run watch
+
+10
+00:54.420 --> 01:01.260
+and then here I'll paste the command and then I'll 
+be adding -D to indicate that this package is dev
+
+11
+01:01.250 --> 01:10.510
+dependency or dependency that required for development 
+only. Now let's go to M Editor component.
+
+12
+01:10.590 --> 01:11.950
+Go to script section
+
+13
+01:15.220 --> 01:16.400
+and here
+
+14
+01:16.610 --> 01:31.830
+firstly let's import the auto size package.
+
+15
+01:31.880 --> 01:43.210
+Here we can make the text area to auto size by utilizing 
+this auto size function and specify the element.
+
+16
+01:43.220 --> 01:47.900
+Now the question is where we should 
+call the auto size in this component.
+
+17
+01:47.900 --> 01:53.250
+Do you have any idea? In my opinion 
+there are two possible ways.
+
+18
+01:53.250 --> 02:00.070
+The first one is a call it in watcher so watcher is 
+vue js feature that allows us to do something
+
+19
+02:00.250 --> 02:02.080
+whenever a particular property changes
+
+20
+02:06.070 --> 02:09.660
+so here we can add watch option
+
+21
+02:18.560 --> 02:19.660
+than here
+
+22
+02:19.680 --> 02:25.440
+when the body changes you want to do something 
+we can do so by adding here the body data property
+
+23
+02:26.170 --> 02:27.330
+that they want to watch over
+
+24
+02:35.060 --> 02:36.800
+and here we can console log a message
+
+25
+02:46.920 --> 02:50.760
+now and the second way is to utilize the updated life cycle hook.
+
+26
+02:55.110 --> 02:59.550
+This hook executed after data changes 
+in our component and a DOM re-render
+
+27
+03:02.240 --> 03:04.200
+so here let's also console log a message.
+
+28
+03:12.530 --> 03:13.200
+All right
+
+29
+03:13.230 --> 03:14.030
+let's save all changes
+
+30
+03:17.300 --> 03:18.230
+back to our browser
+
+31
+03:22.780 --> 03:28.480
+reload the page.
+
+32
+03:28.620 --> 03:30.600
+Now let's open our browser console.
+
+33
+03:37.460 --> 03:38.450
+then hit the edit button.
+
+34
+03:46.730 --> 03:56.370
+Now if we make any update here you can see the console 
+the watch body and updated hook messages appear.
+
+35
+03:56.440 --> 03:59.450
+So basically each option has similar behavior.
+
+36
+03:59.530 --> 04:04.150
+Every time we made change the body watcher 
+and updated hook will get triggered.
+
+37
+04:04.420 --> 04:07.960
+So let's switch back over to our editor
+
+38
+04:10.720 --> 04:14.850
+and from these options it's up to 
+you to choose which one you prefer.
+
+39
+04:14.950 --> 04:17.290
+In my case I'll be using the updated hook
+
+40
+04:23.140 --> 04:23.960
+so here
+
+41
+04:24.050 --> 04:35.130
+Let's replace this line with auto size and pass the 
+text area in. We can do that by saying document
+
+42
+04:36.360 --> 04:37.770
+dot query selector
+
+43
+04:42.330 --> 04:43.050
+text area
+
+44
+04:47.280 --> 04:50.010
+or we can also use the vue js way like so
+
+45
+04:57.340 --> 05:00.250
+and here I'll remove this watch option
+
+46
+05:07.760 --> 05:08.180
+okay
+
+47
+05:08.230 --> 05:12.290
+let's save. Back to our browser
+
+48
+05:17.370 --> 05:18.070
+reload the page
+
+49
+05:21.580 --> 05:22.390
+hit the edit button
+
+50
+05:28.040 --> 05:30.920
+here the height of the text area is not changing.
+
+51
+05:32.400 --> 05:38.230
+But when I make change here now it's has full height.
+
+52
+05:38.230 --> 05:40.210
+Actually this is not what we want.
+
+53
+05:40.230 --> 05:44.030
+We wanted the full height as soon as we hit the edit button.
+
+54
+05:44.310 --> 05:47.920
+Maybe we need to call the auto size in mounted hook.
+
+55
+05:47.940 --> 05:51.900
+Let's go back to our editor here
+
+56
+05:51.910 --> 05:53.080
+let's add mounted
+
+57
+05:57.600 --> 05:58.410
+copy this line
+
+58
+06:02.940 --> 06:09.920
+and paste here. Let's save back to our browser reload the page
+
+59
+06:13.210 --> 06:14.390
+and hit again the edit button
+
+60
+06:18.660 --> 06:19.610
+as you can see
+
+61
+06:19.710 --> 06:22.170
+Now our text area has full height.
+
+62
+06:22.230 --> 06:26.100
+We can see entire body question 
+without need to scroll the text area.
+
+63
+06:30.280 --> 06:30.560
+now
+
+64
+06:30.570 --> 06:32.680
+If you type something hit return
+
+65
+06:36.370 --> 06:45.510
+no scroll needed hear and I anything this much better.
+
+66
+06:45.630 --> 06:47.910
+I think that's all we need for this lesson.
+
+67
+06:47.940 --> 06:49.920
+Let's commit our changes to our git repo.

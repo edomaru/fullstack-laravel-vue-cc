@@ -1,0 +1,194 @@
+WEBVTT
+
+0
+00:03.160 --> 00:09.250
+Hiding or showing elements is something that we might 
+often encounter in modern web applications for
+
+1
+00:09.250 --> 00:15.270
+example we might display a form modal when a button 
+is clicked or hide it when other element being clicked.
+
+2
+00:17.280 --> 00:21.250
+We might also display a message when no data is found or hide it
+
+3
+00:21.270 --> 00:30.080
+if no record found without need to reload the page and 
+much more. Vue js provides a mechanism for showing
+
+4
+00:30.170 --> 00:33.050
+or hiding elements based on certain conditions.
+
+5
+00:33.770 --> 00:40.490
+The first one is the v-if directive. The v-if will add 
+or remove element in the DOM conditionally
+
+6
+00:43.980 --> 00:45.330
+it will add an element
+
+7
+00:45.360 --> 00:48.360
+where it's defined when it's evaluates to true
+
+8
+00:48.680 --> 00:53.080
+or it will remove the element dynamically if it evaluates to false.
+
+9
+00:55.290 --> 00:55.840
+All right
+
+10
+00:55.890 --> 00:57.580
+let's open conditional rendering
+
+11
+00:57.590 --> 01:02.490
+one dot html.
+
+12
+01:02.690 --> 01:04.830
+And here we have a message.
+
+13
+01:04.910 --> 01:15.230
+You have no any record and a hide message button. We will 
+hide this message or remove the message to be precise if the
+
+14
+01:15.230 --> 01:25.510
+hide message button is clicked. Let's switch back over to 
+our editor then open conditional rendering one dot html
+
+15
+01:28.370 --> 01:30.400
+and here the message that we will hidden.
+
+16
+01:34.300 --> 01:47.690
+So here we can say v-if equals and then pass in a value 
+let's say hide alert. Now we can go to vue option
+
+17
+01:55.150 --> 01:56.500
+then define data property.
+
+18
+02:00.270 --> 02:02.850
+Inside here let's define hide alert property
+
+19
+02:07.460 --> 02:08.720
+and it will be true by default
+
+20
+02:11.770 --> 02:18.140
+actually let me just change the name to show 
+alert because I think it's more descriptive.
+
+21
+02:18.490 --> 02:21.640
+Let's save and let's make sure that the message still appears.
+
+22
+02:26.210 --> 02:27.760
+OK in this button
+
+23
+02:27.990 --> 02:32.250
+let's define an event handling by making use v-on click directive
+
+24
+02:36.530 --> 02:37.470
+then inside here
+
+25
+02:37.510 --> 02:38.920
+let's change the show alert
+
+26
+02:41.290 --> 02:41.990
+to false.
+
+27
+02:46.670 --> 02:49.670
+save back to our browser.
+
+28
+02:49.810 --> 02:58.230
+And let's see now if I click the hide message 
+button now the message disappears.
+
+29
+03:01.350 --> 03:09.500
+So by changing the show alert to false this alert will 
+be hidden because the condition in v-if directive is
+
+30
+03:09.500 --> 03:10.080
+not met.
+
+31
+03:12.510 --> 03:19.190
+In the real cases we usually show this kind of message
+if there's no record found or hide it when records
+
+32
+03:19.230 --> 03:24.100
+found for example here we can check if the record is empty
+
+33
+03:29.620 --> 03:35.050
+record dot length and show alert is true
+
+34
+03:35.070 --> 03:40.310
+then we show the alert.
+
+35
+03:40.310 --> 03:49.330
+So in other word the alert will be hidden if the data 
+is not empty or if we click the hide message button.
+
+36
+03:49.500 --> 03:54.240
+Now in the data property we can define a new property
+
+37
+04:00.210 --> 04:04.330
+records which is an empty array.
+
+38
+04:04.430 --> 04:09.240
+In practice we can fill these records with the real 
+data that we retrieve from the back end API
+
+39
+04:09.260 --> 04:11.010
+through AJAX.
+
+40
+04:11.140 --> 04:15.090
+Let's see here the alert still appears.
+
+41
+04:15.480 --> 04:21.220
+Now we can try to hit the hide message button and now it's gone
+
+42
+04:25.490 --> 04:25.890
+now
+
+43
+04:25.920 --> 04:28.820
+If we filled this records property with any data
+
+44
+04:35.320 --> 04:37.210
+now the alert will be disappears.

@@ -1,0 +1,252 @@
+WEBVTT
+
+0
+00:02.810 --> 00:05.660
+Let's open the computed property one dot html.
+
+1
+00:08.280 --> 00:16.660
+And here we have three form elements a title selection, 
+name and email inputs. And below that we have
+
+2
+00:16.660 --> 00:23.200
+an alert showing the title and name in uppercase and lowercase.
+
+3
+00:23.200 --> 00:32.700
+Now here if we change the title we cannot see any 
+changes in the alert but once we update the name
+
+4
+00:37.380 --> 00:39.220
+the changes reflected in it.
+
+5
+00:41.610 --> 00:46.390
+So let's go to our editor and then open computed property one
+
+6
+00:46.450 --> 00:53.110
+dot html
+
+7
+00:53.190 --> 00:55.870
+And here we can see each form element
+
+8
+00:55.890 --> 01:08.530
+is bound to variable using v model directive. Then in
+an alert we have two paragraphs each contains title
+
+9
+01:09.250 --> 01:19.610
+concatenate with name converted to uppercase and 
+lowercase. Although this only simple logic but we need
+
+10
+01:19.610 --> 01:26.250
+to consider that our view or our templates should 
+only be concerned with displaying data to the user.
+
+11
+01:27.090 --> 01:29.130
+That's why we will move them into vue
+
+12
+01:29.130 --> 01:31.220
+option.
+
+13
+01:31.380 --> 01:39.710
+So let's jump to the script section and here we 
+can see that the title is outside the vue instance
+
+14
+01:39.730 --> 01:41.460
+That's why it was not reactive
+
+15
+01:44.900 --> 01:46.940
+now let's add methods property.
+
+16
+01:53.380 --> 01:56.100
+And inside that we can define a method
+
+17
+01:56.370 --> 01:58.500
+let's say upper name
+
+18
+02:03.740 --> 02:06.150
+then let's move this expression
+
+19
+02:11.190 --> 02:13.570
+inside the upper named method
+
+20
+02:18.370 --> 02:19.880
+add return in the beginning
+
+21
+02:24.700 --> 02:27.000
+the title is outside the vue instance
+
+22
+02:27.130 --> 02:29.180
+So we don't need to make any changes.
+
+23
+02:30.810 --> 02:39.290
+But here the name is in data property.
+
+24
+02:39.390 --> 02:45.400
+Inside the vue option scope we need 
+to call it by explicitly add 'this'.
+
+25
+02:45.690 --> 02:56.160
+So this dot name. Hear in the template we can 
+now call the method upper name parentheses.
+
+26
+02:56.310 --> 02:56.760
+All right
+
+27
+02:56.790 --> 03:07.730
+Let's also move this expression but now we will place 
+it in computed property. Back to script section and here
+
+28
+03:07.730 --> 03:13.020
+in vue option let's add computed property
+
+29
+03:13.220 --> 03:16.220
+and in this property let's define a method
+
+30
+03:16.610 --> 03:18.850
+I'm going to call it lower name
+
+31
+03:21.610 --> 03:30.470
+inside this method let's add return then paste the code.
+
+32
+03:30.620 --> 03:32.810
+Don't forget to add this before the name
+
+33
+03:36.050 --> 03:37.530
+here in the template
+
+34
+03:38.880 --> 03:45.980
+we can now call our method or function that we defined 
+in computed property just like the lower name.
+
+35
+03:46.170 --> 03:53.460
+We don't need parentheses and vue js will automatically 
+invokes the function. Now before we run this
+
+36
+03:53.650 --> 03:58.510
+let's also add console log in both upper name and lower name
+
+37
+04:21.420 --> 04:31.530
+and here let me add computed to distinguish the 
+method call. Let's save switch back to our browser.
+
+38
+04:31.670 --> 04:32.690
+Let's open console
+
+39
+04:37.180 --> 04:37.630
+and here
+
+40
+04:37.660 --> 04:41.890
+Let me put it on the right so that I can see the log.
+
+41
+04:45.160 --> 04:50.840
+Here we can see upper name and computed 
+lower name called on the first load.
+
+42
+04:50.890 --> 04:52.150
+Now let's select the title
+
+43
+04:55.240 --> 05:01.500
+and here we don't see any changes 
+on the alert as well as in the console.
+
+44
+05:01.560 --> 05:04.660
+The title is not reactive variable
+
+45
+05:04.730 --> 05:10.900
+that's why it will not trigger an update on the view.
+
+46
+05:10.950 --> 05:12.450
+But now if we update the name
+
+47
+05:16.400 --> 05:22.790
+the title in the computed property instantly change 
+this because changing the name will trigger an
+
+48
+05:22.790 --> 05:28.760
+update for the computed property.
+
+49
+05:28.860 --> 05:34.040
+And here we also see the upper name 
+and computed lower name being called
+
+50
+05:34.100 --> 05:43.750
+every time I hit the key.
+
+51
+05:43.890 --> 05:46.010
+Now what if we update the email
+
+52
+05:58.860 --> 06:05.220
+as you can see in the console only upper name method 
+being called this because the variable email is reactive
+
+53
+06:06.120 --> 06:08.630
+and it will trigger the view to be refreshed.
+
+54
+06:10.440 --> 06:13.490
+Because in the template we call upper name
+
+55
+06:13.790 --> 06:20.220
+that's why this method will be called. The computed 
+lower name it's not called because as I said the
+
+56
+06:20.220 --> 06:26.600
+value is cached so that the function will not rerun as 
+long as the dependent property is not updated.
+
+57
+06:26.610 --> 06:28.900
+I hope you get the idea.

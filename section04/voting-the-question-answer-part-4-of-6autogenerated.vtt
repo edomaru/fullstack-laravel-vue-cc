@@ -1,0 +1,205 @@
+WEBVTT
+
+0
+00:02.670 --> 00:07.740
+Now before we actually apply these in one application 
+and make the vote question controls working
+
+1
+00:08.160 --> 00:12.860
+let's apply these in new seeder and 
+make fake voting to all questions.
+
+2
+00:12.900 --> 00:14.550
+So let's head over to our terminal
+
+3
+00:21.490 --> 00:22.960
+and then here let's create new sider
+
+4
+00:28.110 --> 00:30.290
+here I'm going to call it votable
+
+5
+00:33.360 --> 00:44.220
+table seeder.
+
+6
+00:44.250 --> 00:46.910
+Now we can open database seeder
+
+7
+00:52.130 --> 00:53.070
+and then call it here
+
+8
+01:00.590 --> 01:04.360
+and then let's open votable
+
+9
+01:04.790 --> 01:05.510
+table seeder
+
+10
+01:08.360 --> 01:11.750
+import the namespace of user and question model here
+
+11
+01:29.400 --> 01:32.040
+and here we'll do almost the same thing as we did before.
+
+12
+01:32.160 --> 01:36.400
+So let's reset the votables table before we insert some records.
+
+13
+01:47.000 --> 01:52.230
+Here we need to make sure that we only 
+delete the records only for question.
+
+14
+01:52.250 --> 01:55.070
+That's why we need to call where
+
+15
+01:59.380 --> 02:00.160
+votable type
+
+16
+02:02.820 --> 02:03.880
+App
+
+17
+02:04.160 --> 02:04.640
+Question.
+
+18
+02:09.920 --> 02:10.410
+Next
+
+19
+02:10.490 --> 02:17.940
+let's get all users. We will not call pluck method 
+because we need user instances in this case.
+
+20
+02:18.990 --> 02:25.410
+So here we call user all to return all collections of user instance.
+
+21
+02:31.680 --> 02:33.890
+And here we'll define another variable
+
+22
+02:33.890 --> 02:47.980
+let's say number of users and here we can say user 
+count and then let's also define a variable that
+
+23
+02:47.980 --> 03:00.190
+hold the possible votes values votes equals -1 and 1.
+
+24
+03:00.230 --> 03:07.400
+So when we want to vote down we can say votes zero.
+
+25
+03:08.180 --> 03:11.630
+And to vote up we can say votes 1
+
+26
+03:17.220 --> 03:18.090
+OK
+
+27
+03:18.340 --> 03:20.740
+next let's iterate all questions in for each
+
+28
+03:33.360 --> 03:41.790
+here every single question will be voted up or be 
+voted down by at least one randomly and we can do
+
+29
+03:41.790 --> 03:43.410
+almost same thing as we did before
+
+30
+03:59.700 --> 04:12.290
+actually I'll chance this to one so that the question 
+can be voted at least by one user. Inside
+
+31
+04:12.290 --> 04:16.580
+here let's get the random user and assign to a variable
+
+32
+04:26.650 --> 04:28.410
+after we've got the user
+
+33
+04:28.420 --> 04:37.200
+then we can make that user to vote the 
+question by saying user vote questions.
+
+34
+04:38.700 --> 04:47.610
+Sorry vote question pass the question instance and 
+here it will be vote up or vote down randomly
+
+35
+04:57.490 --> 05:07.580
+Alright, the last step before we run the 
+seed is to open question factory.
+
+36
+05:07.700 --> 05:10.000
+And here we don't need this random vote anymore.
+
+37
+05:10.010 --> 05:13.470
+So here I'll just comment this line. OK
+
+38
+05:13.640 --> 05:14.780
+now let's save all changes
+
+39
+05:18.600 --> 05:19.980
+and then go to our terminal
+
+40
+05:23.340 --> 05:38.540
+and here let's run the votes table seeder.
+
+41
+05:38.550 --> 05:41.520
+All right let me see the vote records in phpmyadmin
+
+42
+05:46.910 --> 05:49.010
+here I have 14 records.
+
+43
+05:51.350 --> 05:55.920
+Let me let me show only question
+
+44
+06:21.960 --> 06:32.980
+OK here you can see the question one has two votes.
+The question two just one vote question 5
+
+45
+06:33.350 --> 06:36.140
+three votes and so on.
+
+46
+06:36.670 --> 06:37.780
+Okay great
+
+47
+06:37.780 --> 06:41.290
+now it's time to apply that and make 
+our vote control actually working.

@@ -1,0 +1,455 @@
+WEBVTT
+
+0
+00:01.560 --> 00:06.790
+So far in this course we have implemented the 
+full set of CRUD functionality in our application.
+
+1
+00:06.790 --> 00:14.680
+One thing that probably missing is the ability to authorize the question. Because as you can see here any
+
+2
+00:14.680 --> 00:22.010
+questions can be modified by anyone else.
+To implement authorization in our application
+
+3
+00:22.060 --> 00:24.170
+we have two ways of doing so.
+
+4
+00:24.210 --> 00:28.750
+First we can using gates and a second we can using policies.
+
+5
+00:29.200 --> 00:31.530
+So in this lesson I'll show you the first way.
+
+6
+00:31.630 --> 00:34.780
+And the second way will be discussed in the next lesson.
+
+7
+00:38.170 --> 00:40.630
+All right let's go ahead and create our new branch
+
+8
+00:45.370 --> 00:45.820
+right now
+
+9
+00:45.820 --> 00:46.940
+I'll call it
+
+10
+00:47.200 --> 00:50.240
+lesson 12
+
+11
+00:50.550 --> 00:57.780
+dash a and I'm going to create lesson 12 b in the next lesson because the topic that we will
+
+12
+00:57.780 --> 01:03.690
+be discussed is the same which is authorization and we'll see two different ways of doing so.
+
+13
+01:03.990 --> 01:06.400
+That's why they named the brands less than 12
+
+14
+01:06.420 --> 01:07.370
+dash a
+
+15
+01:07.470 --> 01:13.230
+And lesson 12 b instead of lesson 12 and lesson 13
+
+16
+01:13.770 --> 01:16.550
+But again it's up to you to name your branch
+
+17
+01:16.590 --> 01:18.600
+You can name it it's lesson 12
+
+18
+01:18.820 --> 01:19.300
+dash
+
+19
+01:19.320 --> 01:24.210
+gates and lesson 12 policies or whatever
+
+20
+01:27.420 --> 01:27.970
+OK
+
+21
+01:28.010 --> 01:38.410
+Let's go to app providers and open auth service provider now to
+
+22
+01:38.440 --> 01:38.730
+write
+
+23
+01:38.740 --> 01:54.110
+gates we can jump to boot method and in here we can write a gate by calling gate facade and then call define
+
+24
+01:56.100 --> 01:58.590
+this method accepts two arguments
+
+25
+01:58.590 --> 02:00.280
+The first one is the name
+
+26
+02:00.390 --> 02:05.320
+In this case let's call it update question
+
+27
+02:06.600 --> 02:19.210
+And the second argument is a closure contains two arguments
+
+28
+02:19.380 --> 02:27.140
+The first one should be used user instance and this instance represented the current user sign in.
+
+29
+02:27.450 --> 02:31.300
+And the second one is the model instance that we will otherwise.
+
+30
+02:31.550 --> 02:33.360
+In this case question
+
+31
+02:39.110 --> 02:44.910
+and inside here we simply match the current user ID with user id of the question
+
+32
+02:56.570 --> 03:00.210
+and return it.
+
+33
+03:00.260 --> 03:06.180
+This will return boolean value true if both values are match or false
+
+34
+03:06.180 --> 03:09.770
+If they are not match now we can simply copy this
+
+35
+03:16.100 --> 03:19.990
+and change the name to delete question.
+
+36
+03:24.130 --> 03:28.150
+And the logic here is no difference at least for now.
+
+37
+03:28.390 --> 03:34.700
+So actually here we can define only one gate and then we can use it to authorize edit or delete
+
+38
+03:34.720 --> 03:35.750
+action.
+
+39
+03:36.160 --> 03:41.150
+But let's assume that in the future this gates will be a little different.
+
+40
+03:42.340 --> 03:45.270
+All right after we have gates defined in here
+
+41
+03:45.370 --> 03:49.520
+Now we can use or apply them in our entire application.
+
+42
+03:49.530 --> 03:56.070
+First let's apply a word gates in the questions controller and later on we will apply them in our view.
+
+43
+03:56.290 --> 03:57.580
+So we're doing this
+
+44
+03:57.580 --> 04:04.890
+It will make our application secure both in server side and in client side or in our view.
+
+45
+04:05.500 --> 04:07.840
+Now we can go to questions controller
+
+46
+04:15.240 --> 04:22.100
+and then here we can use the gate in any actions that we need to authorize.
+
+47
+04:22.370 --> 04:24.320
+Let's try that in edit method
+
+48
+04:32.840 --> 04:37.550
+here we can say if Gate
+
+49
+04:40.110 --> 04:40.590
+gate
+
+50
+04:43.270 --> 04:44.050
+allows
+
+51
+04:49.060 --> 04:50.080
+update question
+
+52
+04:53.180 --> 04:55.430
+to  question instance
+
+53
+04:59.530 --> 05:03.850
+so if the current allowed or authorized to update the question
+
+54
+05:08.530 --> 05:10.670
+then we'll return the question
+
+55
+05:10.710 --> 05:11.570
+dot edit view
+
+56
+05:16.590 --> 05:26.080
+Note here that we don't need to pass user instance as we defined in here because laravel will
+
+57
+05:26.080 --> 05:27.490
+handle that behind the scene
+
+58
+05:33.280 --> 05:39.160
+outside if which means the current user are not allowed will show error by calling laravel abort
+
+59
+05:39.160 --> 05:39.700
+helper function
+
+60
+05:43.640 --> 05:53.170
+let's say 4 0 3 and the message access denied
+
+61
+05:59.450 --> 06:01.350
+let's save all changes.
+
+62
+06:06.630 --> 06:10.930
+And now let's try to edit any question that belonging by other user
+
+63
+06:21.470 --> 06:24.390
+here we got expected error
+
+64
+06:24.520 --> 06:25.510
+Access denied.
+
+65
+06:27.190 --> 06:27.670
+Now
+
+66
+06:31.330 --> 06:33.460
+if you tried to edit our own question
+
+67
+06:44.480 --> 06:46.210
+we will be fine.
+
+68
+06:49.260 --> 06:55.590
+Now here we can also say if gate denies update
+
+69
+06:58.220 --> 07:05.580
+question so if the current user denied or not authorized to update question
+
+70
+07:08.360 --> 07:12.390
+then than here we need to show the error message.
+
+71
+07:12.470 --> 07:19.930
+We can simply move the view outside 
+and move the abort function calling inside.
+
+72
+07:22.220 --> 07:28.690
+Actually I prefer to use this way in this case because we don't need to touch our existing code.
+
+73
+07:28.730 --> 07:35.350
+This return view if we try again
+
+74
+07:51.140 --> 07:52.240
+we'll get the same thing.
+
+75
+07:56.660 --> 08:01.700
+Now we can do the same thing to update 
+and destroy method here we simply copy this
+
+76
+08:07.850 --> 08:09.680
+and paste here
+
+77
+08:17.520 --> 08:33.980
+also paste in this destroy method and change the gate name to delete question.
+
+78
+08:34.200 --> 08:38.150
+Now let's try to delete any question that belonging by other users.
+
+79
+08:45.210 --> 08:48.080
+OK we'll get access denied error.
+
+80
+08:55.470 --> 08:55.960
+All right
+
+81
+08:56.010 --> 09:01.690
+the last thing that we should do is to actually show the edit and delete button
+
+82
+09:01.980 --> 09:05.120
+in our view only for authorized user
+
+83
+09:08.610 --> 09:11.140
+let's open index blade
+
+84
+09:11.170 --> 09:12.130
+php
+
+85
+09:23.650 --> 09:24.240
+here we can
+
+86
+09:24.240 --> 09:26.820
+authorize this button by saying
+
+87
+09:30.080 --> 09:42.310
+if auth user to check whether user has signed in 
+or not  and then we can chain in
+
+88
+09:42.370 --> 09:50.020
+with can method pass the authorization name 
+as the first argument
+
+89
+09:55.720 --> 09:59.120
+and then pass the question instance in the second argument.
+
+90
+10:02.030 --> 10:09.650
+So this means if user has signed in and he or she can update the question then edit button will
+
+91
+10:09.650 --> 10:10.190
+be shown
+
+92
+10:13.180 --> 10:17.950
+and don't forget to close this if statement with endif
+
+93
+10:23.550 --> 10:25.550
+let's copy this line
+
+94
+10:31.420 --> 10:32.440
+paste  here
+
+95
+10:42.510 --> 10:46.140
+And don't forget to change this to the delete question
+
+96
+10:53.910 --> 10:54.570
+save that
+
+97
+10:57.150 --> 10:58.440
+and reload the page
+
+98
+11:02.220 --> 11:02.840
+OK
+
+99
+11:03.010 --> 11:09.100
+Now the edit and delete button only appear in our own question and now we cannot modify the question
+
+100
+11:09.390 --> 11:11.590
+with belonging by anyone else.
+
+101
+11:13.110 --> 11:18.960
+So now that we know how to implement authorization in laravel application using Gates We simply define the
+
+102
+11:18.960 --> 11:27.000
+gate in auth service provider and then call it in out of controller's method or in our views. In the
+
+103
+11:27.000 --> 11:32.010
+next lesson we'll see another way of implementing authorization using policies.
+
+104
+11:32.250 --> 11:37.070
+And before we go to the next lesson don't forget to save the changes to our git repo
+
+105
+11:45.500 --> 11:52.220
+so git add all git commit -m
+
+106
+12:02.100 --> 12:02.610
+OK
+
+107
+12:02.750 --> 12:13.820
+push the current branch
+
+108
+12:14.110 --> 12:20.980
+And now I don't want to merge this branch to master branch because as I said I'll show you the second
+
+109
+12:20.980 --> 12:23.150
+way of the authorization.
+
+110
+12:23.200 --> 12:26.100
+So here I just need to switch to master branch
+
+111
+12:33.570 --> 12:35.860
+and I'll create new branch from this master branch.

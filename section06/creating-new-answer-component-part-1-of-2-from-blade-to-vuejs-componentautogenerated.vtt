@@ -1,0 +1,290 @@
+WEBVTT
+
+0
+00:02.030 --> 00:07.640
+In this lesson we are going to rewrite this answer form 
+into vue js component so that new answer can
+
+1
+00:07.640 --> 00:13.610
+be added without need to refresh the page. After we 
+finished that we'll have complete components with
+
+2
+00:13.610 --> 00:17.180
+a full set AJAX CRUD for our answers.
+
+3
+00:17.180 --> 00:17.680
+All right
+
+4
+00:17.720 --> 00:24.330
+let's open up our terminal and then create 
+new branch to isolate our work today.
+
+5
+00:24.540 --> 00:32.670
+git checkout -b lesson 40
+
+6
+00:32.900 --> 00:36.260
+And then run web pack by saying npm run watch
+
+7
+00:42.110 --> 00:42.700
+OK
+
+8
+00:42.840 --> 00:46.230
+Let me open questions
+
+9
+00:46.600 --> 00:55.710
+show blade php
+
+10
+00:55.940 --> 01:00.410
+And here you can see our answer form included here in this file.
+
+11
+01:00.410 --> 01:06.800
+Now when new answer created we need to push it to 
+answers array which house in answers component so that
+
+12
+01:06.800 --> 01:14.840
+it can reactively added in the UI. That means we need to 
+place our new component or answer form inside the
+
+13
+01:14.840 --> 01:17.080
+answers component.
+
+14
+01:18.410 --> 01:21.450
+OK let's open up answers
+
+15
+01:24.630 --> 01:29.270
+underscore create blade php here
+
+16
+01:29.300 --> 01:30.650
+let's copy everything.
+
+17
+01:33.570 --> 01:37.620
+Now let's go to assets js components.
+
+18
+01:40.920 --> 01:47.160
+And here let's create new file and I'll call it new answer dot vue
+
+19
+01:50.800 --> 01:51.710
+here let's add template
+
+20
+01:54.850 --> 02:05.750
+and paste the markup.
+
+21
+02:06.010 --> 02:09.480
+Let's remove the action and method attributge from the form
+
+22
+02:14.420 --> 02:19.720
+and we don't need this csrf token because 
+laravel has handled that in bootstrap dot
+
+23
+02:19.760 --> 02:20.520
+js
+
+24
+02:24.700 --> 02:30.700
+And then let's remove the validation stuff from this text 
+area because we will implement simple client side
+
+25
+02:30.700 --> 02:31.750
+validation
+
+26
+02:31.780 --> 02:32.810
+So as we did before
+
+27
+02:44.870 --> 02:52.820
+so here let's add html 5 required attribute
+
+28
+02:52.980 --> 02:57.070
+And then let's bind the body of the question to this text area
+
+29
+02:57.090 --> 03:00.900
+using two way data binding v-model
+
+30
+03:03.740 --> 03:14.950
+body.
+
+31
+03:14.990 --> 03:18.540
+Also let's disable this button if answer is invalid.
+
+32
+03:26.240 --> 03:29.090
+All right let's define the component logic in the script tag
+
+33
+03:36.410 --> 03:37.230
+add data method
+
+34
+03:40.030 --> 03:41.150
+and then return object
+
+35
+03:44.570 --> 03:57.650
+and it's contain body of the answer 
+which should be empty default.
+
+36
+03:57.870 --> 04:00.220
+And then let's define computed property
+
+37
+04:05.400 --> 04:07.570
+And define the is invalid method
+
+38
+04:12.720 --> 04:16.170
+here we simply check if the user not sign in
+
+39
+04:25.790 --> 04:32.970
+or the length of the answer body that entered is less than 10.
+
+40
+04:33.060 --> 04:40.660
+So this is invalid method will return true 
+at least one of this condition is met
+
+41
+04:41.870 --> 04:42.260
+OK
+
+42
+04:42.290 --> 04:48.830
+Before we add more code in here let's register this component 
+as a local component in the answers component.
+
+43
+04:49.550 --> 04:52.350
+Let's open up answers dot vue
+
+44
+05:01.050 --> 05:21.760
+and then import our new answer component by 
+saying import new answer from new answer dot vue
+
+45
+05:21.940 --> 05:28.990
+And then add it in this components property.
+
+46
+05:29.110 --> 05:34.360
+Now in template we need to place the new 
+answer component after our list answers
+
+47
+05:34.530 --> 05:42.270
+outside this row div and because in a single file component
+
+48
+05:42.370 --> 05:46.010
+it should be only one parent element so here
+
+49
+05:46.440 --> 05:47.420
+let's add another div
+
+50
+05:57.000 --> 06:07.370
+and move the row that contains all answers inside.
+
+51
+06:07.560 --> 06:10.220
+And then add new answer component
+
+52
+06:19.670 --> 06:20.890
+let's save all changes.
+
+53
+06:24.930 --> 06:26.940
+And let's make sure we have no error
+
+54
+06:32.900 --> 06:39.880
+reload the page.
+
+55
+06:40.150 --> 06:41.490
+Let me open developer tool
+
+56
+06:48.800 --> 06:49.190
+OK
+
+57
+06:49.200 --> 06:51.520
+we have no error and I think it should be fine.
+
+58
+06:54.130 --> 06:56.550
+Oh no I have two answer forms.
+
+59
+06:58.490 --> 07:00.200
+I need to remove the last one
+
+60
+07:00.230 --> 07:05.450
+that stay in show blade php
+
+61
+07:05.570 --> 07:08.090
+Let me switch back over to my editor.
+
+62
+07:11.140 --> 07:18.680
+And then I'll reopen show blade php and here I'll remove this line.
+
+63
+07:25.700 --> 07:26.640
+Reload again
+
+64
+07:29.460 --> 07:37.130
+now there's only one form and as 
+you can see the button is inactive.
+
+65
+07:37.480 --> 07:40.540
+If we answer something more than 10 characters
+
+66
+07:45.900 --> 07:48.190
+the button become active immediately.
+
+67
+07:50.590 --> 07:50.900
+OK
+
+68
+07:50.920 --> 07:52.510
+Great.

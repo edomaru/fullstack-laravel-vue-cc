@@ -1,0 +1,226 @@
+WEBVTT
+
+0
+00:03.140 --> 00:09.580
+Now, we can add validation error message on the bottom of each input
+
+1
+00:09.810 --> 00:11.750
+So let's go back to our editor
+
+2
+00:18.610 --> 00:21.150
+and here bellow title input
+
+3
+00:22.730 --> 00:34.160
+let's add the validation error. So we can say if errors has title
+
+4
+00:37.030 --> 00:45.420
+which means if it found error message for title input, we'll show something and remember errors
+
+5
+00:45.510 --> 00:47.640
+variable will always be available
+
+6
+00:47.650 --> 00:57.520
+in our views and it hold all error messages.
+
+7
+00:58.660 --> 01:02.820
+OK here we'll show the message and we'll show it in a div
+
+8
+01:06.520 --> 01:16.150
+invalid-feedback a bootstrap 4 class that can be used to display validation feedback
+
+9
+01:22.860 --> 01:24.230
+here
+
+10
+01:24.250 --> 01:28.540
+We can place the message in the strong tag.
+
+11
+01:34.420 --> 01:36.880
+And to actually show the message we can say
+
+12
+01:41.010 --> 01:47.370
+errors first title
+
+13
+01:48.970 --> 01:50.540
+OK let's copy
+
+14
+01:50.540 --> 01:52.100
+this validation error
+
+15
+01:55.190 --> 01:58.330
+And place below textarea
+
+16
+02:01.910 --> 02:07.230
+select all title and change them to body
+
+17
+02:13.020 --> 02:13.520
+next
+
+18
+02:13.530 --> 02:19.710
+We also need to add one more class to each input so that it will make the input and the validation error
+
+19
+02:19.710 --> 02:22.350
+message in the red color.
+
+20
+02:24.940 --> 02:30.980
+Actually we need to put it together with a form control class.
+
+21
+02:31.210 --> 02:39.640
+So here we can select them. In visual studio code, atom or sublime you can do that by hitting ctrl+D
+
+22
+02:40.600 --> 02:41.680
+And then you can check
+
+23
+02:45.380 --> 02:48.140
+if title
+
+24
+02:52.540 --> 02:53.240
+has error
+
+25
+03:02.920 --> 03:13.790
+we add is-invalid class
+
+26
+03:14.860 --> 03:19.570
+otherwise we just add empty string.
+
+27
+03:20.140 --> 03:23.060
+Of course we need to change these to body
+
+28
+03:28.710 --> 03:29.830
+Save that.
+
+29
+03:30.260 --> 03:34.340
+And now if we reload to page
+
+30
+03:38.560 --> 03:44.530
+we will not see any difference because the validation error messages will only appear if the request that
+
+31
+03:44.530 --> 03:48.150
+we sent do not pass the given validation rules.
+
+32
+03:48.460 --> 03:52.030
+Right now we haven't defined any validation rules yet
+
+33
+03:52.030 --> 03:53.560
+So if we click the submit button
+
+34
+03:57.890 --> 04:03.420
+we'll got this error, because we need to define `csrf_token` in our form
+
+35
+04:03.520 --> 04:05.260
+So let's go back to our form
+
+36
+04:12.890 --> 04:21.440
+and here we can add `csrf` like so save
+
+37
+04:22.510 --> 04:30.170
+back to our form, reload once again and hit the submit button
+
+38
+04:32.950 --> 04:36.550
+now will only get blank page like this.
+
+39
+04:36.550 --> 04:42.510
+All right so now we have a question form but to make it actually working we'll do at least two things.
+
+40
+04:42.550 --> 04:47.740
+first we need to define validation rules to make sure that
+the question that entered in our form
+
+41
+04:48.130 --> 04:49.680
+is what we expected.
+
+42
+04:49.960 --> 04:56.380
+And the second after we sure that the question we received is valid then we'll save it into our database
+
+43
+04:56.950 --> 04:59.290
+and we'll do that in the next lesson.
+
+44
+05:00.000 --> 05:04.710
+And before we close this lesson let's save our work into our git repository.
+
+45
+05:04.710 --> 05:06.060
+Let's go back to our terminal
+
+46
+05:10.200 --> 05:17.520
+and hear we can say git add all. git commit
+
+47
+05:17.650 --> 05:19.430
+dash m
+
+48
+05:19.530 --> 05:34.010
+And I'll say build a question form. Then I'll push my current branch to my remote repo: git push origin
+
+49
+05:34.870 --> 05:43.980
+lesson-7
+
+50
+05:44.230 --> 05:51.950
+And then we can switch to our master branch git checkout master and then merge the master
+
+51
+05:51.980 --> 05:58.610
+branch to lesson-7 branch git merge lesson-7
+
+52
+06:02.020 --> 06:03.010
+and last
+
+53
+06:03.430 --> 06:08.270
+let's push our branch to remote repo git push origin
+
+54
+06:08.470 --> 06:08.860
+master
+
+55
+06:16.250 --> 06:17.240
+OK great.

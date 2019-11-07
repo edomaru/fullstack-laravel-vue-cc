@@ -1,0 +1,479 @@
+WEBVTT
+
+0
+00:02.570 --> 00:09.280
+Right in the beginning of this section we've created 
+answer component by utilizing vue js inline template.
+
+1
+00:09.480 --> 00:15.570
+The reason why we use inline template is because we 
+want to keep our markup that contains laravel authorization
+
+2
+00:15.570 --> 00:24.600
+logic. Now since we have rewritten the authorization 
+logic in javascript and because it's hard to implement
+
+3
+00:24.610 --> 00:30.850
+the vue reactive system when adding new answer that's why 
+here we come back to answer component and we'll make
+
+4
+00:30.850 --> 00:31.990
+a lot of changes.
+
+5
+00:35.810 --> 00:45.230
+All right let's open up our terminal and then create 
+new branch by saying git checkout -b lesson
+
+6
+00:46.050 --> 00:46.970
+36
+
+7
+00:50.490 --> 01:00.270
+and then let's run web pack by saying npm run watch.
+
+8
+01:00.290 --> 01:05.960
+So if you open up the questions show blade php file
+
+9
+01:12.860 --> 01:19.150
+here we include another view file answers dot underscore index.
+
+10
+01:19.150 --> 01:23.980
+And if we open up answers underscored index blade php
+
+11
+01:26.890 --> 01:34.030
+here we loop all answers.
+
+12
+01:34.080 --> 01:40.990
+So here we need to move everything 
+inside this  file into answer dot vue file
+
+13
+01:41.260 --> 01:46.430
+And then we do another component as parent 
+component that will loop each answer component
+
+14
+01:49.160 --> 01:50.950
+so let's selecting everything
+
+15
+01:51.110 --> 01:52.480
+inside this answer tag
+
+16
+01:56.170 --> 01:59.060
+copy go to answer dot vue add
+
+17
+02:03.520 --> 02:04.250
+template tag
+
+18
+02:08.160 --> 02:09.060
+and paste the markup
+
+19
+02:14.510 --> 02:21.940
+here since we are in vue component let's replace the 
+php variable in this model property to javascript
+
+20
+02:21.950 --> 02:32.970
+variable.
+
+21
+02:33.080 --> 02:46.880
+Let's also do the same thing in model 
+property inside user info component.
+
+22
+02:47.080 --> 02:53.070
+Then let's replace the laravel authorization checking 
+on edit and delete button with our javascript
+
+23
+02:53.140 --> 02:57.000
+authorization function.
+
+24
+02:57.210 --> 03:00.190
+Let's get rid of the can directive from our buttons
+
+25
+03:16.550 --> 03:20.360
+And here we simply say v-if authorize
+
+26
+03:23.500 --> 03:25.940
+modify answer
+
+27
+03:29.250 --> 03:30.540
+let's copy this code.
+
+28
+03:35.700 --> 03:36.660
+And then paste it here
+
+29
+03:39.770 --> 03:41.120
+all right I think
+
+30
+03:41.120 --> 03:43.450
+that's all we need to do in this answer companion.
+
+31
+03:43.800 --> 03:50.450
+The next thing that we need to do is loop this answer 
+component in the parent component by utilizing
+
+32
+03:50.640 --> 03:51.840
+vue js list rendering.
+
+33
+03:52.010 --> 03:59.790
+But before that of course we need to create the parent component. So let's open answers _index.blade.php
+
+34
+03:59.880 --> 04:04.010
+copy everything inside if statement
+
+35
+04:07.490 --> 04:19.690
+Then go to assets js components and then create 
+new file here I'm going to call it answers dot vue
+
+36
+04:21.590 --> 04:23.080
+so answers in plural
+
+37
+04:26.710 --> 04:32.190
+then add template tag and paste the markup inside
+
+38
+04:36.500 --> 04:38.910
+we don't need this layouts messages anymore.
+
+39
+04:38.990 --> 04:40.260
+So let's move it.
+
+40
+04:47.020 --> 04:50.820
+And then let's replace this foreach loop with vue js list rendering
+
+41
+04:50.980 --> 04:54.080
+or utilizing v-for directive in this case.
+
+42
+04:54.850 --> 05:01.890
+So answer v-for answer
+
+43
+05:04.270 --> 05:05.250
+in answers
+
+44
+05:08.030 --> 05:17.250
+and we need to bind the answer property that are 
+needed by this component with answer that come from
+
+45
+05:18.150 --> 05:18.850
+here.
+
+46
+05:24.430 --> 05:26.620
+And start from 2.2
+
+47
+05:26.810 --> 05:41.040
+we need to provide a key when working with the v-for
+
+48
+05:41.230 --> 05:43.360
+If you're using Visual Studio code like me
+
+49
+05:46.180 --> 05:48.190
+you'll get errors if you don't provide the key
+
+50
+05:53.840 --> 05:56.210
+next let's hide the answer container
+
+51
+05:56.420 --> 06:00.950
+If there's no answer to be displayed 
+so we can go to parent element
+
+52
+06:03.900 --> 06:05.250
+and add v-if
+
+53
+06:08.840 --> 06:11.810
+count is greater than zero
+
+54
+06:12.730 --> 06:18.840
+or we can make it more simpler just like this.
+
+55
+06:18.920 --> 06:19.510
+All right
+
+56
+06:19.670 --> 06:23.660
+The last thing that we need to do in this 
+template is to change the heading two
+
+57
+06:27.120 --> 06:27.780
+here
+
+58
+06:27.840 --> 06:31.090
+let's put this string concatenation into computed property
+
+59
+06:33.970 --> 06:39.480
+so here we can simply say title
+
+60
+06:39.560 --> 06:41.080
+Now let's add a script tag
+
+61
+06:44.250 --> 06:49.180
+lets add props property and in here
+
+62
+06:50.080 --> 06:53.600
+we need answers and count
+
+63
+07:00.750 --> 07:02.780
+and then lets also add computed property
+
+64
+07:08.270 --> 07:08.850
+in here
+
+65
+07:08.930 --> 07:17.050
+let's define a new method that will house 
+the string concatenation for our heading.
+
+66
+07:17.100 --> 07:27.930
+Here we simply say return this dot count add a space and then
+
+67
+07:32.290 --> 07:39.980
+if count is greater than 1 we'll say and answers in plural
+
+68
+07:40.070 --> 07:42.410
+otherwise answer in singular.
+
+69
+07:45.920 --> 07:46.470
+okay
+
+70
+07:46.530 --> 07:49.320
+I think that's all we need in this script.
+
+71
+07:49.320 --> 07:52.640
+Now let's register this answers component globally in app dot
+
+72
+07:52.660 --> 07:53.000
+js
+
+73
+07:58.230 --> 07:59.420
+duplicate this line
+
+74
+08:03.020 --> 08:12.490
+Change the name to answers and then 
+require components answers dot vue
+
+75
+08:15.630 --> 08:19.950
+Now since the answer component will 
+only available in answers component
+
+76
+08:20.010 --> 08:21.490
+So here let's remove this line
+
+77
+08:25.210 --> 08:27.130
+then back to answers component
+
+78
+08:33.040 --> 08:41.770
+and then define it here by saying import answer 
+from dot forward slash answer dot vue
+
+79
+08:48.920 --> 08:50.560
+then add components property
+
+80
+08:55.990 --> 08:57.020
+and add answer.
+
+81
+09:03.490 --> 09:05.730
+Last let's switch to questions
+
+82
+09:07.190 --> 09:12.260
+show blade php
+
+83
+09:12.450 --> 09:17.880
+And then replace this blade include directive with answers
+
+84
+09:21.740 --> 09:23.070
+bind the answer with
+
+85
+09:25.530 --> 09:28.340
+question answers
+
+86
+09:31.310 --> 09:32.230
+bind the count
+
+87
+09:35.500 --> 09:37.090
+with question
+
+88
+09:38.030 --> 09:38.980
+answers count
+
+89
+09:48.030 --> 09:49.460
+let's save all changes
+
+90
+09:53.550 --> 09:55.630
+and see if everything is still working fine.
+
+91
+09:58.630 --> 10:00.570
+Oops I forgot to start the server
+
+92
+10:05.330 --> 10:18.570
+let me run that.
+
+93
+10:18.610 --> 10:19.780
+Something went wrong
+
+94
+10:19.900 --> 10:21.450
+all answers are gone.
+
+95
+10:21.880 --> 10:23.760
+Let me open my browser console.
+
+96
+10:26.370 --> 10:29.580
+Here I get error count is not defined
+
+97
+10:35.080 --> 10:37.330
+Here I made mistake it should be
+
+98
+10:37.420 --> 10:38.470
+this dot count
+
+99
+10:45.680 --> 10:49.510
+So here I'll change to this dot count save
+
+100
+10:52.620 --> 11:01.210
+reload
+
+101
+11:01.360 --> 11:02.080
+All right
+
+102
+11:02.080 --> 11:04.450
+Now all answers come back. Here
+
+103
+11:04.480 --> 11:15.710
+I want to make sure that the other components still working.
+
+104
+11:15.940 --> 11:17.260
+OK so far so good.
+
+105
+11:22.680 --> 11:25.460
+Now let me open vue developer tool
+
+106
+11:30.100 --> 11:32.250
+Here we can see the answers component.
+
+107
+11:32.260 --> 11:35.610
+And inside this component we'll see some answer component.
+
+108
+11:42.430 --> 11:42.750
+OK
+
+109
+11:42.780 --> 11:45.360
+That's it for this lesson. In the next lesson
+
+110
+11:45.360 --> 11:51.840
+We are going to build a feature to load more answers.
+So we limit the answers on the first load and then
+
+111
+11:51.870 --> 11:59.720
+we'll show button on the bottom here and when 
+we hit that more answers will be displayed.
+
+112
+12:01.590 --> 12:06.290
+The button will be hidden when no more answers are found in database.
+
+113
+12:06.370 --> 12:12.920
+So let's commit all changes to our git repo then 
+take a break and join me in the next lesson.

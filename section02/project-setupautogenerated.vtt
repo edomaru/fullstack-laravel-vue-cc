@@ -1,0 +1,509 @@
+WEBVTT
+
+0
+00:01.110 --> 00:06.630
+In this lesson we'll start building our project by installing our fresh Laravel project and then creating
+
+1
+00:06.650 --> 00:12.840
+Git repository for our project, then configuring the database setting and generating scaffold Authentication
+
+2
+00:13.720 --> 00:14.870
+all right to start off.
+
+3
+00:14.880 --> 00:24.510
+Let's go ahead and open our terminal and create new Laravel project by typing laravel new and then the
+
+4
+00:24.510 --> 00:32.700
+name will be laravel dash Q A or you can name it whatever like hit return
+
+5
+00:36.150 --> 00:41.610
+this will install packages that laravel depends upon and it usually takes a second or so to install
+
+6
+00:55.110 --> 00:55.660
+all right
+
+7
+00:55.800 --> 01:00.650
+After we've successfully created our new laravel project now let's change directory to it.
+
+8
+01:01.680 --> 01:10.710
+So cd change directory and I'll change to directory laravel-qa.
+
+9
+01:10.980 --> 01:16.650
+Then here we can create Git repo by firstly initialize the git repository for this project.
+
+10
+01:17.640 --> 01:19.360
+So git init
+
+11
+01:21.820 --> 01:30.120
+Next we'll need to add all files in our project to something called staging area git add space
+
+12
+01:30.210 --> 01:35.770
+dot. and lastly commit all files to our repository
+
+13
+01:35.960 --> 01:41.580
+Git commit specify a message
+
+14
+01:41.900 --> 01:43.610
+Initial commit
+
+15
+01:47.680 --> 01:48.100
+all right
+
+16
+01:48.100 --> 01:54.310
+We have a local git repository for our project and it will keep track of the changes of our code.
+
+17
+01:54.310 --> 02:00.520
+Now we can create a remote repository for our project in hosting service providers such as Github.com
+
+18
+02:01.240 --> 02:03.170
+or Bitbucket.org
+
+19
+02:03.190 --> 02:09.520
+So if you want to create a private repository then I suggest you to choose bitbucket  because it allows
+
+20
+02:09.550 --> 02:14.090
+you to create unlimited public and private repositories for free.
+
+21
+02:14.350 --> 02:16.510
+If you create private repository in GitHub
+
+22
+02:16.840 --> 02:23.450
+then you need to pay for $7 per month. For this course we are gonna create public repo
+
+23
+02:23.710 --> 02:26.050
+So choosing github is fine.
+
+24
+02:26.170 --> 02:26.580
+All right
+
+25
+02:26.710 --> 02:32.050
+Let's switch over to our browser and I'll enter
+
+26
+02:32.060 --> 02:40.290
+Github.com.
+
+27
+02:40.300 --> 02:42.300
+Actually I already have signed in here.
+
+28
+02:42.550 --> 02:47.070
+So please sign in to your account and if you don't have a account for github
+
+29
+02:47.470 --> 02:51.640
+then you simply register here is totally free.
+
+30
+02:51.640 --> 03:01.330
+So here I can create a new repository by hitting this plus button then choose new repository.
+
+31
+03:02.780 --> 03:10.800
+And here the repository name will be let's say laravel-qa
+
+32
+03:15.420 --> 03:23.670
+then I'll enter the description with let's say question and answer
+
+33
+03:27.930 --> 03:32.360
+application built with
+
+34
+03:32.720 --> 03:41.440
+Laravel five. The repo will be public and that's it.
+
+35
+03:41.620 --> 03:43.020
+I'll hit the create repository
+
+36
+03:49.050 --> 04:00.350
+okay here my repository has been created and here we can follow this instruction to push our local
+
+37
+04:00.350 --> 04:05.470
+repo to this remote repository because we already have our repository.
+
+38
+04:05.610 --> 04:07.190
+We'll follow this one.
+
+39
+04:07.410 --> 04:08.730
+I'm gonna copy this one
+
+40
+04:11.550 --> 04:15.030
+which is basically add remote URL to our local repo
+
+41
+04:20.680 --> 04:23.890
+and I'll paste it here.
+
+42
+04:27.710 --> 04:32.940
+And then I'm gonna copy this one and paste here
+
+43
+04:43.660 --> 04:47.790
+if we have a prompt that asking you to enter your email and password
+
+44
+04:47.940 --> 04:53.980
+that's because you need to set up the SSH key in your GitHub account.
+
+45
+04:54.000 --> 04:59.940
+So for now just enter your email and password for your GitHub account and later you can googling how
+
+46
+04:59.940 --> 05:08.300
+to set up the SSH key. Here it pushed everything in the master branch which is the default branch
+
+47
+05:08.390 --> 05:15.260
+in local repo to the origin which refers to the remote repository.
+
+48
+05:15.260 --> 05:20.810
+Now let's head over to our remote repository and refresh the page
+
+49
+05:25.160 --> 05:25.970
+all right here
+
+50
+05:25.980 --> 05:33.010
+My local repository has been successfully pushed or uploaded to my remote repository.
+
+51
+05:33.020 --> 05:38.440
+I hope you also successful pushing your repository to your remote repository in GitHub.
+
+52
+05:39.390 --> 05:42.010
+Okay great. all right
+
+53
+05:42.020 --> 05:47.320
+the next thing we should do since we are going to utilize Laravel Mix for asset compilation
+
+54
+05:47.430 --> 05:52.260
+so let's also install nodejs packages that needed by Laravel mix.
+
+55
+05:52.400 --> 06:00.320
+We can switch to our terminal and type npm install. Hit return
+
+56
+06:04.160 --> 06:04.600
+now.
+
+57
+06:04.610 --> 06:11.450
+Well NPM  downloading all dependency packages because usually it takes sometimes so let's do something
+
+58
+06:11.450 --> 06:13.100
+else.
+
+59
+06:13.100 --> 06:14.270
+Let's open new terminal
+
+60
+06:18.690 --> 06:32.610
+and here lets generate authentication scaffolding by typing php artisan make:auth hit return.
+
+61
+06:32.850 --> 06:33.230
+All right
+
+62
+06:33.440 --> 06:36.310
+Authentication scaffolding generated successfully.
+
+63
+06:36.310 --> 06:44.410
+So basically this command will add a special route for authentication, generate a Home controller and
+
+64
+06:44.410 --> 06:46.840
+generate the views for authentication.
+
+65
+06:47.050 --> 06:48.010
+All right.
+
+66
+06:48.010 --> 06:51.480
+Now let's create a new MySQL database for our project. Here
+
+67
+06:51.580 --> 06:58.480
+I'll do that using mysql CLI client tool, but of course you can also use graphical user interface
+
+68
+06:58.480 --> 07:00.750
+tools such as PHPMyAdmin
+
+69
+07:00.790 --> 07:02.990
+SequalPro or other tools.
+
+70
+07:03.430 --> 07:12.260
+So mysql -u root here in my machine
+
+71
+07:12.260 --> 07:24.120
+I have password for the root. So I'll specify -p and then -e probably it stands for execute and
+
+72
+07:24.170 --> 07:37.930
+the single command to be executed is create create database laravel_qa. Hit return
+
+73
+07:41.610 --> 07:42.920
+and I'll enter my password.
+
+74
+07:44.910 --> 07:45.850
+Okay
+
+75
+07:45.950 --> 07:47.220
+great.
+
+76
+07:47.370 --> 07:51.270
+So now that we have our new database laravel_qa
+
+77
+07:51.390 --> 07:57.580
+Now let's configure our database setting in .env file. So let's open our project in our editor
+
+78
+07:59.470 --> 07:59.790
+here
+
+79
+07:59.820 --> 08:01.710
+I'll be using Visual studio code
+
+80
+08:04.370 --> 08:05.590
+so code
+
+81
+08:11.140 --> 08:12.200
+all right here
+
+82
+08:12.200 --> 08:13.780
+let's open the .env file
+
+83
+08:17.000 --> 08:27.820
+first Let's change the DB_DATABASE to laravel_qa.
+
+84
+08:27.830 --> 08:42.680
+Then the DB_USERNAME would be root. And the password in my machine is 063. Save and one last thing
+
+85
+08:42.710 --> 08:48.170
+that I'll need to do before running the migrations because currently when I'm recording this video mysql
+
+86
+08:48.170 --> 08:55.070
+version in my machine is old, so I'll need to open config database
+
+87
+08:59.660 --> 09:01.230
+jump to mysql
+
+88
+09:04.670 --> 09:11.100
+and here I'll remove mb4 from charset and collation.
+
+89
+09:12.810 --> 09:23.920
+So just utf8 and a utf8_unicode_ci. So if I were not doing this I would run into error
+
+90
+09:24.030 --> 09:27.500
+Specified key was too long when I ran the migration.
+
+91
+09:27.740 --> 09:34.610
+But as long as you are running mysql version 5.7.7 or higher or MariaDB above
+
+92
+09:34.730 --> 09:36.430
+10.2.2
+
+93
+09:36.710 --> 09:38.830
+then you don't need to do this stuff.
+
+94
+09:38.920 --> 09:45.400
+Okay let's go to our terminal and run the migration
+
+95
+09:45.420 --> 09:48.380
+by typing php artisan
+
+96
+09:48.950 --> 09:49.650
+migrate
+
+97
+09:57.130 --> 09:58.560
+so this is the error
+
+98
+09:58.680 --> 10:10.560
+Specified key was too long. And I forgot to save this, save. And here I need to fresh the migration
+
+99
+10:10.840 --> 10:13.280
+fresh hit return
+
+100
+10:16.860 --> 10:17.310
+all right
+
+101
+10:17.320 --> 10:23.580
+it created users table and password reset stable.
+
+102
+10:23.650 --> 10:27.370
+Now if I switch to my first terminal.
+
+103
+10:28.060 --> 10:28.570
+All right
+
+104
+10:28.570 --> 10:34.860
+the dependency packages that needed by laravel mix successfully installed. Just to make sure that the
+
+105
+10:34.860 --> 10:38.760
+project is working fine here in my terminal
+
+106
+10:38.910 --> 10:44.770
+I'll start the server by typing php artisan serve
+
+107
+10:50.950 --> 10:53.170
+Here in my browser let me open
+
+108
+10:58.890 --> 11:05.840
+localhost:8000
+
+109
+11:05.940 --> 11:06.710
+There we go
+
+110
+11:06.720 --> 11:10.600
+the Laravel welcome page is showing. All right
+
+111
+11:10.650 --> 11:12.150
+I think that's enough for this lesson
+
+112
+11:12.600 --> 11:17.350
+but before we end this lesson, let's save our file changes to our  git repository.
+
+113
+11:17.610 --> 11:19.650
+So let's switch over to our terminal
+
+114
+11:28.520 --> 11:30.570
+and here we can see the changes
+
+115
+11:30.650 --> 11:33.770
+by typing git status.
+
+116
+11:34.190 --> 11:37.040
+So this whole files should be committed to our repository.
+
+117
+11:38.680 --> 11:40.250
+Let's add all files
+
+118
+11:40.410 --> 11:41.160
+Git add .
+
+119
+11:44.390 --> 11:45.170
+and then commit
+
+120
+11:45.180 --> 11:52.450
+all changes git commit and describe the changes
+
+121
+11:54.970 --> 12:03.820
+Generate auth scaffolding and install NPM packages.
+
+122
+12:08.820 --> 12:12.860
+And lastly let's push our changes to our remote repository.
+
+123
+12:13.030 --> 12:15.950
+git push origin master
+
+124
+12:25.660 --> 12:26.580
+Okay great
+
+125
+12:26.630 --> 12:31.840
+in the next lesson we will create database schema as well as a model for our questions.
+
+126
+12:32.010 --> 12:33.300
+So I'll see you in a second.

@@ -1,0 +1,423 @@
+WEBVTT
+
+0
+00:02.500 --> 00:07.960
+No let's continue building out our new answer 
+component and add even handler for the form.
+
+1
+00:22.410 --> 00:27.170
+Here in the from tag let's add v-on submit dot prevent
+
+2
+00:31.570 --> 00:36.590
+So when the form submitted we prevent 
+the default action and then call create method
+
+3
+00:39.530 --> 00:40.460
+Let's jump to script.
+
+4
+00:44.070 --> 00:44.580
+Actually
+
+5
+00:44.610 --> 00:47.100
+let's see the URI for the create answer.
+
+6
+01:07.210 --> 01:14.330
+So here we can see that the URI needs a 
+question id let me copy the URI from here.
+
+7
+01:20.980 --> 01:26.570
+And here let's add props property and then add a question Id
+
+8
+01:31.990 --> 01:33.820
+then let's define methods property
+
+9
+01:40.260 --> 01:41.890
+and define the create method.
+
+10
+01:46.070 --> 01:51.230
+In this method we sent ajax request by saying axios dot post
+
+11
+01:53.880 --> 01:58.420
+then I'll add back tick forward slash
+
+12
+01:58.620 --> 02:03.540
+And paste the URI
+
+13
+02:03.690 --> 02:14.070
+And then let's change the question placeholder 
+to this question id. In the second argument
+
+14
+02:14.310 --> 02:15.920
+let's define request payload
+
+15
+02:20.140 --> 02:21.630
+in this case body
+
+16
+02:21.970 --> 02:23.670
+from this body
+
+17
+02:29.380 --> 02:31.510
+we have validated the form in the client side.
+
+18
+02:31.700 --> 02:38.120
+But just in case for some reason the validation's not working 
+then we already handled the validation in the server side.
+
+19
+02:38.150 --> 02:41.090
+So here let's show the validation 
+error message in the flash message
+
+20
+02:59.500 --> 03:00.440
+now when succeed
+
+21
+03:00.500 --> 03:03.500
+we need to unpick the data property from the ajax response
+
+22
+03:08.410 --> 03:21.850
+and then show the success message in the flash message.
+
+23
+03:21.920 --> 03:27.900
+We also need to reset the text area 
+because it has bound to body via v-model
+
+24
+03:28.040 --> 03:36.910
+All we need to do is set the body to be empty like so.
+
+25
+03:37.060 --> 03:42.360
+One last thing that we need to do after answer 
+successfully created is add it to answers
+
+26
+03:42.360 --> 03:47.510
+array so that we can see in our UI immediately. 
+Remember the answers array
+
+27
+03:47.520 --> 03:49.920
+Is in the parent component.
+
+28
+03:50.060 --> 03:53.030
+That's why here we can make use of the custom events.
+
+29
+03:53.510 --> 03:55.040
+So here we can say this emit
+
+30
+03:58.460 --> 04:03.940
+in the first argument let's define the event 
+name and I'm going to call it created
+
+31
+04:07.650 --> 04:10.950
+and then here we also need to send 
+along the new answer with the event
+
+32
+04:14.310 --> 04:19.910
+so here the ajax response need to contains message and answer
+
+33
+04:22.900 --> 04:25.300
+now let's open answers controller
+
+34
+04:29.740 --> 04:31.760
+go to store method.
+
+35
+04:39.400 --> 04:44.750
+Here the create method will return new answer 
+object so that we can assign it into variable
+
+36
+04:57.590 --> 04:59.990
+and then let's return json response.
+
+37
+05:09.240 --> 05:10.680
+The first is message
+
+38
+05:13.990 --> 05:15.530
+we can simply copy from here
+
+39
+05:24.240 --> 05:26.860
+and the second answer.
+
+40
+05:33.190 --> 05:33.980
+All right
+
+41
+05:34.120 --> 05:37.360
+now let's listen to created event in the parent component
+
+42
+05:37.420 --> 05:48.320
+and then add the newest answer to the answers array.  
+Let's switch to answers dot vue and here we can listen
+
+43
+05:48.320 --> 05:52.090
+to created event that emit by this component by saying
+
+44
+05:55.680 --> 05:56.350
+at created
+
+45
+06:00.050 --> 06:02.360
+and then here we will handle that
+
+46
+06:02.360 --> 06:07.140
+with add method because we'll need to add 
+the newest answer to the answers array
+
+47
+06:10.630 --> 06:21.140
+don't forget because this component also 
+need question id as you can see in here.
+
+48
+06:21.280 --> 06:26.360
+So here we need to specify the question id 
+property and pass in the ID of the question
+
+49
+06:26.370 --> 06:33.460
+to it. Note that when we define the property inside 
+component we write it in camel case but when we call
+
+50
+06:33.460 --> 06:36.760
+it outside the component we write it in kebab case like this.
+
+51
+06:46.890 --> 06:48.180
+OK let's jump to script
+
+52
+06:51.860 --> 06:56.640
+and go to methods property. Here let's add answer method
+
+53
+06:59.750 --> 07:02.710
+and provide an argument to capture the answer.
+
+54
+07:08.640 --> 07:12.400
+Here we simply push the new answer to this answers array.
+
+55
+07:16.150 --> 07:18.450
+And we also need to increment the number of count
+
+56
+07:23.820 --> 07:25.560
+OK let's save all changes
+
+57
+07:28.720 --> 07:29.940
+and give it another try.
+
+58
+07:40.670 --> 07:42.020
+I'll enter something here.
+
+59
+07:47.040 --> 07:48.170
+And then hit the submit button
+
+60
+07:54.450 --> 08:09.800
+here to my new answer added. But there there's something 
+wrong to the user info. Let me open the console.
+
+61
+08:10.030 --> 08:15.340
+And here I have error cannot read properly
+
+62
+08:15.430 --> 08:19.320
+url of undefined. It found in user info
+
+63
+08:19.390 --> 08:21.490
+and answer component. 
+
+64
+08:21.680 --> 08:26.020
+OK this because the user object not included in the ajax response
+
+65
+08:26.050 --> 08:29.770
+So let's go back to answers controller.
+
+66
+08:31.120 --> 08:35.860
+So here we need to eagle load to user model.
+
+67
+08:36.020 --> 08:37.830
+Maybe we can do it like this.
+
+68
+08:51.780 --> 08:54.120
+Or we can do it more simpler by calling
+
+69
+08:56.860 --> 09:07.210
+load method and then pass in the 
+relationship name user in this case.
+
+70
+09:07.360 --> 09:08.690
+Let's try one more time.
+
+71
+09:18.080 --> 09:19.080
+enter new answer
+
+72
+09:22.500 --> 09:26.660
+and hit the submit button.
+
+73
+09:26.890 --> 09:28.050
+Everything seems good
+
+74
+09:32.820 --> 09:36.050
+except this votes count
+
+75
+09:36.440 --> 09:37.910
+Let's see the vue developer tool
+
+76
+09:46.090 --> 09:53.170
+go to events tab
+
+77
+09:53.340 --> 09:54.770
+I'll enter another answer.
+
+78
+10:03.330 --> 10:05.130
+Let me see the event payload
+
+79
+10:11.800 --> 10:13.650
+as you can see there's no
+
+80
+10:13.690 --> 10:15.220
+votes count here
+
+81
+10:15.220 --> 10:23.240
+I don't know exactly why but maybe this because we set 
+the votes count column to be nullable. But to fix this issue
+
+82
+10:23.260 --> 10:24.740
+I think it's easy.
+
+83
+10:24.790 --> 10:26.740
+Let's switch back over to our editor.
+
+84
+10:28.040 --> 10:30.880
+And let's open the vote dot vue
+
+85
+10:40.300 --> 10:47.290
+and then here we can simply add or operator and then zero.
+
+86
+10:47.650 --> 10:50.350
+So if the votes count undefined
+
+87
+10:50.890 --> 10:52.010
+then we set zero
+
+88
+10:52.070 --> 10:53.420
+to this count property.
+
+89
+10:55.800 --> 10:56.580
+Let's save this
+
+90
+10:59.760 --> 11:01.180
+and give it a try one more time.
+
+91
+11:13.380 --> 11:14.370
+Enter new answer
+
+92
+11:18.760 --> 11:19.900
+and then hit the submit button.
+
+93
+11:25.620 --> 11:34.460
+now the votes count 0 by default. And 
+I think everything now should be fine.
+
+94
+11:34.750 --> 11:35.500
+Great
+
+95
+11:35.530 --> 11:40.730
+we've successfully built out our new answer component 
+and now we have completely rewritten in the show
+
+96
+11:40.780 --> 11:42.890
+question page into vue js components
+
+97
+11:46.580 --> 11:52.190
+our next job is to rewrite this question part into vue js component.
+
+98
+11:52.250 --> 11:53.010
+Okay that's it
+
+99
+11:53.180 --> 11:57.890
+Let's commit all changes to our git repo and join me in the next lesson.

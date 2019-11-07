@@ -1,0 +1,813 @@
+WEBVTT
+
+0
+00:01.700 --> 00:08.840
+In this lesson I'm going to show you how to upgrade 
+laravel Q/A app from Version 5.6 to version
+
+1
+00:09.020 --> 00:16.630
+5.7 and here I've already open the upgrade 
+guide from laravel official documentation as
+
+2
+00:16.630 --> 00:23.790
+reference. Now before we're moving on here I'm going 
+to show you two different ways that you can follow
+
+3
+00:23.970 --> 00:26.640
+when upgrading your laravel application.
+
+4
+00:26.640 --> 00:35.220
+So the first one is you read and follow every 
+step from the top all the way down.
+
+5
+00:35.340 --> 00:40.550
+Then the second one is you go to button open this
+
+6
+00:40.560 --> 00:41.780
+Github comparison tool
+
+7
+00:50.910 --> 00:52.010
+hit file changes
+
+8
+00:55.540 --> 00:57.550
+and you can compare the changes
+
+9
+00:57.550 --> 00:58.270
+side by side.
+
+10
+01:06.030 --> 01:11.890
+In this video we'll be using the first and second ways 
+together because by using this way we will know
+
+11
+01:11.980 --> 01:17.620
+what changes that we need and don't need to apply 
+in our app and how those changes impact our app
+
+12
+01:20.790 --> 01:26.600
+as you see here.
+
+13
+01:26.640 --> 01:33.000
+Now some changes that's not required could be not covered 
+in this upgrade guide but to make our application's
+
+14
+01:33.000 --> 01:41.520
+files in sync maybe not all files just certain files so 
+we'll go to Github comparison tool and compare
+
+15
+01:41.580 --> 01:42.570
+some file changes.
+
+16
+01:45.170 --> 01:47.810
+Okay to start off let's open up our terminal
+
+17
+01:50.380 --> 01:52.700
+change the working directory to our laravel app
+
+18
+01:56.150 --> 02:03.020
+here on my Mac I cd to workspace laravel laravel
+
+19
+02:03.040 --> 02:10.440
+dash qa and as always let's isolate our work today into new branch.
+
+20
+02:10.480 --> 02:17.140
+So just in case we are getting unwanted error after upgrade we can always revert back to a previous version.
+
+21
+02:21.480 --> 02:21.980
+Here
+
+22
+02:21.990 --> 02:25.140
+I'm going to call it laravel
+
+23
+02:25.140 --> 02:32.850
+dash v five point seven.
+
+24
+02:33.040 --> 02:36.880
+Let's go back to our browser back to upgrade guide
+
+25
+02:45.410 --> 02:45.770
+and here
+
+26
+02:45.770 --> 02:51.620
+the first thing that we need to do is to update our 
+dependencies or packages that needed by laravel
+
+27
+02:52.370 --> 03:00.850
+and the most important is laravel framework package 
+and we can do that by specify this version in
+
+28
+03:00.850 --> 03:05.850
+our composer.json file.
+
+29
+03:05.850 --> 03:11.850
+Currently we are not using a level passport so we can 
+ignore this. But just in case you're using it you
+
+30
+03:11.850 --> 03:17.380
+also need to upgrade  to version 7.0
+
+31
+03:17.940 --> 03:24.360
+Also we need to update the third party packages that 
+consumed by our app so that they can properly work
+
+32
+03:24.360 --> 03:27.630
+after updating. To do this
+
+33
+03:29.020 --> 03:31.030
+let's go to comparison tool
+
+34
+03:34.950 --> 03:43.560
+and then find composer.json
+
+35
+03:43.620 --> 03:44.170
+There we go
+
+36
+03:47.800 --> 03:49.660
+and here we can compare the changes
+
+37
+03:49.660 --> 03:51.440
+side by side.
+
+38
+03:51.440 --> 04:01.600
+But the most important here are require and require 
+dev sections. In require section we only need to
+
+39
+04:01.660 --> 04:07.710
+change the laravel framework from 5.6 to 5.7
+
+40
+04:08.770 --> 04:11.110
+So let's do that in our project
+
+41
+04:21.820 --> 04:24.800
+let's open composer.json
+
+42
+04:31.500 --> 04:37.870
+and change this to five point seven back to our browser
+
+43
+04:41.930 --> 04:47.970
+And here in Level 5.7 we will find new 
+package added in require dev section.
+
+44
+04:48.360 --> 04:51.930
+As you can see in the previous section it doesn't exist yet
+
+45
+04:52.830 --> 04:53.880
+so let's copy this
+
+46
+04:58.960 --> 05:04.030
+back to our editor and paste in this require dev.
+
+47
+05:06.880 --> 05:14.970
+Here we have third party package called laravel debug bar 
+and currently when I recorded this video it has three
+
+48
+05:14.970 --> 05:16.340
+point two version.
+
+49
+05:16.390 --> 05:23.760
+So let's also change this to three point two. All right
+
+50
+05:23.790 --> 05:28.470
+let's save the change back to our terminal
+
+51
+05:32.770 --> 05:44.500
+and type 'composer update' to update our dependencies 
+now while updating we can update our core application.
+
+52
+05:44.500 --> 05:49.190
+So let's go back to our browser back to laravel guide
+
+53
+05:54.560 --> 05:56.680
+here in application section
+
+54
+05:56.780 --> 06:06.530
+we can skip this register method because 
+we did not override the register method.
+
+55
+06:06.620 --> 06:15.500
+Now we can go to artisan and we can also skip this 
+because we're not using this scheduled job method.
+
+56
+06:20.590 --> 06:23.310
+Let's continue to assets. And here
+
+57
+06:23.350 --> 06:25.780
+there is a little bit change in assets directory
+
+58
+06:28.650 --> 06:36.010
+the assets rectory that contains the script and styles 
+has been flattened into the resources directory.
+
+59
+06:36.010 --> 06:42.600
+So there's no more assets directory the js and 
+sass directory are inside resources directory.
+
+60
+06:42.820 --> 06:48.050
+But as noted here that these changes 
+will not affect existing application.
+
+61
+06:48.400 --> 06:52.440
+You can keep the assets directory as 
+it was or you can follow this guide
+
+62
+06:52.540 --> 06:53.440
+It doesn't matter.
+
+63
+06:53.470 --> 06:54.820
+I prefer to follow this guide.
+
+64
+06:55.690 --> 06:57.190
+So let's go back to our editor.
+
+65
+07:05.090 --> 07:06.340
+Here I'll move
+
+66
+07:06.690 --> 07:10.010
+this js directory beneath resource
+
+67
+07:18.600 --> 07:21.360
+and then I'll do the same thing to sass directory
+
+68
+07:33.620 --> 07:35.280
+and now I can remove this directory
+
+69
+07:42.270 --> 07:42.870
+Now since the
+
+70
+07:42.980 --> 07:43.500
+js
+
+71
+07:43.530 --> 07:45.540
+and sass path has been changed.
+
+72
+07:45.540 --> 07:50.520
+I also need to adjust the path in web
+pack mix js. So let's open that file
+
+73
+08:00.320 --> 08:05.390
+and here I'll change this from resources assets
+
+74
+08:05.510 --> 08:05.920
+js
+
+75
+08:05.930 --> 08:07.670
+app dot js to
+
+76
+08:10.600 --> 08:24.410
+resource js app dot js and also change this from 
+resource asset sass to resource sass app dot scss
+
+77
+08:25.860 --> 08:26.730
+and that's it.
+
+78
+08:26.760 --> 08:35.200
+I don't need to touch this prismjs path. 
+Okay let's safe, back to our browser
+
+79
+08:39.760 --> 08:40.740
+and here
+
+80
+08:40.750 --> 08:45.920
+Level 5.7 has svg directory added in public directory.
+
+81
+08:46.260 --> 08:54.150
+It contains four SVG files 403, 404, 500 and
+
+82
+08:54.170 --> 08:59.780
+503 which are displayed on their respective error pages.
+
+83
+08:59.970 --> 09:02.040
+We can go to this link let's
+
+84
+09:12.720 --> 09:14.070
+download entire repo
+
+85
+09:16.920 --> 09:19.510
+hit clone or download and hit
+
+86
+09:19.530 --> 09:20.050
+download zip
+
+87
+09:24.190 --> 09:25.630
+I'll open the zip file
+
+88
+09:36.500 --> 09:42.500
+go to public directory and here let's copy this svg directory.
+
+89
+09:48.480 --> 09:50.800
+Let's navigate to laravel app
+
+90
+10:01.300 --> 10:01.940
+paste here
+
+91
+10:06.270 --> 10:06.780
+all right
+
+92
+10:06.780 --> 10:10.990
+let's go back to our browser switch to a laravel guide.
+
+93
+10:15.770 --> 10:22.010
+And here we can skip this authentication because 
+we didn't override the method that mentioned here.
+
+94
+10:31.180 --> 10:33.490
+So let's continue to authorization
+
+95
+10:40.750 --> 10:46.280
+so if your are implementing this interface you 
+should add this method to your implementation.
+
+96
+10:46.360 --> 10:52.110
+We did not implement this interface so we can skip this.
+
+97
+10:52.200 --> 10:56.380
+Also we can skip this login event because
+
+98
+10:56.460 --> 10:57.200
+we are not using it
+
+99
+11:01.070 --> 11:02.970
+Okay let's see in blade section.
+
+100
+11:03.230 --> 11:09.690
+The or operator likelihood of impact is high
+
+101
+11:09.940 --> 11:16.240
+I'm sure I'm not using this operators so far, but just 
+in case you use this operator make sure to change
+
+102
+11:16.810 --> 11:21.000
+from or to double question marks.
+
+103
+11:21.310 --> 11:22.810
+Ok let's see in cash section
+
+104
+11:26.060 --> 11:35.300
+likelihood of impact is very high here we need to add data directory in storage framework cache of our
+
+105
+11:35.300 --> 11:43.250
+app we can do that by simply copy these command head over to our terminal
+
+106
+11:47.330 --> 11:57.170
+press a command and hit return now just in case the company stop work you can simply go to your editor
+
+107
+11:58.730 --> 12:12.140
+navigate to storage framework cache and here you can create the data directory back to our browser
+
+108
+12:17.450 --> 12:22.850
+and here we need to add the get ignore file inside the newly created data directory
+
+109
+12:26.590 --> 12:29.810
+we can do that by simply copy this command.
+
+110
+12:30.340 --> 12:43.200
+So this command is instruction to copy the giving or file from cache directory to cache data.
+
+111
+12:43.350 --> 12:51.400
+OK let's go to our terminal pest command and hit return.
+
+112
+12:52.170 --> 12:58.470
+If you're using Windows this command might be not working but don't worry you can go to your editor
+
+113
+12:59.730 --> 13:08.680
+copy the get ignore from here and paste here and here.
+
+114
+13:08.760 --> 13:11.910
+Let's open the gate ignore inside cache directory
+
+115
+13:14.970 --> 13:25.520
+and here we can add exclamation mark data or a slash that's noted here
+
+116
+13:30.500 --> 13:34.140
+right for carbon collection
+
+117
+13:38.090 --> 13:46.130
+and cookie we can skip all of these now for database I think we can all skip all of these
+
+118
+13:49.130 --> 13:49.700
+except
+
+119
+13:54.990 --> 14:03.760
+this one if you're using SQL Server as your database make sure you read this guide and if you're using
+
+120
+14:03.760 --> 14:07.110
+a single light in your database you need to read this guide
+
+121
+14:10.730 --> 14:12.440
+we can skip this debug section
+
+122
+14:15.140 --> 14:26.870
+as well as Quinn.
+
+123
+14:26.970 --> 14:35.490
+Now let's see the email verification likelihood of impact is optional that means we can add this feature
+
+124
+14:36.060 --> 14:42.380
+or ignore it will not affect our app but I think this feature is very cool so let's follow this game
+
+125
+14:48.450 --> 14:56.080
+first we need to add verification controller in app to be control or else directory of our app.
+
+126
+14:56.340 --> 15:02.660
+So let's go to our flight explorer guilds our level 5 1 7 directory
+
+127
+15:06.740 --> 15:14.830
+then navigate to app it be controller.
+
+128
+15:15.690 --> 15:18.080
+Let's copy this for controller file
+
+129
+15:29.150 --> 15:29.450
+okay.
+
+130
+15:29.480 --> 15:39.240
+Let's switch back over to our browser and here we did modify our app user model to implement must verify
+
+131
+15:39.260 --> 15:48.610
+email contract let's copy this line back to our editor open the user model
+
+132
+15:53.010 --> 15:54.950
+as they come in here.
+
+133
+15:59.980 --> 16:13.180
+And here after all the cable let's Ed implement must verify email make the wrestler
+
+134
+16:21.320 --> 16:30.920
+and we need to define verified middleware in route middleware property of our up to the kernel.
+
+135
+16:31.160 --> 16:34.790
+By doing this way we can verify that only verify the user.
+
+136
+16:34.790 --> 16:35.970
+My ex isn't even real.
+
+137
+16:37.460 --> 16:43.590
+So let's copy this line head over to our editor.
+
+138
+16:44.420 --> 16:47.540
+Open kernel PSP
+
+139
+16:53.520 --> 16:54.470
+and paste here
+
+140
+16:58.520 --> 16:59.010
+OK.
+
+141
+16:59.020 --> 17:00.010
+Victor Bressler
+
+142
+17:04.920 --> 17:13.680
+and here we need to add new view called verify led BSB inside resources we use of directory.
+
+143
+17:13.860 --> 17:14.790
+Let's hear this link
+
+144
+17:22.990 --> 17:24.190
+hit the button.
+
+145
+17:27.200 --> 17:45.550
+Select all content copy Victor edit editor navigate to seems this views of your file
+
+146
+17:48.330 --> 17:58.270
+let's call it fortify laid PSP and paste the code pink tor browser.
+
+147
+18:06.880 --> 18:13.530
+And here the next thing that we need to do is to add email verify at column inside our user stubble
+
+148
+18:15.550 --> 18:21.110
+so let's cover this line back to our editor.
+
+149
+18:22.870 --> 18:26.000
+And here you can go to migrations
+
+150
+18:32.550 --> 18:34.240
+on the create user stable
+
+151
+18:39.070 --> 18:42.150
+and pays the command here.
+
+152
+18:43.130 --> 18:49.700
+But by doing this way you need to clean your database and run all migration and you will lose your data.
+
+153
+18:49.700 --> 18:54.590
+This could be ok since we are in development but imagine you have production ready up.
+
+154
+18:54.620 --> 18:56.620
+I'm sure you don't need to list your data right.
+
+155
+19:00.450 --> 19:02.960
+So let's see an alternative way.
+
+156
+19:03.120 --> 19:05.700
+And before that here I'll under the change
+
+157
+19:11.710 --> 19:15.740
+let's switch over to our terminal and here.
+
+158
+19:15.760 --> 19:30.100
+Let's create the immigration file USP or CERN make migration and email verified at in users table
+
+159
+19:35.820 --> 19:36.750
+Victoria de la
+
+160
+19:39.590 --> 19:40.400
+open the file
+
+161
+19:45.510 --> 19:48.210
+here in a method we can pin the code
+
+162
+19:52.110 --> 19:56.100
+in here and done method distribute column
+
+163
+20:10.640 --> 20:11.590
+that's simple changes
+
+164
+20:14.690 --> 20:15.860
+in all this run our lives.
+
+165
+20:15.850 --> 20:22.080
+Migration in our terminal is be part of some migrate
+
+166
+20:25.070 --> 20:26.900
+all right back to our browser.
+
+167
+20:30.970 --> 20:38.940
+And here we say in order to send the email when a user is registered you should register following event
+
+168
+20:39.310 --> 20:44.130
+and listener in your app provider's event service provider
+
+169
+20:48.540 --> 20:50.000
+so let's copy these lines
+
+170
+20:56.130 --> 21:02.760
+Victor any Ed open a van service provider
+
+171
+21:07.110 --> 21:13.220
+paste make to a browser copy this lines.
+
+172
+21:15.070 --> 21:18.570
+Back to our editor here in listen.
+
+173
+21:18.650 --> 21:19.540
+That's like overseeing
+
+174
+21:22.540 --> 21:23.620
+the pace the previous code
+
+175
+21:27.740 --> 21:28.080
+here.
+
+176
+21:28.080 --> 21:30.600
+The final step on a silver vacation
+
+177
+21:36.280 --> 21:40.300
+is specify this verify option in our threads like this.
+
+178
+21:41.640 --> 21:47.070
+So back to our editor open Web BHP
+
+179
+21:52.090 --> 21:54.610
+here in route.
+
+180
+21:54.900 --> 22:00.880
+That's first fly free fly through.
+
+181
+22:00.960 --> 22:01.210
+OK.
+
+182
+22:01.240 --> 22:12.540
+Let's have a change let's switch back to our browser and here we can skip this filesystem hashing
+
+183
+22:16.180 --> 22:16.920
+and male
+
+184
+22:19.940 --> 22:21.380
+as well as queue
+
+185
+22:25.160 --> 22:26.180
+and for routing.
+
+186
+22:26.280 --> 22:33.350
+There is a note rather a method would you see the likelihood of impact is high
+
+187
+22:37.010 --> 22:44.270
+the rather of method returns a three hour to HDTV status code redirect the permanent ready Rick method
+
+188
+22:44.300 --> 22:46.370
+has been added to all three.
+
+189
+22:46.370 --> 22:47.270
+Also there directs
+
+190
+22:49.950 --> 22:57.480
+so if you were using this method in your app make sure you specify three or two as to the status code
+
+191
+22:57.660 --> 23:06.450
+in the third argument or you can replace with this permanent redirect method you can skip these at road
+
+192
+23:06.450 --> 23:09.210
+method.
+
+193
+23:09.670 --> 23:14.590
+Also this validation because it only tells us about nested religion rules
+
+194
+23:18.600 --> 23:19.710
+we can skip this one
+
+195
+23:22.920 --> 23:30.020
+but also this one and now we're almost done upgrading our core application to level 5 1 7.

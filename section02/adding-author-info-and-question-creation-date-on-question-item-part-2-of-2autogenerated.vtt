@@ -1,0 +1,348 @@
+WEBVTT
+
+0
+00:02.150 --> 00:05.250
+All right let's go back to all the questions.
+
+1
+00:07.870 --> 00:11.690
+And now let's see or analyze the query that being executed
+
+2
+00:11.930 --> 00:19.540
+just to show all of this questions. To do that we have two options actually. The first one is using get query
+
+3
+00:19.740 --> 00:26.680
+log from `DB` class. And the second one is by using third party package called Laravel Debug Bar
+
+4
+00:26.840 --> 00:29.270
+So to use it we need to install it first
+
+5
+00:32.140 --> 00:35.480
+OK to make it clear we'll try all options.
+
+6
+00:35.740 --> 00:41.400
+We start analyzing our query using the first option and then try the second option after that.
+
+7
+00:42.010 --> 00:42.430
+All right
+
+8
+00:42.460 --> 00:45.530
+since the laravel debug bar needs to be installed
+
+9
+00:45.550 --> 00:48.610
+so before we moving on let's go to our terminal
+
+10
+00:53.700 --> 00:58.800
+and install the laravel debug bar package by typing: composer install
+
+11
+00:58.850 --> 01:12.130
+then the package name `barryvdh` forward slash `laravel-debugbar`
+
+12
+01:12.510 --> 01:21.500
+And since we'll use this package only for development
+we need to add --dev flag. Hit return
+
+13
+01:24.400 --> 01:25.570
+ups
+
+14
+01:25.740 --> 01:26.680
+I'm sorry
+
+15
+01:27.300 --> 01:32.560
+This should be composer require
+
+16
+01:36.110 --> 01:40.540
+hit return. Now
+
+17
+01:40.710 --> 01:43.470
+while composer downloading and installing this package
+
+18
+01:43.610 --> 01:47.250
+Start analyzing our query using the first option.
+
+19
+01:47.280 --> 01:49.590
+Let's head over to our editor
+
+20
+01:52.040 --> 01:54.760
+and open question controller.
+
+21
+02:00.310 --> 02:12.730
+Firstly we need to enable the query log by simply call DB enableQueryLog
+
+22
+02:12.930 --> 02:17.220
+Then we don't need to return the view as a response so we need to remove the return
+
+23
+02:20.680 --> 02:30.240
+and then chain the view function call with render like so. So render method return the string content of
+
+24
+02:30.240 --> 02:31.440
+the View.
+
+25
+02:31.440 --> 02:39.150
+And by doing this our view will get compiled but it will not rendered to the browser
+
+26
+02:39.630 --> 02:52.370
+finally we can see the query log by calling DB double colon getQueryLog and then pass this in
+
+27
+02:52.460 --> 02:55.670
+laravel dd helper like this
+
+28
+02:57.960 --> 03:07.570
+OK save that. Header over to our browser and reload the page
+
+29
+03:11.020 --> 03:17.460
+As you can see, here we get array contains query that has been executed
+
+30
+03:20.020 --> 03:23.900
+The first one is query to count all records.
+
+31
+03:24.150 --> 03:28.700
+The second one is query to display all questions.
+
+32
+03:28.900 --> 03:33.500
+And this came from here
+
+33
+03:37.680 --> 03:42.210
+and the rest are queries to get user information
+
+34
+03:47.560 --> 03:51.250
+And all these came from
+
+35
+03:54.730 --> 03:59.030
+from here and here.
+
+36
+04:01.930 --> 04:07.180
+So this problem is something called n + 1 query problem.
+
+37
+04:07.230 --> 04:08.010
+So here
+
+38
+04:11.160 --> 04:14.200
+we limit the record to 5.
+
+39
+04:14.270 --> 04:21.780
+That's why we have 5 queries in here.
+
+40
+04:21.860 --> 04:29.120
+Now if we try to change the limit number to let's say 10 or any number
+
+41
+04:31.970 --> 04:33.750
+and then reload the page
+
+42
+04:38.330 --> 04:42.560
+the query that executed here we'll be increase.
+
+43
+04:45.210 --> 04:54.290
+So when accessing Eloquent relationships as properties
+like this one, the relationship data is
+
+44
+04:54.770 --> 05:01.630
+"lazy loaded" which means the relationship data is not actually loaded until you first access the property.
+
+45
+05:01.850 --> 05:08.480
+So to fix this N+1 query problem we can "eager load" the relationship  at the time we query
+
+46
+05:08.480 --> 05:15.100
+the parent model.
+
+47
+05:15.120 --> 05:24.410
+So here we can specify which relationships should be eager loaded using `with` method with
+
+48
+05:24.570 --> 05:26.620
+In this case user
+
+49
+05:29.510 --> 05:33.730
+as we defined in here
+
+50
+05:38.600 --> 05:45.790
+save that and reload the page again.
+
+51
+05:45.800 --> 05:46.460
+All right
+
+52
+05:46.480 --> 05:53.870
+now we only have three queries two queries actually because the first query is came from paginate method.
+
+53
+05:54.140 --> 05:56.400
+Now let's see this second query.
+
+54
+05:57.930 --> 06:08.200
+As you can see it now `select all from users where the id in` values that specified in parenthesis.
+
+55
+06:08.370 --> 06:15.360
+So behind the scene Laravel will collect all ids of all user
+from the first query, and then pass
+
+56
+06:15.360 --> 06:18.600
+them to the second query.
+
+57
+06:18.600 --> 06:22.430
+Now here the installation of laravel debug bar was completed
+
+58
+06:22.470 --> 06:28.850
+so let's see the query log using this package before we end this lesson.
+
+59
+06:31.520 --> 06:34.120
+Let's remove the query log
+
+60
+06:40.470 --> 06:42.430
+Remove the render method
+
+61
+06:44.480 --> 06:49.200
+and add `return` before `view` function call.
+
+62
+06:49.570 --> 06:55.570
+Save that. And then reload the page again.
+
+63
+06:58.770 --> 07:00.370
+here all questions come back.
+
+64
+07:01.520 --> 07:10.350
+And here in the bottom left corner we'll find an icon. Let's click that. And here you can see the same queries
+
+65
+07:10.800 --> 07:16.130
+as we saw before.
+
+66
+07:16.510 --> 07:17.660
+OK that's it
+
+67
+07:17.740 --> 07:22.820
+we've added author information and question creation date in every single question
+
+68
+07:22.990 --> 07:29.070
+and now we know how to define accessor, how "lazy loading" works and how to solve N+1 query
+
+69
+07:29.080 --> 07:31.560
+problem by using "eager loading".
+
+70
+07:31.760 --> 07:38.410
+In the next lesson we'll continue building our project by adding some counters for number of votes, answers
+
+71
+07:38.440 --> 07:42.430
+and views on the left side of every question.
+
+72
+07:43.360 --> 07:45.980
+Don't forget to save our work to git repo.
+
+73
+07:50.140 --> 07:56.190
+git add all. git commit
+
+74
+07:56.420 --> 08:05.530
+-m and I'll say add author info and question creation date in
+
+75
+08:10.420 --> 08:11.790
+Question item
+
+76
+08:15.550 --> 08:18.780
+and I'll commit the current branch to my remote repo
+
+77
+08:19.110 --> 08:21.650
+git push origin
+
+78
+08:21.930 --> 08:23.590
+lesson-5
+
+79
+08:29.780 --> 08:31.930
+OK
+
+80
+08:32.020 --> 08:34.390
+Let's switch to our master branch: git
+
+81
+08:34.570 --> 08:36.260
+checkout master. Ups
+
+82
+08:39.760 --> 08:53.560
+git checkout master and then merge to lesson-5 branch: git merge lesson-5. And last
+
+83
+08:53.620 --> 08:58.500
+let's push our master branch to our remote repo: git push
+
+84
+08:58.560 --> 09:01.580
+origin master
+
+85
+09:10.210 --> 09:10.900
+OK great.

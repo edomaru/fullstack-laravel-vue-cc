@@ -1,0 +1,289 @@
+WEBVTT
+
+0
+00:02.270 --> 00:08.700
+In this lesson we will continue to build our project and design table schema along with a model that will hold
+
+1
+00:08.760 --> 00:11.190
+all questions in our application.
+
+2
+00:11.490 --> 00:17.820
+And because the question is created by the user will also link or make relationship between the user
+
+3
+00:17.850 --> 00:20.210
+and question model.
+
+4
+00:20.210 --> 00:28.470
+All right let's go to our terminal and generate a new model. Actually before we do that
+
+5
+00:28.550 --> 00:29.710
+let's create a new branch
+
+6
+00:29.720 --> 00:36.670
+In our local repo so that we can work in isolation. If I type git branch
+
+7
+00:39.460 --> 00:41.560
+right now we're on master branch.
+
+8
+00:41.710 --> 00:44.980
+So let's create new branch by typing git
+
+9
+00:45.280 --> 00:57.270
+checkout -b and the branch name could be anything but since we are in the second lesson so I'm
+
+10
+00:57.270 --> 01:00.120
+going to say lesson-2
+
+11
+01:03.800 --> 01:07.860
+so now it stays switched to a new branch
+
+12
+01:07.880 --> 01:10.210
+lesson-2. All right
+
+13
+01:10.380 --> 01:20.570
+Let's generate a new model by typing php artisan make model and the model name will be
+
+14
+01:20.580 --> 01:22.720
+Question.
+
+15
+01:22.830 --> 01:30.390
+Remember that by convention the model name in singular and written in capital or in camel case. And eloquent
+
+16
+01:30.420 --> 01:37.200
+will assume that this question model store record in the questions table in plural and written
+
+17
+01:37.290 --> 01:38.980
+in snake case.
+
+18
+01:39.180 --> 01:45.720
+We could return to actually generate the model and after that we can create a new migration and define
+
+19
+01:45.720 --> 01:56.600
+questions table. But actually we can also do that in a single command by specifying the  --migration
+
+20
+01:56.610 --> 02:06.210
+Or we can just specify -m like so. By doing this we tell artisan to generate question model
+
+21
+02:06.570 --> 02:13.340
+along with the migration file that we can use to define the questions table. Hit return.
+
+22
+02:19.640 --> 02:28.860
+All right so if we look inside database migrations
+
+23
+02:32.110 --> 02:36.230
+we now have create question table.
+
+24
+02:36.430 --> 02:37.290
+Open the file
+
+25
+02:42.680 --> 02:47.380
+and lets go ahead and fill this out.
+
+26
+02:50.390 --> 02:53.380
+So every questions is going to have a title.
+
+27
+02:53.450 --> 03:07.860
+So let's have a title column in a string string title. Let's
+
+28
+03:08.120 --> 03:15.370
+also have slug of this question and slug basically title that are constructed to make pretty URL
+
+29
+03:24.220 --> 03:30.070
+so we can call this slug and this needs to be unique
+
+30
+03:34.450 --> 03:36.670
+for each records in this table
+
+31
+03:41.350 --> 03:43.790
+and then we need to have actual content
+
+32
+03:44.020 --> 03:46.510
+so that's going to be body
+
+33
+03:51.190 --> 03:52.630
+and it should be in text
+
+34
+03:58.240 --> 04:02.170
+and then we need to record how many times the question is viewed.
+
+35
+04:02.170 --> 04:10.210
+So we can say table and that's going to be unsigned
+
+36
+04:12.610 --> 04:20.050
+integer because the value will never be less than zero.
+
+37
+04:24.390 --> 04:27.180
+And let's make it the zero by default
+
+38
+04:30.840 --> 04:35.970
+because when the first time the question is created it has not seen by anyone
+
+39
+04:36.040 --> 04:36.210
+right?
+
+40
+04:39.090 --> 04:45.000
+and then we need to record how many answers the question has and we simply duplicate this line.
+
+41
+04:48.850 --> 04:52.720
+And change to answers.
+
+42
+04:56.920 --> 05:09.270
+We also need to have votes that record how many people are voting a question so table integer because
+
+43
+05:09.330 --> 05:13.550
+I show in overflow that votes can be negative.
+
+44
+05:13.620 --> 05:21.630
+That's why it's integer not unsigned integer.
+
+45
+05:21.680 --> 05:23.900
+And let's also make it zero by default
+
+46
+05:29.480 --> 05:39.270
+then we need to record the accepted or best answer id. So we can say table
+
+47
+05:39.470 --> 05:52.070
+and that's going to be unsigned integer
+
+48
+05:52.290 --> 05:54.630
+and it also should be nullable
+
+49
+05:58.350 --> 06:01.420
+because a question could be has no answer
+
+50
+06:01.620 --> 06:07.640
+or it could be has answers but none of them is accepted by the creator of the question.
+
+51
+06:12.220 --> 06:20.870
+And last we need to keep track of the user that create the question. So we can say table and that's
+
+52
+06:20.870 --> 06:23.970
+going to be unsigned
+
+53
+06:24.430 --> 06:26.480
+integer
+
+54
+06:28.400 --> 06:33.200
+And we'll call it user underscore
+
+55
+06:33.200 --> 06:33.480
+id
+
+56
+06:36.440 --> 06:43.920
+The reason why I defined user id in unsigned integer other than what I mentioned earlier is because I will
+
+57
+06:43.920 --> 06:50.870
+make the user id column as foreign key which constrain us to define both columns in both tables are
+
+58
+06:50.870 --> 06:54.390
+identic so
+
+59
+06:54.400 --> 07:03.230
+Increment id will create ID column in unsigned integer primary key and auto increment.
+
+60
+07:04.130 --> 07:05.450
+So here
+
+61
+07:08.410 --> 07:13.490
+we can say table foreign
+
+62
+07:17.760 --> 07:24.040
+user id it will reference
+
+63
+07:28.330 --> 07:40.180
+ID on users table ok.
+
+64
+07:40.890 --> 07:48.590
+And whenever the user deleted all questions related to the user will be cascaded or they will also be removed.
+
+65
+07:48.870 --> 07:52.170
+So here on delete
+
+66
+07:54.840 --> 08:00.270
+cascade like so
+
+67
+08:03.810 --> 08:16.870
+ok save that. And let's go back to our terminal and run latest migration file by typing php artisan
+
+68
+08:16.920 --> 08:23.520
+migrate
+
+69
+08:23.640 --> 08:23.990
+All right
+
+70
+08:24.030 --> 08:29.350
+so now that we have question model as well as a questions table to hold all questions
+
+71
+08:29.350 --> 08:30.330
+in our application.

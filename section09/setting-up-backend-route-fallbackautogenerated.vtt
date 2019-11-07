@@ -1,0 +1,154 @@
+WEBVTT
+
+0
+00:01.540 --> 00:07.570
+In order to implement a single page application we need 
+to change the routing mechanism in our application
+
+1
+00:08.020 --> 00:10.450
+which usually handled in the server
+
+2
+00:10.480 --> 00:14.780
+now it'll handled by the client completely. In our server we
+
+3
+00:14.810 --> 00:17.980
+should only provide a single page for any request.
+
+4
+00:17.980 --> 00:20.950
+Then in the client we'll need to define the routes.
+
+5
+00:21.040 --> 00:24.460
+We can do that by mapping a URI path with a certain component.
+
+6
+00:25.150 --> 00:31.960
+So in this video we're gonna change the Laravel web route 
+behaviour in our application to always load only a single
+
+7
+00:31.960 --> 00:34.810
+page for any request comes in.
+
+8
+00:34.810 --> 00:39.760
+So let's go ahead and open up our terminal and here
+
+9
+00:39.800 --> 00:40.930
+let's create new branch.
+
+10
+00:48.960 --> 00:49.680
+All right
+
+11
+00:50.010 --> 00:53.220
+let's pull open web dot php
+
+12
+00:56.200 --> 01:00.420
+at the very top let's define a new route
+
+13
+01:10.850 --> 01:16.650
+so this way will make any web route that 
+we make to always return spa view.
+
+14
+01:16.730 --> 01:22.310
+Here we constrained the format of our route 
+parameter using the `where` method.
+
+15
+01:22.310 --> 01:28.640
+We passed the route parameter in the first argument and 
+regular expression in the second argument contained
+
+16
+01:28.640 --> 01:34.280
+period an asterisk meaning zero or more of any character.
+
+17
+01:34.280 --> 01:37.200
+Now we don't have the spa view just yet.
+
+18
+01:37.580 --> 01:46.710
+So let's create that one.
+
+19
+01:46.880 --> 01:51.640
+Actually we have welcome blade php which currently is not used.
+
+20
+01:51.770 --> 01:53.540
+So let's simply rename this file
+
+21
+01:56.450 --> 02:02.260
+to spa
+
+22
+02:02.390 --> 02:06.500
+Now if I save this change then visit the page
+
+23
+02:10.260 --> 02:17.030
+here I'll get the default laravel welcome page if we tried to enter questions.
+
+24
+02:17.900 --> 02:20.990
+We still get the same page even if we try something else
+
+25
+02:26.350 --> 02:28.480
+we'll still get the same page.
+
+26
+02:28.540 --> 02:31.610
+All right back to our editor.
+
+27
+02:32.380 --> 02:38.380
+And now instead of showing the default laravel welcome 
+page let's show the proper page and in order to
+
+28
+02:38.380 --> 02:43.550
+do that let's pull open app blade php
+
+29
+02:47.440 --> 02:59.190
+let's copy everything in here. Open spa blade php
+select everything and paste the code that we grabbed
+
+30
+02:59.250 --> 03:00.560
+from our layout
+
+31
+03:04.490 --> 03:10.070
+let's get rid of this yield and add a message for a while
+
+32
+03:19.010 --> 03:20.510
+now refresh the page
+
+33
+03:23.400 --> 03:28.240
+now our application's layout back but we 
+only have a message show up here.
+
+34
+03:28.440 --> 03:28.780
+All right
+
+35
+03:28.860 --> 03:33.270
+I think that's all we need in our backend 
+server. Now let's working on the frontend.

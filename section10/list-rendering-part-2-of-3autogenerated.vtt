@@ -1,0 +1,186 @@
+WEBVTT
+
+0
+00:02.760 --> 00:05.200
+Next let's make use of the v-for directive
+
+1
+00:05.300 --> 00:06.000
+to array.
+
+2
+00:08.370 --> 00:11.630
+Let's open the list rendering two dot html
+
+3
+00:14.730 --> 00:15.960
+And in here
+
+4
+00:16.160 --> 00:19.710
+we will display a list contains top 10 frameworks
+
+5
+00:20.690 --> 00:24.600
+Let's switch over to our editor.
+
+6
+00:24.780 --> 00:27.780
+Then let's open up list rendering two dot html
+
+7
+00:31.050 --> 00:32.740
+and then we can jump to our script
+
+8
+00:37.260 --> 00:38.650
+here in data property
+
+9
+00:38.700 --> 00:45.840
+we have top ten frameworks  property and it has 
+an array of string contains names of the framework.
+
+10
+00:45.840 --> 00:51.260
+This is only a sample data which taken 
+from the hot framework dot com website.
+
+11
+00:51.390 --> 00:55.540
+I don't know for sure whether this data is really valid or not.
+
+12
+00:55.540 --> 01:02.520
+Anyway let's show the frameworks 
+name in here to this unordered list.
+
+13
+01:02.970 --> 01:06.480
+So let's get rid of some list items and leave one item
+
+14
+01:10.990 --> 01:21.160
+here in the list item we can say the v-for equals and 
+then in the left side for the alias name let's called it
+
+15
+01:22.140 --> 01:25.830
+framework in top ten frameworks.
+
+16
+01:30.290 --> 01:35.000
+And then let's change the text to framework.
+
+17
+01:40.670 --> 01:46.730
+Now here we can see top ten frameworks that we defined 
+in vue instance are listed in this page by making
+
+18
+01:46.730 --> 01:49.890
+use the v for directive.
+
+19
+01:49.980 --> 01:53.160
+Now in some cases we may need to access the index array. To do
+
+20
+01:55.890 --> 02:04.870
+that we can use the v-for in a form like this v-for item 
+comma index in items where index is the index
+
+21
+02:04.870 --> 02:10.140
+number of array element which will be iterated. Alright
+
+22
+02:10.140 --> 02:12.500
+let's open the list rendering three dot
+
+23
+02:12.690 --> 02:18.670
+html and here we will display a list 
+of the top ten framework as before.
+
+24
+02:21.110 --> 02:26.140
+The difference here we also need to show 
+the score on the right side of each list item.
+
+25
+02:28.920 --> 02:30.880
+So let's switch back over to our editor
+
+26
+02:34.190 --> 02:35.330
+than open up
+
+27
+02:35.400 --> 02:40.820
+list rendering three dot html.
+
+28
+02:41.020 --> 02:43.870
+And then let's jump to the script section
+
+29
+02:47.670 --> 02:55.250
+here in data property we have a new property scores 
+which contains array of numbers. So for the score it
+
+30
+02:55.290 --> 02:59.230
+will be look like ASP.NET
+
+31
+02:59.380 --> 03:05.310
+One hundred angular js ninety six and so on.
+
+32
+03:05.360 --> 03:11.520
+Now we can go to our unordered list and 
+remove all list items except the first one
+
+33
+03:18.330 --> 03:22.960
+and then here we can say v-for equals parenthesis
+
+34
+03:26.170 --> 03:33.490
+framework coma index  in or let's use of for
+
+35
+03:33.490 --> 03:40.070
+now and then top ten frameworks.
+
+36
+03:40.110 --> 03:58.030
+Now before we show the score in here let's 
+show the index after the framework name.
+
+37
+03:58.160 --> 04:03.020
+Here we can see the index array on the 
+right side of the framework name.
+
+38
+04:03.020 --> 04:18.060
+Now it's time to show the score by utilizing this index.
+
+39
+04:18.130 --> 04:25.630
+Here we can say score and then specify the index like so.
+
+40
+04:27.590 --> 04:29.360
+Save let's see
+
+41
+04:49.090 --> 04:52.590
+OK we have successfully displayed 
+the top 10 frameworks in the list
+
+42
+04:52.660 --> 04:57.170
+and their score respectively by making use index in v-for directive.

@@ -1,0 +1,316 @@
+WEBVTT
+
+0
+00:02.370 --> 00:06.340
+Vue js is progressive javascript framework 
+for building user interfaces.
+
+1
+00:07.060 --> 00:14.790
+It is simple lightweight flexible and very performance
+while still providing a lot of features and option
+
+2
+00:14.790 --> 00:18.950
+tools that can help us build a modern web application efficiently.
+
+3
+00:19.260 --> 00:24.490
+In this section we will met the library and after 
+a brief interaction we will start creating our
+
+4
+00:24.510 --> 00:33.060
+first vue js application. Vue js focus on a view layer its 
+core library focus mainly on view layer of the application
+
+5
+00:33.480 --> 00:39.620
+and it's also perfectly capable to build 
+a single page application or SPA
+
+6
+00:39.980 --> 00:46.530
+Vue js is progressive framework that means vue js 
+is design from the ground up to be incrementally
+
+7
+00:46.530 --> 00:53.040
+adaptable with a core library focused on user interfaces 
+that you can use in existing projects to make
+
+8
+00:53.040 --> 00:55.200
+your application more interactive.
+
+9
+00:55.380 --> 01:02.950
+You can make from the small app all the way up 
+to the large and sophisticated web applications.
+
+10
+01:03.200 --> 01:09.960
+Vue js relative newcomer in the javascript frontend landscape but now it's very popular javascript frontend framework and widely
+
+11
+01:09.960 --> 01:18.540
+used across the world for web development. Why vue js? 
+Getting up and running with the vue js is quite simple.
+
+12
+01:18.540 --> 01:24.210
+You don't need to use a module bundler like web pack 
+because the core library doesn't have any dependency.
+
+13
+01:24.300 --> 01:30.780
+Just include the vue js core the library from cdn 
+into your page and you're ready to get started.
+
+14
+01:31.530 --> 01:37.510
+If you know HTML and Javascript reasonably well 
+you'll find that vue js has a low learning curve
+
+15
+01:37.710 --> 01:40.710
+it shouldn't take you long at all.
+
+16
+01:40.950 --> 01:46.990
+The vue documentation is so detail easy to understand 
+and includes various code examples.
+
+17
+01:47.070 --> 01:49.950
+All right there's a brief introduction about vue js
+
+18
+01:50.130 --> 01:53.300
+let's finally start and build our first vue js application.
+
+19
+01:54.790 --> 01:57.870
+Firstly let's open the vue js official homepage.
+
+20
+01:57.920 --> 02:03.450
+vue js dot org and here we can hit this get this get started button 
+
+21
+02:03.890 --> 02:06.170
+And this will take us to vue js guide.
+
+22
+02:07.760 --> 02:10.980
+Here let's navigate to installation menu
+
+23
+02:18.070 --> 02:22.250
+and then here we'll got a couple of 
+different options how to install vue js
+
+24
+02:22.300 --> 02:26.640
+For now let's use the simplest one which is using cdn.
+
+25
+02:26.790 --> 02:34.100
+Here you can grab this script or you can also copy the latest version of vue js url from
+
+26
+02:34.110 --> 02:35.310
+js deliver cdn
+
+27
+02:39.440 --> 02:44.780
+here you can also copy the url from unpackage or cdn js.
+
+28
+02:50.260 --> 02:50.660
+Here
+
+29
+02:50.710 --> 02:53.740
+I also open online editor called js fiddle.
+
+30
+02:53.830 --> 02:56.160
+You can access it in js fiddle dot net
+
+31
+02:59.380 --> 03:03.050
+So this editor is web editor where we can play around with
+
+32
+03:03.250 --> 03:11.410
+HTML css and javascript and we can also see the 
+output in one page. Here in HTML section let's
+
+33
+03:12.630 --> 03:17.720
+type script colon src then hit tab
+
+34
+03:17.820 --> 03:22.470
+paste the URL and remove the forward slash in the end.
+
+35
+03:27.500 --> 03:33.200
+And with that we include the vue js and we can 
+now use it and build our first vue js application.
+
+36
+03:35.990 --> 03:41.640
+Here let's add a div and give id attribute 
+app or whatever name you like.
+
+37
+03:45.320 --> 03:50.210
+And then here in javascript section we 
+need to instanciate a new vue instance.
+
+38
+03:50.210 --> 03:59.770
+We can do that by saying new vue. This instance has one 
+major job control the HTML code which then render to
+
+39
+03:59.900 --> 04:01.330
+the screen.
+
+40
+04:01.590 --> 04:07.370
+Now in order to let the vue instance do that we 
+have to pass in an option object as an argument.
+
+41
+04:09.620 --> 04:15.920
+This object is central in vue and define and control 
+data and behavior. It contains all the information
+
+42
+04:16.130 --> 04:19.020
+needed to create vue instance and components.
+
+43
+04:19.100 --> 04:27.880
+For now let's specify el property which accepts 
+a selector or an element as an argument.
+
+44
+04:27.910 --> 04:38.510
+Here we can say hash tag app which will return 
+the element in the page with app as the identifier
+
+45
+04:38.510 --> 04:44.210
+With that everything that we will write inside the 
+div with the id as app will be under controlled by
+
+46
+04:44.210 --> 04:49.990
+this vue instance. And with under control I 
+mean we can then change it or manipulate it
+
+47
+04:50.030 --> 04:51.200
+through this vue instance.
+
+48
+04:56.690 --> 04:59.810
+So here in this div let's add a heading 1
+
+49
+05:02.820 --> 05:08.030
+and then here let's make javascript expression 
+and output the result to the heading. Here
+
+50
+05:08.050 --> 05:15.560
+vue js have special syntax to output something double 
+curly braches opening and closing and in-between
+
+51
+05:15.760 --> 05:24.700
+I'll write Hello plus world
+
+52
+05:24.800 --> 05:31.740
+This is normal way to declare a literal string in javascript 
+here we just concatenate two strings and display the result.
+
+53
+05:34.390 --> 05:35.890
+So if we hit the run button
+
+54
+05:39.080 --> 05:41.900
+here in the output we'll have Hello world message
+
+55
+05:50.060 --> 05:50.520
+now
+
+56
+05:50.630 --> 06:00.030
+vue js also has special property called data which 
+accepts object. Here we store all data that we want
+
+57
+06:00.030 --> 06:02.040
+to use in this vue instance.
+
+58
+06:02.170 --> 06:04.040
+Here I'll define message
+
+59
+06:06.950 --> 06:09.310
+and I'll cut this message
+
+60
+06:12.860 --> 06:14.000
+and paste in this message
+
+61
+06:14.020 --> 06:14.510
+property.
+
+62
+06:17.820 --> 06:21.130
+Here I can call the message like this
+
+63
+06:24.970 --> 06:32.480
+here we only need to call message and vue js will look 
+into this data object find the message property and
+
+64
+06:32.480 --> 06:34.760
+parse it in HTML code.
+
+65
+06:36.090 --> 06:37.430
+If we now hit the run button
+
+66
+06:40.670 --> 06:48.560
+we will get the same thing. Now if I change the message to hello
+
+67
+06:48.610 --> 06:52.570
+vue js and then hit the run button again
+
+68
+06:56.990 --> 07:01.140
+you can see it reflect the chance there. Alright
+
+69
+07:01.170 --> 07:07.220
+we've completed our first step into vue js world and 
+are now able to build a simple vue js application.
+
+70
+07:08.100 --> 07:11.280
+In the next lesson I'm going to show you how the set up vue js locally.

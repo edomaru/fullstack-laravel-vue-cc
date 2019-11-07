@@ -1,0 +1,511 @@
+WEBVTT
+
+0
+00:01.480 --> 00:06.920
+In this section we are going to learn how 
+to integrate vue js into our application.
+
+1
+00:07.120 --> 00:11.880
+We will create a lot of vue js components and 
+make them communicate with each other.
+
+2
+00:13.390 --> 00:19.530
+Since we have organized our views by breaking them 
+into small parts creating vue js component will
+
+3
+00:19.540 --> 00:28.020
+be much easier. Because all we have to do is rewrite a 
+single file into a vue js component and add some 
+
+4
+00:28.240 --> 00:34.550
+javascript code to custom the component's behavior.
+
+5
+00:34.680 --> 00:41.520
+So when I say create a component in the section that 
+means we'll rewrite the code from blade file into
+
+6
+00:41.520 --> 00:46.110
+vue js file and then add some javascript 
+code to make it interactive.
+
+7
+00:55.000 --> 01:01.810
+So we will be start from the easiest part which 
+in this case is the author or user in for here.
+
+8
+01:01.810 --> 01:08.530
+Then we'll continue to create answer component 
+by utilizing vue js inline template. Then we'll create
+
+9
+01:08.690 --> 01:09.900
+favorite component
+
+10
+01:11.830 --> 01:23.750
+accept component and then vote component. After that  
+we'll create component to wrap all answers then
+
+11
+01:23.750 --> 01:32.830
+we will create a component to create new answer and 
+then we'll create question component and wrap all
+
+12
+01:32.830 --> 01:35.810
+components into a single big component.
+
+13
+01:36.460 --> 01:42.070
+So that's a broad overview of what we are going to 
+do in this section. And in this lesson we are going
+
+14
+01:42.070 --> 01:47.740
+to create a very basic vue component which is user info here.
+
+15
+01:47.890 --> 01:49.130
+So let's get started.
+
+16
+01:50.420 --> 01:52.070
+Let's switch over to our terminal
+
+17
+01:57.630 --> 01:58.710
+and then create new branch.
+
+18
+02:06.330 --> 02:06.840
+OK
+
+19
+02:06.890 --> 02:08.500
+we are isolated in new branch.
+
+20
+02:10.750 --> 02:12.250
+Now let's open shared
+
+21
+02:15.130 --> 02:16.900
+underscore author blade php
+
+22
+02:20.540 --> 02:22.150
+and here let's copy everything
+
+23
+02:25.540 --> 02:27.010
+and then we can go to
+
+24
+02:32.720 --> 02:43.840
+js components folder and here we'll find example 
+component dot vue file.  As the name implies this
+
+25
+02:43.840 --> 02:48.670
+file is just for example.
+
+26
+02:48.710 --> 02:57.380
+So in every single file component there will be 
+template tag to put our html code and then script
+
+27
+02:57.380 --> 03:07.050
+tag where we put our components logic and it can also has style tag
+
+28
+03:10.480 --> 03:18.520
+that contains our css rules that specific to the 
+current component. Here we don't need this style
+
+29
+03:19.120 --> 03:20.230
+So let's remove it.
+
+30
+03:28.830 --> 03:37.930
+And now we can create new file and 
+here let's call it instead of author
+
+31
+03:37.980 --> 03:44.940
+now I'll call it user info dot vue
+
+32
+03:45.170 --> 03:50.120
+I think the name is more descriptive and 
+it can describe what this component does.
+
+33
+03:50.460 --> 03:52.530
+But feel free to call it whatever you like.
+
+34
+03:54.560 --> 04:08.420
+Here let's define template tag and inside here just paste the code.
+
+35
+04:08.530 --> 04:17.000
+Now in a single file component there should be only 
+one parent element. While here we have two the span
+
+36
+04:18.210 --> 04:22.470
+and a div. So let's wrap both of these into a new div
+
+37
+04:43.590 --> 04:51.690
+Let's change this expression to post date 
+and we'll define that computed property.
+
+38
+04:56.320 --> 05:02.020
+Now in vue js version 2 we cannot longer 
+pass in a value to particular html attribute
+
+39
+05:02.500 --> 05:05.920
+using mustaches or string interpolation like these.
+
+40
+05:08.960 --> 05:14.090
+But instead we can use v bind directive like v-bind
+
+41
+05:17.310 --> 05:24.010
+or we can do it more simpler by removing v-bind
+
+42
+05:24.070 --> 05:31.830
+So just colon symbol followed by attribute name. 
+Let's also bind the source attribute in this image
+
+43
+05:37.200 --> 05:38.550
+and href in this anchor
+
+44
+05:45.800 --> 05:53.160
+and now we can select this hit control+d 
+or command+d in mac to select other instances
+
+45
+05:55.930 --> 06:00.740
+except of this one. Then hit backspace or delete key
+
+46
+06:04.780 --> 06:16.950
+and then let's also select this. Hit control+d to select  
+other instance except this one. Then hit backspace  
+
+47
+06:16.980 --> 06:20.210
+or delete key. Next
+
+48
+06:20.220 --> 06:27.370
+let's change from php variable to 
+javascript variable. To make it less typing
+
+49
+06:27.700 --> 06:31.540
+let's call the user instance directly not from the model
+
+50
+06:34.730 --> 06:37.840
+so let's select these model user
+
+51
+06:41.650 --> 06:47.500
+then hit control+d or command+d to select other instances.
+
+52
+06:47.700 --> 06:48.430
+Alright
+
+53
+06:48.500 --> 06:51.560
+let's replace all of these with user dot
+
+54
+06:56.350 --> 06:58.140
+now let's define the script tag
+
+55
+07:03.760 --> 07:12.380
+and here let's specify props property. This property 
+receives a list of attributes that are exposed to
+
+56
+07:12.380 --> 07:14.830
+accept data from the parent component.
+
+57
+07:15.110 --> 07:27.520
+The value can be array or object but in this case 
+it will be array contains model and label.
+
+58
+07:27.540 --> 07:33.460
+So when we call this component outside we have 
+to pass in this model and label attributes like this
+
+59
+07:55.950 --> 08:03.120
+if you're not specify the model or label attribute 
+then the component will not work and will get error.
+
+60
+08:09.620 --> 08:09.980
+Next
+
+61
+08:09.980 --> 08:11.750
+let's also define computed property
+
+62
+08:19.090 --> 08:21.010
+this property allows us to avoid
+
+63
+08:21.010 --> 08:23.650
+blowing up the template with some extra logic
+
+64
+08:26.500 --> 08:33.360
+everything that we defined inside here are cached and 
+only recomputed when some of its dependencies
+
+65
+08:33.450 --> 08:34.420
+have changed.
+
+66
+08:37.000 --> 08:40.790
+Inside here let's define postDate method.
+
+67
+08:45.030 --> 08:52.270
+So remember we call it here.
+
+68
+08:52.510 --> 09:07.390
+Here I wrote the method in ES6 syntax 
+and you may write it in ES5 syntax like this.
+
+69
+09:07.510 --> 09:10.920
+So this one and this one are equally valid.
+
+70
+09:11.810 --> 09:14.180
+But here I prefer to use ES6 syntax
+
+71
+09:22.820 --> 09:23.440
+OK
+
+72
+09:23.480 --> 09:33.800
+Inside here we simply return the label that we pass in 
+from the parent component. Add a space and followed
+
+73
+09:33.860 --> 09:35.190
+by post creation date.
+
+74
+09:43.350 --> 09:45.110
+And the last
+
+75
+09:45.150 --> 09:47.080
+let's define data method.
+
+76
+09:49.550 --> 09:56.990
+Basically a component could be has its own states 
+and we can store that in this data method.
+
+77
+09:57.070 --> 10:01.800
+Inside this method will simply return 
+an object and inside this object
+
+78
+10:01.820 --> 10:12.480
+we define user property and the value will be this model user.
+
+79
+10:12.510 --> 10:23.730
+So remember in the template we call user dot URL 
+user name etc. And it should be defined here.
+
+80
+10:25.470 --> 10:26.320
+Basically
+
+81
+10:26.370 --> 10:30.820
+this simplify how we call the modal property.
+
+82
+10:31.010 --> 10:39.540
+So we don't need to call model user name or model 
+dot user not avatar in all places in this component. 
+
+83
+10:41.310 --> 10:46.820
+All right to make this component visible in all 
+places in our application we can register it in
+
+84
+10:46.830 --> 10:51.830
+main javascript file which is app.js let's open that file
+
+85
+10:59.840 --> 11:05.490
+here we'll find require function that is intended 
+to import adjacent files bootstrap.js
+
+86
+11:08.200 --> 11:20.580
+Which in turn load other libraries including 
+lodash popper jquery bootstrap and axios.
+
+87
+11:25.240 --> 11:31.320
+and we also added require function to 
+load or import font awesome js file.
+
+88
+11:31.340 --> 11:38.530
+Now here we'll find require vue that import vue js 
+library and store it in window global object.
+
+89
+11:38.900 --> 11:46.000
+And here we'll find this line this tell vue to register the component globally.
+
+90
+11:46.090 --> 11:48.460
+In this case the custom tag will be
+
+91
+11:48.460 --> 11:53.860
+example-component and the company 
+itself loaded from components.
+
+92
+11:53.860 --> 12:02.470
+Example component dot vue. And the last 
+we can see how the vue js instantiated.
+
+93
+12:02.670 --> 12:08.940
+There is `el` property in the options which store the 
+element on the page where this vue instance should be
+
+94
+12:08.940 --> 12:11.170
+bound. Bu default
+
+95
+12:11.180 --> 12:14.210
+It would be app which refers to
+
+96
+12:18.170 --> 12:18.530
+here.
+
+97
+12:21.350 --> 12:27.420
+OK since we have removed the example component 
+dot vue and we just created user info component
+
+98
+12:27.990 --> 12:36.710
+so let's change the first argument to `user-info`. As a 
+note you can name your component with any name
+
+99
+12:36.710 --> 12:39.130
+you like except the existing valid
+
+100
+12:39.220 --> 12:45.810
+html tag name such as h1 through h6, section, main etc.
+
+101
+12:45.830 --> 12:49.480
+So please please please be careful when giving component name.
+
+102
+12:49.520 --> 12:55.400
+Don't use a valid HTML the tag name 
+because it will cause name collations.
+
+103
+12:55.650 --> 13:00.260
+Then in the second argument we can include our component components
+
+104
+13:03.390 --> 13:06.180
+user info
+
+105
+13:06.250 --> 13:11.900
+All right we have our first view just component 
+and we have registered it globally in app.js file
+
+106
+13:12.370 --> 13:19.510
+but before we actually use it we need to do something 
+called bundling or compiling our javascript code into
+
+107
+13:19.560 --> 13:22.150
+browser friendly code. To do that
+
+108
+13:22.150 --> 13:24.640
+let's switch over to a our terminal
+
+109
+13:24.730 --> 13:29.950
+then bundle or compile our javascript 
+code by saying `npm run dev`
+
+110
+13:33.040 --> 13:35.840
+or `npm run watch`
+
+111
+13:35.950 --> 13:47.110
+So if you remember in webpack.mix.js we will find this 
+lines which simply define which files that will be compiled
+
+112
+13:47.350 --> 13:51.490
+when we call `npm run dev` or `npm run watch`.
+
+113
+13:51.490 --> 14:00.450
+In this case app.js and app.scss file and the 
+output will be stored in public js and public
+
+114
+14:00.450 --> 14:01.050
+css

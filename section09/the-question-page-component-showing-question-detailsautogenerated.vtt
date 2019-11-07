@@ -1,0 +1,368 @@
+WEBVTT
+
+0
+00:05.150 --> 00:10.070
+In this lesson we're going to fix the question 
+page component so that it can show
+
+1
+00:10.070 --> 00:14.790
+the question details as we have in our non SPA application.
+
+2
+00:15.100 --> 00:22.400
+OK without further ado let's head over to our 
+terminal and here let me create a new branch
+
+3
+00:28.060 --> 00:32.050
+Now let's run Laravel mix by saying npm run  watch.
+
+4
+00:36.280 --> 00:37.080
+All right
+
+5
+00:37.210 --> 00:41.290
+if we open routes.js
+
+6
+00:48.790 --> 00:55.540
+here we've already defined a route record to map 
+the path with our question page component.
+
+7
+00:55.580 --> 01:01.000
+Now here let me show you another way 
+dealing with dynamic route matching.
+
+8
+01:01.240 --> 01:02.640
+So if you remember
+
+9
+01:02.770 --> 01:04.110
+in the last lesson
+
+10
+01:04.150 --> 01:05.020
+we've defined
+
+11
+01:08.580 --> 01:09.450
+questions
+
+12
+01:14.630 --> 01:25.760
+we've defined questions colon id edit in the route 
+record. And then in the component we can get the
+
+13
+01:25.760 --> 01:27.800
+id from the URL using
+
+14
+01:31.450 --> 01:36.750
+this router params dot id.
+
+15
+01:36.910 --> 01:43.740
+So here let me show you another way.
+
+16
+01:44.080 --> 01:50.440
+Here we add props and set it to true.
+
+17
+01:54.090 --> 01:58.830
+So by doing this we tell vue router 
+to pass URL parameter as prop.
+
+18
+02:00.030 --> 02:16.800
+So in the question page we don't need to get the 
+router parameter using this router params slug.
+
+19
+02:17.060 --> 02:20.710
+Now let's call this route in the question excerpt component.
+
+20
+02:21.210 --> 02:22.590
+So let's often that component
+
+21
+02:42.480 --> 02:46.450
+and here let's replace the anchor tag with router link,
+
+22
+02:49.570 --> 02:51.670
+bind the 'to' attribute to
+
+23
+02:55.910 --> 02:57.740
+questions dot show.
+
+24
+03:00.900 --> 03:03.530
+Since this route needs a slug parameter
+
+25
+03:03.580 --> 03:06.490
+so here let's specify params
+
+26
+03:11.780 --> 03:31.100
+and it contains slug and we'll set it with question dot slug.
+
+27
+03:31.120 --> 03:33.310
+Now let's go to question page
+
+28
+03:36.400 --> 03:42.700
+Here we bind the question to question if I remember this came from
+
+29
+03:48.950 --> 03:50.540
+came from here.
+
+30
+03:53.350 --> 03:55.840
+Now in our spa we cannot do this way
+
+31
+04:01.390 --> 04:04.630
+also here let's  comment this out for a while.
+
+32
+04:08.570 --> 04:11.000
+Let's jump to the script section.
+
+33
+04:16.360 --> 04:22.000
+Since we defined the props in our route record here 
+we need to explicitly add the slug in this props.
+
+34
+04:22.840 --> 04:26.980
+So let's replace this with slug.
+
+35
+04:27.310 --> 04:28.810
+this should be matched with
+
+36
+04:32.210 --> 04:32.930
+this parameter.
+
+37
+04:40.060 --> 04:44.580
+Now for the question it's no longer depends on other component.
+
+38
+04:44.680 --> 04:58.630
+So we'll hit our API endpoint in here. So let's 
+add data method return an object, and in here
+
+39
+04:58.640 --> 05:08.790
+let's define question and it contains empty object 
+as initial value. Now to hit our API endpoint
+
+40
+05:09.130 --> 05:10.840
+let's add mounted hook.
+
+41
+05:17.690 --> 05:18.390
+In here
+
+42
+05:18.390 --> 05:19.520
+let's call another method
+
+43
+05:23.940 --> 05:24.440
+here
+
+44
+05:24.450 --> 05:27.170
+I'm gonna call it fetch
+
+45
+05:27.390 --> 05:28.140
+question.
+
+46
+05:32.810 --> 05:33.940
+Outside here
+
+47
+05:34.030 --> 05:36.040
+let's add methods
+
+48
+05:41.110 --> 05:41.830
+and define
+
+49
+05:41.830 --> 05:42.810
+the fetch question method.
+
+50
+05:47.220 --> 05:57.940
+Here we will hit question endpoint by saying axios 
+get. The endpoint is going to be back tick forward
+
+51
+05:57.950 --> 06:00.700
+slash questions.
+
+52
+06:01.050 --> 06:03.870
+Then we'll add this slug.
+
+53
+06:07.110 --> 06:11.220
+Note that we don't call this router params as we did before
+
+54
+06:11.220 --> 06:14.550
+since we have explicitly defined the props in our route record.
+
+55
+06:18.370 --> 06:20.310
+Let's chain in with then
+
+56
+06:27.950 --> 06:31.730
+and inside here we simply replace our question properly
+
+57
+06:34.700 --> 06:36.240
+with data
+
+58
+06:36.410 --> 06:36.830
+data.
+
+59
+06:41.980 --> 06:55.410
+Let's also chain in with catch. And in there 
+we simply say error console dot log error.
+
+60
+06:58.530 --> 06:59.120
+All right let's
+
+61
+06:59.490 --> 07:00.300
+save all changes
+
+62
+07:05.070 --> 07:06.080
+and let's see how that look.
+
+63
+07:09.390 --> 07:10.200
+Reload the page
+
+64
+07:15.770 --> 07:16.560
+I'll hit  the link
+
+65
+07:19.500 --> 07:20.850
+I still get a blank page
+
+66
+07:29.790 --> 07:32.810
+here we have some error
+
+67
+07:32.970 --> 07:38.770
+Well this error occurred because when this 
+component render our question is still empty.
+
+68
+07:38.970 --> 07:49.680
+It only contained an empty object. But if we go 
+back to our editor and open question component
+
+69
+07:56.510 --> 08:06.840
+here in data method we tried to assign this question 
+title to title, this question body to body.
+
+70
+08:07.040 --> 08:08.570
+and so on.
+
+71
+08:08.570 --> 08:13.870
+So to fix this at least we have two options. First in question page
+
+72
+08:18.130 --> 08:22.390
+we need to explicitly define the question column such as title,
+
+73
+08:25.130 --> 08:25.760
+body,
+
+74
+08:28.650 --> 08:30.790
+id and other component.
+
+75
+08:42.780 --> 08:48.610
+So here you'll see we have the question 
+page but we still get the error.
+
+76
+08:48.930 --> 08:52.810
+This because we need to explicitly other columns.
+
+77
+08:52.810 --> 08:54.120
+So let's see the second way
+
+78
+08:56.940 --> 08:57.260
+here
+
+79
+08:57.270 --> 09:01.080
+we don't need to explicitly define the 
+question columns in our data method.
+
+80
+09:04.110 --> 09:05.400
+Instead
+
+81
+09:05.660 --> 09:17.640
+here we can add on this container v-if then pass in 
+question dot id. This mean this component will
+
+82
+09:17.640 --> 09:22.300
+get rendered is a question dot id was not empty.
+
+83
+09:22.530 --> 09:27.120
+So if we save this. Back to our browser
+
+84
+09:32.630 --> 09:38.050
+now the error is gone and we see the 
+question details appear on the screen.
+
+85
+09:38.210 --> 09:38.920
+Great.
+
+86
+09:38.960 --> 09:41.210
+Now let's display all related answers.

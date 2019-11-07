@@ -1,0 +1,273 @@
+WEBVTT
+
+0
+00:01.800 --> 00:06.540
+After upgrade our core application as 
+well as Laravel dependency packages,
+
+1
+00:06.540 --> 00:11.660
+now let's make some tests to make sure 
+that our app is still working properly.
+
+2
+00:11.670 --> 00:17.480
+Firstly let's head over to our terminal and start up our server.
+
+3
+00:17.580 --> 00:23.550
+If your server already running then you need to restart your server.
+
+4
+00:25.670 --> 00:27.350
+Head over to our browser.
+
+5
+00:30.850 --> 00:32.200
+Then open our application
+
+6
+00:39.210 --> 00:40.200
+we didn't see any error
+
+7
+00:43.260 --> 00:44.850
+now let's register a new user
+
+8
+01:00.090 --> 01:00.740
+All right
+
+9
+01:00.770 --> 01:01.730
+new user registered
+
+10
+01:02.930 --> 01:04.560
+let's go to mail trap
+
+11
+01:09.750 --> 01:14.840
+go to inbox and verify our newly created user
+
+12
+01:21.400 --> 01:21.960
+okay
+
+13
+01:21.990 --> 01:27.930
+The user has been successfully verified.
+
+14
+01:28.120 --> 01:30.070
+Now let's try to create a new question
+
+15
+01:40.090 --> 01:41.830
+it's good
+
+16
+01:41.830 --> 01:43.930
+Let's test editing the question
+
+17
+01:49.840 --> 01:50.790
+delete the question
+
+18
+01:54.330 --> 01:57.190
+no error so far.
+
+19
+01:57.240 --> 01:58.740
+Let's see the question details
+
+20
+02:01.630 --> 02:02.740
+then create new answer
+
+21
+02:18.000 --> 02:18.970
+update the answer
+
+22
+02:25.750 --> 02:26.680
+and delete the answer.
+
+23
+02:35.320 --> 02:39.740
+Favourite this question, unfavourite,
+
+24
+02:41.900 --> 02:43.140
+vote up the question,
+
+25
+02:52.320 --> 02:56.120
+vote up the answer. OK
+
+26
+02:56.140 --> 02:56.830
+so far so good.
+
+27
+03:01.630 --> 03:03.280
+Let's log out from application
+
+28
+03:09.170 --> 03:14.050
+hit log in then hit forgot your password link.
+
+29
+03:17.170 --> 03:29.460
+Enter email and hit send password reset link.
+
+30
+03:29.570 --> 03:30.860
+Now let's see our inbox
+
+31
+03:35.350 --> 03:35.680
+here
+
+32
+03:35.680 --> 03:38.950
+I got reset password e-mail. Hit this button
+
+33
+03:42.790 --> 03:43.610
+here
+
+34
+03:43.700 --> 03:49.270
+if we open our application in local host colon eight thousand
+
+35
+03:49.360 --> 03:50.810
+You'll get error.
+
+36
+03:51.010 --> 03:58.790
+All you have to do is manually add the port here.
+
+37
+03:59.360 --> 04:10.840
+Now before we update our password let's go back 
+to our editor then open auth password reset
+
+38
+04:11.340 --> 04:12.130
+blade php
+
+39
+04:18.380 --> 04:19.030
+here
+
+40
+04:19.040 --> 04:23.170
+let's change this route to password dot
+
+41
+04:23.930 --> 04:24.500
+update
+
+42
+04:28.670 --> 04:29.240
+Save
+
+43
+04:34.470 --> 04:35.520
+Reload the page,
+
+44
+04:40.630 --> 04:41.650
+enter new password
+
+45
+04:47.510 --> 04:50.870
+and confirm password.
+
+46
+04:51.790 --> 04:55.940
+Hit reset  password button.
+
+47
+04:56.110 --> 04:56.410
+OK
+
+48
+04:56.410 --> 04:59.150
+the password has been reset.
+
+49
+04:59.230 --> 05:00.700
+Let's log out one more time
+
+50
+05:05.290 --> 05:15.220
+and log in with new password.
+
+51
+05:15.430 --> 05:16.310
+Okay great.
+
+52
+05:16.310 --> 05:22.640
+We have successfully upgraded our Laravel app to 
+version five point eight and everything is still running
+
+53
+05:22.640 --> 05:24.130
+properly.
+
+54
+05:24.140 --> 05:24.530
+All right
+
+55
+05:24.800 --> 05:28.580
+let's go back to our terminal, kill the server
+
+56
+05:32.860 --> 05:33.500
+here
+
+57
+05:33.520 --> 05:39.730
+let's commit all changes to our git repo git add all, git comit
+
+58
+05:39.800 --> 05:49.620
+-m upgrade to Laravel five point eight.
+
+59
+05:50.030 --> 05:52.540
+Then let's switch to master branch git
+
+60
+05:52.610 --> 05:57.210
+checkout master
+
+61
+05:57.530 --> 06:08.530
+We can merge our master branch to Laravel five point eight git merge laravel dash v 
+
+62
+06:08.630 --> 06:10.370
+Five point eight.
+
+63
+06:13.850 --> 06:14.860
+Last
+
+64
+06:15.140 --> 06:19.880
+let's push our branches to Github: git push origin master,
+
+65
+06:25.970 --> 06:31.720
+git push origin laravel dash v
+
+66
+06:31.850 --> 06:33.770
+five point eight.

@@ -1,0 +1,329 @@
+WEBVTT
+
+0
+00:01.350 --> 00:03.150
+Let's switch back over to our editor
+
+1
+00:06.530 --> 00:08.570
+and here
+
+2
+00:08.760 --> 00:10.010
+let's add script tag
+
+3
+00:17.370 --> 00:31.890
+add export default then add data method. Here 
+it's going to return an object, and inside here let's
+
+4
+00:31.910 --> 00:36.040
+define posts which contains empty array
+
+5
+00:41.710 --> 00:45.380
+now to hit our API endpoint let's add mounted hook,
+
+6
+00:48.550 --> 00:53.320
+then inside here let's call this fetch posts
+
+7
+00:58.440 --> 01:01.870
+now outside mounted hook let's add methods
+
+8
+01:05.060 --> 01:06.830
+and define the fetch posts.
+
+9
+01:10.690 --> 01:20.330
+In here we're gonna hit my posts API endpoint by saying 
+axios get pass in the endpoint in the first argument
+
+10
+01:20.850 --> 01:31.170
+in this case my posts, then in the second argument 
+we can pass in an object contains params
+
+11
+01:34.010 --> 01:40.600
+and the parents will hold the query string this route query.
+
+12
+01:43.920 --> 01:49.800
+OK let's chain in with then method extract the data
+
+13
+01:58.070 --> 02:10.350
+and here we'll assign to this posts the data dot 
+data. If error occurred let's console log the error
+
+14
+02:20.230 --> 02:25.780
+now if you remember when we're working with pagination 
+in the previous lesson the changes that occurred
+
+15
+02:25.870 --> 02:29.090
+in the URL will not affect on data changes.
+
+16
+02:29.410 --> 02:33.610
+So here we need to add watch property
+
+17
+02:38.820 --> 02:42.210
+and watch whenever route changes we'll call fetch posts
+
+18
+02:46.290 --> 02:46.950
+All right,
+
+19
+02:47.130 --> 02:48.640
+now let's go to our template.
+
+20
+02:58.480 --> 03:03.960
+And here we'll make sure that this ul tag 
+will get rendered if the post is not empty.
+
+21
+03:04.600 --> 03:07.810
+So v-if posts length
+
+22
+03:13.760 --> 03:18.530
+then here let's keep one list group item and remove the rest.
+
+23
+03:29.360 --> 03:32.790
+let's loop through the post by making use the v-for
+
+24
+03:36.880 --> 03:39.400
+posts in posts.
+
+25
+03:40.520 --> 03:43.130
+Let's also capture the index
+
+26
+03:51.240 --> 03:52.800
+and we'll put it in key attribute.
+
+27
+03:59.490 --> 04:00.700
+Here in the first column
+
+28
+04:01.750 --> 04:04.140
+let's remove this accepted class,
+
+29
+04:04.530 --> 04:06.690
+then let's do class binding
+
+30
+04:10.700 --> 04:11.530
+put in an object
+
+31
+04:17.810 --> 04:20.440
+so accepted class will get applied
+
+32
+04:20.600 --> 04:23.990
+if post accepted.
+
+33
+04:27.690 --> 04:41.230
+Let's change this to post type. Let's do almost the same 
+thing in the next span remove the accepted, copy
+
+34
+04:41.250 --> 04:42.240
+this class binding
+
+35
+04:46.730 --> 04:47.450
+paste here
+
+36
+04:53.790 --> 05:00.680
+and change the text to post votes count.
+
+37
+05:06.200 --> 05:07.700
+Next in a second column
+
+38
+05:11.560 --> 05:27.260
+let's replace this dummy texts with post title, for 
+the last column let's replace this with post created
+
+39
+05:28.800 --> 05:29.180
+at
+
+40
+05:34.310 --> 05:35.990
+now let's provide an empty message
+
+41
+05:36.200 --> 05:40.720
+if the current user has no any posts. Let's add d dive
+
+42
+05:41.530 --> 05:49.110
+the class is gonna be alert alert warning.
+
+43
+05:49.860 --> 05:56.420
+Here we use v-if in ul, so here let's add v-else
+
+44
+05:59.370 --> 06:00.290
+Inside this alert
+
+45
+06:01.000 --> 06:09.670
+I'm gonna say you have no any questions or answers
+
+46
+06:14.660 --> 06:18.950
+then I'm gonna also provide a link that 
+allows user to create a question.
+
+47
+06:33.960 --> 06:34.220
+All right
+
+48
+06:34.650 --> 06:42.830
+let's have all changes and let's see how that look.
+
+49
+06:43.100 --> 06:43.980
+Great.
+
+50
+06:44.000 --> 06:52.710
+Now we have current user's posts loaded from database.
+
+51
+06:52.820 --> 06:55.700
+I think this text would be better in left alignment.
+
+52
+07:06.760 --> 07:07.180
+OK
+
+53
+07:07.190 --> 07:09.550
+I think it's much better. Now
+
+54
+07:09.550 --> 07:13.790
+the last thing that we need to do is make these tabs actually work.
+
+55
+07:14.420 --> 07:15.830
+So let's go back to our editor
+
+56
+07:22.450 --> 07:25.840
+let's replaced this anchor with router link
+
+57
+07:36.470 --> 07:37.360
+here
+
+58
+07:37.420 --> 07:44.110
+let's add exact to make sure that active 
+class will get applied to the exact URL.
+
+59
+07:48.170 --> 07:49.180
+for the target
+
+60
+07:49.250 --> 07:50.780
+we'll point this link to
+
+61
+07:53.540 --> 07:56.900
+my posts.
+
+62
+07:56.900 --> 07:59.830
+All right, let's copy this line
+
+63
+08:01.400 --> 08:05.620
+select this and replace with router link. In here
+
+64
+08:05.630 --> 08:07.160
+we'll specify a query string
+
+65
+08:13.340 --> 08:20.400
+and the query string is going to contain type questions. Change 
+
+66
+08:20.410 --> 08:26.920
+the text to questions and we don't need this href
+
+67
+08:34.810 --> 08:35.100
+All right
+
+68
+08:35.100 --> 08:36.120
+let's copy these lines
+
+69
+08:39.420 --> 08:45.190
+paste here and change the type to answers
+
+70
+08:47.990 --> 08:50.210
+the text is going to be answers.
+
+71
+08:53.740 --> 08:58.350
+We don't need this active class just remove it
+
+72
+09:04.600 --> 09:13.020
+Alright, let's save back to our browser and reload.
+
+73
+09:13.190 --> 09:14.810
+Now if we hit the question tab
+
+74
+09:18.400 --> 09:21.420
+here you'll see only questions being displayed.
+
+75
+09:22.540 --> 09:29.580
+Similarly if we hit this answers tab only answers being displayed
+
+76
+09:33.930 --> 09:44.690
+and if we hit all tab we'll have questions 
+and answers being displayed, awesome.
+
+77
+09:44.690 --> 09:50.120
+So now that we have complete functionality in our single 
+page application. One last more thing that we could
+
+78
+09:50.120 --> 09:54.920
+do is to add transition effect when switching between pages.

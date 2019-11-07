@@ -1,0 +1,553 @@
+WEBVTT
+
+0
+00:01.620 --> 00:07.290
+In the previous lesson we've filled the users and questions table using model factories and database seeding.
+
+1
+00:07.920 --> 00:13.530
+Now in this lesson we're going to continue our project and building new feature - displaying all questions
+
+2
+00:13.860 --> 00:16.710
+from our database to our application's view.
+
+3
+00:16.740 --> 00:17.140
+All right
+
+4
+00:17.140 --> 00:22.070
+as allways before we step any further, let's isolate our work today in new branch
+
+5
+00:22.380 --> 00:28.940
+let's head over to our terminal,
+and here we can say
+
+6
+00:29.530 --> 00:32.450
+git checkout -b
+
+7
+00:32.700 --> 00:37.580
+and then the branch name will be lesson-4.
+
+8
+00:38.530 --> 00:39.080
+now it says
+
+9
+00:39.090 --> 00:43.690
+Switched to new branch 'lesson-4'
+
+10
+00:43.710 --> 00:44.220
+All right
+
+11
+00:44.220 --> 00:47.180
+firstly let's define new route for our new feature
+
+12
+00:47.250 --> 00:49.500
+So let's go to our editor
+
+13
+00:52.390 --> 00:55.000
+go to routes folder
+
+14
+00:59.620 --> 01:02.710
+and open web.php
+
+15
+01:06.530 --> 01:07.090
+Here
+
+16
+01:07.140 --> 01:14.770
+let's define a new route by saying route and because we will not only displaying questions but
+
+17
+01:14.770 --> 01:22.750
+also, creating, editing, updating, deleting and showing question so here we call resource
+
+18
+01:25.530 --> 01:29.160
+than the uri will be `questions`
+
+19
+01:32.010 --> 01:40.380
+and it will be handled to Questions Controller.
+
+20
+01:42.370 --> 01:55.320
+OK next let's create this Questions Controller. Head over to our terminal, and type: php artisan
+
+21
+01:56.460 --> 02:10.440
+make:controller and then the controller name will be Questions Controller. And we can add --resource
+
+22
+02:10.740 --> 02:18.120
+to tell artisan to generate resource operations in the controller. And we can also specify resource model
+
+23
+02:18.420 --> 02:24.740
+or the model that will be used in this controller by adding model flag
+
+24
+02:25.590 --> 02:31.480
+and then model name `Question`
+
+25
+02:31.480 --> 02:33.950
+in this case. Hit return.
+
+26
+02:38.530 --> 02:41.750
+Yeah it should be in singular.
+
+27
+02:41.970 --> 02:50.660
+So I'll hit ctrl+c. And then this should be a question. Hit return.
+
+28
+02:51.060 --> 02:56.280
+OK
+
+29
+02:56.470 --> 02:57.480
+Now lets's open
+
+30
+02:57.550 --> 02:59.110
+The Questions Controller
+
+31
+03:03.930 --> 03:13.620
+and here we have resource oprations or resource methods definition because we added
+
+32
+03:16.630 --> 03:26.130
+`resource` flag in the command. On the top
+
+33
+03:26.170 --> 03:33.430
+we can see the `Question` model namespace automatically imported and we can see
+
+34
+03:36.790 --> 03:49.430
+in show edit update and destroy methods methods is type-hinted to Question model instance. For now
+
+35
+03:49.480 --> 03:50.780
+let's modify the `index` method
+
+36
+03:58.670 --> 04:08.660
+let's define a variable to hold questions questions equals here, instead of displaying
+
+37
+04:08.660 --> 04:12.310
+all questions we'll limit the questions using `paginate` method.
+
+38
+04:12.530 --> 04:17.090
+So question paginate
+
+39
+04:19.910 --> 04:24.740
+and for now let's display 5 questions per page
+
+40
+04:26.050 --> 04:28.920
+And we'll also need to show the latest question first.
+
+41
+04:29.140 --> 04:31.770
+So let's call latest
+
+42
+04:37.170 --> 04:41.710
+and then here we will return a view
+
+43
+04:44.560 --> 04:53.030
+let's say `questions.index` and we need to pass the questions variable that holds all questions so that
+
+44
+04:53.070 --> 04:55.650
+it will be available in `qustions.index` view
+
+45
+04:55.970 --> 05:04.420
+so compact and then `questions`.
+
+46
+05:04.990 --> 05:09.290
+Alright, let's go to resources
+
+47
+05:09.310 --> 05:15.000
+views folder. And in here, let's create new folder
+
+48
+05:21.730 --> 05:33.420
+the folder will be `questions` as we defined in here. Then instead this questions folder let's create a new
+
+49
+05:33.490 --> 05:33.970
+file
+
+50
+05:36.770 --> 05:45.910
+it will be index.blade.php as we defined in here index.
+
+51
+05:45.920 --> 05:48.620
+All right 
+
+52
+05:48.650 --> 05:49.800
+And for the content
+
+53
+05:49.920 --> 05:54.550
+Let's open the home 
+
+54
+05:54.880 --> 05:59.810
+blade php let's select everything
+
+55
+05:59.960 --> 06:00.570
+Copy
+
+56
+06:03.720 --> 06:08.730
+and paste in this index blade php.
+
+57
+06:10.250 --> 06:12.160
+OK let's make some changes
+
+58
+06:13.390 --> 06:17.180
+The first one is to modify this `card-header`
+
+59
+06:17.770 --> 06:22.810
+Let's change it to `All Questions`
+
+60
+06:25.670 --> 06:29.920
+remove everything inside `card-body`
+
+61
+06:32.060 --> 06:34.500
+and here we will iterate all questions
+
+62
+06:34.520 --> 06:38.180
+So foreach
+
+63
+06:40.630 --> 06:41.380
+questions
+
+64
+06:44.260 --> 06:46.650
+as question
+
+65
+06:51.280 --> 06:57.300
+and close the foreach with endforeach like so
+
+66
+07:01.820 --> 07:10.360
+in here we'll show each question in bootstrap media class so div class `media`
+
+67
+07:16.840 --> 07:26.560
+and inside this we need to define another div `media-body`
+
+68
+07:33.040 --> 07:39.190
+and inside this media-body let's define heading 3 let's specify class
+
+69
+07:41.790 --> 07:47.750
+`mt-0` to make sure there's no margin top
+
+70
+07:49.060 --> 07:50.920
+and the text will be
+
+71
+07:51.190 --> 08:00.050
+Question title question title.
+
+72
+08:02.330 --> 08:05.140
+below that let's show a fragment of the question body
+
+73
+08:08.720 --> 08:10.200
+by calling
+
+74
+08:11.040 --> 08:13.410
+laravel str_limit helper function
+
+75
+08:16.540 --> 08:17.910
+pass in the question body in
+
+76
+08:23.450 --> 08:24.810
+and specify the length
+
+77
+08:27.730 --> 08:33.190
+OK and here I'll place a horizontal rule
+
+78
+08:38.190 --> 08:41.710
+and outside foreach loop
+
+79
+08:42.020 --> 08:44.450
+let's show the pagination links by saying
+
+80
+08:47.710 --> 08:55.030
+questions and than call `links` method like so
+
+81
+08:57.830 --> 08:58.520
+OK
+
+82
+08:58.570 --> 09:00.870
+Let's  save all changes
+
+83
+09:03.910 --> 09:05.710
+and see in our browser.
+
+84
+09:07.970 --> 09:10.240
+Actually I'll start up my server
+
+85
+09:10.250 --> 09:15.170
+php artisan serve
+
+86
+09:21.000 --> 09:34.670
+and here we can enter localhost colon eight thousand slash questions.
+
+87
+09:34.850 --> 09:35.190
+All right
+
+88
+09:35.190 --> 09:38.050
+here we have all questions appear
+
+89
+09:41.370 --> 09:44.710
+also we have pagination links on the buttom
+
+90
+09:45.210 --> 09:48.720
+we can jump to next page by hitting this button
+
+91
+09:52.800 --> 09:56.790
+and we can go back to previous page of course.
+
+92
+09:59.550 --> 10:04.200
+and here I want to make this wider.
+
+93
+10:04.950 --> 10:17.820
+so here I'll change to col-md-12 and it should be good.
+
+94
+10:20.440 --> 10:21.340
+All right.
+
+95
+10:26.890 --> 10:32.510
+here I think this pagination needs to be placed to center, right?
+
+96
+10:32.530 --> 10:42.030
+so let's go back to our editor. And in here let's define a div
+
+97
+10:46.970 --> 10:53.150
+and it's class and let's try bootstrap class `text-center`
+
+98
+11:00.650 --> 11:01.330
+like so
+
+99
+11:03.810 --> 11:08.960
+and save the change and let's see.
+
+100
+11:11.230 --> 11:13.090
+Apparently it's not working.
+
+101
+11:13.510 --> 11:15.430
+So let's try another bootstrap class 
+
+102
+11:20.890 --> 11:26.750
+mx-auto and let's see again.
+
+103
+11:30.030 --> 11:32.900
+And it's also not working.
+
+104
+11:33.120 --> 11:37.140
+Let's go to bootstrap homepage.
+
+105
+11:37.460 --> 11:38.430
+getbootstrap.com
+
+106
+11:42.280 --> 11:49.960
+click the documentation menu
+and here let's seach pagination
+
+107
+11:59.920 --> 12:09.730
+OK here let's click this `Alignment` menu
+and here we can change the alignment of the pagination using
+
+108
+12:09.880 --> 12:11.650
+flexbox utilities.
+
+109
+12:11.650 --> 12:20.830
+so basically we need to add this `justify-content-center` in our pagination markup.
+
+110
+12:21.760 --> 12:28.370
+But as you can see in here we only call `links` method to generate the pagination.
+
+111
+12:28.390 --> 12:30.010
+So how can we do that?
+
+112
+12:30.330 --> 12:33.410
+Luckily start form laravel version 5.3
+
+113
+12:33.580 --> 12:37.010
+we can custom pagination view easily.
+To do that
+
+114
+12:37.090 --> 12:38.800
+let's head over to our terminal
+
+115
+12:42.150 --> 12:42.460
+I'll open new tab
+
+116
+12:45.940 --> 13:03.850
+And here we can type php artisan vendor colon publish specify the `tag` flag, and the tag will be
+
+117
+13:03.850 --> 13:11.720
+`laravel-pagination`. Hit return.
+
+118
+13:11.800 --> 13:20.870
+Now if we go to `views`, we'll find a new folder vendor pagination
+
+119
+13:23.750 --> 13:35.170
+inside this folder we'll find several files, and all we need to do is open up the `bootstrap4.blade.php`, because since
+
+120
+13:35.170 --> 13:41.200
+version 5.6 laravel using bootstrap version 4 by default
+
+121
+13:41.350 --> 13:47.400
+OK here we simply add a new class in this ul tag.
+
+122
+13:47.970 --> 14:05.190
+So `justify-content-center`. Save the changes and reload the page. OK
+
+123
+14:05.190 --> 14:07.780
+now we have our pagination placing in the center.
+
+124
+14:08.370 --> 14:10.740
+and I think that's enought for this lesson
+
+125
+14:10.800 --> 14:19.500
+we'll be adding author info as well as question creation date on question item in the next lesson.
+
+126
+14:19.850 --> 14:22.300
+and here let's save our work to our repo
+
+127
+14:27.540 --> 14:39.040
+git add all git commit -m and I'll say Display
+
+128
+14:39.440 --> 14:40.940
+all questions
+
+129
+14:44.230 --> 14:46.140
+I'll push my current branch to 
+
+130
+14:46.350 --> 14:59.740
+remote repo git push origin lesson-4. Alright
+
+131
+14:59.970 --> 15:02.720
+we can switch to our master branch git
+
+132
+15:02.940 --> 15:06.240
+Check out master.
+
+133
+15:06.390 --> 15:15.450
+now we're in master branch. So let's merge this to 
+
+134
+15:19.360 --> 15:26.760
+lesson-4 branch git merge lesson-4 git push origin master. And last push our master branch to remote repo git push origin
+
+135
+15:26.770 --> 15:41.720
+master
+
+136
+15:43.450 --> 15:45.450
+Alright join me in the next lesson.

@@ -1,0 +1,522 @@
+WEBVTT
+
+0
+00:02.100 --> 00:09.180
+So now that we have upgraded our 
+laravel app from version 5.6 to 5.7
+
+1
+00:09.340 --> 00:16.300
+Now let's make sure that all functionality 
+of our app still working properly as before.
+
+2
+00:16.320 --> 00:24.630
+Firstly let's head over to our terminal and here I've 
+successfully updated my dependency packages for
+
+3
+00:24.630 --> 00:27.660
+my asset.
+
+4
+00:27.810 --> 00:34.440
+Now I can run npm run dev to make sure 
+that compiling asset still working properly
+
+5
+00:40.630 --> 00:41.040
+Now
+
+6
+00:41.090 --> 00:42.410
+while it's compiling
+
+7
+00:42.410 --> 00:43.400
+let's run our server
+
+8
+00:54.710 --> 01:01.120
+and run php artisan serve back to our browser
+
+9
+01:05.240 --> 01:08.420
+and open our app. Here
+
+10
+01:08.500 --> 01:13.240
+I'll reload the page and hopefully we won't find any error
+
+11
+01:16.480 --> 01:17.520
+OK
+
+12
+01:17.540 --> 01:25.060
+I have no error and all question still being listed.
+
+13
+01:25.180 --> 01:26.500
+Now let's create a new question
+
+14
+01:32.170 --> 01:33.360
+I'll login first
+
+15
+01:41.630 --> 01:42.320
+here
+
+16
+01:42.410 --> 01:43.340
+I'll enter title
+
+17
+01:48.000 --> 01:49.130
+enter question body
+
+18
+01:53.940 --> 01:56.500
+I'll hit ask question button.
+
+19
+01:57.060 --> 01:58.230
+Ok new question
+
+20
+01:58.230 --> 02:00.630
+added. I'll edit this
+
+21
+02:04.540 --> 02:06.290
+hit update.
+
+22
+02:06.640 --> 02:11.300
+Now let me delete this question hit
+
+23
+02:11.330 --> 02:11.810
+OK.
+
+24
+02:14.710 --> 02:15.360
+OK great.
+
+25
+02:17.000 --> 02:18.690
+Now I'll see the question details
+
+26
+02:22.560 --> 02:25.670
+we have blank page here.
+
+27
+02:25.710 --> 02:28.400
+Let's open our browser console.
+
+28
+02:30.220 --> 02:37.440
+In here we have failed to mount component 
+template or render function not defined.
+
+29
+02:37.480 --> 02:39.130
+So let's go back to our editor
+
+30
+02:42.650 --> 02:44.330
+and open app.js
+
+31
+02:46.970 --> 02:47.410
+So
+
+32
+02:47.840 --> 02:56.740
+as I said before that when we require the component 
+like this we need to chain in with dot default
+
+33
+02:58.100 --> 02:58.870
+Save
+
+34
+02:58.940 --> 03:04.090
+and we need to recompile this
+
+35
+03:04.100 --> 03:09.860
+so here npm run dev
+
+36
+03:18.940 --> 03:20.660
+Okay let's reload the page
+
+37
+03:26.110 --> 03:26.440
+Now
+
+38
+03:26.440 --> 03:28.440
+our answer is come back
+
+39
+03:41.820 --> 03:42.410
+OK
+
+40
+03:42.460 --> 03:45.490
+so far so good.
+
+41
+03:45.490 --> 03:50.040
+Now let's try to register a new user to see how email verification feature work.
+
+42
+03:54.010 --> 03:55.630
+so let's log out from our app
+
+43
+03:59.720 --> 04:00.830
+and then hit the register
+
+44
+04:13.790 --> 04:23.530
+here we'll get error like this because when registered 
+new user now it also send email verification.
+
+45
+04:23.810 --> 04:29.440
+But in order to make it work we need to set 
+up the credentials of our email provider.
+
+46
+04:30.020 --> 04:31.700
+So let's go back to our editor
+
+47
+04:35.690 --> 04:38.560
+an open .env file
+
+48
+04:45.090 --> 04:51.860
+as you can see laravel has shipped with mail trap 
+email service, but the email and password are
+
+49
+04:51.860 --> 04:53.300
+still empty.
+
+50
+04:53.330 --> 04:59.960
+You can also change this configuration with other 
+email provider but to make it easy we'll keep using
+
+51
+04:59.960 --> 05:01.140
+mail trap.
+
+52
+05:01.310 --> 05:05.440
+So let's go to mail trap home page
+
+53
+05:09.640 --> 05:10.430
+mailtrap.io
+
+54
+05:16.240 --> 05:16.950
+and here
+
+55
+05:17.020 --> 05:23.590
+if you don't have account you can register 
+for free by hitting this sign up button.
+
+56
+05:24.190 --> 05:29.680
+Once you have account you can enter 
+inbox name and hit create inbox
+
+57
+05:33.160 --> 05:35.830
+after that you can go to your inbox
+
+58
+05:40.050 --> 05:50.350
+then here in SMTP settings you'll find the user and 
+password for your inbox. So just copy your username
+
+59
+05:50.350 --> 05:54.360
+and password and paste in your .env file.
+
+60
+06:00.470 --> 06:02.360
+Let's save
+
+61
+06:02.600 --> 06:03.630
+back to our browser
+
+62
+06:07.920 --> 06:09.300
+and register another user
+
+63
+06:15.930 --> 06:21.180
+hit register
+
+64
+06:21.200 --> 06:22.360
+we still get error.
+
+65
+06:22.400 --> 06:24.110
+Maybe we need to restart our server
+
+66
+06:30.440 --> 06:32.510
+also clear our config cache
+
+67
+06:50.170 --> 06:51.170
+enter a new user
+
+68
+06:55.950 --> 06:56.740
+hit register.
+
+69
+07:00.530 --> 07:01.840
+Now we have no error.
+
+70
+07:02.260 --> 07:04.810
+And if we go to our inbox
+
+71
+07:07.830 --> 07:11.280
+we'll find verify email address.
+
+72
+07:11.280 --> 07:16.680
+Now before we hit this verify e-mail address 
+button let's go back to our application
+
+73
+07:20.850 --> 07:24.630
+and here you can see new registered user has signed in.
+
+74
+07:24.630 --> 07:31.880
+Remember this user has not verified his 
+account but here he can access this page.
+
+75
+07:32.190 --> 07:43.730
+Also if we go to all question and hit ask question. Now 
+to make sure that certain pages can be accessed
+
+76
+07:44.120 --> 07:48.810
+only by verified user we need to make a bit change in our routes.
+
+77
+07:48.920 --> 07:55.730
+So let's go back to our editor open web.php
+
+78
+07:59.880 --> 08:11.730
+and here we need to protect all routes except the root 
+route and then all questions and show question
+
+79
+08:11.730 --> 08:16.080
+route. So to do that
+
+80
+08:16.400 --> 08:20.020
+let's define route middleware
+
+81
+08:27.920 --> 08:33.380
+and then verified and then group
+
+82
+08:52.090 --> 08:52.610
+here
+
+83
+08:52.640 --> 08:55.490
+we need to make a little change to this question resource route
+
+84
+08:58.490 --> 09:06.440
+let's add in this except index. This mean 
+show and index route will be exclude.
+
+85
+09:16.160 --> 09:20.390
+Next we can move this show question outside this scope
+
+86
+09:27.770 --> 09:31.430
+and lastly let's manually define index route for the question
+
+87
+09:52.920 --> 10:03.120
+so here there's only four routes that don't need 
+the user to verified now let's save back to our app.
+
+88
+10:06.550 --> 10:07.230
+Here
+
+89
+10:07.300 --> 10:08.260
+let's reload the page
+
+90
+10:12.000 --> 10:13.770
+here I get unwanted error
+
+91
+10:27.670 --> 10:30.100
+class verified does not exist.
+
+92
+10:34.320 --> 10:35.400
+Sorry I made typo
+
+93
+10:39.500 --> 10:41.440
+reload the page.
+
+94
+10:41.590 --> 10:49.450
+Now we'll get this message that tells the user to 
+verify the email first before do other thing. Back
+
+95
+10:49.460 --> 10:50.110
+to mail trap
+
+96
+10:52.160 --> 10:53.670
+Hit this button
+
+97
+10:56.650 --> 10:58.570
+the user now has been verified.
+
+98
+11:01.920 --> 11:11.310
+Let's go back to all questions and hit 
+ask question and we still get this error.
+
+99
+11:13.600 --> 11:16.530
+Let's see our routes again
+
+100
+11:20.690 --> 11:26.230
+I'm sure this issue is related to routes order.
+
+101
+11:26.690 --> 11:28.520
+So let's move these
+
+102
+11:33.860 --> 11:35.710
+on the button.
+
+103
+11:35.720 --> 11:41.410
+paste, save, reload the page. OK
+
+104
+11:41.440 --> 11:41.860
+great.
+
+105
+11:51.030 --> 11:51.320
+OK
+
+106
+11:51.320 --> 11:56.160
+now the current user able to create new 
+question because he has been verified.
+
+107
+11:57.230 --> 11:58.520
+Okay great
+
+108
+11:58.520 --> 12:05.720
+now we have our application upgraded to Laravel 
+5.7 and all features working just fine. With that
+
+109
+12:06.050 --> 12:07.460
+let's go back to our terminal
+
+110
+12:10.460 --> 12:11.280
+kill the server
+
+111
+12:15.090 --> 12:15.570
+and here
+
+112
+12:15.710 --> 12:30.860
+let's come our changes git add all, git 
+commit -m "upgrade to laravel 5.7"
+
+113
+12:34.970 --> 12:36.950
+Okay
+
+114
+12:37.070 --> 12:44.150
+now let's switch to master branch git checkout  master
+
+115
+12:45.290 --> 12:51.810
+And then before we merge to our upgraded version, 
+let's backup this master branch as Laravel
+
+116
+12:52.240 --> 12:54.610
+5.6 branch
+
+117
+12:54.920 --> 13:03.590
+git checkout -b laravel-v5.6
+
+118
+13:07.510 --> 13:09.380
+switch back to master branch git
+
+119
+13:09.700 --> 13:12.990
+checkout master
+
+120
+13:13.750 --> 13:21.440
+Now we can merge our master branch with laravel 5.7 git merge
+
+121
+13:21.720 --> 13:26.080
+laravel dash v
+
+122
+13:26.520 --> 13:27.270
+five point
+
+123
+13:27.370 --> 13:27.850
+seven

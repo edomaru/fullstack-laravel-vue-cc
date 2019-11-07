@@ -1,0 +1,414 @@
+WEBVTT
+
+0
+00:02.100 --> 00:07.700
+In the previous lesson we have built our question form, and added validation error messages in the form markup
+
+1
+00:08.100 --> 00:13.710
+Now in this lesson we will implement form validation to verify whether the question being asked is valid or
+
+2
+00:13.710 --> 00:14.240
+not.
+
+3
+00:15.240 --> 00:19.020
+once we sure that the question is valid we'll save it into our database.
+
+4
+00:20.400 --> 00:23.860
+All right let's head over to our terminal and by now
+
+5
+00:23.880 --> 00:26.240
+I'm sure you already are familiar with it stuffs
+
+6
+00:26.370 --> 00:30.030
+so let's create a new branch git
+
+7
+00:30.390 --> 00:37.020
+checkout -b and then the branch name will be?
+
+8
+00:37.040 --> 00:38.130
+That's right
+
+9
+00:38.130 --> 00:43.670
+lesson-8
+
+10
+00:43.720 --> 00:45.400
+Now let's head over to our terminal
+
+11
+00:48.740 --> 00:52.580
+and this time we will be implement form validation in different way
+
+12
+00:52.700 --> 00:56.040
+we'll define our validation rules outside the controller
+
+13
+00:56.320 --> 01:01.610
+So we'll write them in separate file and we can call the file as form request
+
+14
+01:01.640 --> 01:04.790
+and then we call or load it in our controller.
+
+15
+01:05.120 --> 01:07.460
+this will make our controller a bit cleaner.
+
+16
+01:09.040 --> 01:14.830
+Actually, defining validation rules in form request is intended for complex scenario. But, I want you
+
+17
+01:14.830 --> 01:15.410
+learn a lot.
+
+18
+01:15.460 --> 01:23.130
+So you know many different ways to get things done. OK firstly we need to create the file and in order
+
+19
+01:23.130 --> 01:23.690
+to do that
+
+20
+01:23.740 --> 01:33.430
+let's jump to our terminal. And From now on I'll be using visual studio code integrated terminal
+
+21
+01:33.490 --> 01:35.890
+and I can open it by hitting "ctrl+`"
+
+22
+01:39.470 --> 01:51.360
+or via menu "View - Integrated terminal". Once it opened the prompt will be our current project and here we can
+
+23
+01:51.420 --> 01:55.050
+open multiple terminal by hitting this plus button
+
+24
+01:59.350 --> 02:05.860
+and here we can see the opened terminal in this dropdown, and we can switch from one terminal to another
+
+25
+02:06.040 --> 02:08.630
+by clicking this dropdown item.
+
+26
+02:08.730 --> 02:11.970
+All right here in the first terminal I'll run my server
+
+27
+02:17.240 --> 02:18.880
+php artisan serve
+
+28
+02:24.640 --> 02:32.510
+OK the server now running. Now I'll switch to my second terminal and I'll use this one to run artisan
+
+29
+02:32.520 --> 02:34.340
+command.
+
+30
+02:34.360 --> 02:40.390
+So, if you're not using visual studio code editor or you prefer to use your favorite terminal you can
+
+31
+02:40.390 --> 02:41.460
+continue using it.
+
+32
+02:41.620 --> 02:44.610
+But for now on I'll be using this integrated terminal
+
+33
+02:47.230 --> 02:55.240
+and this maybe no longer used so I'll close it.
+
+34
+02:55.250 --> 03:07.400
+Alright, here let's generate our form request by typing:
+php artisan make:request and then
+
+35
+03:07.400 --> 03:12.110
+name of our form request. You can name it with any name
+
+36
+03:12.290 --> 03:16.690
+but I think it's better to contain model name and end with `Request`
+
+37
+03:18.360 --> 03:31.270
+So in this case let's call it ask question request hit return.
+
+38
+03:31.280 --> 03:32.420
+Now if we go to app
+
+39
+03:36.440 --> 03:46.150
+http folder we'll find `Requests` folder and inside it we'll find AskQuestionReqeust.php
+
+40
+03:46.170 --> 03:47.270
+Let's open this file
+
+41
+03:52.210 --> 03:58.580
+and inside this file we'll find  `authorize` method which we can read in the comment is to determine if
+
+42
+03:58.580 --> 04:01.170
+the user is authorized to make this request.
+
+43
+04:03.630 --> 04:12.300
+for now let's change this to return `true` that's mean all users are authorized to make this request because
+
+44
+04:12.330 --> 04:15.210
+we only need to define the validation rules
+
+45
+04:17.300 --> 04:21.710
+in this `rules` method
+
+46
+04:21.960 --> 04:27.650
+So here we simple define validation rules for our question in the return array
+
+47
+04:33.520 --> 04:38.410
+so the title will be required
+
+48
+04:43.420 --> 04:46.270
+and it should be maximum two hundred and fifty five
+
+49
+04:54.310 --> 04:55.070
+for the body
+
+50
+04:55.090 --> 05:01.130
+I think we only need it to be required.
+
+51
+05:05.060 --> 05:09.720
+OK, save that. And now let's open the `QuestionsController`
+
+52
+05:20.160 --> 05:21.540
+and jump to `store` method
+
+53
+05:31.570 --> 05:31.980
+here
+
+54
+05:32.020 --> 05:40.100
+Let's change the type-hint from request to ask question request
+
+55
+05:44.890 --> 05:46.310
+And that's it
+
+56
+05:46.360 --> 05:51.960
+we defined the validation rules in AskQuestionRequest and to actually validate the request
+
+57
+05:51.970 --> 05:56.920
+We need to type hint our method with our form request.
+
+58
+05:56.960 --> 06:02.660
+so, as I said by doing this our controller will be a bit cleaner because we're separated our validation
+
+59
+06:02.660 --> 06:04.070
+logic in separate file
+
+60
+06:07.200 --> 06:09.140
+and here I made mistake
+
+61
+06:09.550 --> 06:16.310
+It should be ask question request sorry for that.
+
+62
+06:16.510 --> 06:18.690
+Now here let's show message for a while.
+
+63
+06:23.690 --> 06:28.870
+So this message will be shown in the requests pass our validation rules.
+
+64
+06:28.870 --> 06:31.000
+All right let's save this and try that out.
+
+65
+06:41.210 --> 06:43.300
+Actually here in the top
+
+66
+06:43.520 --> 06:44.720
+we need to import the file
+
+67
+07:03.120 --> 07:09.440
+save the change and let's give it a try let's open the question form
+
+68
+07:15.070 --> 07:19.140
+and here let the form empty and then hit the submit button.
+
+69
+07:23.250 --> 07:25.620
+Now you can see the validation error messages are appear
+
+70
+07:28.270 --> 07:28.850
+next
+
+71
+07:28.960 --> 07:30.740
+Let's enter only the title
+
+72
+07:34.650 --> 07:35.310
+input
+
+73
+07:42.870 --> 07:49.420
+and then hit submit button.
+
+74
+07:49.450 --> 07:51.210
+I got error validate
+
+75
+07:51.220 --> 07:54.780
+two hundred and fifty five does not exist.
+
+76
+07:54.910 --> 07:55.830
+Let me check that
+
+77
+08:03.440 --> 08:08.530
+And of course this should be max two hundred fifty five
+
+78
+08:12.370 --> 08:15.950
+save and reload again
+
+79
+08:19.720 --> 08:22.690
+here will get an error message below the question body
+
+80
+08:22.690 --> 08:26.970
+only we have no error message in the title input now
+
+81
+08:27.190 --> 08:33.240
+but the problem is we lost the question title that we enter before hitting the submit button
+
+82
+08:33.640 --> 08:34.570
+So to fix that
+
+83
+08:34.630 --> 08:40.580
+let's go back to our editor switch to create.blade.php
+
+84
+08:51.150 --> 08:53.370
+and here in the title input let's
+
+85
+08:58.160 --> 08:59.740
+specify value attribute
+
+86
+09:06.820 --> 09:14.140
+and it's value will be populated with old value or value before we hitting submit button
+
+87
+09:14.280 --> 09:15.150
+So here we can say
+
+88
+09:19.530 --> 09:21.250
+old
+
+89
+09:21.590 --> 09:22.290
+title
+
+90
+09:27.910 --> 09:28.300
+Next
+
+91
+09:28.330 --> 09:31.840
+let's also do almost the same thing to body textarea
+
+92
+09:38.110 --> 09:44.060
+here we need to place the old value between textare opening and closing tag
+
+93
+09:56.890 --> 09:57.670
+let's try again
+
+94
+10:02.240 --> 10:02.990
+reload the page
+
+95
+10:07.090 --> 10:08.490
+enter only title input
+
+96
+10:14.300 --> 10:19.290
+and then hit the submit button.
+
+97
+10:19.550 --> 10:25.480
+OK now we don't loose our question title.
+
+98
+10:25.670 --> 10:27.640
+Now let's also enter the question body
+
+99
+10:38.310 --> 10:39.860
+and then hit the submit button.
+
+100
+10:43.610 --> 10:43.990
+Alright
+
+101
+10:43.990 --> 10:45.630
+we have store message show up
+
+102
+10:45.760 --> 10:50.680
+That's mean our validation is working and we're ready to save the question to our database.

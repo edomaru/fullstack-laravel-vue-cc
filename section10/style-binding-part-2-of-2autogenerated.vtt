@@ -1,0 +1,266 @@
+WEBVTT
+
+0
+00:01.580 --> 00:07.470
+Let's open style bindings 4 dot html. I gave 
+the wrong number to the file actually but
+
+1
+00:07.730 --> 00:09.440
+it's OK.
+
+2
+00:10.460 --> 00:14.160
+Here we have a progress bar and a range input.
+
+3
+00:14.180 --> 00:21.040
+Now what we have to do here is increasing the progress 
+bar when we drug the range from left to the right
+
+4
+00:21.440 --> 00:24.560
+or vice versa.
+
+5
+00:24.560 --> 00:31.070
+All right let's go to our editor and open style 
+bindings 4 dot html. Here what do we
+
+6
+00:31.070 --> 00:32.100
+need to change
+
+7
+00:32.140 --> 00:38.780
+is the css with property dynamically and we need 
+to perform style bindings here and maybe we also
+
+8
+00:38.780 --> 00:40.530
+need to change the text here.
+
+9
+00:42.400 --> 00:50.100
+The first thing we're going to do is to bind this 
+range input and we can define a property inside
+
+10
+00:50.100 --> 00:50.970
+the data property.
+
+11
+00:55.900 --> 01:06.550
+So let's define data and inside it let's define with and let's 
+set zero by default. Next let's perform model binding
+
+12
+01:06.550 --> 01:10.860
+to the input by adding v-model
+
+13
+01:13.960 --> 01:14.620
+equals with
+
+14
+01:21.600 --> 01:23.700
+then style binding the progress bar
+
+15
+01:31.800 --> 01:33.060
+pass an object as argument
+
+16
+01:36.060 --> 01:36.630
+here
+
+17
+01:36.710 --> 01:38.690
+let's define with css property
+
+18
+01:42.820 --> 01:52.900
+and for the value we can take from with 
+property concatenated with percent.
+
+19
+01:52.940 --> 01:57.030
+So again for css property we can write it like this
+
+20
+02:00.180 --> 02:02.220
+or use quotation marks like this
+
+21
+02:02.340 --> 02:09.430
+but it's not mandatory as long as the css property 
+is in one word. Then here we can show the with as
+
+22
+02:09.630 --> 02:10.150
+a text
+
+23
+02:17.740 --> 02:18.730
+OK let's save
+
+24
+02:21.770 --> 02:22.650
+and have a look.
+
+25
+02:24.500 --> 02:32.070
+Now if we try dragging the range input as you can see 
+the width of the progress bar changes or increasing
+
+26
+02:33.940 --> 02:35.060
+as you see in here.
+
+27
+02:38.310 --> 02:41.730
+Its value will be in sync with the value of the range and input.
+
+28
+02:48.240 --> 02:48.660
+Next
+
+29
+02:48.650 --> 02:51.450
+let's open style bindings 4 dot html
+
+30
+02:56.130 --> 02:57.450
+here we have a heading
+
+31
+03:01.050 --> 03:08.990
+then below that we have some style options that we 
+can apply to this heading. OK let's go back to our
+
+32
+03:08.990 --> 03:11.150
+editor then open
+
+33
+03:11.180 --> 03:18.560
+style bindings 5 dot html. AS you can see 
+here we have several select elements
+
+34
+03:24.780 --> 03:26.340
+then in data property
+
+35
+03:26.340 --> 03:35.520
+there are several css style definitions style 1 background 
+white, style 2 color black, style 3 border
+
+36
+03:35.550 --> 03:38.950
+2 pixels and style 4 text transformation.
+
+37
+03:39.160 --> 03:45.690
+Now what we have to do here is apply these 
+four styles dynamically to the heading.
+
+38
+03:45.770 --> 03:49.790
+So the first thing that we need to do here is to bind the four styles
+
+39
+03:52.980 --> 03:54.490
+to the select elements here.
+
+40
+03:55.810 --> 03:58.570
+So let's make selection to all select opening tags
+
+41
+04:03.540 --> 04:06.400
+once selected we can add v-model
+
+42
+04:12.310 --> 04:18.110
+then pass in each style.
+
+43
+04:18.190 --> 04:19.480
+Let's start from style 1
+
+44
+04:23.470 --> 04:39.950
+here we need to change the background color property. 
+Then for style 2 we can bind the color property
+
+45
+04:40.140 --> 04:43.590
+Then for the style 3 we can bind to the border property
+
+46
+04:50.380 --> 04:50.850
+and the last
+
+47
+04:50.890 --> 04:56.410
+for the style 4 we can bind to text transform property.
+
+48
+04:56.410 --> 05:01.020
+So what we do here is to dynamically 
+change the values of each style.
+
+49
+05:03.580 --> 05:08.400
+Next let's apply its style to this heading element.
+
+50
+05:11.920 --> 05:13.240
+Here we add style binding
+
+51
+05:16.220 --> 05:20.860
+pass an array as argument and inside the array we just add
+
+52
+05:21.170 --> 05:24.720
+style 1, style 2
+
+53
+05:27.710 --> 05:31.400
+style 3 and style 4
+
+54
+05:31.400 --> 05:42.620
+So all these styles will be merged into one css 
+style definition and apply to the heading save.
+
+55
+05:42.630 --> 05:48.550
+Now let's try to change the background color to red, green
+
+56
+05:49.990 --> 05:50.870
+and blue.
+
+57
+05:51.310 --> 06:03.200
+Then for the text color let's change to white or yellow. 
+For border we can also change for example to 4 pixels,
+
+58
+06:03.740 --> 06:09.680
+8 pixels. For the text  let's try to change to capitalize, uppercase
+
+59
+06:11.450 --> 06:12.270
+and lowercase.
+
+60
+06:15.450 --> 06:18.410
+OK that's all about style bindings.
+
+61
+06:18.420 --> 06:20.990
+I'll see you in the next lesson.

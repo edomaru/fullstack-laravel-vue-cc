@@ -1,0 +1,475 @@
+WEBVTT
+
+0
+00:01.490 --> 00:08.400
+In this lesson we will be adding some counters to indicate number of votes, answers and  views of a question
+
+1
+00:09.040 --> 00:15.640
+and we'll write some sass code to style our project and then compile it using laravel mix.
+
+2
+00:15.650 --> 00:16.430
+All right
+
+3
+00:16.430 --> 00:18.420
+As always before we move on
+
+4
+00:18.490 --> 00:20.820
+let's isolate our work into a new branch
+
+5
+00:20.900 --> 00:23.840
+Let's switch over to our terminal
+
+6
+00:25.820 --> 00:28.170
+and here we can type: git
+
+7
+00:28.250 --> 00:30.540
+checkout -b
+
+8
+00:30.830 --> 00:39.290
+and then the branch name will be `lesson-6`
+
+9
+00:39.290 --> 00:40.190
+All right
+
+10
+00:40.310 --> 00:41.870
+let's head over to our editor
+
+11
+00:46.850 --> 00:48.230
+open index.blade.php
+
+12
+00:55.670 --> 00:58.620
+We'll place them on the left side of the question
+
+13
+00:58.700 --> 01:06.520
+so here before these let's add a new div
+
+14
+01:14.610 --> 01:28.380
+and give it class `d-flex`, a flexbox class provided by bootstrap. And then `flex-column` to place the content
+
+15
+01:28.500 --> 01:32.070
+in vertical direction.
+
+16
+01:32.070 --> 01:36.010
+and we also need to add custom class so that we can make some styling
+
+17
+01:36.330 --> 01:40.110
+let's call it `counters` like so.
+
+18
+01:44.200 --> 01:47.090
+Inside here
+
+19
+01:47.160 --> 01:48.230
+Let's add another div
+
+20
+01:53.150 --> 01:57.590
+and give it class `vote`
+
+21
+01:57.710 --> 01:59.630
+this will be hold the number of votes
+
+22
+02:07.160 --> 02:10.560
+let's place the number in `strong` tag strong
+
+23
+02:15.960 --> 02:28.750
+then the number of votes
+
+24
+02:29.390 --> 02:32.940
+We can also utilize laravel str_plural helper function
+
+25
+02:33.020 --> 02:36.150
+In this case so that it can be singular or plural
+
+26
+02:36.180 --> 02:41.110
+based on the number specified
+
+27
+02:44.600 --> 02:47.870
+So str_plural
+
+28
+02:51.110 --> 02:54.890
+then `vote` in singular and pass the question's votes
+
+29
+03:05.070 --> 03:11.820
+OK let's duplicate this
+
+30
+03:13.800 --> 03:16.650
+and change the class to `status` 
+
+31
+03:16.650 --> 03:17.220
+In this case
+
+32
+03:23.580 --> 03:27.600
+change the number to question answers
+
+33
+03:31.110 --> 03:36.060
+and change the text to answer.
+
+34
+03:39.190 --> 03:40.600
+Let's duplicate one more time
+
+35
+03:43.700 --> 03:46.930
+and change the class to view
+
+36
+03:50.260 --> 03:56.570
+and here we don't need to put the number in the `strong` tag because we'll make it a little different
+
+37
+04:10.020 --> 04:13.430
+Here let's change the number to views
+
+38
+04:18.350 --> 04:23.300
+and change the text to view.
+
+39
+04:24.350 --> 04:27.170
+And here let's put them into one single command
+
+40
+04:30.710 --> 04:36.700
+and separate it with a space like so.
+
+41
+04:37.740 --> 04:43.270
+OK let's save that and see how it looked like.
+
+42
+04:49.050 --> 04:49.670
+All right
+
+43
+04:50.890 --> 04:54.120
+the counter placed on the left side as  expected.
+
+44
+04:54.130 --> 04:59.680
+Now it's time to style them. Let's go back to our editor
+
+45
+05:03.700 --> 05:15.720
+and navigate to resources assets sass folder. Then open `app.scss`
+
+46
+05:16.480 --> 05:22.040
+We've defined counter class in here.
+
+47
+05:22.360 --> 05:24.660
+So now let's select this
+
+48
+05:28.690 --> 05:30.840
+counters
+
+49
+05:31.710 --> 05:35.570
+first I need more space between counters and the answer
+
+50
+05:36.280 --> 05:40.000
+so margin-right
+
+51
+05:45.130 --> 05:46.150
+and I think
+
+52
+05:46.430 --> 05:47.710
+thirty pixel is is enough
+
+53
+05:50.800 --> 05:55.960
+then let's decrease the font size: font-size
+
+54
+05:58.480 --> 06:08.560
+let's say 10px and then change the text align to center: text-align
+
+55
+06:11.220 --> 06:13.080
+center
+
+56
+06:17.010 --> 06:19.430
+several all changes.
+
+57
+06:19.460 --> 06:22.090
+Now if we tried to reload the page
+
+58
+06:25.830 --> 06:31.680
+we'll not find any changes in our page. This because we need to compile our sass code to normal css
+
+59
+06:31.690 --> 06:34.860
+code that can be recognized by browser.
+
+60
+06:35.200 --> 06:37.780
+So to do that let's head over to our terminal
+
+61
+06:41.700 --> 06:42.310
+and type
+
+62
+06:44.970 --> 06:46.670
+npm run dev
+
+63
+06:46.740 --> 06:49.190
+hit return.
+
+64
+06:52.150 --> 06:59.100
+So this command will tell `webpack`, a node package manager to compile all assets our sass code,
+
+65
+06:59.120 --> 07:04.510
+javascript code and then produce new files than can be recognized by browser.
+
+66
+07:04.960 --> 07:06.820
+Let me go back to editor
+
+67
+07:10.420 --> 07:15.220
+and open webpack.mix.js
+
+68
+07:20.730 --> 07:25.370
+and this file is basically a simple configuration file for webpack.
+
+69
+07:25.380 --> 07:33.680
+as you can see, in the first line laravel-mix is called. Laravel mix itself is a wrapper for web
+
+70
+07:33.690 --> 07:35.760
+pack. In the official documentation
+
+71
+07:35.790 --> 07:44.090
+It says "it provides a clean, fluent API for defining basic webpack build steps for our Laravel application"
+
+72
+07:46.990 --> 07:54.630
+OK, then below that we can see what file will be compiled
+and where the output will be.
+
+73
+07:54.650 --> 08:07.020
+So whenever we run NPM run command this javascript file will get compiled and the compiled file will be
+
+74
+08:07.020 --> 08:10.330
+stored in public js folder.
+
+75
+08:10.560 --> 08:13.710
+In this case the file name will be the same app dot
+
+76
+08:13.840 --> 08:18.840
+js if the file was exist then it will be overwritten
+
+77
+08:21.500 --> 08:29.250
+That's the same thing to the sass file in 'resources/assets/sass/app.scss' it will be compiled
+
+78
+08:29.370 --> 08:33.190
+and then stored the compiled file
+
+79
+08:33.210 --> 08:40.180
+in this case it will be `app.css` in public css folder.
+
+80
+08:40.180 --> 08:49.880
+Now if now if we open `views/layouts/app.blade.php`
+
+81
+08:54.540 --> 08:56.720
+we can see the compiled files are loaded.
+
+82
+08:56.940 --> 09:02.730
+So this one and this one.
+
+83
+09:02.970 --> 09:08.820
+So, that's why we need to run `npm run dev` to see the changes in our page, because what we written in
+
+84
+09:08.820 --> 09:14.270
+`assets` need be compiled, and in this file we reference the compiled files.
+
+85
+09:14.850 --> 09:15.690
+OK let's see
+
+86
+09:22.400 --> 09:25.330
+now we can see the changes the font size
+
+87
+09:25.340 --> 09:32.910
+now a little bit smaller, they are centered, and we have more space between counters and question.
+
+88
+09:35.090 --> 09:38.850
+Alright, let's style this vote and answer counter.
+
+89
+09:39.230 --> 09:40.610
+Let's go back to our editor
+
+90
+09:43.490 --> 09:45.450
+and back to app dot 
+
+91
+09:45.560 --> 09:56.900
+scss and here I want to make the same with and height for vote and answer so I can write like so: vote
+
+92
+09:59.210 --> 10:01.180
+answer
+
+93
+10:03.630 --> 10:04.400
+and here let's set the width
+
+94
+10:07.280 --> 10:09.130
+let's say 60 pixels
+
+95
+10:12.800 --> 10:16.190
+and the height also 60 pixels
+
+96
+10:18.920 --> 10:25.880
+and for now I'll define border one pixel solid red
+
+97
+10:29.550 --> 10:31.790
+Save!
+
+98
+10:31.830 --> 10:35.610
+Now here we need to compile the code again to see the changes.
+
+99
+10:35.990 --> 10:41.990
+But, I think it would not be practical to compile the code whenever we make changes in our assets, right?
+
+100
+10:42.290 --> 10:48.190
+Luckily laravel has provide another option so that 
+whenever we make changes it would be compiled
+
+101
+10:48.370 --> 10:52.690
+automatically.
+
+102
+10:52.910 --> 11:02.680
+so here instead of calling `npm run dev`, now we can call `npm run watch`
+
+103
+11:02.800 --> 11:10.460
+So this command will watch our assets changes and then get compiled automatically and it will take some
+
+104
+11:10.460 --> 11:11.850
+time to compiled.
+
+105
+11:19.630 --> 11:26.350
+OK reload the page. OK here the change.
+
+106
+11:26.370 --> 11:35.940
+Now let's make further styling. Here I'll make the number and text of this `votes` and `answer` in stacked.
+
+107
+11:41.050 --> 11:44.100
+here in the counter
+
+108
+11:46.400 --> 11:47.970
+let's select the `strong` tag
+
+109
+11:52.510 --> 11:54.330
+and then change the display to block
+
+110
+11:59.190 --> 12:01.590
+then I'll make the font size a little bigger
+
+111
+12:04.540 --> 12:09.180
+I think 2 em is enough
+
+112
+12:10.470 --> 12:18.310
+And we don't need these red border again just remove it.
+
+113
+12:18.540 --> 12:24.720
+Save changes.
+
+114
+12:24.720 --> 12:27.470
+Now it will be compiled automatically.
+
+115
+12:27.470 --> 12:29.430
+Let's see the change
+
+116
+12:33.650 --> 12:35.410
+alright I think
+
+117
+12:35.450 --> 12:36.660
+so far so good.

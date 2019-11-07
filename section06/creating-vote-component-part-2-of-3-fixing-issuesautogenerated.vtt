@@ -1,0 +1,250 @@
+WEBVTT
+
+0
+00:03.170 --> 00:07.820
+Let's switch back over to our code 
+editor. Switch to vote component
+
+1
+00:10.620 --> 00:15.510
+here in then method instead of adding the count with vote value
+
+2
+00:15.870 --> 00:22.090
+let's change it by reassign the vote count from json response.
+
+3
+00:22.180 --> 00:24.570
+Here we have not defined yet the votes count
+
+4
+00:24.760 --> 00:26.890
+in our json response.
+
+5
+00:27.090 --> 00:30.400
+So let's switch to vote answer controller
+
+6
+00:35.140 --> 00:35.830
+and here
+
+7
+00:36.040 --> 00:38.040
+when we call vote answer method
+
+8
+00:38.500 --> 00:44.050
+let's return the actual vote answer. So let's assign into a variable
+
+9
+00:46.670 --> 00:48.770
+let's say votes count
+
+10
+00:54.870 --> 00:57.510
+and then returned the votes count in the json response.
+
+11
+01:04.520 --> 01:08.280
+Now let's modify the vote answer method in the user model
+
+12
+01:08.440 --> 01:13.660
+to turn the actual vote answer.
+
+13
+01:13.820 --> 01:15.300
+Le'ts open the user model
+
+14
+01:18.740 --> 01:21.720
+and find the vote answer method
+
+15
+01:30.810 --> 01:37.850
+here let's add return in the front of 
+this underscore vote method call.
+
+16
+01:38.070 --> 01:46.770
+Le'ts do the same thing to vote question.
+
+17
+01:46.920 --> 02:04.220
+And now here in underscore vote 
+let's return the model's vote count
+
+18
+02:04.250 --> 02:05.810
+All right let's save all changes.
+
+19
+02:10.370 --> 02:13.610
+And let's give another try.
+
+20
+02:14.000 --> 02:15.320
+Reload the page
+
+21
+02:23.150 --> 02:26.800
+hit the vote up button.
+
+22
+02:27.040 --> 02:29.660
+The number increasing.
+
+23
+02:29.820 --> 02:30.630
+And then hit again
+
+24
+02:33.530 --> 02:37.650
+the number still increasing.
+
+25
+02:37.660 --> 02:38.660
+Let me see my code
+
+26
+02:42.730 --> 02:47.520
+OK here we don't need this plus operator 
+because we need to reassign the count
+
+27
+02:52.960 --> 02:53.960
+reload again.
+
+28
+02:57.650 --> 02:58.520
+Hit the vote up button
+
+29
+03:01.900 --> 03:03.460
+nothing changed.
+
+30
+03:03.520 --> 03:04.960
+Now if I hit the vote down
+
+31
+03:08.210 --> 03:15.370
+the number decreasing I'll hit the vote up again the number increasing
+
+32
+03:18.050 --> 03:19.020
+I'll hit again.
+
+33
+03:20.120 --> 03:21.190
+Nothing change.
+
+34
+03:21.190 --> 03:23.550
+Great.
+
+35
+03:23.550 --> 03:24.280
+All right
+
+36
+03:24.360 --> 03:29.970
+The last thing that we need to do is protecting this 
+component so that only the authenticated user that
+
+37
+03:29.970 --> 03:32.780
+can vote the answer or question.
+
+38
+03:33.450 --> 03:35.490
+Let's switch back over to our editor
+
+39
+03:39.200 --> 03:52.080
+And here in this method let's add if statement 
+to check if the user has signed in.
+
+40
+03:52.330 --> 03:55.870
+So if the user has not signed in let's show warning message
+
+41
+04:01.800 --> 04:07.620
+and here I'm going to say "please login to vote the
+
+42
+04:10.250 --> 04:11.240
+this dot name".
+
+43
+04:16.870 --> 04:18.310
+the title will be warning
+
+44
+04:25.380 --> 04:27.510
+set the time out to 30 seconds
+
+45
+04:30.940 --> 04:32.700
+and position to bottom left
+
+46
+04:39.850 --> 04:47.410
+and don't forget to add return so that the 
+code outside if statement  will be executed.
+
+47
+04:47.470 --> 04:48.190
+Let's save
+
+48
+04:53.480 --> 04:54.710
+I'll copy the URL
+
+49
+04:59.470 --> 05:01.760
+then I'll open incognito window.
+
+50
+05:06.330 --> 05:07.450
+And pens they URL
+
+51
+05:18.520 --> 05:22.040
+here we see that the icon's color in light gray.
+
+52
+05:22.430 --> 05:41.860
+And if I hit the vote up or vote down 
+button I'll get a warning message.
+
+53
+05:41.900 --> 05:42.260
+All right
+
+54
+05:42.260 --> 05:48.080
+We have successfully rewritten or a vote control from blade into vue js component. It is working just
+
+55
+05:48.080 --> 05:52.010
+fine as before but now it's no need 
+to reload the page to see the change
+
+56
+05:55.050 --> 05:55.480
+OK
+
+57
+05:55.500 --> 05:56.400
+That's it
+
+58
+05:56.400 --> 05:58.720
+Le'ts coming our changes to our git repo.
+
+59
+05:58.830 --> 06:01.680
+Then take a quick break and then join me in the next lesson.

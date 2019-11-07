@@ -1,0 +1,524 @@
+WEBVTT
+
+0
+00:00.990 --> 00:03.750
+All right let's open the Github comparison tool
+
+1
+00:08.640 --> 00:10.260
+let's jump to the top
+
+2
+00:14.610 --> 00:16.950
+make sure you hit files changes tab
+
+3
+00:21.010 --> 00:29.370
+And here in .env.example file we see there 
+are four environment variables added that
+
+4
+00:29.430 --> 00:33.290
+are used to set up Amazon Web Service.
+
+5
+00:33.420 --> 00:37.380
+Let me select one of them and then find
+
+6
+00:40.200 --> 00:42.820
+here the variables will be called in
+
+7
+00:43.020 --> 00:49.110
+dynamodb configuration on config cache.php
+
+8
+00:54.750 --> 01:00.990
+also in sqs config inside config queue.php
+
+9
+01:05.730 --> 01:11.250
+and then in ses config inside config services.php
+
+10
+01:15.440 --> 01:16.410
+So let's copy
+
+11
+01:16.400 --> 01:17.130
+this lines
+
+12
+01:20.450 --> 01:25.220
+back to our editor open .env file
+
+13
+01:32.730 --> 01:36.260
+and paste them in.
+
+14
+01:36.360 --> 01:40.350
+Now we can hide this file.
+
+15
+01:40.350 --> 01:46.440
+We don't need this yaml just hide this, also this one.
+
+16
+01:50.670 --> 01:53.050
+we've already modified this file
+
+17
+01:53.220 --> 01:54.210
+we can hide this now.
+
+18
+01:56.660 --> 02:02.720
+Here in trust proxies there is a bit change
+just in comment so I'll skip this
+
+19
+02:07.500 --> 02:09.380
+in auth service provider
+
+20
+02:09.450 --> 02:12.540
+now the policy mapping is commented out.
+
+21
+02:12.810 --> 02:14.480
+So let's go back to our editor
+
+22
+02:17.700 --> 02:24.110
+open auth service provider. Actually
+
+23
+02:24.130 --> 02:26.260
+we have model policy mappings
+
+24
+02:26.260 --> 02:27.910
+so we don't need to change this file
+
+25
+02:36.800 --> 02:43.670
+we've updated our composer.json file so we can skip this.
+
+26
+02:45.410 --> 02:58.310
+Now in config app.php we'll find two new lines added 
+in aliases Arr and Str. Although we have installed
+
+27
+02:58.380 --> 03:03.620
+laravel helper so that we can still use 
+old Laravel array and string helper,
+
+28
+03:03.620 --> 03:09.330
+but let's add both of these in our app. Let's copy this line
+
+29
+03:12.210 --> 03:13.300
+back to our editor
+
+30
+03:15.890 --> 03:21.830
+open config app.php find
+
+31
+03:21.910 --> 03:22.810
+aliases
+
+32
+03:31.150 --> 03:36.340
+and paste it here.
+
+33
+03:37.180 --> 03:38.480
+Let's copy this one
+
+34
+03:47.350 --> 03:55.280
+and then paste here. OK back to our browser, hide this file.
+
+35
+03:58.520 --> 04:03.950
+And here in config auth, there is a new line added in api
+
+36
+04:04.100 --> 04:15.570
+let's copy this line back to our editor, open config auth find api
+
+37
+04:18.320 --> 04:19.220
+and paste it here.
+
+38
+04:27.770 --> 04:32.670
+Here in config cache we'll see new configuration added. Here
+
+39
+04:32.750 --> 04:33.950
+I'll ignore the comment
+
+40
+04:34.220 --> 04:36.440
+Just copy these lines
+
+41
+04:42.150 --> 04:45.110
+open config cache
+
+42
+04:50.030 --> 04:52.200
+and pace the new configuration here.
+
+43
+05:00.270 --> 05:02.850
+Next let's see the database configuration
+
+44
+05:05.570 --> 05:06.700
+on the top
+
+45
+05:06.800 --> 05:10.490
+there import statements to import Str facade.
+
+46
+05:10.730 --> 05:18.880
+So let's copy this line head over it 
+our editor, open config database,
+
+47
+05:22.330 --> 05:24.660
+paste it here.
+
+48
+05:24.660 --> 05:28.510
+Back to our browser
+
+49
+05:30.190 --> 05:37.180
+and here we see URL being added in each database driver.
+
+50
+05:37.570 --> 05:40.600
+If we open our .env file
+
+51
+05:47.920 --> 05:53.140
+we don't see the database URL but let's just copy this line.
+
+52
+06:17.090 --> 06:17.630
+All right
+
+53
+06:17.640 --> 06:18.630
+back to our browser
+
+54
+06:24.120 --> 06:28.600
+and here in mysql configuration there's options added
+
+55
+06:28.600 --> 06:29.740
+so let's copy these.
+
+56
+06:41.950 --> 06:43.670
+Now in redis
+
+57
+06:43.730 --> 06:48.030
+there's a bit change in client value and new options added.
+
+58
+06:48.490 --> 06:49.900
+So let's copy this lines,
+
+59
+06:53.730 --> 06:54.910
+back to our editor,
+
+60
+07:04.920 --> 07:05.330
+and here
+
+61
+07:05.350 --> 07:14.410
+let's replace this line.
+
+62
+07:15.490 --> 07:20.090
+Also we need to add URL in default and cache
+
+63
+07:30.690 --> 07:31.740
+back to our browser
+
+64
+07:38.310 --> 07:44.070
+here we can skip this config mail.
+
+65
+07:44.090 --> 07:51.610
+And then here in config queue there are 
+new line added in let me expand this
+
+66
+07:56.510 --> 08:01.900
+so there's new line added in beanstalkd. So let's copy this line
+
+67
+08:13.050 --> 08:13.890
+paste here.
+
+68
+08:20.230 --> 08:21.760
+Still in the same file
+
+69
+08:21.860 --> 08:31.300
+there is some update to key, secret 
+and region value on sqs configuration.
+
+70
+08:31.300 --> 08:32.350
+So let's update them
+
+71
+08:52.840 --> 08:58.450
+and then in config surfaces there's a new config added the postmark
+
+72
+09:06.390 --> 09:07.900
+so let's copy these lines
+
+73
+09:18.600 --> 09:23.980
+paste here and then let's copy these lines.
+
+74
+09:27.230 --> 09:28.540
+Actually we can do that.
+
+75
+09:29.450 --> 09:32.150
+So let's be copy each one of these
+
+76
+09:46.830 --> 09:47.700
+now here.
+
+77
+09:47.730 --> 09:49.510
+That is a big change in the command.
+
+78
+09:49.510 --> 09:56.040
+Instead this file probably you could do this but for me I'll skip this change
+
+79
+10:02.870 --> 10:06.150
+than here in database get ignore file.
+
+80
+10:06.210 --> 10:17.360
+There is a new line added to get ignore a file with extension the SQL light dash journal so let's copy
+
+81
+10:17.360 --> 10:17.990
+this Len
+
+82
+10:21.350 --> 10:24.110
+navigate to database trickery
+
+83
+10:27.980 --> 10:33.980
+then open gate ignore and then paste it here.
+
+84
+10:39.580 --> 10:49.440
+Next here in user factory there is a little bit changes but the most important is here.
+
+85
+10:49.450 --> 10:53.400
+The hotspots work because now the minimum password length is eight.
+
+86
+10:53.470 --> 10:56.230
+So let's copy this value as well as the command
+
+87
+11:00.640 --> 11:04.480
+picked or any tor open user.
+
+88
+11:04.490 --> 11:05.200
+Factory
+
+89
+11:08.600 --> 11:10.220
+here let's replace this line
+
+90
+11:18.350 --> 11:19.220
+anything.
+
+91
+11:19.220 --> 11:20.960
+Import the user model in the top
+
+92
+11:25.290 --> 11:36.330
+and possibly in only the user class is more clean.
+
+93
+11:36.360 --> 11:43.370
+Now now for these crit users double migration we don't need to change anything.
+
+94
+11:43.780 --> 11:51.100
+Just keep it in increments because it we change this file to big increment we also need to make change
+
+95
+11:51.130 --> 11:58.070
+the Frankie column definition in for example great questions that all good answer double etc..
+
+96
+12:00.730 --> 12:09.790
+Next in package that is on file will update the x's version to version zero point ninety
+
+97
+12:24.940 --> 12:25.290
+here.
+
+98
+12:25.290 --> 12:33.310
+We don't need to update the bootstrap version since we have the newest version which is four point three
+
+99
+12:33.310 --> 12:33.790
+point one
+
+100
+12:40.140 --> 12:42.430
+and then in Pittsburgh unit the next m l.
+
+101
+12:42.560 --> 12:49.660
+We need to replace this envy with server overload.
+
+102
+12:49.700 --> 12:54.810
+Not changes us up on PSP union
+
+103
+12:59.080 --> 13:08.800
+that select all of these and replace with server.
+
+104
+13:10.410 --> 13:21.080
+Here we don't need the SPG directory we add this directory when upgrading to liberal version 5 and 7.
+
+105
+13:21.170 --> 13:23.460
+But now it no longer needed.
+
+106
+13:23.480 --> 13:30.310
+So let's go back to where Ed navigate to public directory
+
+107
+13:33.600 --> 13:34.680
+and remove this directory
+
+108
+13:45.220 --> 13:45.780
+next.
+
+109
+13:45.790 --> 13:47.530
+Here we can skip this read me file
+
+110
+13:50.350 --> 13:52.540
+also list up the Charles
+
+111
+13:58.780 --> 14:01.480
+as well as bootstrap the chess
+
+112
+14:05.250 --> 14:12.010
+and then here inside resources Lang and password at Bisbee.
+
+113
+14:12.040 --> 14:18.230
+We need the change the Arab us a message from six to eight.
+
+114
+14:29.120 --> 14:34.270
+And instead of validation here new validation error message added.
+
+115
+14:34.900 --> 14:36.160
+So let's copy this line
+
+116
+14:47.810 --> 14:51.130
+and paste here.
+
+117
+14:52.430 --> 14:59.720
+Next in underscore variables not SC s s probably we could ignore this change because it only replace
+
+118
+14:59.990 --> 15:02.390
+the double code to single quote
+
+119
+15:06.570 --> 15:11.320
+and in paying for it it replace the capital D with a lower D
+
+120
+15:16.520 --> 15:27.580
+and then in update SPSS the number bar lawful says US rule no longer needed so let's open up.
+
+121
+15:27.710 --> 15:28.830
+Note SPSS
+
+122
+15:34.360 --> 15:35.500
+and remove this lens
+
+123
+15:46.680 --> 15:47.380
+anything.
+
+124
+15:47.430 --> 15:48.600
+That's all we need.
+
+125
+15:48.630 --> 15:54.780
+We have upgraded our up to a literal version of five point eight in the next video we'll make some test
+
+126
+15:54.900 --> 16:00.750
+to verify that our application still working as before and here.
+
+127
+16:00.780 --> 16:02.360
+Don't forget to several changes
+
+128
+16:07.290 --> 16:14.250
+and then let's switch to me terminal and then let's type npm install.

@@ -1,0 +1,704 @@
+WEBVTT
+
+0
+00:01.400 --> 00:06.810
+In this lesson we are gonna make additional API 
+endpoint that is going to use to fetch questions and
+
+1
+00:06.810 --> 00:13.420
+answers created by current users logged in. To give 
+you a better idea about what we're going to build
+
+2
+00:13.980 --> 00:16.770
+let me go to Stack Overflow.
+
+3
+00:16.770 --> 00:24.480
+Then here then here I'll randomly 
+choose a user so if I scroll down a bit
+
+4
+00:28.150 --> 00:33.750
+So here are a list of post questions and 
+answers that have been created by the user.
+
+5
+00:33.850 --> 00:37.330
+We can display only questions here
+
+6
+00:40.610 --> 00:42.870
+or answers here.
+
+7
+00:43.100 --> 00:49.360
+Later we're going to consume our API endpoint and build 
+this such user interface in home page or dashboard
+
+8
+00:49.370 --> 00:56.500
+page to be precise which currently it's
+only show you are logged in message.
+
+9
+00:56.500 --> 00:56.960
+All right
+
+10
+00:57.020 --> 01:01.430
+As always before doing any changes let's 
+go ahead and open up our terminal
+
+11
+01:05.010 --> 01:06.000
+then create a new branch
+
+12
+01:06.020 --> 01:08.590
+by saying: git checkout
+
+13
+01:08.660 --> 01:20.790
+-b lesson-54. All right now let's create a brand new 
+controller by saying php artisan make:controller
+
+14
+01:22.470 --> 01:25.190
+you can name your controller whatever name you like
+
+15
+01:25.320 --> 01:33.650
+In my case I'm gonna call it current users posts controller.
+
+16
+01:33.880 --> 01:44.780
+I know it's too long so maybe my posts controller is good.
+
+17
+01:45.130 --> 01:51.200
+I'm gonna also specify -i flag or invokable controller.
+
+18
+01:51.230 --> 01:55.570
+Whoops I almost forgot to put this controller in
+
+19
+01:55.580 --> 02:03.010
+Api
+
+20
+02:03.410 --> 02:06.370
+All right let's pull up my posts controller
+
+21
+02:09.440 --> 02:11.660
+this method is going to accept request object.
+
+22
+02:14.200 --> 02:21.670
+Then inside this method we simply return response json
+
+23
+02:25.810 --> 02:31.180
+passing an array then inside these let's define data as a key
+
+24
+02:34.290 --> 02:44.690
+then the value is going to taken from request 
+user to get the current user logged in.
+
+25
+02:44.820 --> 02:49.760
+Then chain in with posts. Here
+
+26
+02:49.780 --> 02:51.420
+the posts method is not defined yet.
+
+27
+02:52.140 --> 02:56.370
+And the reason why I call it post 
+is because we are going to return
+
+28
+02:56.370 --> 02:59.960
+both answers and or questions here.
+
+29
+02:59.970 --> 03:06.500
+So basically this method will abstract some logic 
+to retrieve both questions and answers retrieve
+
+30
+03:06.550 --> 03:14.050
+only questions or only answers. And probably 
+you will see a bit more complex logic in here.
+
+31
+03:14.100 --> 03:17.010
+All right let's open the user model
+
+32
+03:21.220 --> 03:27.070
+here we can define the posts method somewhere but 
+before we write some code here let me show you how the
+
+33
+03:27.070 --> 03:29.920
+data should be presented.
+
+34
+03:29.920 --> 03:39.010
+So as you can see here in a single item it contains 
+votes count title accepted created at and type.
+
+35
+03:39.010 --> 03:43.690
+I'm sure you have already familiar with 
+this structure except the type.
+
+36
+03:43.690 --> 03:51.590
+So basically the type is used to identify whether 
+it's a question or answer. if it's a question
+
+37
+03:51.630 --> 04:00.910
+then here it's going to be 'Q' otherwise if it's an answer 
+then it's going to be 'A' as simple as that. Then
+
+38
+04:00.910 --> 04:04.200
+here
+
+39
+04:04.240 --> 04:04.810
+let's define
+
+40
+04:04.810 --> 04:05.590
+the posts method
+
+41
+04:12.160 --> 04:18.850
+now as I have mentioned earlier that this method 
+allows  user to retrieve whether both their questions
+
+42
+04:18.970 --> 04:23.350
+and answers just their questions or only their answers.
+
+43
+04:23.530 --> 04:28.750
+So here we'll need kind of capture of the request type 
+from the client side that will distinguish the
+
+44
+04:28.750 --> 04:41.320
+response. The way that we can do is to call request 
+get type then we can assign it into a variable type
+
+45
+04:45.830 --> 04:49.790
+bellow that we can check the type value in if statement.
+
+46
+04:49.940 --> 04:56.930
+So if type is equals to questions
+
+47
+04:59.890 --> 05:02.280
+then we'll get the current user's questions.
+
+48
+05:06.480 --> 05:18.240
+And assigned it into posts variable. Here we'll 
+need to call the get method to make sure that
+
+49
+05:18.270 --> 05:21.670
+our post is in collections.
+
+50
+05:21.690 --> 05:27.040
+You could also call paginate if you want
+but in my case I'll call the get method only.
+
+51
+05:27.090 --> 05:29.580
+So here we have handled the question option.
+
+52
+05:29.580 --> 05:40.260
+We still need to think the rest possibilities all and 
+answers. The way that we can do is to add else block.
+
+53
+05:40.260 --> 05:47.660
+Then inside here we can define another posts variable 
+and it's going to store the current user's answers
+
+54
+05:54.560 --> 06:04.180
+we need to call `with` method and put 
+question in just to eager load the query.
+
+55
+06:04.180 --> 06:09.230
+And last we can chain in with `get` method.
+
+56
+06:09.400 --> 06:10.640
+All right
+
+57
+06:10.640 --> 06:15.570
+Lastly let's check the third option.
+
+58
+06:15.830 --> 06:32.860
+We can say if type is equals to all or I can 
+also say if type is not equals answers
+
+59
+06:39.050 --> 06:44.510
+now here what we need to do is to 
+merge both answers and questions right?
+
+60
+06:44.580 --> 06:46.910
+So here let's define another variable.
+
+61
+06:46.970 --> 06:55.000
+I just want to call it posts two then we can assign 
+the current user's questions to it as we did before
+
+62
+06:55.000 --> 06:55.390
+here.
+
+63
+07:02.870 --> 07:05.500
+Last we can merge the answers collection
+
+64
+07:05.500 --> 07:11.790
+In this case posts that we have defined 
+here with the posts two by saying
+
+65
+07:14.310 --> 07:27.490
+posts merge posts two or you can do 
+all the way around posts two merge posts.
+
+66
+07:27.480 --> 07:36.570
+I'm sick with this one posts merge post 
+two and then we can reassign to posts.
+
+67
+07:36.590 --> 07:42.360
+All right so we have retrieved the collection of answers 
+and questions based on the type request that
+
+68
+07:42.360 --> 07:43.780
+comes in. Now
+
+69
+07:43.890 --> 07:49.980
+the next thing that we need to do is kind of transform 
+that collection to another structure that we
+
+70
+07:49.980 --> 07:51.220
+have seen before.
+
+71
+07:54.850 --> 07:58.520
+So here let's define a new variable to hold new constructor. Here
+
+72
+07:58.550 --> 08:06.510
+I'm gonna call it data and instead of assigning 
+it with empty array here I'm gonna call laravel
+
+73
+08:06.550 --> 08:08.380
+`collect` helper function.
+
+74
+08:08.380 --> 08:14.140
+The reason why I did this is because I'm gonna 
+short this structure before I actually return them
+
+75
+08:19.260 --> 08:20.550
+let's loop through the posts
+
+76
+08:29.580 --> 08:30.270
+then here
+
+77
+08:30.270 --> 08:33.860
+let's define a temporary variable to hold a new structure. Here
+
+78
+08:33.870 --> 08:38.640
+I'm gonna call it item and assign an array
+
+79
+08:42.840 --> 08:49.230
+then inside this we can take the things that exist in 
+the post instance without need to know whether 
+
+80
+08:49.350 --> 08:52.490
+it's a question or answer instance.
+
+81
+08:52.530 --> 08:55.130
+So here we have vptes count
+
+82
+09:04.320 --> 09:06.490
+and created at
+
+83
+09:15.070 --> 09:15.600
+and here
+
+84
+09:15.640 --> 09:22.600
+I'm gonna format it in capital M d capital Y
+
+85
+09:27.630 --> 09:31.920
+now for other values such as title type and accepted
+
+86
+09:32.100 --> 09:41.450
+we need to distinguish whether the post is answer 
+or question instance. Here we can just say if post
+
+87
+09:42.650 --> 09:45.740
+instance of answer
+
+88
+09:50.000 --> 09:53.510
+then inside this we can define the type title and accepted
+
+89
+09:56.770 --> 10:00.200
+so the type is going to be 'A'
+
+90
+10:05.860 --> 10:09.440
+then the title is going to taken from
+
+91
+10:11.950 --> 10:15.460
+post question title
+
+92
+10:25.220 --> 10:28.490
+now four accepted it will hold boolean value.
+
+93
+10:28.490 --> 10:50.140
+And here we can say if post question best answer id 
+is equals to post id then return `true` otherwise
+
+94
+10:50.440 --> 10:55.810
+return `false`.
+
+95
+10:55.870 --> 10:59.800
+All right now we can copy this whole lines
+
+96
+11:02.530 --> 11:09.160
+paste here let's add else in front of the if
+
+97
+11:12.070 --> 11:19.510
+then change this to question so if the post is instance of question
+
+98
+11:22.690 --> 11:32.800
+then the type is going to be 'Q'. The title is gonna 
+taken from post title now for accepted in here
+
+99
+11:32.800 --> 11:35.890
+we can simply remove the question
+
+100
+11:40.090 --> 11:45.520
+and remove everything after this.
+
+101
+11:45.550 --> 11:52.090
+Remember that the best answer id as the name implies 
+is to hold answer's id that marked as best answer
+
+102
+11:52.660 --> 12:01.600
+if none answer accepted this would be null. So to return 
+boolean value we can simply typecast to boolean like
+
+103
+12:01.600 --> 12:01.890
+so.
+
+104
+12:06.730 --> 12:13.100
+All right
+
+105
+12:13.290 --> 12:15.490
+All right so we have our new structure
+
+106
+12:15.540 --> 12:21.320
+we can add that into data variable. Since data 
+is a collection we can add the item to it
+
+107
+12:21.350 --> 12:30.400
+by saying data push item.
+
+108
+12:30.860 --> 12:36.590
+And lastly we can return to data by saying return data.
+
+109
+12:37.310 --> 12:40.530
+But as I mentioned before I want to short the whole structure
+
+110
+12:40.760 --> 12:46.510
+In this case I want to sort them by 
+votes count. How can we do that? Here
+
+111
+12:46.520 --> 12:48.800
+because data is a collection instance
+
+112
+12:48.950 --> 12:53.590
+here we can simply chain in with `sortBy` if you want to sort
+
+113
+12:53.610 --> 12:58.180
+this ascendingly. But in my case I want to sort them descendingly
+
+114
+12:58.250 --> 13:09.470
+So here I'll say sort by descending and pass the votes count in.
+
+115
+13:09.470 --> 13:12.490
+So until this point we have our collection sorted.
+
+116
+13:12.680 --> 13:16.260
+but the sort method will keep the original array keys.
+
+117
+13:16.340 --> 13:20.860
+So in this case we need to chain in with `values`
+
+118
+13:24.480 --> 13:32.930
+to reset the keys to consecutively numbered index. 
+And last we can call `all` method.
+
+119
+13:32.930 --> 13:33.230
+All right
+
+120
+13:37.950 --> 13:40.790
+I think that's all we need to do in this posts method.
+
+121
+13:40.830 --> 13:42.830
+Now let's do the final step
+
+122
+13:42.840 --> 13:44.600
+let's provide a route for this logic.
+
+123
+13:45.480 --> 13:48.240
+Let's open up our api.php
+
+124
+13:52.490 --> 13:53.690
+inside here
+
+125
+13:53.690 --> 13:54.830
+let's define a get route
+
+126
+13:58.260 --> 14:01.640
+the uri is going to be my posts
+
+127
+14:02.680 --> 14:05.550
+and the route handling is going to be api
+
+128
+14:06.210 --> 14:11.420
+My posts controller.
+
+129
+14:11.530 --> 14:12.050
+All right
+
+130
+14:12.070 --> 14:12.880
+save all changes.
+
+131
+14:16.410 --> 14:20.740
+And now let's test our endpoint in postman.
+
+132
+14:20.900 --> 14:23.500
+Let's go to questions
+
+133
+14:23.510 --> 14:24.530
+Let's duplicate this
+
+134
+14:31.040 --> 14:36.500
+then I'll rename it to current user's posts
+
+135
+14:39.820 --> 14:50.270
+the method will be the same while 
+the you URL will be API my posts.
+
+136
+14:50.290 --> 14:52.420
+Now if I hit the send button
+
+137
+14:58.520 --> 14:59.780
+I get status OK
+
+138
+15:00.110 --> 15:09.290
+but here I got log in page so I need 
+to go to headers and add accept
+
+139
+15:12.720 --> 15:15.970
+the value is going to be application json
+
+140
+15:17.470 --> 15:24.740
+Now if I hit the send button again 
+here I get error Unauthenticated error.
+
+141
+15:25.250 --> 15:28.430
+So we need to specify the authorize header in here
+
+142
+15:32.060 --> 15:34.580
+authorization
+
+143
+15:34.640 --> 15:35.900
+let's copy the access token
+
+144
+15:50.870 --> 16:00.370
+here in the authorization let's add 
+bearer add a space and paste the token.
+
+145
+16:00.400 --> 16:01.990
+Now if I hit the send button again
+
+146
+16:06.680 --> 16:12.750
+OK here we get the response back which contain answer
+
+147
+16:15.720 --> 16:16.520
+questions
+
+148
+16:16.530 --> 16:21.820
+Awesome.
+
+149
+16:21.830 --> 16:23.840
+Now let's try adding type parameter
+
+150
+16:28.640 --> 16:36.940
+and here it's going to be questions hit send button.
+
+151
+16:37.240 --> 16:40.040
+All right now we're getting the question back.
+
+152
+16:40.150 --> 16:43.390
+Let's change this type to answers
+
+153
+16:46.660 --> 16:48.160
+hit the send button one more time
+
+154
+16:51.530 --> 16:52.550
+OK
+
+155
+16:52.730 --> 16:55.150
+now I have answers getting back here.
+
+156
+16:55.520 --> 16:57.320
+OK that's it for this lesson
+
+157
+16:57.410 --> 17:02.810
+We now have API endpoint that later on will be 
+used  to display the current user's posts whether
+
+158
+17:02.810 --> 17:05.560
+questions answers or both.
+
+159
+17:05.570 --> 17:11.390
+And with that being said let's continue to the next 
+section where we'll learn how to build SPA or a single
+
+160
+17:11.390 --> 17:16.910
+page application and consume our API 
+endpoints that we have built in this section.
+
+161
+17:16.910 --> 17:17.260
+All right
+
+162
+17:17.330 --> 17:20.480
+Let's commit all changes that we made today in our git repo.

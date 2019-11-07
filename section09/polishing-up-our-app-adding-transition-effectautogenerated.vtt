@@ -1,0 +1,166 @@
+WEBVTT
+
+0
+00:01.560 --> 00:08.010
+In this lesson we're going to add transition effect to 
+our application to make switching between the pages
+
+1
+00:08.460 --> 00:10.110
+looks smoother.
+
+2
+00:10.200 --> 00:16.590
+We'll also add AJAX spinner when API being hit to indicate 
+that the request being processed and waiting
+
+3
+00:16.590 --> 00:18.380
+for the response.
+
+4
+00:18.390 --> 00:20.580
+All right let's head over to our terminal
+
+5
+00:23.280 --> 00:25.140
+and here let me create a new branch
+
+6
+00:31.860 --> 00:32.210
+OK
+
+7
+00:32.450 --> 00:44.330
+let's run Laravel mix by saying npm run watch.
+
+8
+00:44.840 --> 00:47.610
+All right to add transition effect in Vue
+
+9
+00:47.610 --> 00:53.370
+actually it's very easy. Let's open spa.blade.php
+
+10
+00:58.370 --> 01:02.710
+and here let's wrap this router view with
+
+11
+01:05.850 --> 01:06.570
+transition
+
+12
+01:15.090 --> 01:28.020
+let's specify name to fed. For transitioning between 
+components will also need to specify mode and it's
+
+13
+01:28.020 --> 01:30.430
+gonna be out in
+
+14
+01:30.630 --> 01:32.220
+which means current element
+
+15
+01:32.220 --> 01:39.380
+transition out first then when complete 
+the new element transitions in.
+
+16
+01:39.600 --> 01:42.290
+Now let's define our transition styles.
+
+17
+01:42.360 --> 01:46.170
+Let's open app.scss
+
+18
+01:53.100 --> 01:53.860
+And here
+
+19
+01:53.890 --> 01:56.810
+let's define fade
+
+20
+01:57.190 --> 01:58.990
+enter active
+
+21
+02:03.540 --> 02:07.050
+fade leave active
+
+22
+02:10.690 --> 02:16.810
+so the fade prefix should be match with the 
+name that we specified in the transition name
+
+23
+02:21.680 --> 02:21.970
+here
+
+24
+02:22.000 --> 02:26.370
+let's add css transition effect by saying transition
+
+25
+02:29.240 --> 02:29.930
+opacity
+
+26
+02:32.970 --> 02:35.120
+in 3 second linear
+
+27
+02:38.990 --> 02:40.840
+let's also define fade
+
+28
+02:41.750 --> 02:42.230
+enter
+
+29
+02:45.500 --> 02:49.530
+fade leave to
+
+30
+02:50.000 --> 02:53.110
+and in here let's set the opacity to zero.
+
+31
+02:58.010 --> 02:58.500
+All right
+
+32
+02:58.730 --> 02:59.670
+let's save all changes
+
+33
+03:03.800 --> 03:04.840
+and let's see how that look
+
+34
+03:08.890 --> 03:09.620
+reload the page
+
+35
+03:14.030 --> 03:16.700
+now if we switch to my post page
+
+36
+03:20.230 --> 03:21.430
+back to questions.
+
+37
+03:23.300 --> 03:26.870
+As you can see now switching between the pages looks smoother
+
+38
+03:34.630 --> 03:36.400
+Alright in the next video
+
+39
+03:36.430 --> 03:38.560
+we'll see how the show the AJAX spinner.

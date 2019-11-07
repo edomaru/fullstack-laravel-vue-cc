@@ -1,0 +1,221 @@
+WEBVTT
+
+0
+00:01.480 --> 00:09.840
+In this video we'll fix the syntax highlight issue when 
+the load more answer button being hit. And sometimes
+
+1
+00:09.840 --> 00:14.020
+it occur to some answers when the page firstly loaded.
+
+2
+00:18.240 --> 00:24.060
+Here after reload the syntax highlight is come back 
+and I don't know exactly why. But to fix these issues
+
+3
+00:24.150 --> 00:29.110
+is very easy because actually we 
+only need to fix both in one place.
+
+4
+00:29.370 --> 00:34.310
+So if we open our browser console then hit the Network tab
+
+5
+00:38.380 --> 00:39.230
+reload the page
+
+6
+00:47.580 --> 00:58.020
+here after the page first loaded we 
+made ajax call to retrieve all answers.
+
+7
+00:58.250 --> 01:00.840
+And when we hit this load more answers
+
+8
+01:03.930 --> 01:05.330
+we make almost the same
+
+9
+01:05.330 --> 01:06.000
+AJAX call.
+
+10
+01:11.180 --> 01:13.130
+So let's switch over to our editor
+
+11
+01:16.020 --> 01:18.390
+here I'll run npm run watch
+
+12
+01:22.420 --> 01:24.400
+then here in answers component
+
+13
+01:24.590 --> 01:25.550
+let's find the button
+
+14
+01:32.120 --> 01:36.990
+here on click event we call fetch method.
+
+15
+01:37.150 --> 01:39.250
+Now if you go to the script section
+
+16
+01:42.780 --> 01:46.040
+and here in created hook we also call the fetch method.
+
+17
+01:46.610 --> 01:52.120
+So let's jump to fetch method.
+
+18
+01:52.170 --> 01:56.670
+Now remember that vue js performs 
+DOM updates asynchronously.
+
+19
+01:56.670 --> 02:02.910
+So here we need to call the highlight method after  
+vue js finished updating the DOM. In the previous
+
+20
+02:02.910 --> 02:03.540
+video
+
+21
+02:03.540 --> 02:06.040
+we've utilized the vue js next tick method.
+
+22
+02:06.300 --> 02:11.640
+But in this case we can simply chain in the then method like this
+
+23
+02:16.740 --> 02:25.590
+and pass in an arrow function. In here we simply 
+get back the answers from AJAX request loop
+
+24
+02:25.640 --> 02:30.910
+each one of them and call the highlight 
+method for every single answer.
+
+25
+02:30.980 --> 02:37.670
+So to do that here I'm going to call this dot answer ids.
+
+26
+02:40.260 --> 02:47.460
+This array will hold all ids of answers that we get 
+back from AJAX request. We will define the variable
+
+27
+02:47.480 --> 02:48.580
+shortly.
+
+28
+02:49.000 --> 02:54.270
+And after that we can loop each id by 
+utilizing javascript for each method
+
+29
+02:58.070 --> 03:01.940
+and pass in an arrow function which accepts id as argument
+
+30
+03:05.100 --> 03:08.780
+this arrow function will be called in each loop.
+
+31
+03:08.880 --> 03:16.840
+Here we can highlight an element which 
+has id answer followed by answer id
+
+32
+03:16.870 --> 03:18.860
+Now let's jump to data method
+
+33
+03:24.620 --> 03:25.390
+and here
+
+34
+03:25.390 --> 03:27.430
+let's define the answer ids array
+
+35
+03:30.460 --> 03:38.010
+back to fetch method. Here before we make 
+AJAX call let's reset the answer ids array to make
+
+36
+03:38.010 --> 03:42.630
+sure that every time we'll make AJAX 
+call we don't have duplicate answer ids
+
+37
+03:49.750 --> 03:55.470
+then here when AJAX call succeed before the highlight 
+method being called let's collect all ids of our
+
+38
+03:55.520 --> 04:08.610
+answers by utilizing javascript map method 
+and assign them to answer ids array.
+
+39
+04:08.710 --> 04:09.220
+All right
+
+40
+04:09.360 --> 04:10.190
+let's save all changes
+
+41
+04:14.970 --> 04:15.740
+reload the page
+
+42
+04:23.680 --> 04:26.050
+okay the syntax highlight is still working.
+
+43
+04:26.200 --> 04:28.040
+Let's hit the load more answers
+
+44
+04:28.050 --> 04:28.390
+button
+
+45
+04:34.720 --> 04:35.150
+great
+
+46
+04:35.210 --> 04:38.250
+the syntax highlight also working here.
+
+47
+04:38.250 --> 04:38.900
+All right
+
+48
+04:38.920 --> 04:40.000
+I think that's enough
+
+49
+04:40.270 --> 04:42.560
+we finished our lessons in this section.
+
+50
+04:42.610 --> 04:47.470
+Let's commit our changes to our git repo and 
+merge everything into our master branch

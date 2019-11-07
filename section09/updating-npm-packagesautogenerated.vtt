@@ -1,0 +1,445 @@
+WEBVTT
+
+0
+00:01.870 --> 00:06.070
+In the previous section you've learned about 
+RESTful API development with Laravel.
+
+1
+00:06.760 --> 00:13.690
+So now you have REST server and you can consume 
+your APIs for internal or external use. Internal
+
+2
+00:13.690 --> 00:20.590
+use means both API and user interface are in one 
+place or one application as we've done so far.
+
+3
+00:21.340 --> 00:26.830
+External use means both API and user 
+interface placed in separate application.
+
+4
+00:27.040 --> 00:33.160
+So you have one application as REST API server 
+and you could have mobile app or a javascript app
+
+5
+00:33.160 --> 00:40.580
+that will consume your APIs. In this section we're 
+gonna build single page application or SPA and
+
+6
+00:40.580 --> 00:47.060
+consume our APIs that we have build internally because 
+I think this way is very easy and we don't need
+
+7
+00:47.060 --> 00:51.140
+to do a lot of stuffs. Now before moving forward
+
+8
+00:51.620 --> 00:57.500
+let's update our npm packages because as you might 
+seen when you're pushing your changes to github
+
+9
+00:57.950 --> 01:04.970
+it show you vulnerabilities warning. So if you're unsure 
+about your NPM packages you can go to your terminal
+
+10
+01:07.070 --> 01:09.150
+and type npm audit.
+
+11
+01:15.090 --> 01:16.210
+If you get something like these
+
+12
+01:19.650 --> 01:22.550
+then you need to fix your NPM packages.
+
+13
+01:22.710 --> 01:26.070
+So here you can see the package name that you need to fix
+
+14
+01:26.280 --> 01:29.040
+dependency information and so on
+
+15
+01:34.430 --> 01:48.410
+here in the bottom I have 384 hight severity vulnerabilities. 
+And here NPM also suggest to run npm audit fix. This
+
+16
+01:48.410 --> 01:54.770
+command will automatically install compatible 
+updates to vulnerable dependencies.
+
+17
+01:54.770 --> 01:55.340
+All right
+
+18
+01:55.340 --> 02:06.410
+before we do that let's create a new branch to isolate 
+new changes that will make git checkout -b and
+
+19
+02:06.410 --> 02:07.280
+the brand name
+
+20
+02:07.280 --> 02:17.930
+let's say audit npm packages or you can give it any name you like.
+
+21
+02:17.940 --> 02:20.290
+Now let's run that npm
+
+22
+02:20.460 --> 02:21.990
+audit fix
+
+23
+02:26.260 --> 02:26.660
+once that
+
+24
+02:26.660 --> 02:29.500
+done we can execute the npm audit again
+
+25
+02:35.950 --> 02:40.030
+and now I get found 0 vulnerabilities.
+
+26
+02:40.030 --> 02:48.340
+Okay we fixed our NPM packages from security 
+vulnerabilities by executing NPM audit fixed.
+
+27
+02:48.340 --> 02:55.180
+Now I also want to make sure I don't have outdated 
+packages. Here I can say NPM outdated
+
+28
+03:00.190 --> 03:07.780
+here I have some outdated packages in a second column 
+we can see the current version next column we
+
+29
+03:07.780 --> 03:14.080
+can see the wanted version which means the maximum version of the package that satisfies the semver
+
+30
+03:14.410 --> 03:20.920
+or a semantic version in range specified in packages
+dot json. While the last one shows us the latest
+
+31
+03:20.920 --> 03:26.590
+version or the version of the package 
+tagged as latest in the registry.
+
+32
+03:26.590 --> 03:32.930
+Here we can execute npm update to get the 
+latest non breaking changes for all packages.
+
+33
+03:33.070 --> 03:41.530
+If you want to update the next major version 
+you can execute npm install package name
+
+34
+03:45.150 --> 03:48.180
+at and specify the version.
+
+35
+03:48.450 --> 03:54.690
+But be careful because it could have breaking changes 
+and you will need to update your application to
+
+36
+03:54.690 --> 03:59.520
+accommodate those changes. So to 
+updates all NPM packages safely
+
+37
+03:59.520 --> 04:09.780
+let's run npm update instead.
+
+38
+04:09.880 --> 04:13.530
+Now if I run and npm outdated again
+
+39
+04:17.120 --> 04:27.250
+here you'll see the color turns to yellow and you also 
+see the same version on current and wanted column.
+
+40
+04:27.360 --> 04:27.950
+All right
+
+41
+04:27.950 --> 04:30.210
+the next thing that I want to do is to update font
+
+42
+04:30.260 --> 04:30.730
+awesome.
+
+43
+04:31.220 --> 04:36.260
+So when I start building this project I used font awesome version
+
+44
+04:36.450 --> 04:39.190
+let me see that in package dot
+
+45
+04:39.200 --> 04:39.660
+json
+
+46
+04:43.830 --> 04:48.210
+so here I used version 5.0.13
+
+47
+04:48.250 --> 04:53.980
+Now the reason why I want to update it is to make 
+sure that everything is up to date as possible.
+
+48
+04:54.120 --> 04:57.290
+But if you don't want to updated it, it doesn't matter.
+
+49
+04:57.510 --> 05:04.200
+Or if you follow the font awesome installation in "New 
+Laravel versions reference guide" then you can skip
+
+50
+05:04.200 --> 05:05.290
+this.
+
+51
+05:05.520 --> 05:11.660
+So the current version now is 5.11 and 
+installing the new one is slightly different.
+
+52
+05:12.000 --> 05:17.150
+So let me uninstall my old font awesome. I'll copy this
+
+53
+05:20.550 --> 05:23.950
+and here I'm going to say npm uninstall
+
+54
+05:31.070 --> 05:32.090
+also this one
+
+55
+05:39.960 --> 05:44.800
+npm uninstall and paste hit return
+
+56
+05:48.370 --> 06:01.620
+once that done I can install font awesome svg core 
+package by saying npm install fort awesome font
+
+57
+06:01.830 --> 06:04.760
+awesome svg
+
+58
+06:04.950 --> 06:06.570
+core dash d
+
+59
+06:12.100 --> 06:14.620
+then I'll need to install solid icons
+
+60
+06:19.340 --> 06:30.960
+fort awesome free solid svg icons
+
+61
+06:31.000 --> 06:33.190
+All right let me go to my editor
+
+62
+06:37.070 --> 06:39.380
+then open font
+
+63
+06:39.430 --> 06:42.140
+awesome dot js
+
+64
+06:46.000 --> 06:46.600
+here
+
+65
+06:46.600 --> 06:52.240
+firstly I need to import the config library 
+and dom from font awesome svg core
+
+66
+06:56.360 --> 06:56.650
+here
+
+67
+06:56.660 --> 06:58.980
+I can optionally set config
+
+68
+06:59.120 --> 07:02.150
+auto replace svg to nest
+
+69
+07:04.820 --> 07:06.860
+then I can import the font like so
+
+70
+07:17.910 --> 07:19.420
+and now I can remove this lines
+
+71
+07:26.910 --> 07:32.130
+and here I no longer need to call font awesome here just library
+
+72
+07:32.310 --> 07:32.610
+add
+
+73
+07:35.820 --> 07:37.770
+we can remove with these brackets
+
+74
+07:46.670 --> 07:50.600
+and last we can say dom watch.
+
+75
+07:52.170 --> 07:56.490
+This command will find i tags and replace with svg.
+
+76
+07:56.520 --> 07:57.430
+All right
+
+77
+07:57.870 --> 08:02.070
+let me set save these change back to terminal
+
+78
+08:06.460 --> 08:10.490
+and run Laravel mix by saying npm run
+
+79
+08:10.560 --> 08:10.980
+watch
+
+80
+08:14.680 --> 08:15.150
+Now here
+
+81
+08:15.160 --> 08:21.540
+when running the new version of Laravel mix it will 
+install other dependencies such as vue template
+
+82
+08:21.550 --> 08:22.120
+compiler
+
+83
+08:26.090 --> 08:34.620
+All right let me go to my browser and reload a page. Ups
+
+84
+08:35.360 --> 08:42.230
+it's look like I made a mistake removing navbar 
+laravel css rule in my app dot scss when
+
+85
+08:42.230 --> 08:43.150
+upgrading laravel app.
+
+86
+08:43.960 --> 08:45.260
+So let me open that file
+
+87
+08:54.040 --> 08:57.670
+and here I'll rewrite the css rule for navbar laravel
+
+88
+09:01.570 --> 09:05.800
+let me save this change back to my browser
+
+89
+09:10.100 --> 09:10.700
+and reload
+
+90
+09:14.080 --> 09:17.130
+OK I think it's better.
+
+91
+09:17.290 --> 09:24.820
+Now let's commit all the changes that we made 
+to our git repo. Back to terminal hit control+c
+
+92
+09:28.350 --> 09:38.040
+and here git and all. git commit -m and I'll say fix
+
+93
+09:38.280 --> 09:39.240
+vulnerable
+
+94
+09:41.730 --> 09:53.650
+NPM packages and update font awesome.
+
+95
+09:53.700 --> 09:55.510
+Now we can switch to monster branch.
+
+96
+09:55.560 --> 09:56.040
+git
+
+97
+09:56.130 --> 09:57.680
+checkout master
+
+98
+10:00.500 --> 10:06.180
+and merge to our latest branch git merge
+
+99
+10:06.300 --> 10:09.030
+audit npm packages
+
+100
+10:14.560 --> 10:18.260
+and now let's push the changes in 
+our master branch to our remote
+
+101
+10:18.270 --> 10:22.460
+repo git push origin master.
+
+102
+10:30.640 --> 10:35.630
+All right now let's finally start our journey 
+on building single page application.

@@ -1,0 +1,168 @@
+WEBVTT
+
+0
+00:01.830 --> 00:07.200
+After we've successfully implemented create 
+and update answer functionally now
+
+1
+00:07.260 --> 00:14.430
+let's complete our CRUD operation in our application by implementing delete functionality for answer.
+
+2
+00:14.430 --> 00:16.710
+All right let's switch over to our terminal
+
+3
+00:19.600 --> 00:20.710
+and then create new branch
+
+4
+00:29.240 --> 00:30.030
+OK
+
+5
+00:30.070 --> 00:31.800
+Now let's open
+
+6
+00:31.810 --> 00:32.860
+answers
+
+7
+00:32.920 --> 00:33.780
+controller
+
+8
+00:41.420 --> 00:42.250
+and here
+
+9
+00:42.330 --> 00:43.310
+let's add question
+
+10
+00:43.400 --> 00:44.360
+In the first argument
+
+11
+00:49.820 --> 00:54.060
+note that this argument is useless in this method.
+
+12
+00:54.240 --> 00:58.340
+But the reason define it is to follow the uri pattern in our routes.
+
+13
+00:58.380 --> 00:59.550
+So let me show you again
+
+14
+01:12.370 --> 01:19.830
+as you can see here there are two route parameters.
+
+15
+01:20.200 --> 01:20.600
+OK
+
+16
+01:20.650 --> 01:21.070
+here we
+
+17
+01:21.070 --> 01:28.970
+authorize the user by saying this authorized delete
+
+18
+01:30.430 --> 01:31.510
+answer
+
+19
+01:35.550 --> 01:42.330
+And then after that we can delete the 
+answer by calling answer delete
+
+20
+01:46.650 --> 02:07.320
+last we can refresh the page by calling return back 
+and then specify the flash message.
+
+21
+02:07.320 --> 02:13.530
+Now if you remember when new answer is created the answers_count column on the questions table should
+
+22
+02:13.530 --> 02:17.350
+be incremented and that's mean
+
+23
+02:17.380 --> 02:21.160
+when the answer removed we need to 
+decrement that column right?
+
+24
+02:21.160 --> 02:23.010
+So let's open the answer model
+
+25
+02:28.320 --> 02:29.710
+go to boot method
+
+26
+02:34.790 --> 02:42.470
+and here we can say static double colons deleted pass a closure
+
+27
+02:49.630 --> 02:52.340
+define an argument to represent the answer instance.
+
+28
+02:55.830 --> 03:13.190
+And here we can decrement the answers count column 
+by saying answer question decrement answers_count.
+
+29
+03:13.450 --> 03:18.860
+And now I realize that this is not necesary
+
+30
+03:18.950 --> 03:21.190
+so just remove it.
+
+31
+03:23.250 --> 03:23.880
+All right
+
+32
+03:24.080 --> 03:25.550
+save all changes.
+
+33
+03:26.630 --> 03:27.940
+And let's give it a try.
+
+34
+03:31.430 --> 03:36.870
+So here is the question that has been 
+answered by the current user.
+
+35
+03:41.900 --> 03:48.480
+And here the answers_count is three.
+
+36
+03:48.950 --> 03:50.200
+Let's hit the delete button.
+
+37
+03:52.290 --> 03:53.260
+Hit OK.
+
+38
+04:01.430 --> 04:07.960
+The delete message show up and here the number 
+of answers count has been decrement
+
+39
+04:08.170 --> 04:08.500
+Great.

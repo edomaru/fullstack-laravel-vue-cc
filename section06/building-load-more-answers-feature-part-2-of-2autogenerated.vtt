@@ -1,0 +1,350 @@
+WEBVTT
+
+0
+00:02.820 --> 00:09.060
+This error I think it come from yeah as you can see here
+
+1
+00:10.370 --> 00:22.860
+The user info is gone so let's switch back over 
+to our editor jump to route service provider
+
+2
+00:23.010 --> 00:25.920
+And here we still need to eager load to user model
+
+3
+00:30.810 --> 00:32.090
+I'll reopen the console
+
+4
+00:34.650 --> 00:35.750
+reload again.
+
+5
+00:39.140 --> 00:39.670
+OK
+
+6
+00:39.730 --> 00:40.970
+the error is gone.
+
+7
+00:42.530 --> 00:47.810
+Let's switch back over to our editor and go to answers component
+
+8
+00:51.340 --> 00:56.610
+and here we can extract or get only data 
+property from the response object like this
+
+9
+01:00.010 --> 01:04.930
+So this is es 6 feature and it's something 
+called object destructuring.
+
+10
+01:04.930 --> 01:06.350
+So let me show it to you.
+
+11
+01:06.700 --> 01:08.760
+Let me go back to my browser
+
+12
+01:13.580 --> 01:15.590
+and here I'll define a person object.
+
+13
+01:18.890 --> 01:24.390
+It contains full name let's say john doe
+
+14
+01:27.190 --> 01:30.300
+and age 30
+
+15
+01:33.770 --> 01:35.510
+currently if I call full name
+
+16
+01:40.180 --> 01:41.010
+I'll get error
+
+17
+01:41.120 --> 01:43.770
+full name not defined.
+
+18
+01:43.960 --> 01:49.230
+Now if I want to pull the full name from Person 
+object we can use object structuring like this
+
+19
+01:57.320 --> 02:02.560
+Now if I call full name I'll get John do.
+
+20
+02:02.900 --> 02:05.270
+So that's about object destructuring.
+
+21
+02:05.420 --> 02:09.230
+It's basically unpack one or more properties from object
+
+22
+02:09.650 --> 02:10.920
+I hope you get the idea.
+
+23
+02:14.970 --> 02:19.750
+Last let's push all answers in data property to answers array
+
+24
+02:19.800 --> 02:21.200
+in this component.
+
+25
+02:21.420 --> 02:22.530
+So if you remember
+
+26
+02:27.330 --> 02:30.370
+all answers are house in data
+
+27
+02:33.200 --> 02:33.620
+data
+
+28
+02:41.360 --> 02:44.030
+here we can push them to answers array
+
+29
+02:44.040 --> 02:50.300
+by saying this dot answers dot push.
+
+30
+02:50.410 --> 02:59.850
+But here if we pass in data dot data like this we'll 
+get trouble because all answers that we take from
+
+31
+02:59.940 --> 03:03.750
+response object will not be merged into a single array.
+
+32
+03:03.840 --> 03:10.950
+Instead they will be pushed as one item 
+which will result array within array. Actually
+
+33
+03:10.980 --> 03:21.430
+let me show you again in console so that you know what I mean.
+
+34
+03:21.470 --> 03:23.440
+So here I'll define an array
+
+35
+03:26.300 --> 03:39.640
+it contains a and b then I'll define 
+another array it will contains c d e.
+
+36
+03:44.500 --> 03:44.910
+Now
+
+37
+03:44.920 --> 03:47.940
+If I push the second array to the first array like this
+
+38
+03:55.660 --> 03:57.700
+and then called the first array
+
+39
+04:04.500 --> 04:10.650
+you'll see it has three items which the third item is still an array.
+
+40
+04:10.700 --> 04:13.510
+So that's the point that I mentioned earlier.
+
+41
+04:13.520 --> 04:18.060
+Now the question is how can we 
+kind of merge between two arrays?
+
+42
+04:18.650 --> 04:23.060
+Well actually it's a very easy let me define another array
+
+43
+04:27.410 --> 04:30.880
+It will contain F and G.
+
+44
+04:34.790 --> 04:37.850
+Now here we can utilize es 6 spread operator.
+
+45
+04:37.880 --> 04:42.480
+So here data three push data two
+
+46
+04:45.540 --> 04:47.000
+and before data two
+
+47
+04:47.160 --> 04:48.600
+here we add tripled dots
+
+48
+04:51.860 --> 04:55.580
+here it has five items or if we call the data three
+
+49
+05:04.040 --> 05:06.790
+you can see it contains five items.
+
+50
+05:07.250 --> 05:08.840
+So I hope it will make sense.
+
+51
+05:12.030 --> 05:12.510
+So here
+
+52
+05:15.700 --> 05:20.570
+just add triple dots before the data
+
+53
+05:20.620 --> 05:20.990
+All right
+
+54
+05:21.070 --> 05:23.940
+let's save these and have a look.
+
+55
+05:28.920 --> 05:35.680
+Reload the page
+
+56
+05:35.790 --> 05:39.310
+I get error data is not defined
+
+57
+05:39.480 --> 05:40.140
+Sorry
+
+58
+05:40.230 --> 05:54.200
+this should be data.
+
+59
+05:54.230 --> 05:58.010
+Now I have no error and all answers come back.
+
+60
+05:58.090 --> 06:06.970
+Great.
+
+61
+06:07.010 --> 06:13.820
+Now it's time to make this load more answers working.
+Le'ts switch back over to our editor go to template
+
+62
+06:17.930 --> 06:24.690
+OK here let's make this button available or appear 
+only if there are more answers to be loaded
+
+63
+06:24.740 --> 06:29.530
+And as I said we can check from 
+next page URL in response object.
+
+64
+06:29.930 --> 06:32.060
+So here we can say v-if
+
+65
+06:35.740 --> 06:40.740
+next URL and we'll define that shortly.
+
+66
+06:44.970 --> 06:52.830
+And then when this button is hit we simply 
+call fetch method and pass the URL in
+
+67
+06:56.570 --> 06:57.180
+OK
+
+68
+06:57.250 --> 07:13.060
+inside this data method let's add the next 
+URL and it should be null by default.
+
+69
+07:13.270 --> 07:18.770
+And then here we need to assign the next page
+URL from response object to our next URL
+
+70
+07:18.990 --> 07:25.970
+property.
+
+71
+07:26.120 --> 07:30.510
+All right let's save and have a look.
+
+72
+07:34.450 --> 07:35.260
+Reload the page
+
+73
+07:43.820 --> 07:44.240
+Now
+
+74
+07:44.250 --> 07:45.380
+let me hit the button.
+
+75
+07:48.490 --> 07:54.880
+As you can see we have some answers 
+added here and the button disappear
+
+76
+07:55.200 --> 07:58.870
+when no more answers found in database. Great!
+
+77
+07:59.990 --> 08:00.540
+OK
+
+78
+08:00.660 --> 08:04.950
+We have successfully implemented load 
+more answers feature in our application.
+
+79
+08:04.950 --> 08:10.830
+So now it doesn't need to display entire answers on 
+the first load and it will make our page loading time
+
+80
+08:10.920 --> 08:14.730
+a bit faster and it much be better for user experience.
+
+81
+08:15.270 --> 08:16.390
+OK that's it let's save
+
+82
+08:16.570 --> 08:20.000
+all changes to our git repo and I'll see you in the next lesson.

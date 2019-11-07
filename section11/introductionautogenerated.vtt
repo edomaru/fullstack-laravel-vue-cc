@@ -1,0 +1,156 @@
+WEBVTT
+
+0
+00:00.230 --> 00:03.210
+Laravel has release cycle every six months
+
+1
+00:04.940 --> 00:08.840
+probably in a year there would be two versions release.
+
+2
+00:08.930 --> 00:15.780
+So to keep our application up to date we need to 
+upgrade our larval app once new version released.
+
+3
+00:15.890 --> 00:22.280
+But upgrading level up manually is not easy because 
+we need to update the laraval framework with its
+
+4
+00:22.280 --> 00:23.540
+dependencies
+
+5
+00:23.570 --> 00:25.250
+to the newer version.
+
+6
+00:25.250 --> 00:31.690
+If we are using third party dependencies then we need 
+to update them where the newest frameworks support.
+
+7
+00:31.700 --> 00:35.640
+We also need to make some changes 
+to our core application structure,
+
+8
+00:35.900 --> 00:41.000
+adding new files or install additional third 
+party packages to fit the new framework.
+
+9
+00:43.640 --> 00:51.570
+So an alternative way is to use third party services 
+called laravel shift you can visit the homepage
+
+10
+00:51.600 --> 00:55.820
+by accessing laravelshift.com.
+
+11
+00:55.840 --> 01:06.190
+Here we can see that this service able to update from 
+laravel version 4.2 to 5.8 which the current version
+
+12
+01:06.340 --> 01:07.690
+when I'm recording this video
+
+13
+01:12.090 --> 01:17.420
+it's not free but the price that they offer is not much expensive.
+
+14
+01:17.420 --> 01:21.110
+You can pay from three to twenty nine dollar.
+
+15
+01:21.110 --> 01:28.760
+You can see more detail about the price by hitting this link.
+
+16
+01:28.940 --> 01:41.220
+For example you can update larval version 
+from 5.7 to 5.8 for $9. Laravel 5.6 to 5.7
+
+17
+01:41.240 --> 01:44.900
+$13 and so on.
+
+18
+01:44.900 --> 01:50.750
+So if you don't have time to manually upgrade your app 
+then you can try this service but if you don't want
+
+19
+01:50.750 --> 01:55.650
+to spend some money or other reasons 
+then you need to upgrade manually.
+
+20
+01:55.850 --> 02:00.090
+And in this section I'm going to show you how 
+to upgrade laravel application manually.
+
+21
+02:02.960 --> 02:07.320
+when firstly recording this course I was using Laravel 5.6.
+
+22
+02:07.320 --> 02:17.570
+So in this section I'll provide how to upgrade 
+laravel from Version 5.6 to 5.7 and 5.7 to 5.8
+
+23
+02:17.570 --> 02:23.680
+and I'll do my best to add new upgrade 
+guide when new laravel version release.
+
+24
+02:23.790 --> 02:26.560
+You don't need to follow all lessons in this section
+
+25
+02:26.640 --> 02:31.440
+just follow the upgrade guide based on 
+which level version you are using.
+
+26
+02:31.440 --> 02:38.310
+For example if you're using version 5.7 when follow 
+this course then you can follow upgrade guide
+
+27
+02:38.640 --> 02:45.690
+for Level 5.8 or if you're using laravel 
+5.8 and new version released
+
+28
+02:45.750 --> 02:51.540
+then you can come back here and hopefully I've been 
+provided the upgrade guide for the newer version.
+
+29
+02:53.080 --> 02:59.900
+Now before following the upgrade guide please 
+check the server requirements in laravel official
+
+30
+02:59.900 --> 03:07.040
+documentation and make sure all the requirements 
+on your server are met so that your app still work
+
+31
+03:07.070 --> 03:11.420
+properly after upgrade finished. When your server ready
+
+32
+03:11.440 --> 03:13.880
+You can then follow the guide based on your need.
+
+33
+03:14.830 --> 03:16.050
+OK let's get started.

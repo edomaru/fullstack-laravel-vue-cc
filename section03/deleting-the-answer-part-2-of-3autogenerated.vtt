@@ -1,0 +1,408 @@
+WEBVTT
+
+0
+00:02.710 --> 00:06.510
+Now what if we deleted the answer that 
+has been accepted as best answer?
+
+1
+00:06.510 --> 00:07.570
+Do you have any idea?
+
+2
+00:08.480 --> 00:14.340
+First, the answer should be prevent to removed and we can simply modify our delete method in the answer
+
+3
+00:14.340 --> 00:18.520
+policy and write some logic to restrict the deletion.
+
+4
+00:18.530 --> 00:25.330
+Second, the answer can be removed but we need to 
+update the best answer id value in the Questions table.
+
+5
+00:25.490 --> 00:27.650
+In this case we'll take the second way.
+
+6
+00:27.650 --> 00:33.290
+The reason why I take the second way instead of the 
+first one is because I have shown you how to
+
+7
+00:33.290 --> 00:33.870
+do that
+
+8
+00:33.890 --> 00:39.410
+In the previous section of the course and I'm sure you 
+can do it yourself if you prefer the first way.
+
+9
+00:39.830 --> 00:45.920
+That's why here I take the second way so that 
+you'll see another possible solution. And to update the best
+
+10
+00:45.920 --> 00:48.930
+answer id when the related answer removed
+
+11
+00:48.950 --> 00:51.770
+we have two options and I'll show you one by one.
+
+12
+00:52.100 --> 00:55.640
+But before that let's our file changes in our project to our repo
+
+13
+00:59.370 --> 01:06.070
+so git add all and then commit the changes
+
+14
+01:07.970 --> 01:08.920
+and say something
+
+15
+01:09.000 --> 01:15.120
+let's say Implement delete functionality
+
+16
+01:16.010 --> 01:17.420
+for answer.
+
+17
+01:21.540 --> 01:26.340
+And now let's create new branch to isolate our work git check out
+
+18
+01:26.530 --> 01:32.460
+-b and the branch name let's say lesson 19
+
+19
+01:32.570 --> 01:37.970
+dash a.  All right we are in new branch
+
+20
+01:37.980 --> 01:38.930
+and now let's see
+
+21
+01:38.940 --> 01:41.620
+the first way to update best answer id.
+
+22
+01:41.640 --> 01:42.270
+So here
+
+23
+01:44.920 --> 01:46.540
+in static deleted let's
+
+24
+01:50.450 --> 01:52.260
+assigned the question to a variable
+
+25
+02:01.790 --> 02:10.010
+so we do this because we'll call this answer question not for once but for several times.
+
+26
+02:10.280 --> 02:11.480
+And here we can change
+
+27
+02:14.100 --> 02:18.830
+to question
+
+28
+02:19.550 --> 02:21.130
+and here is the important part.
+
+29
+02:21.140 --> 02:27.710
+So here we simply match the best answer id in the 
+question model with id in the answer model
+
+30
+02:27.910 --> 02:40.660
+and here we can say if question best answer id equals answer Id
+
+31
+02:47.830 --> 02:52.000
+If yes then here we set the best answer Id to null like so.
+
+32
+02:52.150 --> 02:55.040
+Question.
+
+33
+02:55.700 --> 03:04.710
+best answer id equals null and don't forget to save it to database
+
+34
+03:10.240 --> 03:11.360
+and that's all we need.
+
+35
+03:12.970 --> 03:23.570
+So here we check if the deleted answer's id equals or identic with best answer id in question
+
+36
+03:23.570 --> 03:24.310
+model
+
+37
+03:24.350 --> 03:31.770
+If yes then we need to change the best answer id to null 
+because the answer is no longer exist in database.
+
+38
+03:31.790 --> 03:41.130
+Now let's save this and go to our browser. And here let's make two answers for this question.
+
+39
+03:43.320 --> 03:49.040
+So I have one so here I'll add another answer.
+
+40
+03:56.640 --> 04:00.900
+Now here we have two answers.
+
+41
+04:01.150 --> 04:03.160
+Let's see the ID of the answers.
+
+42
+04:05.170 --> 04:10.800
+24 And then here 8.
+
+43
+04:11.160 --> 04:16.460
+So the first one is 8 and the second one is 24. Now
+
+44
+04:16.500 --> 04:17.550
+let's make one of these
+
+45
+04:17.550 --> 04:18.440
+answer as best
+
+46
+04:18.450 --> 04:19.500
+answer
+
+47
+04:19.500 --> 04:24.990
+Currently we have no future to accept the answer as 
+best answer and we'll implement that in the other
+
+48
+04:24.990 --> 04:26.570
+section of this course.
+
+49
+04:26.820 --> 04:29.520
+For now let's do that  manually from tinker
+
+50
+04:30.120 --> 04:40.820
+Switch over to our terminal and open thinker  
+by saying: php artisan thinker. Here
+
+51
+04:40.840 --> 04:46.310
+I need to get the question instance and then update the best answer id column and we can do that by
+
+52
+04:46.310 --> 04:47.510
+saying
+
+53
+04:47.620 --> 04:54.140
+Answer equals app answer
+
+54
+04:54.470 --> 04:56.030
+find 8
+
+55
+04:59.100 --> 05:09.910
+and then we can get a related question like this 
+question equals answer question.
+
+56
+05:10.620 --> 05:13.120
+Now let's update the best answer id of this question
+
+57
+05:18.380 --> 05:33.330
+equals answer id and then save the change to our database.
+
+58
+05:33.390 --> 05:37.060
+Here we set the best answer id to 8.
+
+59
+05:37.250 --> 05:39.080
+Now if we go back to our browser
+
+60
+05:42.530 --> 05:53.680
+actually let's go to answer model and here 
+let's define new accessor
+
+61
+05:53.870 --> 05:58.510
+I'm going to call it get status attribute
+
+62
+06:03.600 --> 06:06.400
+and here let's return vote-accepted class
+
+63
+06:06.630 --> 06:11.130
+If the answer's id equals to question best answer id
+
+64
+06:11.130 --> 06:22.390
+So here we can say return this id equals this question
+
+65
+06:24.750 --> 06:25.870
+best answer Id
+
+66
+06:29.440 --> 06:31.700
+vote accepted
+
+67
+06:34.280 --> 06:36.940
+Otherwise we return nothing.
+
+68
+06:38.620 --> 06:42.560
+Now we can open answers underscore index.blade.php
+
+69
+06:45.250 --> 06:49.010
+and here let's change 
+
+70
+06:49.050 --> 06:59.510
+this to answer status. Save all changes
+
+71
+07:02.210 --> 07:03.640
+reload the page
+
+72
+07:10.250 --> 07:16.350
+Now here one of the answer indicated as best answer.
+
+73
+07:16.360 --> 07:22.090
+For now let's remove this answer and we do this 
+just to make sure that this deletion will not affect
+
+74
+07:22.090 --> 07:23.610
+the best answer id
+
+75
+07:23.680 --> 07:27.000
+Hit the delete button and then hit OK
+
+76
+07:34.350 --> 07:36.160
+here the answer still marked as best
+
+77
+07:36.180 --> 07:37.000
+answer
+
+78
+07:37.200 --> 07:37.790
+And that's mean
+
+79
+07:37.830 --> 07:39.150
+the best answer id column
+
+80
+07:39.150 --> 07:42.090
+still store the answer id
+
+81
+07:42.120 --> 07:47.420
+Now let's remove this answer and let's see if this 
+deletion will affect the best answer id.
+
+82
+07:47.520 --> 07:49.880
+Hit the delete button and hit OK.
+
+83
+07:58.520 --> 08:00.570
+And to see if this is working
+
+84
+08:00.620 --> 08:01.750
+let's see in our thinker
+
+85
+08:04.680 --> 08:06.180
+let's find the question id
+
+86
+08:09.860 --> 08:10.160
+here
+
+87
+08:10.160 --> 08:13.870
+the question id is three.
+
+88
+08:14.040 --> 08:15.470
+So let's get the question
+
+89
+08:25.190 --> 08:28.710
+as we can see now the best answer id is null.
+
+90
+08:28.780 --> 08:34.560
+So that's the first way how to update the best answer 
+id column when the related answer are removed.
+
+91
+08:34.570 --> 08:36.140
+Now let's see the second way.
+
+92
+08:36.310 --> 08:39.150
+And before we do that let's save all changes to our repo
+
+93
+08:42.810 --> 08:55.100
+git add all git commit and I'll say "update 
+best answer Id on questions table
+
+94
+08:55.710 --> 09:03.020
+when an answer removed using eloquent event".
+
+95
+09:06.780 --> 09:07.140
+Alright
+
+96
+09:07.190 --> 09:09.750
+now let's switch to our master branch
+
+97
+09:14.690 --> 09:17.180
+and then create new brains to isolate the second way.

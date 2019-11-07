@@ -1,0 +1,261 @@
+WEBVTT
+
+0
+00:01.780 --> 00:05.260
+Now before we end this lesson let's add one more thing.
+
+1
+00:05.410 --> 00:12.840
+Ideally when visitors visit non existing route 
+in our page they will get 404 error page right?
+
+2
+00:12.890 --> 00:16.360
+But currently if we try to visit non existing route
+
+3
+00:20.180 --> 00:22.000
+we will get a blank here.
+
+4
+00:22.050 --> 00:29.550
+So let's create a new component that represents not 
+front page error and then we'll map it to our route
+
+5
+00:29.550 --> 00:32.480
+Let's go back to our editor. Here
+
+6
+00:32.550 --> 00:36.180
+let's switch back to routes.js
+
+7
+00:41.210 --> 00:42.440
+let's duplicate this line
+
+8
+00:46.130 --> 00:53.110
+and change this to let's say not found page. This
+
+9
+00:53.220 --> 00:56.970
+component currently doesn't exist and we'll create that shortly.
+
+10
+00:57.230 --> 01:00.390
+For now let's map this component to our route.
+
+11
+01:00.530 --> 01:02.770
+But how can we do that.
+
+12
+01:02.780 --> 01:04.760
+Do you have an idea?
+
+13
+01:04.760 --> 01:07.760
+Well to do that we need to define a brand new route
+
+14
+01:17.750 --> 01:19.010
+now for the path
+
+15
+01:19.010 --> 01:25.410
+we can just say asterisk that means anything.
+
+16
+01:25.640 --> 01:28.340
+Then we can specify the component
+
+17
+01:31.090 --> 01:33.770
+and set it to not found
+
+18
+01:33.820 --> 01:41.550
+page. Also note that this route record should 
+be defined at the end of our route definition.
+
+19
+01:41.560 --> 01:47.380
+If you define that as the first then any routes that you 
+would access will always show the page not found
+
+20
+01:47.920 --> 01:52.900
+because the vue router will scan the route path 
+sequentially from the beginning to the end of the
+
+21
+01:52.900 --> 01:54.010
+array.
+
+22
+01:54.010 --> 01:57.500
+If one route record matches then other routes will be ignored.
+
+23
+01:58.450 --> 01:59.050
+All right
+
+24
+01:59.200 --> 02:07.130
+Now let's go to js pages and here let's create a brand new file.
+
+25
+02:08.120 --> 02:11.380
+Let's call it not found
+
+26
+02:11.390 --> 02:12.660
+page dot vue
+
+27
+02:16.290 --> 02:17.400
+let's add a template tag
+
+28
+02:20.330 --> 02:26.460
+and for now let's add a message page not found
+
+29
+02:30.960 --> 02:32.080
+let's save all changes.
+
+30
+02:37.130 --> 02:43.480
+Back to the browser reload.
+
+31
+02:43.500 --> 02:44.360
+There we go
+
+32
+02:44.370 --> 02:46.850
+we'll have page not found message.
+
+33
+02:47.050 --> 02:50.640
+If we visit the existing route
+
+34
+02:50.760 --> 02:53.050
+We have no issue.
+
+35
+02:53.080 --> 02:53.870
+All right
+
+36
+02:53.870 --> 03:00.510
+The next thing that we need to do is 
+to make this error page a bit fancy.
+
+37
+03:00.510 --> 03:12.060
+So let's navigate to getbootstrap dot com 
+go to documentation and find jumbotron.
+
+38
+03:19.210 --> 03:23.370
+let's just simply copy this markup back to our editor
+
+39
+03:26.600 --> 03:28.970
+let's replace this with bootstrap Jumbotron
+
+40
+03:40.870 --> 03:49.870
+let's change the heading to Page Not Found.
+
+41
+03:49.880 --> 03:52.780
+Also let's change the paragraph to something more meaningful.
+
+42
+03:57.410 --> 04:06.910
+Let's say Sorry the page you are looking for is not found.
+
+43
+04:10.810 --> 04:15.050
+Let's also provide a way to go back to the homepage.
+
+44
+04:15.220 --> 04:16.990
+Just get rid of these
+
+45
+04:19.840 --> 04:27.900
+and add router link to name
+
+46
+04:27.910 --> 04:28.540
+home
+
+47
+04:34.010 --> 04:41.990
+the class is going to be btn btn primary btn lg.
+
+48
+04:45.310 --> 04:49.690
+And the bottom's text is going to be back to homepage.
+
+49
+04:53.640 --> 04:54.390
+Save this
+
+50
+04:57.140 --> 04:57.930
+and let's have a look
+
+51
+05:05.170 --> 05:07.690
+maybe I'll need  to put this in container
+
+52
+05:24.030 --> 05:24.480
+reload
+
+53
+05:27.600 --> 05:30.430
+OK. Let
+
+54
+05:30.480 --> 05:33.540
+Me and text center
+
+55
+05:37.750 --> 05:47.310
+reload again. Great I think now it is look better. And 
+that's it for this lesson we've learned how to install
+
+56
+05:47.310 --> 05:50.080
+and configure vue router in our application.
+
+57
+05:50.070 --> 05:54.180
+We've defined some page components 
+and map them to particular routes.
+
+58
+05:54.330 --> 05:59.070
+We've seen how to protect a particular 
+route using vue router navigation guard.
+
+59
+05:59.250 --> 06:05.180
+And we've also seen how to create page 
+not found error for our client routes
+
+60
+06:05.350 --> 06:11.310
+In the next lesson we are gonna start consuming our 
+backend API to display all the questions in our single
+
+61
+06:11.310 --> 06:13.650
+page application. So see you there.

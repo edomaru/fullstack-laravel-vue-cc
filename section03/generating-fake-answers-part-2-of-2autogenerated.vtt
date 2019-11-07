@@ -1,0 +1,325 @@
+WEBVTT
+
+0
+00:01.720 --> 00:08.920
+So as noted in laravel documentation, Eloquent models fire several events, allowing you to hook into
+
+1
+00:08.920 --> 00:17.320
+the following points in a model's life cycle:  `retrieved` event will fire when an existing model is retrieved
+
+2
+00:17.410 --> 00:18.640
+from the database.
+
+3
+00:20.110 --> 00:24.720
+`creating` and `created` will fire when a new model 
+is saved from the first time
+
+4
+00:27.460 --> 00:32.060
+`updating` and `updated` will fire when 
+an existing model is updated.
+
+5
+00:33.590 --> 00:37.180
+`saving` and `saved` will fire for both cases
+
+6
+00:37.220 --> 00:44.760
+save new model or update the existing model. 
+`deleting` and `deleted` will fire when an existing model
+
+7
+00:44.830 --> 00:54.140
+is deleted. And lastly `restoring` and `restored` 
+will fire when a model restored from the trash.
+
+8
+00:54.190 --> 00:56.380
+So now let's open
+
+9
+00:56.380 --> 00:57.190
+answer model.
+
+10
+01:07.780 --> 01:12.330
+And here we need to define boot method like this.
+
+11
+01:22.610 --> 01:27.490
+inside this method we firstly need to call 
+the parent boot method like this.
+
+12
+01:33.870 --> 01:38.770
+And here let's say we want to execute a code when an answer is created.
+
+13
+01:39.090 --> 01:45.530
+We can do that like this static double colons created
+
+14
+01:48.840 --> 01:51.750
+this method receives a closure as argument.
+
+15
+01:58.450 --> 02:03.510
+And in closure we can specify an argument 
+to represent the current model instance.
+
+16
+02:03.700 --> 02:05.770
+So here we can call answer
+
+17
+02:09.500 --> 02:14.820
+and here that's echoing a message for a while.
+
+18
+02:15.410 --> 02:16.570
+Here I'll say
+
+19
+02:16.730 --> 02:26.650
+"answer created" and here I also add `\n`
+to add newline after message printed
+
+20
+02:32.450 --> 02:32.950
+here
+
+21
+02:33.110 --> 02:38.080
+let's also define saved so you can see 
+the difference with the created
+
+22
+02:47.650 --> 02:49.870
+and here I'll say
+
+23
+02:50.650 --> 02:52.240
+Answer
+
+24
+02:52.300 --> 02:53.340
+saved.
+
+25
+02:55.420 --> 03:00.880
+Save the changes and now I'll switch to my terminal and re-open the thinker
+
+26
+03:05.220 --> 03:07.350
+because an answer cannot stand alone
+
+27
+03:07.560 --> 03:09.120
+So here I'll get the first question
+
+28
+03:19.050 --> 03:19.520
+now
+
+29
+03:19.560 --> 03:23.070
+I'll create an answer for this first question by saying
+
+30
+03:23.310 --> 03:25.630
+Q answers
+
+31
+03:28.830 --> 03:33.980
+and save because this time I want to make only one question.
+
+32
+03:36.450 --> 03:40.790
+Inside of this method I can generate 
+fake answer by calling factory
+
+33
+03:44.000 --> 03:45.250
+pass in the class name
+
+34
+03:52.180 --> 03:59.110
+and specify the number one in this case and end with make. Hit
+
+35
+04:02.340 --> 04:05.230
+return.
+
+36
+04:05.240 --> 04:06.130
+I got error
+
+37
+04:11.020 --> 04:14.990
+argument 1 passed to blah blah blah
+
+38
+04:16.080 --> 04:22.430
+must be instance of eloquent model.
+
+39
+04:22.740 --> 04:32.550
+Actually I don't need this number so that factory will return instance of model instead of collection
+
+40
+04:32.980 --> 04:33.910
+hit return.
+
+41
+04:35.300 --> 04:37.140
+Ok now it's working
+
+42
+04:37.370 --> 04:46.940
+and as you can see here I have message 
+"answer created" and "answer saved".
+
+43
+04:47.320 --> 04:51.340
+Now I'll find the latest answer by saying app
+
+44
+04:51.550 --> 04:52.150
+Answer
+
+45
+04:55.940 --> 05:00.900
+find here I see the ID is 22.
+
+46
+05:01.160 --> 05:03.290
+So here I'll enter the id here.
+
+47
+05:05.230 --> 05:11.510
+Then I'll assign it to a variable.
+
+48
+05:11.550 --> 05:16.220
+Now here let's say I want to change the votes_count to 7
+
+49
+05:23.370 --> 05:26.190
+and then I'll call save method.
+
+50
+05:29.450 --> 05:33.090
+As you can see here I get message "answer saved".
+
+51
+05:33.200 --> 05:40.610
+So as I said that the saving and saved will be fired 
+whenever new model created or an existing model
+
+52
+05:40.670 --> 05:41.530
+updated.
+
+53
+05:41.900 --> 05:42.470
+OK
+
+54
+05:42.470 --> 05:48.230
+now let's go back to answers model and here 
+we don't need this `saved` in this case.
+
+55
+05:48.500 --> 05:50.240
+So just remove it
+
+56
+05:53.510 --> 06:01.970
+and inside this we can increment the 
+answers count's value of the questions table by saying
+
+57
+06:02.390 --> 06:05.700
+Answer question
+
+58
+06:08.680 --> 06:09.330
+increment
+
+59
+06:12.010 --> 06:14.410
+answers count
+
+60
+06:17.490 --> 06:27.520
+and then we need to call answer question save 
+to save the changes to our database.
+
+61
+06:27.580 --> 06:30.020
+Next let's open question factory
+
+62
+06:32.900 --> 06:35.350
+and here we don't need to fill these answers
+
+63
+06:35.360 --> 06:39.170
+count. Save all changes.
+
+64
+06:42.810 --> 06:47.670
+And now let's go back to our terminal. Here
+
+65
+06:47.680 --> 07:06.080
+let's reset our database and run database seed by calling:
+php artisan migrate:fresh --seed
+
+66
+07:06.210 --> 07:08.310
+Now let me go back to phpmyadmin
+
+67
+07:13.200 --> 07:15.020
+I'll open the questions table
+
+68
+07:20.750 --> 07:22.090
+for example here
+
+69
+07:22.160 --> 07:30.560
+The first question or question with id one has 4 answers and the second question or the question which
+
+70
+07:30.560 --> 07:33.500
+has id 2 has 3 answers.
+
+71
+07:33.530 --> 07:36.470
+Now let me open answers table
+
+72
+07:42.850 --> 07:47.760
+and here you can see that the number for the question 1 is 4.
+
+73
+07:48.220 --> 07:52.080
+And the answer for question 2 has 3 answers.
+
+74
+07:53.290 --> 07:58.700
+All right so now that we have answers table inserted 
+with some fake answers and we will finally
+
+75
+07:58.700 --> 08:01.940
+displaying them in the question detail in the next lesson.
+
+76
+08:02.000 --> 08:02.980
+So join me there.

@@ -1,0 +1,375 @@
+WEBVTT
+
+0
+00:04.430 --> 00:11.830
+Alright, now let's install fontawesome 5 
+and replace this text with icons.
+
+1
+00:11.830 --> 00:14.290
+So let's navigate fontawesome.com
+
+2
+00:24.820 --> 00:27.940
+in here when I'm recording this video
+
+3
+00:27.940 --> 00:32.130
+The current version is Version 5
+
+4
+00:32.220 --> 00:41.850
+point one point zero. In this version you'll find very much icons available it is about three thousand three
+
+5
+00:41.850 --> 00:46.290
+hundred and thirty two icons. Though not all of them are free.
+
+6
+00:46.290 --> 00:53.080
+Here we can see there are one thousand two hundred and sixty four free icons.
+
+7
+00:53.430 --> 00:59.230
+And I think this is more than enough to be integrated in our application and the rest I can
+
+8
+00:59.230 --> 01:12.480
+here are Pro icons. Here you'll see that one I icon has three different styles solid regular and light
+
+9
+01:13.800 --> 01:18.300
+for our question answer application we will only need at least four icons.
+
+10
+01:18.300 --> 01:21.360
+So let's click this All icons
+
+11
+01:26.050 --> 01:28.210
+check these free option
+
+12
+01:33.560 --> 01:44.480
+and firstly we'll need caret up icon for voting up the question or answer we'll need caret down icon
+
+13
+01:45.290 --> 01:56.820
+for voting down the question or answer and then we'll need star icon for favoriting the question
+
+14
+01:57.590 --> 02:05.430
+and last we'll need check icon for accepting the answer as best answer. Now to integrate or install font
+
+15
+02:05.430 --> 02:10.490
+awesome five into your application at least there are three different options.
+
+16
+02:10.590 --> 02:17.090
+First you can copy font awesome CDN link and paste into your application's view.
+
+17
+02:17.100 --> 02:18.990
+Second you can download it
+
+18
+02:18.990 --> 02:25.050
+put it to your public folder and reference the style sheet or a javascript file in your application's
+
+19
+02:25.050 --> 02:26.770
+view. And the last
+
+20
+02:26.820 --> 02:31.700
+You can install it using NPM. From these three options
+
+21
+02:31.700 --> 02:38.730
+here I'll show you the last option because by using NPM we can then custom which icons that really needed
+
+22
+02:38.730 --> 02:41.340
+for our application.
+
+23
+02:41.360 --> 02:47.810
+This will save time when icons loaded in our page and it will make our page loading faster because we
+
+24
+02:47.810 --> 02:49.470
+don't need to load all icons.
+
+25
+02:49.490 --> 02:49.830
+All right
+
+26
+02:49.880 --> 02:56.420
+to install font awesome 5 using NPM firstly let's open npmjs.org
+
+27
+03:01.620 --> 03:07.030
+and here in the search box let's type Fortawesome
+
+28
+03:10.030 --> 03:16.450
+not that here I type fortawesome instead of font awesome because if you type fontawesome
+
+29
+03:21.300 --> 03:31.210
+then you will find font awesome version four point seven.
+
+30
+03:31.320 --> 03:32.610
+Now if we hit return
+
+31
+03:36.730 --> 03:41.880
+here we'll find some packages displayed. For this case
+
+32
+03:41.890 --> 03:43.240
+we will need to install
+
+33
+03:48.560 --> 03:50.530
+this font awesome core package
+
+34
+03:59.370 --> 04:04.650
+and because we will use solid font awesome so here we'll also need to install this package
+
+35
+04:12.360 --> 04:14.290
+so let's copy this installation command
+
+36
+04:26.170 --> 04:27.190
+and paste here
+
+37
+04:37.760 --> 04:39.730
+let's also copy this installation command
+
+38
+04:43.760 --> 04:46.670
+and paste here. And here
+
+39
+04:46.710 --> 04:53.630
+let's remove the second npm install.
+
+40
+04:53.870 --> 05:02.870
+Also we need to add D flag to tell NPM that this packages as dev dependencies or dependencies that
+
+41
+05:02.930 --> 05:05.030
+only required for development
+
+42
+05:08.160 --> 05:10.220
+while NPM installing these packages.
+
+43
+05:10.500 --> 05:11.580
+Let's go to
+
+44
+05:13.920 --> 05:22.410
+resources assets and js folder and inside this folder let's create new file
+
+45
+05:26.690 --> 05:31.640
+and call it fontawesome.js
+
+46
+05:34.640 --> 05:35.030
+here
+
+47
+05:35.030 --> 05:39.660
+firstly we need to import the font of some base package like this.
+
+48
+05:40.070 --> 05:53.490
+Import fontawesome from fonrtawesome.
+
+49
+05:53.540 --> 05:57.530
+Next we need to import the icons that we need. Here
+
+50
+05:57.530 --> 06:02.310
+let's import font awesome caret up
+
+51
+06:05.740 --> 06:08.320
+from font awesome free solid.
+
+52
+06:23.240 --> 06:23.630
+OK
+
+53
+06:23.660 --> 06:32.720
+let's duplicate this line then change to fa caret down
+
+54
+06:39.700 --> 06:40.570
+let's duplicate again
+
+55
+06:43.860 --> 06:51.080
+and then change to fa star. Duplicate one more time.
+
+56
+06:54.710 --> 06:59.280
+And then change this to fa check
+
+57
+07:03.720 --> 07:10.160
+Last we need to add our custom icons to font awesome library like so. Font awesome
+
+58
+07:12.570 --> 07:15.600
+library and
+
+59
+07:19.730 --> 07:21.720
+fa caret up
+
+60
+07:24.560 --> 07:33.720
+fa caret down fa check and then fa star.
+
+61
+07:37.260 --> 07:37.580
+Next
+
+62
+07:37.590 --> 07:39.760
+let's open app.js
+
+63
+07:43.260 --> 07:47.030
+And here let's import our font awesome dot js file like this.
+
+64
+07:52.720 --> 07:53.770
+font awesome
+
+65
+07:59.010 --> 08:00.250
+let's save all changes
+
+66
+08:07.150 --> 08:08.720
+now here in my terminal.
+
+67
+08:08.980 --> 08:09.900
+I'll open new tab
+
+68
+08:11.840 --> 08:15.060
+And run npm run
+
+69
+08:15.190 --> 08:15.730
+watch
+
+70
+08:18.610 --> 08:21.130
+and webpack will compile javascript file
+
+71
+08:26.210 --> 08:32.420
+here it say "build successful" and we can call 
+our custom icons in our view.
+
+72
+08:32.420 --> 08:35.910
+So let's switch to show.blade.php
+
+73
+08:40.920 --> 08:46.960
+and here we can replace this text with our font awesome custom icon.
+
+74
+08:47.580 --> 09:01.000
+Let's add `i` tag and then let's specify font awesome classes. In the prior persion we start with fa
+
+75
+09:01.060 --> 09:06.900
+but here in front  awesome five we need to start with the font of some icon type because we are using font
+
+76
+09:07.010 --> 09:08.080
+awesome solid
+
+77
+09:08.080 --> 09:20.780
+So here will say `fas` and then the icon will be `fa-caret-up`.
+
+78
+09:21.350 --> 09:25.100
+All right let's do almost the same thing to vote down
+
+79
+09:29.570 --> 09:45.020
+replace this text and change to `fa-caret-down`.  And last let's replace this favorite with font awesome solid
+
+80
+09:46.140 --> 09:48.410
+`fa-star`
+
+81
+09:51.600 --> 09:53.820
+saves that and let's have a look
+
+82
+10:05.330 --> 10:08.650
+here I thing this icon are too small
+
+83
+10:08.720 --> 10:17.120
+So let's go back to our editor and here we can custom the icon size by specify another class
+
+84
+10:20.880 --> 10:24.230
+fa and then the size
+
+85
+10:24.450 --> 10:37.370
+The size could be `xs` or extra small `sm` or small `lg` or large or we can also `2x` or two times
+
+86
+10:37.730 --> 10:39.740
+through ten times.
+
+87
+10:39.740 --> 10:44.450
+Here I'll try `fa-2x` and I'll see how it look like
+
+88
+10:51.670 --> 10:57.820
+I think it needs a bit bigger so I'll change to fa three times
+
+89
+11:03.010 --> 11:40.500
+all right I think three times is enough for triangle icons.
+
+90
+11:40.720 --> 11:49.570
+It's a big maybe two times.
+
+91
+11:49.830 --> 11:51.030
+Okay great
+
+92
+11:51.030 --> 11:53.430
+Now it's time to style our vote controls.

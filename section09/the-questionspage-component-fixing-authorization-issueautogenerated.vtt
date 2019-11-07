@@ -1,0 +1,93 @@
+WEBVTT
+
+0
+00:01.590 --> 00:07.830
+Now before we end this lesson let's do one 
+more thing. Here I signed in with a user.
+
+1
+00:11.160 --> 00:14.620
+But I cannot see the edit and delete buttons
+
+2
+00:14.850 --> 00:17.520
+So what's going on here.
+
+3
+00:17.520 --> 00:19.290
+Well if we go back to our editor
+
+4
+00:23.510 --> 00:25.700
+then open policies
+
+5
+00:32.380 --> 00:38.110
+here we match the user id with model user_id.
+
+6
+00:38.110 --> 00:41.440
+But if we see our  API response
+
+7
+00:47.050 --> 00:50.770
+we don't see the user_id in every single question.
+
+8
+00:51.250 --> 00:55.220
+So to fix this issue you have two options.
+
+9
+00:55.300 --> 01:07.270
+First you can pull open the question resource and 
+here and here just add the user underscore id
+
+10
+01:07.270 --> 01:17.100
+the second option here in policies dot js we can 
+replace all user underscore id with user dot
+
+11
+01:17.110 --> 01:18.650
+id
+
+12
+01:18.820 --> 01:23.860
+So I think both options are equally valid but I prefer to choose the second option.
+
+13
+01:23.860 --> 01:31.740
+So here I'll select all user underscore id and change to user id.
+
+14
+01:32.080 --> 01:38.230
+So if I save these back to the browser reload
+
+15
+01:42.330 --> 01:45.510
+all right now I have the edit button appear
+
+16
+01:51.400 --> 01:53.630
+if delete button still disappear
+
+17
+01:53.800 --> 01:59.170
+that means the question cannot be removed 
+because it has one or more answers on it.
+
+18
+02:00.290 --> 02:00.630
+All right
+
+19
+02:01.240 --> 02:03.850
+that's it for this lesson. In the next one
+
+20
+02:03.880 --> 02:06.730
+we'll be tackling the pagination in our front end.
+
+21
+02:06.940 --> 02:07.840
+So I'll see you there.

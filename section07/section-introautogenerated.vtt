@@ -1,0 +1,95 @@
+WEBVTT
+
+0
+00:02.070 --> 00:08.550
+Up until this point we write our posts our questions or 
+answers in a text area without knowing how they
+
+1
+00:08.550 --> 00:12.060
+will look before we actually submit them.
+
+2
+00:12.100 --> 00:17.830
+I think it would be better to have a feature that 
+allows us to see how our post will look like before
+
+3
+00:17.830 --> 00:19.750
+we save them into database.
+
+4
+00:19.750 --> 00:24.730
+This will make writing the post much easier 
+and make our app look more professional.
+
+5
+00:24.760 --> 00:28.750
+So in this section we're going to build this kind of feature.
+
+6
+00:28.750 --> 00:30.940
+If it can't get the picture let's see in GitHub
+
+7
+00:40.090 --> 00:43.600
+so here you can write something in mardown syntax.
+
+8
+00:43.600 --> 00:50.490
+Then you can hit the preview tab to see how 
+it look like if you think your post look good
+
+9
+00:50.490 --> 00:56.070
+You can then hit the submit button to persist your 
+post or if you think there's something wrong with
+
+10
+00:56.070 --> 01:01.890
+your post then you can simply switch 
+back to write tab and continue editing.
+
+11
+01:01.890 --> 01:06.060
+So we're going to build this markdown editor but in much simpler.
+
+12
+01:08.870 --> 01:10.980
+And to make out app more interesting
+
+13
+01:11.000 --> 01:16.430
+we're also going to implement syntax highlight so that 
+all code that we write in our app will be presented
+
+14
+01:16.430 --> 01:16.990
+beautifully.
+
+15
+01:21.360 --> 01:26.580
+So this section can be contains two parts and each 
+part will be isolated into two different working
+
+16
+01:26.630 --> 01:28.470
+branches. In the first one
+
+17
+01:28.500 --> 01:35.220
+we're going to create the editor component or how we 
+compose some components such as tabs cards and
+
+18
+01:35.220 --> 01:43.140
+so on to produce text box along with the mardown 
+preview. Then in the second one we will be implementing
+
+19
+01:43.380 --> 01:47.760
+the syntax highlight for code formatting in our page.
+
+20
+01:47.760 --> 01:48.930
+OK let's get started.

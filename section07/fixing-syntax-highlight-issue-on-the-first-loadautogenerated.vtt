@@ -1,0 +1,158 @@
+WEBVTT
+
+0
+00:01.510 --> 00:07.650
+We've successfully integrated syntax highlight to make 
+our code beautiful in our markdown preview. But it's
+
+1
+00:07.680 --> 00:11.760
+not work in here or maybe in other places.
+
+2
+00:11.760 --> 00:17.470
+So before we fix this issue we need to realize 
+that we have two different markdown parser
+
+3
+00:17.580 --> 00:21.060
+What we see here is parsed by markdown in server side
+
+4
+00:24.800 --> 00:29.960
+while here is parsed by markdown it partner in the client side.
+
+5
+00:29.990 --> 00:31.910
+Now let's see our code in the preview tab
+
+6
+00:38.440 --> 00:45.070
+so in order to make the syntax highlight really working 
+we need to have our code wrapped inside `pre` and
+
+7
+00:45.070 --> 00:58.440
+code tag and we should also have the programming 
+language specified in these class attributes
+
+8
+00:58.620 --> 00:59.640
+Now if you see here
+
+9
+01:02.740 --> 01:10.940
+our code is wrapped in p tag. So now you know that 
+the problem could be in body html in our model.
+
+10
+01:11.050 --> 01:16.380
+So let's go to our editor then open our question model
+
+11
+01:24.410 --> 01:30.020
+let's jump to body html attribute.
+
+12
+01:30.020 --> 01:36.370
+Here you see that we have passed 
+the body html in this clean method.
+
+13
+01:36.370 --> 01:42.940
+This method basically used to protect our html code 
+from malicious code or xss attack by removing
+
+14
+01:43.030 --> 01:47.480
+all vulnerable tags including script pre and code tags.
+
+15
+01:47.620 --> 01:54.080
+So all we have to do is to white list the pre 
+and code tags so that they will be ignored.
+
+16
+01:54.160 --> 02:00.910
+Remember that this clean method is come from purifier  
+package and this package provides configuration
+
+17
+02:00.910 --> 02:03.260
+file that we can customize.
+
+18
+02:03.340 --> 02:05.680
+So let's now open the config
+
+19
+02:08.430 --> 02:09.990
+purifier dot php
+
+20
+02:18.070 --> 02:24.120
+in this file we need to specify what html 
+tag to be allowed in this html dot allowed
+
+21
+02:28.340 --> 02:29.170
+so here
+
+22
+02:29.170 --> 02:32.880
+let's define the pre and code tags
+
+23
+02:35.710 --> 02:45.670
+and let's also specify the class attribute 
+so that purifier will also ignore their class.
+
+24
+02:45.860 --> 02:47.110
+That's it.
+
+25
+02:47.150 --> 02:48.440
+Now if we save the change
+
+26
+02:54.530 --> 02:55.420
+and reload the page
+
+27
+03:01.530 --> 03:03.090
+now it's work as we expect
+
+28
+03:07.630 --> 03:08.270
+and I think
+
+29
+03:08.350 --> 03:09.610
+everything should be fine now.
+
+30
+03:11.690 --> 03:25.840
+Let me edit one more time to make sure 
+that everything working good. I'll hit
+
+31
+03:26.070 --> 03:26.700
+update button
+
+32
+03:32.310 --> 03:33.790
+here we have another issue.
+
+33
+03:33.880 --> 03:42.240
+The syntax highlight is gone after I made change. If 
+I reload the page the syntax highlight is come back.
+
+34
+03:42.310 --> 03:44.920
+Do you have any idea why this happening?
+
+35
+03:44.920 --> 03:46.750
+Let's fix this issue in the next video.

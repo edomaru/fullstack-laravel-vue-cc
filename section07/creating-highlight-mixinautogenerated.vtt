@@ -1,0 +1,299 @@
+WEBVTT
+
+0
+00:01.950 --> 00:07.670
+In the last video we successfully solved the syntax 
+highlight issue after cancel editing the question
+
+1
+00:08.400 --> 00:16.210
+by replacing the v-if in the question 
+component with v-show directive.
+
+2
+00:16.310 --> 00:22.970
+Here we also call highlight all under method that is 
+used to re-scan all code under a certain element
+
+3
+00:23.240 --> 00:25.130
+and apply the syntax highlight.
+
+4
+00:25.130 --> 00:31.460
+But actually we don't need to call this method in this case 
+because remember v-show will keep the elements stay
+
+5
+00:31.580 --> 00:32.630
+in the DOM.
+
+6
+00:32.630 --> 00:38.420
+That means when the page firstly loaded the element 
+will get rendered and all code inside it will get
+
+7
+00:38.420 --> 00:41.900
+highlighted or presented beautifully by prism js
+
+8
+00:45.550 --> 00:47.080
+so when we hit the edit button
+
+9
+00:50.120 --> 00:57.700
+this element will stay in place but it only invisible 
+because vue js add css display property
+
+10
+00:57.810 --> 01:07.610
+to none. And then when we hit the cancel button this 
+element will be visible and because there is no
+
+11
+01:07.620 --> 01:11.030
+change we made the element will not need to be rendered.
+
+12
+01:11.030 --> 01:17.710
+That's why calling the highlight all under 
+method is completely useless in this case.
+
+13
+01:17.720 --> 01:23.960
+Meanwhile after updating the question or answer because 
+we possibly make any changes so that the element
+
+14
+01:23.990 --> 01:25.300
+will get rendered.
+
+15
+01:25.310 --> 01:32.810
+That's why we will need these lines. And in order 
+to implement DRY principle we'll put these lines
+
+16
+01:32.890 --> 01:34.230
+into mixins.
+
+17
+01:34.340 --> 01:45.270
+All right let's cut this navigate to mixins folder. 
+Now here instead of putting the previous code
+
+18
+01:45.720 --> 01:53.580
+in this modification mixing we'll put it in another 
+mixin. The reason why we do this is because we
+
+19
+01:53.580 --> 02:02.150
+need it not only in question and answer components 
+but also in New answer or answers component.
+
+20
+02:02.220 --> 02:05.680
+That's why we'll put the code in separate mixin.
+
+21
+02:05.720 --> 02:07.170
+Okay let's create a new file
+
+22
+02:11.860 --> 02:16.470
+here I'll call it highlight dot js
+
+23
+02:20.210 --> 02:21.240
+in this file
+
+24
+02:21.240 --> 02:24.140
+let's add export
+
+25
+02:24.200 --> 02:29.580
+default then here let's add methods property
+
+26
+02:32.890 --> 02:33.770
+inside this methods
+
+27
+02:33.790 --> 02:39.160
+property let's define a new method to put 
+the previous code here I'll call it highlight
+
+28
+02:44.430 --> 02:46.710
+and inside this method I'll paste the code
+
+29
+02:56.000 --> 03:01.210
+let's also move the import statement from 
+this question component into our mixin
+
+30
+03:09.700 --> 03:15.910
+now we can merge one mixin to another 
+one like so. I'll open the modification mixin
+
+31
+03:20.430 --> 03:21.600
+import the highlight mixin
+
+32
+03:31.360 --> 03:33.340
+then here let's add mixins
+
+33
+03:37.050 --> 03:42.570
+and put the highlight mixin in array.
+
+34
+03:42.760 --> 03:45.010
+Now we can call this method in update method
+
+35
+03:48.730 --> 03:51.810
+so here we can check in with another then method
+
+36
+03:54.740 --> 04:00.780
+and inside here we can call the highlight method.
+
+37
+04:00.950 --> 04:01.710
+All right
+
+38
+04:01.720 --> 04:05.690
+let's save all changes. Back to our browser
+
+39
+04:09.400 --> 04:10.230
+reload the page
+
+40
+04:22.680 --> 04:26.570
+hit the edit button.
+
+41
+04:26.650 --> 04:27.930
+Here we get another issue.
+
+42
+04:28.030 --> 04:30.540
+The text area no longer auto size.
+
+43
+04:30.640 --> 04:32.560
+We'll fix this shortly
+
+44
+04:32.680 --> 04:34.310
+for now let's hit the cancel button
+
+45
+04:36.990 --> 04:37.520
+OK
+
+46
+04:37.560 --> 04:39.000
+The syntax highlights still in there.
+
+47
+04:42.670 --> 04:44.690
+Now I'll hit the edit button one more time
+
+48
+04:49.010 --> 04:50.650
+I'll modify something here.
+
+49
+04:58.970 --> 04:59.630
+Hit update.
+
+50
+05:05.570 --> 05:07.760
+The syntax highlight not working.
+
+51
+05:07.760 --> 05:11.920
+Let me see my code.
+
+52
+05:11.930 --> 05:13.670
+Sorry I missed the parenthesis.
+
+53
+05:19.550 --> 05:20.240
+reload the page.
+
+54
+05:25.240 --> 05:26.320
+edit the question
+
+55
+05:29.210 --> 05:30.320
+modify something here
+
+56
+05:37.600 --> 05:38.650
+and then I'll update.
+
+57
+05:41.040 --> 05:41.530
+Great.
+
+58
+05:41.590 --> 05:45.520
+The code is still highlighting.
+
+59
+05:45.520 --> 05:49.460
+Now let's fix the auto size issue.
+
+60
+06:02.480 --> 06:04.850
+Let's often the M editor component
+
+61
+06:11.100 --> 06:13.240
+here because the parent component
+
+62
+06:13.260 --> 06:17.550
+in this case Question.vue will not re-rendered 
+when we hit the edit button. Here
+
+63
+06:17.610 --> 06:21.860
+we don't need this mounted hook anymore. So let's remove
+
+64
+06:21.870 --> 06:22.590
+these lines
+
+65
+06:29.890 --> 06:30.820
+reload the page.
+
+66
+06:36.840 --> 06:40.750
+Hit the edit button. OK
+
+67
+06:40.770 --> 06:43.150
+Now the auto size still working great.
+
+68
+06:47.960 --> 06:56.300
+In the next video we'll be implementing this mechanism 
+in this answer component. So let's commit all
+
+69
+06:56.320 --> 06:57.910
+changes to our git repo.

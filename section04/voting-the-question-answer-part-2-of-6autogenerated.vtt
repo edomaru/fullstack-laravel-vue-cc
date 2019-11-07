@@ -1,0 +1,390 @@
+WEBVTT
+
+0
+00:02.890 --> 00:07.040
+All right before we moving on let's fix one issue that we face here.
+
+1
+00:07.520 --> 00:08.150
+So
+
+2
+00:10.840 --> 00:14.320
+here we defined relationship method as votes
+
+3
+00:14.830 --> 00:16.420
+while in our questions table
+
+4
+00:16.420 --> 00:24.040
+we also have votes column. As you saw in the previous 
+lesson we can follow one of two options. The first
+
+5
+00:24.040 --> 00:28.890
+option is changing the relationship methods name 
+to something else and that's it
+
+6
+00:28.960 --> 00:31.820
+we don't need to touch the existing column name.
+
+7
+00:31.960 --> 00:37.660
+And the second option we keep the relationship method's 
+name as it was and rename the column name in the
+
+8
+00:37.660 --> 00:43.990
+questions table and make changes in some places 
+where the column called. it's up to you to choose which
+
+9
+00:44.020 --> 00:45.230
+option you like.
+
+10
+00:45.250 --> 00:51.910
+But again here I'll choose the second option so that we 
+have consistent column naming. So let's see where
+
+11
+00:51.910 --> 00:58.230
+the first column called. I'm sure it called in question
+
+12
+00:58.230 --> 00:58.790
+factory
+
+13
+01:01.860 --> 01:05.310
+here let's change to votes count
+
+14
+01:08.860 --> 01:14.530
+and let me open questions
+
+15
+01:14.690 --> 01:15.930
+index.blade.php
+
+16
+01:18.600 --> 01:20.820
+find votes
+
+17
+01:23.570 --> 01:24.560
+OK here it is
+
+18
+01:30.450 --> 01:33.180
+here I'll change these to votes count
+
+19
+01:36.330 --> 01:36.650
+All right
+
+20
+01:36.660 --> 01:37.640
+Let's save all changes
+
+21
+01:40.670 --> 01:47.760
+and then go to our terminal and create new migration.
+
+22
+02:07.230 --> 02:11.530
+All right now let's open our latest migration file
+
+23
+02:21.280 --> 02:22.470
+and here in up method
+
+24
+02:25.490 --> 02:38.580
+let's rename the vote column by saying: table 
+rename column from votes to votes_count.
+
+25
+02:43.260 --> 02:46.800
+And here in down method we simply do the opposite
+
+26
+02:51.880 --> 02:52.840
+rename column
+
+27
+02:56.220 --> 03:10.200
+from votes_count to votes. Save the change and now 
+we can go back to our terminal and run our migration.
+
+28
+03:15.080 --> 03:15.520
+OK
+
+29
+03:15.590 --> 03:18.740
+the migration file has been migrated successfully.
+
+30
+03:18.740 --> 03:20.770
+Let me check if everything is working.
+
+31
+03:30.390 --> 03:32.520
+I think so far so good.
+
+32
+03:32.530 --> 03:36.600
+All right let's see how this many to 
+many polymorphic relation work
+
+33
+03:36.620 --> 03:39.010
+in our tinker as we did in the previous lesson
+
+34
+03:47.300 --> 03:51.810
+OK here I'm going to find two users 
+and assign them into variables.
+
+35
+04:07.860 --> 04:12.460
+and then I'm going to find two questions and 
+assign them into other variables.
+
+36
+04:33.140 --> 04:37.410
+Also I'm going to find first answer of question 1 and question 2.
+
+37
+04:58.340 --> 05:08.730
+All right now let's simulate user 1 to vote up the question 1. 
+And here we can say user 1 vote questions
+
+38
+05:10.600 --> 05:14.700
+and then attach
+
+39
+05:14.970 --> 05:21.110
+so it's almost the same thing as we were working 
+with many to many relationship. Here we can pass
+
+40
+05:21.110 --> 05:25.990
+question one instance in the first argument.
+
+41
+05:26.240 --> 05:30.080
+And we also need to specify the vote in array like so
+
+42
+05:37.460 --> 05:39.450
+now if we call the command again
+
+43
+05:40.630 --> 05:42.900
+and change to negative one
+
+44
+05:45.840 --> 05:52.190
+will get error integrity constraint violation. This 
+error occurred because we defined unique index
+
+45
+05:52.430 --> 05:57.110
+composed by user_id votable_id and votable_type.
+
+46
+05:57.230 --> 06:04.610
+This will make sure that a user can only vote a single 
+question once. Actually we can check whether
+
+47
+06:04.690 --> 06:15.680
+a particular user has voted the question or not 
+by saying let's say user 1 votes vote questions
+
+48
+06:17.290 --> 06:20.150
+where votable_id
+
+49
+06:23.150 --> 06:28.200
+question 1 id and then exists
+
+50
+06:33.020 --> 06:35.250
+and here we get true.
+
+51
+06:35.290 --> 06:47.220
+Now if I change to user 2 I get false because 
+user 2 hasn't voted the question 1.
+
+52
+06:47.240 --> 06:56.560
+Now let's see the actual vote record of the user 1.
+
+53
+06:56.690 --> 06:59.470
+And here we can see the record.
+
+54
+06:59.490 --> 07:01.740
+All right let's do another simulation.
+
+55
+07:02.160 --> 07:05.220
+Let's say you have 2 vote down the question 1.
+
+56
+07:05.430 --> 07:12.620
+Here we can say user 2 vote questions
+
+57
+07:12.830 --> 07:18.740
+attach question 1 vote
+
+58
+07:20.860 --> 07:26.630
+-1
+
+59
+07:26.710 --> 07:31.380
+Now let's say user 1 vote up the first answer of question 1.
+
+60
+07:31.520 --> 07:37.490
+Here we can say user 1 vote answers
+
+61
+07:39.440 --> 07:47.910
+attach answer 1 vote 1
+
+62
+07:49.040 --> 07:57.230
+like so. And then let's say user 2 vote down 
+the first answer of question 1.
+
+63
+07:58.230 --> 08:08.400
+Here we can say user 2 vote answers 
+attach answer 1 and then -1
+
+64
+08:12.450 --> 08:13.680
+OK
+
+65
+08:13.750 --> 08:16.810
+Now let's see another use case in our voting system.
+
+66
+08:16.980 --> 08:17.710
+For example
+
+67
+08:17.710 --> 08:19.930
+user 1 has voted up the answer 1
+
+68
+08:20.400 --> 08:23.730
+And now he want to update the vote to vote down the answer 1.
+
+69
+08:23.910 --> 08:25.810
+How can we do that? To do that
+
+70
+08:25.830 --> 08:30.970
+we can say User 1 vote answers
+
+71
+08:33.960 --> 08:45.250
+and then we can utilize update existing pivot. First 
+argument is the related object in this case
+
+72
+08:45.530 --> 08:59.090
+answer 1 and the second argument is 
+the new value in array like this vote -1.
+
+73
+08:59.150 --> 09:07.410
+All right now let's see the question 1's 
+votes by saying question 1 votes
+
+74
+09:07.530 --> 09:11.460
+Here it has two votes and we can do the same thing
+
+75
+09:11.450 --> 09:13.930
+to answer 1 answer one
+
+76
+09:15.290 --> 09:15.830
+votes
+
+77
+09:18.580 --> 09:29.360
+note that the vote column is not there. If you want 
+to see that we can say question 1 votes with
+
+78
+09:29.380 --> 09:35.920
+parenthesis and then with pivot.
+
+79
+09:36.290 --> 09:40.760
+And here we can specify what column in 
+pivot table to be included. In this case
+
+80
+09:40.760 --> 09:45.620
+we only need vote and end with get
+
+81
+09:49.670 --> 09:50.650
+as we can see
+
+82
+09:50.930 --> 09:54.800
+now the vote column included in our results.
+
+83
+09:54.810 --> 10:01.070
+Now you might be asking how can we know how 
+many users that vote down a particular question?
+
+84
+10:01.230 --> 10:02.760
+That's a good question.
+
+85
+10:02.760 --> 10:19.930
+To do that we can do like this question 1 
+votes where pivot vote -1 and then count
+
+86
+10:22.830 --> 10:26.580
+and we can do almost a similar query in summing votes by calling
+
+87
+10:29.210 --> 10:32.770
+sum vote
+
+88
+10:34.200 --> 10:36.340
+and here we get negative 1
+
+89
+10:39.930 --> 10:42.440
+and we can also see how many users that vote up
+
+90
+10:42.440 --> 10:47.010
+this question by changing this to one

@@ -1,0 +1,139 @@
+WEBVTT
+
+0
+00:02.650 --> 00:07.080
+In this section we are going to deploy 
+our Laravel application to production.
+
+1
+00:07.090 --> 00:10.870
+We'll be using Heroku to share our app with the world.
+
+2
+00:10.870 --> 00:16.240
+So Heroku is a cloud platform service that supports 
+several different programming languages used for
+
+3
+00:16.240 --> 00:18.460
+web application development model.
+
+4
+00:18.490 --> 00:24.040
+Initially it's only supports Ruby programming language. 
+But now it support other programming languages
+
+5
+00:24.190 --> 00:36.550
+such as NodeJs, Java, PHP, Python, Go, Skala and clojure. 
+We can deploy our apps in Heroku for free with
+
+6
+00:36.550 --> 00:37.950
+some limitations.
+
+7
+00:38.020 --> 00:44.290
+For example Heroku will slip our application after 
+periods of inactivity and it will make our up a bit
+
+8
+00:44.290 --> 00:45.460
+slower.
+
+9
+00:45.580 --> 00:53.850
+So for professional purpose we need to upgrade to 
+paid plans. Now to be able to deploy our application
+
+10
+00:53.850 --> 00:54.950
+in Heroku
+
+11
+00:54.960 --> 00:59.130
+firstly we need to have Heroku account. If you don't have it
+
+12
+00:59.190 --> 01:02.000
+You can register by hitting this sign up button.
+
+13
+01:05.710 --> 01:14.010
+just fill in the form and then hit the create free account 
+button. After that you can go to your email and
+
+14
+01:14.010 --> 01:16.050
+verify your Heroku account.
+
+15
+01:16.230 --> 01:22.370
+Once your account verified you can 
+then set your account's password.
+
+16
+01:22.380 --> 01:29.150
+Secondly you need to have Heroku CLI installed 
+in your machine. If you don't have it
+
+17
+01:29.170 --> 01:30.790
+You can go to this link
+
+18
+01:33.660 --> 01:40.400
+or you can also googling Heroku CLI and hit this link.
+
+19
+01:45.220 --> 01:54.460
+in here you'll find the installer is available for Mac, 
+Windows and Ubuntu. So please download the installer
+
+20
+01:54.460 --> 01:56.370
+based on your operating system you have.
+
+21
+01:56.560 --> 02:02.340
+Once you've installed it you can verify your Heroku 
+CLI installation by opening your terminal
+
+22
+02:04.460 --> 02:06.780
+and write heroku
+
+23
+02:06.910 --> 02:08.180
+--version
+
+24
+02:13.230 --> 02:19.850
+and here you should see heroku and Node version in the output.
+
+25
+02:19.850 --> 02:20.390
+All right
+
+26
+02:20.410 --> 02:26.290
+the last thing that we need to do before we manage 
+our heroku apps is to log in to Heroku within this
+
+27
+02:26.290 --> 02:27.240
+terminal.
+
+28
+02:27.310 --> 02:35.580
+The way that we can do is by saying heroku login.
+Now we need to enter our email and password
+
+29
+02:52.760 --> 02:59.400
+here I get a message that indicates I have successfully 
+logged in. All right now everything's set up we're
+
+30
+02:59.400 --> 03:02.220
+ready to deploy our Laravel application in Heroku.

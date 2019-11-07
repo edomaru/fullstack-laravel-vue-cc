@@ -1,0 +1,579 @@
+WEBVTT
+
+0
+00:03.460 --> 00:06.670
+Now let's open computed property two dot html.
+
+1
+00:10.460 --> 00:18.910
+And here we have a table contains top ten 
+frameworks each row contains name and score.
+
+2
+00:19.020 --> 00:26.990
+But here the framework is not sorted. What we should do here 
+is sorted the frameworks by score whether ascendingly
+
+3
+00:27.370 --> 00:30.210
+or descendingly.
+
+4
+00:30.270 --> 00:33.020
+So let's switch to our editor and see the code.
+
+5
+00:36.500 --> 00:39.380
+Open the computed property two dot html.
+
+6
+00:44.300 --> 00:45.390
+here inside
+
+7
+00:45.440 --> 00:50.830
+tbody we will loop the framework from top 10 frameworks.
+
+8
+00:52.060 --> 00:57.000
+Let's see the script.
+
+9
+00:57.060 --> 01:01.890
+And here we have top ten frameworks 
+property which contains array of objects.
+
+10
+01:02.310 --> 01:09.330
+And our job now is to sort this frameworks by score 
+before to actually display them in the template.
+
+11
+01:09.480 --> 01:15.570
+In this case we need to make computation to the 
+top frameworks and we can put the logic inside
+
+12
+01:15.570 --> 01:16.390
+the computed
+
+13
+01:16.390 --> 01:16.780
+property.
+
+14
+01:20.780 --> 01:21.920
+So let's add computed
+
+15
+01:28.820 --> 01:35.690
+then inside this let's define a function. Here 
+I'm going to call it top ten framework sorted
+
+16
+01:40.760 --> 01:48.360
+and then inside this function we can sort the top ten 
+frameworks array by utilizing javascript sort function.
+
+17
+01:48.410 --> 02:00.140
+So this dot top ten frameworks dot sort. This 
+function need another function as argument.
+
+18
+02:00.460 --> 02:08.320
+In this case I'm going to use ES6 arrow function.
+In this function we'll need to compare two values
+
+19
+02:08.440 --> 02:14.900
+let's say a and b.
+
+20
+02:15.050 --> 02:23.400
+The first one represents the current iteration and the second 
+one represents the next iteration. Our array elements
+
+21
+02:23.530 --> 02:29.200
+except undefined are sorted according to 
+the return value of this compare function.
+
+22
+02:29.620 --> 02:34.240
+If a compare b is less than zero a will come first.
+
+23
+02:35.510 --> 02:45.650
+If a compare b is equals zero both a and b  unchanged. 
+Then if a compared to b is greater than zero b will come
+
+24
+02:45.650 --> 02:46.430
+first.
+
+25
+02:50.240 --> 02:53.690
+So here we can simply subtract the a score
+
+26
+02:57.090 --> 03:02.750
+with b score.
+
+27
+03:02.760 --> 03:12.760
+So for example here we compare spring 
+with score 88 with ASP NET with score 100.
+
+28
+03:15.760 --> 03:19.280
+Here 88 subtract 100
+
+29
+03:19.390 --> 03:22.150
+the result will be negative 12.
+
+30
+03:22.180 --> 03:33.750
+That's why spring come first. Then let's compare ASP 
+NET with Ruby on Rails which has core 95. Here
+
+31
+03:33.970 --> 03:37.350
+100 subtract 95
+
+32
+03:37.380 --> 03:41.070
+the result will be positive 5.
+
+33
+03:41.080 --> 03:45.830
+That's why the right side in this case rails will come first.
+
+34
+03:46.890 --> 03:50.190
+I hope it will make sense to you.
+
+35
+03:50.370 --> 03:50.940
+All right
+
+36
+03:51.030 --> 03:52.320
+don't forget to add return
+
+37
+03:55.210 --> 03:58.750
+to return the sorted array.
+
+38
+03:58.760 --> 04:06.420
+Now we can go to our template and change this 
+top ten frameworks with our computed property
+
+39
+04:06.420 --> 04:09.740
+top ten frameworks sorted. Let's save
+
+40
+04:13.840 --> 04:14.410
+and have a look
+
+41
+04:18.130 --> 04:19.050
+as you can see
+
+42
+04:19.080 --> 04:25.340
+now the top 10 frameworks sorted 
+from the lower to the higher score.
+
+43
+04:25.370 --> 04:30.310
+Now what if the frameworks need to be sorted descendingly? Well
+
+44
+04:30.370 --> 04:31.900
+It's very easy.
+
+45
+04:31.900 --> 04:33.430
+Let's switch over to our editor
+
+46
+04:38.830 --> 04:45.680
+and if you still remember in this compare function 
+negative value will make the left side come first.
+
+47
+04:45.940 --> 04:49.520
+While positive value will make the right side come first.
+
+48
+04:49.870 --> 04:51.160
+So to make this opposite
+
+49
+04:54.750 --> 04:57.310
+here we simply multiply this value
+
+50
+04:58.230 --> 05:00.150
+with negative one like so.
+
+51
+05:07.020 --> 05:20.640
+So for example negative two multiply by negative one 
+will result positive two. And five multiply by negative
+
+52
+05:20.640 --> 05:27.080
+one will result negative five.
+
+53
+05:27.110 --> 05:30.700
+So let's save and have a look.
+
+54
+05:35.060 --> 05:40.190
+As you can see now the frameworks sorted 
+from the higher score to the lower score.
+
+55
+05:43.140 --> 05:49.620
+Now you might be thinking maybe it would be better 
+if the order could be exchanged ascendingly
+
+56
+05:49.620 --> 05:50.820
+or descendingly
+
+57
+05:51.150 --> 05:57.540
+once we hit this table heading it will be ascending 
+and when hit again it would be descending and
+
+58
+05:57.540 --> 05:58.200
+so on.
+
+59
+05:59.300 --> 06:01.220
+Well that's very challenging
+
+60
+06:01.370 --> 06:02.900
+but let's do that.
+
+61
+06:03.130 --> 06:07.170
+Let's switch back to our editor. And here
+
+62
+06:07.200 --> 06:17.410
+We need to make this part dynamic so 
+let's replace this with this dot order.
+
+63
+06:17.540 --> 06:20.930
+Now we can jump to data property
+
+64
+06:26.210 --> 06:31.590
+then define the order with value one by default.
+
+65
+06:31.700 --> 06:35.310
+That means the order will be ascending initially.
+
+66
+06:35.390 --> 06:37.110
+No we can jump to our template
+
+67
+06:42.350 --> 06:47.540
+and here in this table heading let's 
+bind a click event to toggle the order
+
+68
+06:51.570 --> 07:00.530
+on click equals inside here we can simply change 
+the order from negative one to positive one or
+
+69
+07:00.530 --> 07:02.160
+vice versa.
+
+70
+07:02.160 --> 07:15.950
+Here we can say order equals order multiply 
+by -1 or we can make it more simpler just like
+
+71
+07:15.950 --> 07:16.340
+this
+
+72
+07:22.150 --> 07:25.140
+or to make our template clean
+
+73
+07:25.270 --> 07:29.870
+let's move this logic into method.
+
+74
+07:30.100 --> 07:33.640
+Let's cut and then let's call toggle.
+
+75
+07:36.750 --> 07:37.470
+back to script
+
+76
+07:43.550 --> 07:44.370
+and here
+
+77
+07:44.990 --> 07:46.490
+let's define methods property
+
+78
+07:50.510 --> 07:52.050
+then define toggle method.
+
+79
+07:55.370 --> 08:01.790
+Inside this let's add return and paste the code.
+
+80
+08:02.020 --> 08:06.250
+Since we are in vue option don't forget to add to 'this'
+
+81
+08:10.020 --> 08:11.620
+Le'ts save
+
+82
+08:11.980 --> 08:13.530
+and let's go back to our browser.
+
+83
+08:17.260 --> 08:20.540
+Now here the data sorted in ascending initially.
+
+84
+08:20.990 --> 08:28.270
+If we hit the score it's now sorted descendingly hit again it
+
+85
+08:28.340 --> 08:32.940
+now sorted ascendingly great.
+
+86
+08:32.940 --> 08:38.730
+Now before we end this lesson let's style this table 
+heading for example when we hover over it
+
+87
+08:38.790 --> 08:40.800
+the cursor turns the pointer.
+
+88
+08:40.980 --> 08:44.230
+It will indicate that this part is clickable
+
+89
+08:44.250 --> 08:53.100
+also we need to add an icon or indicator to indicate 
+which sorting type that's currently using.
+
+90
+08:53.110 --> 09:03.680
+So let's switch back over to our editor. Then go to template.
+
+91
+09:03.890 --> 09:07.430
+Here in score table heading let's do class binding
+
+92
+09:10.690 --> 09:12.750
+here we'll need two different classes
+
+93
+09:13.030 --> 09:16.870
+that's why here we're going to pass an array.
+
+94
+09:17.000 --> 09:25.640
+The first one is a class that will change the 
+cursor let's say sort control or whatever name
+
+95
+09:25.650 --> 09:26.150
+you like.
+
+96
+09:30.360 --> 09:35.260
+Then the second will be class that indicate 
+which sorting type that is currently using.
+
+97
+09:35.520 --> 09:43.260
+Here I'm going to call a computed property let's say sort type.
+
+98
+09:43.350 --> 09:45.700
+So let's jump to computed property.
+
+99
+09:51.000 --> 09:53.390
+And here let's define sort type
+
+100
+09:56.670 --> 09:57.380
+in here
+
+101
+09:57.500 --> 10:00.770
+we'll return two different classes based on the order value.
+
+102
+10:04.970 --> 10:06.180
+If order's value
+
+103
+10:09.260 --> 10:10.310
+is equals one
+
+104
+10:13.100 --> 10:19.490
+let's return ascending class
+
+105
+10:19.560 --> 10:21.810
+otherwise let's return descending.
+
+106
+10:26.780 --> 10:32.190
+Now let's define this classes in css. Let's jump to head tag
+
+107
+10:38.230 --> 10:43.670
+then let's add style tag.
+
+108
+10:43.810 --> 10:46.500
+Firstly let's define the sort control
+
+109
+10:50.990 --> 10:51.380
+here
+
+110
+10:51.390 --> 10:55.220
+we simply change the cursor to pointer.
+
+111
+10:56.130 --> 10:58.530
+Then let's define the ascending class
+
+112
+11:05.920 --> 11:13.090
+here we will utilize pseudo element 'after'. 
+It is often used to add cosmetic  content
+
+113
+11:13.110 --> 11:15.190
+element with the content property.
+
+114
+11:18.230 --> 11:30.060
+So here let's set the content with 25b2 which 
+will result triangle icon. Let's copy this rule
+
+115
+11:32.020 --> 11:40.630
+paste and change the class to descending
+
+116
+11:40.700 --> 11:53.240
+Then let's change the content to 25bc 
+which will result reverse triangle icon.
+
+117
+11:53.250 --> 11:56.520
+All right let's save and let's have a look.
+
+118
+12:01.420 --> 12:03.690
+We have unexpected icon
+
+119
+12:03.730 --> 12:06.060
+so let me open my browser console.
+
+120
+12:12.140 --> 12:13.580
+Let me switch the order type
+
+121
+12:16.670 --> 12:17.010
+here
+
+122
+12:17.030 --> 12:19.320
+the class was not changing.
+
+123
+12:19.320 --> 12:28.200
+Let me see my code.
+
+124
+12:28.270 --> 12:29.280
+Sorry
+
+125
+12:29.530 --> 12:32.350
+this should be 'order'
+
+126
+12:38.850 --> 12:39.590
+OK
+
+127
+12:41.220 --> 12:42.290
+as you can see
+
+128
+12:42.360 --> 12:51.180
+now we have expected triangle icon add the 
+data sorted ascendingly. If we hover over it
+
+129
+12:51.250 --> 12:53.350
+the cursor turns to pointer.
+
+130
+12:53.710 --> 12:54.760
+Now if we hit that
+
+131
+12:58.230 --> 13:05.940
+the icon turns to the reverse triangle and 
+the data sorted descendingly. Hit again
+
+132
+13:05.950 --> 13:07.730
+Now it's sorted ascendingly.
+
+133
+13:07.960 --> 13:09.140
+Great.
+
+134
+13:10.000 --> 13:11.110
+OK that's it
+
+135
+13:11.110 --> 13:12.580
+I'll see you in the next lesson.

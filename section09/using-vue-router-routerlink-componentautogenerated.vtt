@@ -1,0 +1,325 @@
+WEBVTT
+
+0
+00:02.310 --> 00:08.160
+Now let's make a couple of links in this 
+navbar so that we can visit the page easily.
+
+1
+00:08.190 --> 00:14.190
+Let's go back to our editor and then go to spa.blade.php
+
+2
+00:21.720 --> 00:28.560
+and here in navbar brand instead of using normal anchor 
+we can now leverage another component that provided
+
+3
+00:28.650 --> 00:29.580
+by vue router
+
+4
+00:33.330 --> 00:40.490
+we can make use router link we can specify the class attribute
+
+5
+00:43.410 --> 00:55.720
+in this case navbar brand then the most important is `to` attribute.
+
+6
+00:55.930 --> 01:00.720
+You can think of the to attribute like `href` in anchor tag.
+
+7
+01:00.730 --> 01:07.080
+So here we can set it to root or because 
+we've also name our route path
+
+8
+01:07.090 --> 01:21.290
+here we can call the name instead of the path. So we need to bind this `to` and pass in an object. Inside
+
+9
+01:21.300 --> 01:25.720
+here we can simply say name colon path name
+
+10
+01:25.740 --> 01:27.000
+In this case home
+
+11
+01:40.810 --> 01:48.700
+now we can get rid of this anchor tag.
+
+12
+01:48.790 --> 01:54.630
+All right let's add more links.
+
+13
+01:54.740 --> 01:58.630
+You can put them in the left side or the right side of the navbar
+
+14
+02:02.060 --> 02:03.530
+here I'll put them in the right side.
+
+15
+02:04.970 --> 02:07.460
+Firstly here we need to make a list item
+
+16
+02:11.980 --> 02:16.480
+and it's gonna have a class nav item just bootstrap stuff
+
+17
+02:21.940 --> 02:23.700
+then inside this list item
+
+18
+02:23.700 --> 02:33.740
+we can add router link it's gonna have a class bootstrap
+
+19
+02:33.800 --> 02:39.410
+nav-link then it's going to point to questions route.
+
+20
+02:39.650 --> 02:47.020
+So here will say to name questions
+
+21
+02:51.680 --> 02:54.250
+and the text is going to be questions
+
+22
+02:59.620 --> 03:01.720
+let's duplicate this list item
+
+23
+03:06.090 --> 03:18.710
+and change the target to my posts 
+and change the text to my posts. Okay
+
+24
+03:18.830 --> 03:23.960
+let's save this change back to the browser
+
+25
+03:26.880 --> 03:27.390
+reload hit
+
+26
+03:30.880 --> 03:31.420
+the link
+
+27
+03:34.470 --> 03:46.010
+we have questions page. Hit this one we have current users post and if we hit the navbar brand we also get
+
+28
+03:46.010 --> 03:47.390
+the questions page.
+
+29
+03:47.460 --> 03:49.250
+Great.
+
+30
+03:49.320 --> 03:56.490
+Now the smal issue that we have here is we don't have proper bootstrap active menu when we switch the pages.
+
+31
+03:58.740 --> 03:59.220
+Actually
+
+32
+03:59.220 --> 04:06.280
+here we have different color for active menu but 
+this is not the proper way. The proper way is to add
+
+33
+04:06.280 --> 04:08.800
+bootstrap class in the current menu item.
+
+34
+04:08.880 --> 04:10.230
+So let's inspect element
+
+35
+04:15.980 --> 04:21.740
+as you can see vue router inject some classes for the current anchor.
+
+36
+04:21.740 --> 04:25.970
+But here we need to add active class here in the list item.
+
+37
+04:30.370 --> 04:34.550
+So as you can see now the menu item marked as active menu.
+
+38
+04:34.610 --> 04:35.420
+So let's do that
+
+39
+04:35.420 --> 04:36.320
+in our code.
+
+40
+04:37.040 --> 04:38.930
+So let's switch back over to our editor
+
+41
+04:44.750 --> 04:50.040
+and here to attach the active class dynamically when 
+the routes changing we cannot use a normal
+
+42
+04:50.040 --> 04:51.170
+list item tag.
+
+43
+04:51.270 --> 04:56.580
+So to do that we need to make a bit 
+change to this router link components.
+
+44
+04:56.580 --> 05:00.620
+Here we can change the router link 
+behavior by specify the `tag` attribute.
+
+45
+05:01.470 --> 05:10.410
+Firstly let's get rid of this list item tag in here 
+entirely. I can simply select this first list item
+
+46
+05:12.510 --> 05:18.120
+I'll have command d to select another 
+instance then I'll cut the class
+
+47
+05:21.750 --> 05:24.000
+I'll delete the list item opening tag
+
+48
+05:27.640 --> 05:33.220
+then I'll go to list item closing  tag then I'll delete them
+
+49
+05:36.410 --> 05:41.990
+go to the left my hitting command left arrow hit the delete
+
+50
+05:44.750 --> 05:49.510
+then after router link I'll paste the class
+
+51
+05:52.680 --> 06:02.600
+and specify tag equals `li` after that I'll cut the old class attribute
+
+52
+06:12.690 --> 06:19.190
+then I need to add anchor tag inside this 
+component. I'll pass a class in here
+
+53
+06:24.050 --> 06:26.460
+and lastly I need to close the anchor tag
+
+54
+06:36.230 --> 06:43.180
+so by doing this way the router link component acts 
+like list item because we've specify the tag as `li`
+
+55
+06:43.200 --> 06:50.480
+but here we don't need to move the `to` attribute 
+to the anchor because vue router will take care of that
+
+56
+06:50.470 --> 06:51.280
+for us.
+
+57
+06:51.620 --> 06:58.650
+Now you might be thinking where we put the active 
+class? Well we'll do that later on for now let's save
+
+58
+06:58.650 --> 07:01.660
+these changes and see in our browser
+
+59
+07:12.010 --> 07:13.240
+let's inspect element on this
+
+60
+07:17.640 --> 07:27.900
+here we still have this item and now you'll see in 
+here we have router link exact active router link active
+
+61
+07:29.100 --> 07:33.130
+and you might be wondering where these classes come from?
+
+62
+07:33.350 --> 07:39.400
+Well actually it's the default classes to indicate 
+that the path is matches with the router link.
+
+63
+07:39.650 --> 07:43.490
+But this is not what we expected 
+because we need active class instead.
+
+64
+07:44.120 --> 07:47.210
+So how can we solve this?
+
+65
+07:47.210 --> 07:49.950
+Well actually you have two options.
+
+66
+07:49.970 --> 07:54.920
+First you need to define the router link active class in your css file
+
+67
+07:55.010 --> 07:59.560
+Second you need to override the router link active to active.
+
+68
+07:59.570 --> 08:04.340
+So for this case I prefer to take the second option. To do that
+
+69
+08:04.340 --> 08:13.130
+let's switch back over to our editor then open router index js
+
+70
+08:17.250 --> 08:28.940
+and here in vue router option we can specify 
+link active class equals active that's it.
+
+71
+08:29.800 --> 08:34.030
+Now if we save this back to our browser
+
+72
+08:37.410 --> 08:38.370
+and reload the page
+
+73
+08:43.160 --> 08:53.900
+now you'll see we have the proper active class and 
+here we can visually see the active menu item.
+
+74
+08:53.940 --> 08:59.530
+All right let's move on the next video where we'll see 
+how to protect a particular route using vue router
+
+75
+08:59.610 --> 09:00.360
+navigation guard.

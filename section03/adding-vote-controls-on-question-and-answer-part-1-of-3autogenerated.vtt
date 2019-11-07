@@ -1,0 +1,286 @@
+WEBVTT
+
+0
+00:02.010 --> 00:06.730
+In the last lesson we have displayed all answers 
+in the show question page.
+
+1
+00:06.810 --> 00:12.830
+Now in this lesson we are going to add something that very useful in question answer application that
+
+2
+00:12.840 --> 00:19.400
+is vote control which allows us to vote the question or answer. In this lesson will also integrate font awesome
+
+3
+00:19.410 --> 00:23.280
+5 into our project and write some sass code again
+
+4
+00:23.320 --> 00:29.580
+to style our vote control. Actually implementing the vote control or make the vote control actually
+
+5
+00:29.580 --> 00:33.870
+work is tricky and it's not enough to discussing one lesson.
+
+6
+00:33.960 --> 00:37.800
+So in this lesson we'll only build the mark up and then style it.
+
+7
+00:38.560 --> 00:44.310
+And we will implement all functionality of the vote control system in the other section of this course.
+
+8
+00:44.320 --> 00:46.190
+All right let's switch to our terminal
+
+9
+00:49.600 --> 00:53.170
+and then create new branch saying git check out
+
+10
+00:53.170 --> 01:02.500
+-b and here I'll call it lesson-16.
+
+11
+01:02.620 --> 01:04.140
+Now let's open
+
+12
+01:04.150 --> 01:05.840
+show.blade.php
+
+13
+01:12.750 --> 01:17.810
+and before going any further let's make a little changes to this markup.
+
+14
+01:17.870 --> 01:25.260
+So here is last change this card-header to card-title.
+
+15
+01:25.430 --> 01:32.280
+And then here let's change this card-body to media
+
+16
+01:35.660 --> 01:40.590
+then we need to wrap everything inside this media
+
+17
+01:44.230 --> 02:03.300
+with media body.
+
+18
+02:03.340 --> 02:12.640
+And lastly we need to wrap both card title 
+and media with card-body
+
+19
+02:45.560 --> 02:46.310
+save.
+
+20
+02:46.620 --> 02:47.280
+And let's see
+
+21
+02:53.020 --> 02:53.900
+OK great.
+
+22
+02:53.980 --> 02:56.860
+I only need to add horizontal rule here
+
+23
+03:11.840 --> 03:12.520
+OK.
+
+24
+03:15.800 --> 03:22.610
+Now here we'll place the vote control on the left side of both question body and answer item as you may
+
+25
+03:22.610 --> 03:27.500
+saw in stackoverflow. Here I'll be adding it 
+on the left side of the question
+
+26
+03:27.510 --> 03:36.280
+body first and once it done I'll copy it and adding 
+on the left side of the answer item.
+
+27
+03:36.320 --> 03:42.070
+So here inside media object let's add a new div
+
+28
+03:45.630 --> 03:58.370
+and give classes d-flex column.
+
+29
+03:58.940 --> 04:01.870
+So actually this is almost the same as we did in question
+
+30
+04:01.870 --> 04:09.710
+Index. We utilize bootstrap flexbox and then we'll add flex column to set vertical direction or put
+
+31
+04:09.710 --> 04:18.660
+the item inside in stack. And here we'll also add another class 
+so that we can select this element and
+
+32
+04:18.660 --> 04:20.630
+child element inside it.
+
+33
+04:20.640 --> 04:24.130
+So here let's call it foot controls.
+
+34
+04:25.420 --> 04:28.910
+Inside here let's add a new anchor
+
+35
+04:29.180 --> 04:34.530
+And here we can specify title attribute and saying
+
+36
+04:34.720 --> 04:41.610
+"This question is useful".
+
+37
+04:41.730 --> 04:43.390
+Let's also specify class attribute
+
+38
+04:47.230 --> 04:50.080
+and the value will be vote up
+
+39
+05:00.420 --> 05:06.060
+inside this anchor We will show triangle icon 
+by utilizing frontawesome 5.
+
+40
+05:06.360 --> 05:12.910
+But since it hasn't installed yet so for now let's just say "vote up"
+
+41
+05:15.740 --> 05:21.490
+below that let's show the number of votes 
+and we'll place it in a span
+
+42
+05:23.120 --> 05:31.930
+Let's give it a class votes count and give it 
+a static number for a while.
+
+43
+05:36.970 --> 05:41.850
+Next we'll also need to add another anchor that allows us to vote down the question.
+
+44
+05:42.310 --> 05:53.380
+So anchor title and saying "This question is not useful".
+
+45
+05:56.180 --> 06:01.470
+Let's also give it a class vote-down. Actually
+
+46
+06:01.540 --> 06:08.280
+let's add another class off to indicate that the button is off.
+
+47
+06:08.340 --> 06:16.140
+For example if a user has not sign in this class would be applied to indicate that he or she can't hit
+
+48
+06:16.140 --> 06:17.640
+the button.
+
+49
+06:17.640 --> 06:22.890
+Basically this class can be applied to 
+vote up, vote down and favorite
+
+50
+06:23.040 --> 06:25.580
+button. For now I'll only put it just here.
+
+51
+06:32.590 --> 06:33.210
+OK
+
+52
+06:33.240 --> 06:35.520
+The text will be vote down.
+
+53
+06:38.220 --> 06:38.920
+Last
+
+54
+06:39.130 --> 06:50.720
+let's also add another anchor that allows us to mark the question as favorite so anchor title and we are
+
+55
+06:50.720 --> 07:00.190
+going to say "Click to mark as favorite question
+
+56
+07:00.410 --> 07:05.800
+click again to undo".
+
+57
+07:06.430 --> 07:09.070
+Here I'll give it a class favorite
+
+58
+07:19.130 --> 07:21.600
+the text will be favorite for now.
+
+59
+07:23.880 --> 07:27.720
+And here we also need to show how many people that favorite
+
+60
+07:27.780 --> 07:31.080
+this question. Here I'll place it in a span
+
+61
+07:33.900 --> 07:40.950
+and let's give it a class favorites-count
+
+62
+07:41.170 --> 07:45.240
+Let's say one two three.
+
+63
+07:45.360 --> 07:45.820
+All right
+
+64
+07:45.820 --> 07:48.290
+let's save all changes and see how it looked like.
+
+65
+07:54.980 --> 07:55.660
+Now
+
+66
+07:55.720 --> 08:00.410
+here we have vote controls on the left side of the question.
+
+67
+08:00.820 --> 08:05.650
+We still need to do a couple of things to make this controls look better but I think this is a good
+
+68
+08:05.650 --> 08:06.120
+progress.

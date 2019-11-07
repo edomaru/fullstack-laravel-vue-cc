@@ -1,0 +1,320 @@
+WEBVTT
+
+0
+00:01.880 --> 00:05.940
+Now that we have the ability to create new question and edit the question
+
+1
+00:06.020 --> 00:10.550
+Another thing that we should have is the ability to delete the question.
+
+2
+00:10.550 --> 00:15.490
+I think implementing this feature is easier than adding or updating the question.
+
+3
+00:15.530 --> 00:24.830
+All we need to do is provide a button and we'll place it after edit button here and then handle the logic
+
+4
+00:24.950 --> 00:27.530
+in questions controller.
+
+5
+00:27.540 --> 00:32.790
+Alright, let's go ahead and create new branch
+
+6
+00:41.110 --> 00:41.460
+OK
+
+7
+00:41.460 --> 00:43.300
+Let's switch to index.blade.php
+
+8
+00:43.450 --> 00:47.760
+go to edit button
+
+9
+00:52.440 --> 00:56.820
+and as I said, we'll place our delete button after this edit button
+
+10
+00:58.870 --> 01:04.630
+but for this time, we cannot use regular anchor tag in this case because if you remember the route
+
+11
+01:04.630 --> 01:08.350
+for delete question using delete http method.
+
+12
+01:08.350 --> 01:10.140
+So let me show it to you.
+
+13
+01:25.510 --> 01:33.750
+As you can see here the route name: `questions.destroy`
+the action will be QuestionsController at
+
+14
+01:33.900 --> 01:41.120
+destroy and the method is delete.
+
+15
+01:41.530 --> 01:51.920
+So here we need to use a form such as we did in the edit form. So from method post
+
+16
+01:55.040 --> 01:57.320
+the action will be
+
+17
+02:02.420 --> 02:03.090
+route
+
+18
+02:05.700 --> 02:08.220
+questions dot destroy
+
+19
+02:11.730 --> 02:13.050
+and pass in the question id
+
+20
+02:25.970 --> 02:36.250
+inside the form we need to tell what method 
+is gonna be using. So method_field
+
+21
+02:36.360 --> 02:40.340
+delete
+
+22
+02:40.940 --> 02:46.150
+And we also need to define the csrf token.
+
+23
+02:46.910 --> 03:00.690
+so we can say `scrf_token`. Or start from Laravel 5.6
+we can simplify this with blade directive
+
+24
+03:01.110 --> 03:07.310
+like so.
+
+25
+03:07.550 --> 03:10.430
+And here we can also change these to
+
+26
+03:16.760 --> 03:19.770
+@method
+
+27
+03:19.980 --> 03:28.200
+And the last but not least let's add a submit button 
+so button type submit
+
+28
+03:31.320 --> 03:47.940
+the class let's say btn btn-sm 
+btn-outline-danger to make it in
+
+29
+03:47.940 --> 03:48.570
+red color
+
+30
+03:51.370 --> 03:52.850
+and we need to confirm deletion
+
+31
+03:52.870 --> 03:56.520
+when user click this button so on click
+
+32
+03:59.160 --> 04:00.440
+return
+
+33
+04:00.960 --> 04:06.310
+confirm the message will be
+
+34
+04:06.450 --> 04:08.290
+Are you sure?
+
+35
+04:18.780 --> 04:21.210
+And the text will be delete
+
+36
+04:24.450 --> 04:26.640
+Save the changes and let's see
+
+37
+04:33.130 --> 04:36.010
+ups route questions
+
+38
+04:36.140 --> 04:38.060
+destory
+
+39
+04:38.110 --> 04:41.980
+Sorry this should be
+
+40
+04:44.670 --> 04:47.360
+where is it questions
+
+41
+04:47.540 --> 04:56.710
+dot destroy save reload again.
+
+42
+04:56.910 --> 05:05.800
+Alright, here the buttons are stacked,
+because the form tag has display block by default
+
+43
+05:06.170 --> 05:09.220
+So here let's add a class
+
+44
+05:14.740 --> 05:22.700
+let's say form-delete save and then let's open
+
+45
+05:25.400 --> 05:26.980
+assets
+
+46
+05:27.620 --> 05:29.520
+app.scss
+
+47
+05:34.300 --> 05:37.180
+and here let's define css rule for `form-delete`
+
+48
+05:40.670 --> 05:44.610
+form form dash delete
+
+49
+05:47.600 --> 05:51.390
+and here we simply change the display to inline
+
+50
+05:58.260 --> 06:02.320
+save that and make sure you run laravel mix
+
+51
+06:17.730 --> 06:18.040
+OK
+
+52
+06:18.070 --> 06:25.960
+Let's see
+
+53
+06:25.980 --> 06:26.880
+All right
+
+54
+06:27.030 --> 06:33.330
+Now both edit and delete button are on one line.
+
+55
+06:33.490 --> 06:35.160
+Next let's click the button
+
+56
+06:36.300 --> 06:38.900
+Here we have the confirmation message show up.
+
+57
+06:39.060 --> 06:44.620
+If we hit the OK as you may guess we'll get a blank page.
+
+58
+06:44.620 --> 07:02.080
+So this code to our editor and open questions controller and then go to destroy method.
+
+59
+07:02.300 --> 07:04.230
+And here we simply say
+
+60
+07:04.560 --> 07:14.640
+question delete to actually delete the record from our database and after the question successfully
+
+61
+07:14.640 --> 07:15.570
+deleted
+
+62
+07:15.630 --> 07:21.240
+we'll redirect to all questions 
+such as we did in store and update method
+
+63
+07:35.820 --> 07:44.360
+The message will be your question has been deleted.
+
+64
+07:48.580 --> 07:55.310
+Save that.
+
+65
+07:55.540 --> 07:58.760
+Sorry I missed the semicolon here.
+
+66
+08:00.420 --> 08:11.340
+Save that and reload the page hit the continue.
+
+67
+08:11.370 --> 08:16.160
+Now we have the deletion message and the question has been removed.
+
+68
+08:19.920 --> 08:21.490
+Let me try one more time.
+
+69
+08:29.550 --> 08:30.480
+Okay great.
+
+70
+08:30.480 --> 08:37.110
+Now we have delete button fully functional and we almost implement full set of CRUD functionality in our
+
+71
+08:37.170 --> 08:39.070
+application in the next lesson
+
+72
+08:39.090 --> 08:43.780
+we're going to work on creating the view for viewing individual question
+
+73
+08:43.980 --> 08:50.040
+So right now when we click this we'll get a blank page.
+
+74
+08:50.040 --> 08:53.790
+So we are going to work on the showing the question detail.
+
+75
+08:53.790 --> 08:55.010
+All right
+
+76
+08:55.260 --> 08:58.230
+Don't forget to save your work to your git repo
+
+77
+08:58.260 --> 09:00.570
+Take a break and join me in the next lesson.

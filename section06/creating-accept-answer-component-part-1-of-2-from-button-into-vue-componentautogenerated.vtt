@@ -1,0 +1,391 @@
+WEBVTT
+
+0
+00:02.880 --> 00:08.180
+In the previous lesson we have rewritten 
+the favorite button into vue js component.
+
+1
+00:08.210 --> 00:12.310
+Now in this lesson we are going to 
+do almost the same thing to this accept
+
+2
+00:12.320 --> 00:14.610
+answer button.
+
+3
+00:14.660 --> 00:20.920
+All right let's switch over to our terminal and create new branch by saying git checkout
+
+4
+00:21.090 --> 00:23.730
+-b lesson-33
+
+5
+00:26.700 --> 00:33.580
+and don't forget to run web pack by saying npm run watch.
+
+6
+00:34.710 --> 00:35.440
+OK
+
+7
+00:35.690 --> 00:47.330
+Now let's open _vote.blade.php and as you can see in 
+else statement we call shared underscore accept blade
+
+8
+00:47.360 --> 00:50.020
+php. So let's opened that file
+
+9
+00:58.230 --> 01:01.190
+as you can see in this file
+
+10
+01:01.290 --> 01:07.150
+we need to authorize the current 
+user signed in to show the button.
+
+11
+01:07.340 --> 01:13.290
+That means we need to think how to keep this authorization 
+working when we rewritten these into new
+
+12
+01:13.310 --> 01:14.070
+component.
+
+13
+01:15.120 --> 01:19.680
+For now we're going to hard code it 
+and in the next lesson we'll rewrite
+
+14
+01:19.680 --> 01:27.670
+the authorization logic into javascript so that it can 
+be applied in our component. OK let's copy
+
+15
+01:27.670 --> 01:28.450
+everything.
+
+16
+01:29.590 --> 01:44.660
+Then go to assets js components folder here 
+let's create new file and call it accept dot vue
+
+17
+01:44.710 --> 02:00.770
+Inside here let's add template tag add 
+a div and then paste the markup.
+
+18
+02:00.860 --> 02:15.380
+We don't need to use a form here so let's 
+remove the on click attribute from here.
+
+19
+02:15.480 --> 02:23.690
+And let's also remove the form.
+
+20
+02:23.790 --> 02:28.620
+Now before we remove the laravel autorization 
+checking Let's add script tag below
+
+21
+02:37.570 --> 02:50.870
+and Firstly let's add props property to indicate 
+that this component needs answer as input
+
+22
+02:51.020 --> 02:52.940
+and then let's add computed property.
+
+23
+02:56.760 --> 02:58.010
+and here let's hard code
+
+24
+02:58.020 --> 03:00.070
+the authorization logic.
+
+25
+03:00.070 --> 03:02.350
+Again this only temporary solution
+
+26
+03:02.490 --> 03:06.290
+and in the next lesson we'll come back here and fix this.
+
+27
+03:07.030 --> 03:11.730
+OK let's define a method to check if the 
+current user can accept the answer.
+
+28
+03:11.730 --> 03:13.800
+I'm going to call it can accept
+
+29
+03:18.770 --> 03:20.570
+and for now it will be returned true.
+
+30
+03:26.150 --> 03:31.560
+and the second method is a method to check if the current user is cannot accept the answer
+
+31
+03:31.710 --> 03:34.350
+and the answer has been accepted as best answer.
+
+32
+03:34.680 --> 03:36.870
+And here I'm going to call it is best.
+
+33
+03:41.110 --> 03:43.150
+here we simply say return
+
+34
+03:48.000 --> 03:48.920
+this can accept
+
+35
+03:52.230 --> 03:56.310
+and this answer is best.
+
+36
+03:59.550 --> 04:02.010
+basically this logic simplify
+
+37
+04:04.990 --> 04:07.750
+this else if 
+
+38
+04:07.840 --> 04:13.630
+statement.
+
+39
+04:13.890 --> 04:21.320
+And then here he can conditionally show this anchor 
+by utilizing v-if directive but before that let's
+
+40
+04:21.320 --> 04:22.100
+remove this blade if
+
+41
+04:22.310 --> 04:23.360
+statement from here
+
+42
+04:35.300 --> 04:36.530
+and now here we can say v-if
+
+43
+04:39.740 --> 04:40.460
+can accept
+
+44
+04:44.480 --> 04:45.980
+and then also let's remove these
+
+45
+04:57.740 --> 05:05.630
+and then we can conditionally show this 
+second anchor by saying v-if is best
+
+46
+05:09.180 --> 05:15.590
+and the last thing that we need 
+to change here is model status.
+
+47
+05:15.590 --> 05:18.860
+Let's see what's going on behind this accessor.
+
+48
+05:18.920 --> 05:20.330
+Let's open answer model
+
+49
+05:26.420 --> 05:29.930
+and then jump to get status attribute
+
+50
+05:34.330 --> 05:37.020
+it's basically return vote accepted class
+
+51
+05:37.310 --> 05:44.740
+if the answer has been accepted. I think now we can 
+place this logic in our companion and it will be
+
+52
+05:44.740 --> 05:45.680
+much easier.
+
+53
+05:46.580 --> 05:47.920
+So let's copy this logic
+
+54
+05:54.890 --> 05:56.090
+let's define data method
+
+55
+06:00.200 --> 06:08.140
+and here let's define a property called 
+is best and it holds this answer
+
+56
+06:09.010 --> 06:16.750
+is best.
+
+57
+06:16.890 --> 06:18.470
+And in this computed property
+
+58
+06:23.800 --> 06:25.720
+let's create a method called classes
+
+59
+06:31.630 --> 06:32.700
+return an array
+
+60
+06:33.990 --> 06:42.150
+contains bootstrap mt-2 class or margin top two like we call here
+
+61
+06:54.650 --> 06:56.050
+and paste the previous logic
+
+62
+07:00.320 --> 07:01.850
+and then change this to
+
+63
+07:05.470 --> 07:07.360
+this is best
+
+64
+07:12.010 --> 07:18.530
+and remove the semi colon.
+
+65
+07:18.600 --> 07:26.440
+Now we can remove the model status from both anchors 
+and instead we'll be binding the class attribute to classes.
+
+66
+07:35.060 --> 07:38.570
+All right now we can register this component in app.js
+
+67
+07:45.870 --> 07:47.270
+Duplicate this line
+
+68
+07:49.710 --> 07:51.960
+Let's change the first argument to accept
+
+69
+07:56.760 --> 07:59.580
+and the second argument require component
+
+70
+07:59.700 --> 08:06.980
+accept.vue
+
+71
+08:07.080 --> 08:10.540
+Now we can reopen _vote.blade.php
+
+72
+08:13.380 --> 08:17.170
+and replace this line with our newest component
+
+73
+08:29.450 --> 08:30.460
+let's save all changes and
+
+74
+08:35.940 --> 08:36.830
+have a look.
+
+75
+08:47.340 --> 08:48.750
+Something went wrong.
+
+76
+08:49.050 --> 08:57.430
+Let me open my browser console.
+
+77
+08:57.640 --> 08:57.890
+I have error
+
+78
+09:02.730 --> 09:04.740
+data function should return an object
+
+79
+09:10.340 --> 09:23.200
+here in data let's cut this return an 
+object and paste here. Save reload again.
+
+80
+09:28.940 --> 09:30.370
+Here I have another error.
+
+81
+09:31.470 --> 09:34.950
+The computed property isBest is already defined in data
+
+82
+09:38.510 --> 09:39.520
+OK
+
+83
+09:39.810 --> 09:46.050
+here I have defined is best in  data method and 
+in computed property defined a method in the
+
+84
+09:46.050 --> 09:46.870
+same name.
+
+85
+09:46.900 --> 09:53.720
+So remember don't use the same 
+name in data and computed property.
+
+86
+09:53.880 --> 09:58.050
+Maybe we can change this to accepted
+
+87
+10:04.600 --> 10:05.400
+reload again.
+
+88
+10:09.240 --> 10:09.740
+OK
+
+89
+10:09.820 --> 10:21.760
+Now I have no error.
+
+90
+10:21.910 --> 10:26.030
+Now you'll see the accept button will appear in all answers.
+
+91
+10:26.620 --> 10:28.530
+But don't worry we'll fix this issue later.

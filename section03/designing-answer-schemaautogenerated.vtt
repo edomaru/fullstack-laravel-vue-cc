@@ -1,0 +1,555 @@
+WEBVTT
+
+0
+00:00.740 --> 00:06.350
+In this lesson we will continue our coding journey 
+and design table schema that will store all answers
+
+1
+00:06.380 --> 00:09.390
+for our application.
+
+2
+00:09.430 --> 00:13.860
+So an answer is created by a user to answer a particular question
+
+3
+00:15.020 --> 00:25.530
+So the table schema for the answer will be `id` id of the answer `user_id` to store the id of the user that create
+
+4
+00:25.630 --> 00:33.570
+the answer `question_id` to store the ID of the related question or the question that will be answered
+
+5
+00:35.500 --> 00:38.320
+`body` to store body or content of the answer.
+
+6
+00:39.250 --> 00:41.650
+An answer can also voted by anyone else.
+
+7
+00:42.180 --> 00:48.580
+and we will need to define `votes_count` in this case to records how many people are voting the answer
+
+8
+00:48.630 --> 00:56.060
+And lastly we also need to track when the answer created or modified so we will need created_at and updated_at
+
+9
+00:56.070 --> 00:57.100
+column.
+
+10
+00:57.210 --> 01:01.410
+So thats all we need in answers tabel.
+
+11
+01:01.420 --> 01:01.970
+All right
+
+12
+01:02.110 --> 01:16.120
+Let's go ahead and open our terminal and Firstly let's isolate our work into a new branch.
+
+13
+01:16.350 --> 01:22.260
+Now we can continue designing answer schema by generating new migration along with the new model that
+
+14
+01:22.260 --> 01:32.060
+will represent that table. Here we can say: php artisan make:model Answer
+
+15
+01:33.940 --> 01:34.600
+-m
+
+16
+01:39.610 --> 01:41.830
+all right let's open the create answers table
+
+17
+01:51.750 --> 02:00.210
+and here we already have increments id or auto increment id field and then timestamps which represents
+
+18
+02:00.270 --> 02:07.260
+created_at and updated_at column
+
+19
+02:07.310 --> 02:22.850
+So here let's have a question Id column in unsigned integer.
+
+20
+02:22.960 --> 02:26.640
+Let's also have user_id also in unsigned integer
+
+21
+02:39.830 --> 02:45.980
+and then we need to have body in text
+
+22
+02:51.960 --> 02:55.250
+and last we need to have votes_count in integer
+
+23
+03:03.390 --> 03:09.500
+and make it zero by default.
+
+24
+03:09.530 --> 03:09.980
+All right let's
+
+25
+03:10.050 --> 03:18.040
+save all these and go to terminal again and run our latest migration
+
+26
+03:25.320 --> 03:25.910
+OK
+
+27
+03:26.020 --> 03:30.110
+create answers table has been migrated successfully
+
+28
+03:30.420 --> 03:32.800
+Now let's define relationship method
+
+29
+03:32.870 --> 03:33.720
+in our models
+
+30
+03:34.990 --> 03:36.620
+Let's open question model
+
+31
+03:41.890 --> 03:45.160
+And here let's define relationship method to answer model
+
+32
+03:48.420 --> 03:54.150
+so let's call it answers in plural
+
+33
+03:59.570 --> 04:04.120
+and I'm sure you already know what should we do here.
+
+34
+04:04.330 --> 04:13.150
+Here we can return this has many answer
+
+35
+04:21.860 --> 04:22.220
+next
+
+36
+04:22.230 --> 04:24.200
+let's open the user model
+
+37
+04:28.440 --> 04:31.700
+and here we need to do the same thing as we did in the question model.
+
+38
+04:32.070 --> 04:35.370
+So let me copy this answers method
+
+39
+04:40.230 --> 04:41.280
+and paste here.
+
+40
+04:43.180 --> 04:45.520
+Now let's open the answer model
+
+41
+04:54.190 --> 04:57.020
+And here let's define inverse relationship methods.
+
+42
+04:59.800 --> 05:01.780
+public function
+
+43
+05:03.320 --> 05:05.450
+question in singular
+
+44
+05:12.110 --> 05:18.580
+And here we return this belongs to
+
+45
+05:21.990 --> 05:22.770
+question
+
+46
+05:30.270 --> 05:32.160
+an answer also created by user
+
+47
+05:32.160 --> 05:39.740
+so here we can say public function user in singular
+
+48
+05:46.450 --> 05:53.930
+and here we return this belongs to user
+
+49
+06:03.550 --> 06:09.970
+and because answer's body written in markdown syntax we also need to convert it into html using
+
+50
+06:10.050 --> 06:11.180
+parsedown library
+
+51
+06:11.190 --> 06:18.630
+we can simply copy from question model so let's copy this one
+
+52
+06:23.140 --> 06:24.140
+and paste here.
+
+53
+06:26.250 --> 06:29.190
+Now I'll switch to question model again
+
+54
+06:33.780 --> 06:43.540
+And here I realized that I already have answers column in the questions table and here I defined relationship
+
+55
+06:43.560 --> 06:49.610
+method in the same name and I will get trouble when accessing dynamic property.
+
+56
+06:49.690 --> 06:57.130
+So when I call question answers
+
+57
+07:00.390 --> 07:03.650
+count like this this will be OK.
+
+58
+07:03.900 --> 07:16.360
+But when I access question answers count or loop the answers
+
+59
+07:17.720 --> 07:27.370
+foreach question answers as answer like this
+
+60
+07:28.560 --> 07:33.810
+then it will be failed because laravel will firstly check 
+the existence of the column name in the
+
+61
+07:33.810 --> 07:38.370
+table. If it doesn't exist but it found relationship method
+
+62
+07:38.370 --> 07:41.350
+then it will be assume as a dynamic property.
+
+63
+07:41.640 --> 07:46.210
+But if it exists then eloquent will return the actual column's value.
+
+64
+07:46.290 --> 07:48.660
+So to fix this we have two options.
+
+65
+07:48.660 --> 07:54.150
+First option is to change the relationship method's name to something else and we don't need to touch
+
+66
+07:54.150 --> 07:56.320
+the existing column name in our database
+
+67
+07:56.520 --> 07:59.010
+and in all places in our application.
+
+68
+07:59.130 --> 08:05.410
+The second option we keep the relationship method's name as it was and rename the column name in the questions
+
+69
+08:05.410 --> 08:06.110
+table.
+
+70
+08:06.120 --> 08:12.690
+Also we need to make changes in some places such as in question factory and in our view.
+
+71
+08:13.350 --> 08:17.510
+You might tend to take the first option because it's very simple actually.
+
+72
+08:17.670 --> 08:21.120
+But here I will be choose the second option for some reasons.
+
+73
+08:21.120 --> 08:25.370
+First the name `answers` to represent relationship to answer model I 
+
+74
+08:25.600 --> 08:31.930
+think is more descriptive instead of let's say question answers or list answers
+
+75
+08:32.040 --> 08:33.160
+or something else.
+
+76
+08:33.270 --> 08:40.280
+On the other hand answers column in questions table can be renamed to let's say answers count.
+
+77
+08:40.470 --> 08:45.180
+And I think it's still relevant to describe the purpose of the column.
+
+78
+08:45.180 --> 08:49.250
+The second we only to make little changes in some places.
+
+79
+08:49.320 --> 08:55.770
+Like I said we need to make change in question factory and in our view.  And the last I want to show you
+
+80
+08:55.870 --> 08:59.590
+other use case when working with database migration.
+
+81
+09:00.510 --> 09:01.800
+OK that's open
+
+82
+09:07.790 --> 09:08.800
+question factory
+
+83
+09:13.190 --> 09:13.630
+and change
+
+84
+09:13.630 --> 09:22.880
+these to `answers_count` and then go to resources
+
+85
+09:22.930 --> 09:26.170
+views questions
+
+86
+09:29.130 --> 09:31.170
+and then index.blade.php
+
+87
+09:36.050 --> 09:38.330
+find answers
+
+88
+09:41.220 --> 09:48.060
+So here let's select all answers and chance to `answers_count`
+
+89
+09:51.870 --> 09:52.890
+save all changes
+
+90
+09:55.730 --> 09:57.740
+and now we can create another migration.
+
+91
+09:58.030 --> 10:03.320
+Let's jump to our terminal
+
+92
+10:03.840 --> 10:19.050
+and here we can say: php artisan make migration rename answers in questions table
+
+93
+10:23.060 --> 10:28.320
+table equals questions
+
+94
+10:28.420 --> 10:28.850
+All right
+
+95
+10:28.870 --> 10:36.680
+let's open the migration file
+
+96
+10:36.950 --> 10:46.260
+and here in `up` method we can rename the column by saying table rename column
+
+97
+10:51.420 --> 11:02.070
+the column that will be renamed is `answers` and the new column name will be `answers_count`.
+
+98
+11:06.080 --> 11:09.420
+End here in `down` method we do the opposite
+
+99
+11:17.150 --> 11:27.200
+rename the `answers_count` to `answers` save that.
+
+100
+11:27.860 --> 11:30.140
+And now if we run the migration
+
+101
+11:39.280 --> 11:40.290
+we will find error
+
+102
+11:45.240 --> 11:49.390
+class doctrine dbal not found.
+
+103
+11:49.480 --> 11:55.870
+So unfortunately modifying a column requires us to install another dependency called `doctrine`
+
+104
+11:55.870 --> 11:57.620
+dbal
+
+105
+11:57.640 --> 12:00.280
+So if you open laravel guide
+
+106
+12:09.620 --> 12:11.460
+and go to migration
+
+107
+12:18.840 --> 12:31.210
+and then go to modifying columns
+
+108
+12:31.390 --> 12:34.220
+So here it says before renaming a column
+
+109
+12:34.300 --> 12:40.400
+be sure to add the `doctrine/dbal` dependency to your composer.json file.
+
+110
+12:40.480 --> 12:41.260
+So here
+
+111
+12:44.100 --> 12:49.140
+let's install that package by saying: composer require
+
+112
+12:52.190 --> 13:01.390
+doctrine/dbal
+
+113
+13:01.440 --> 13:01.950
+All right
+
+114
+13:01.960 --> 13:08.130
+after doctrine/dbal dependency installed we can rerun our migration and I'm sure we will not get
+
+115
+13:08.130 --> 13:09.220
+any error anymore.
+
+116
+13:16.360 --> 13:21.120
+OK rename answers in question table has been migrated successfully.
+
+117
+13:21.410 --> 13:23.290
+And now if we go to our browser
+
+118
+13:26.430 --> 13:30.930
+and reload the page everything should be fine.
+
+119
+13:30.940 --> 13:31.980
+Whoops I get error
+
+120
+13:37.010 --> 13:37.680
+OK
+
+121
+13:37.760 --> 13:39.910
+I need to change this
+
+122
+13:39.920 --> 13:42.350
+this `answers` to `answers_count`
+
+123
+13:45.600 --> 13:46.890
+switch the question model
+
+124
+13:53.290 --> 13:57.920
+and here I'll change this to answers
+
+125
+13:57.990 --> 13:59.880
+count save
+
+126
+14:03.100 --> 14:04.740
+reload the page.
+
+127
+14:04.770 --> 14:07.090
+The error should be gone.
+
+128
+14:08.360 --> 14:09.290
+OK great
+
+129
+14:10.400 --> 14:16.490
+So now that we have a new table to hold all the answers and we also have answer model to represent the
+
+130
+14:16.490 --> 14:18.830
+table in our application.
+
+131
+14:19.100 --> 14:26.420
+In the next lesson we are going to pre populate the answers table with some fake answers as we did in questions
+
+132
+14:26.430 --> 14:27.210
+table.
+
+133
+14:27.230 --> 14:32.390
+We'll also learn how to utilize eloquent event to increment the number of answers in the questions
+
+134
+14:32.390 --> 14:32.970
+table
+
+135
+14:33.080 --> 14:35.480
+every time a new answer is created.
+
+136
+14:35.650 --> 14:36.580
+All right
+
+137
+14:36.920 --> 14:40.600
+don't forget to save your work into git repo and I'll see you in the next lesson.

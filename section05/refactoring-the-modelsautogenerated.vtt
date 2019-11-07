@@ -1,0 +1,366 @@
+WEBVTT
+
+0
+00:02.310 --> 00:07.800
+Up until this point we have our application fully 
+functional we can manage our questions and manage
+
+1
+00:07.800 --> 00:09.720
+answers for any questions.
+
+2
+00:09.720 --> 00:16.020
+And the important part in question/answer application 
+is we can vote on any questions and answers.
+
+3
+00:16.020 --> 00:18.090
+I'm sure you've found many things to learn.
+
+4
+00:18.170 --> 00:23.280
+You will learn a lot about laravel features and how 
+to put them into practice in making real world
+
+5
+00:23.340 --> 00:24.840
+application.
+
+6
+00:24.840 --> 00:30.200
+But maybe you've seen that there were some repeated 
+code that we wrote over and over in our application.
+
+7
+00:30.510 --> 00:35.010
+And this is not a good practice in software development 
+because it will make our application hard
+
+8
+00:35.010 --> 00:40.800
+to develop and hard to maintain. That's why here in 
+this lesson we're going to implement something
+
+9
+00:40.800 --> 00:43.520
+called DRY principle.
+
+10
+00:43.530 --> 00:47.160
+So as noted in Wikipedia that in software engineering
+
+11
+00:47.220 --> 00:53.580
+Don't repeat yourself or DRY is a principle of software development aimed at reducing repetition of
+
+12
+00:53.580 --> 00:59.300
+software patterns replacing it with 
+abstractions or repetition of some data
+
+13
+00:59.850 --> 01:02.810
+using data normalization to avoid redundancy.
+
+14
+01:03.090 --> 01:09.620
+So in the simple words DRY as the name says that 
+we should not repeat our self in our code.
+
+15
+01:09.810 --> 01:12.140
+So that's a brief intro but DRY
+
+16
+01:12.290 --> 01:14.990
+now let's implement that in our code.
+
+17
+01:15.090 --> 01:18.800
+All right let's head over to our terminal 
+and then create new branch
+
+18
+01:26.170 --> 01:26.610
+OK
+
+19
+01:26.660 --> 01:29.490
+we are in lesson-23 branch.
+
+20
+01:29.510 --> 01:32.150
+Now let's open user model
+
+21
+01:42.290 --> 01:47.380
+here we see that the code in vote 
+question and vote answer are similar.
+
+22
+01:47.510 --> 01:51.160
+Why did we need to define two different methods for two similar things.
+
+23
+01:52.810 --> 02:05.450
+So here in vote answer I'll cute everything except this one.
+
+24
+02:05.630 --> 02:07.530
+And then I'll create another method
+
+25
+02:08.950 --> 02:11.340
+let's say underscore vote
+
+26
+02:14.580 --> 02:20.400
+and I'll define three arguments here. 
+First argument will be relationship
+
+27
+02:24.170 --> 02:30.020
+the second argument will be model 
+and the third argument will be vote
+
+28
+02:34.540 --> 02:35.710
+inside this method
+
+29
+02:35.710 --> 02:36.650
+I'll paste the code.
+
+30
+02:39.180 --> 02:46.990
+And then I'll select vote answers
+
+31
+02:47.090 --> 02:49.690
+so the vote answers represent the relationship.
+
+32
+02:49.970 --> 02:58.600
+So here we can replace them to 
+relationship as we defined in here.
+
+33
+03:05.640 --> 03:07.650
+And then let's select all answer instances
+
+34
+03:11.660 --> 03:18.110
+and change them to model as we 
+defined in the second argument.
+
+35
+03:21.550 --> 03:24.750
+And the vote here is come from here.
+
+36
+03:25.870 --> 03:30.520
+Now we can go to to vote question method
+
+37
+03:33.490 --> 03:34.250
+here
+
+38
+03:34.480 --> 03:37.030
+delete everything except this first line.
+
+39
+03:43.160 --> 03:51.130
+and after that we can call this underscore 
+vote pass in the vote questions in the first
+
+40
+03:51.150 --> 03:51.400
+argument
+
+41
+03:56.090 --> 03:56.870
+and then pass
+
+42
+03:56.900 --> 03:58.100
+the question instance
+
+43
+03:58.100 --> 03:58.930
+in the second argument
+
+44
+04:01.940 --> 04:07.040
+and then vote.
+
+45
+04:07.050 --> 04:08.610
+Now we can go to vote answer method
+
+46
+04:11.690 --> 04:15.930
+and here we call this underscore vote pass
+
+47
+04:19.210 --> 04:20.360
+in vote answers
+
+48
+04:24.190 --> 04:28.540
+and then answer instance and then vote
+
+49
+04:36.950 --> 04:41.970
+and because this vote method will be called just in this model
+
+50
+04:41.990 --> 04:45.230
+so here we can change to private.
+
+51
+04:48.190 --> 04:48.570
+All right
+
+52
+04:48.570 --> 04:54.340
+let's save all changes and then let's make 
+sure that everything is working fine.
+
+53
+05:34.940 --> 05:35.360
+OK
+
+54
+05:35.370 --> 05:36.980
+I think it's still working fine.
+
+55
+05:39.030 --> 05:45.540
+Now let's refactor our code in the answer 
+and question model if you open answer model
+
+56
+05:51.840 --> 05:57.970
+here you'll see we have vote method 
+up votes and down votes method.
+
+57
+05:59.630 --> 06:04.130
+And then if you open question question model
+
+58
+06:11.910 --> 06:14.800
+Here you'll see we also have the same methods.
+
+59
+06:15.060 --> 06:17.670
+So let's implement DRY principle in both models
+
+60
+06:25.720 --> 06:26.890
+let's cut these three methods
+
+61
+06:31.850 --> 06:38.200
+and then let's go to app folder and 
+inside this folder let's create new file
+
+62
+06:40.980 --> 06:47.070
+and then let's call it votable trait dot php
+
+63
+06:52.510 --> 07:00.360
+here let's define namespace app and define a trait
+
+64
+07:00.430 --> 07:09.590
+so trait votable trait.
+
+65
+07:10.850 --> 07:15.860
+And inside this let's paste the earlier methods and that's it.
+
+66
+07:15.890 --> 07:23.030
+So we can image in a trait like a partial view we can 
+create it and write lines of code on it and then
+
+67
+07:23.090 --> 07:25.950
+we can include it in other file.
+
+68
+07:26.060 --> 07:30.370
+Once it included an other file then 
+the code inside it will be merged.
+
+69
+07:31.320 --> 07:32.910
+Now we can go back to answer model
+
+70
+07:41.550 --> 07:54.310
+and here we can include the trait in this 
+answer model by saying use votable trait.
+
+71
+07:54.490 --> 08:00.660
+So by doing these all methods that defined 
+in the trait will be available in this model.
+
+72
+08:00.700 --> 08:02.940
+Now let's do the same thing to question model.
+
+73
+08:08.320 --> 08:09.770
+let's remove these methods
+
+74
+08:13.370 --> 08:23.080
+and then here we include our votable 
+trait by saying use votable trait
+
+75
+08:25.810 --> 08:26.200
+ok
+
+76
+08:26.260 --> 08:26.900
+let's save all these.
+
+77
+08:30.640 --> 08:32.480
+and let's make sure that everything is working.
+
+78
+08:49.750 --> 08:50.440
+Alright
+
+79
+08:50.540 --> 08:52.440
+everything is still working as expected.
+
+80
+08:53.280 --> 08:56.930
+So that's it for this lesson let's save our work to our git repo.
+
+81
+09:04.940 --> 09:23.140
+git add all git commit -m and I'm going to say implement 
+DRY principle on answer and question models.
+
+82
+09:23.510 --> 09:24.770
+check out to master branch.
+
+83
+09:29.500 --> 09:32.530
+and then merge to lesson-23
+
+84
+09:38.700 --> 09:41.520
+then push the lesson-23 and master branch

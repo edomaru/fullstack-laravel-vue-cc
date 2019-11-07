@@ -1,0 +1,417 @@
+WEBVTT
+
+0
+00:00.590 --> 00:06.250
+In this lesson we are gonna be looking at how to 
+upgrade Laravel app from version five point eight
+
+1
+00:06.490 --> 00:10.020
+to 6.0 LTS.
+
+2
+00:10.060 --> 00:15.900
+Note that there's no version 5.9 as you could predicted before.
+
+3
+00:15.940 --> 00:19.850
+So here I have read everything in this page
+
+4
+00:20.080 --> 00:21.010
+and I think
+
+5
+00:21.010 --> 00:28.850
+what we need to care about regarding to our 
+Laravel Q/A app are only two things. Upgrade
+
+6
+00:28.930 --> 00:33.110
+Laravel framework dependency as well as third party library.
+
+7
+00:33.190 --> 00:37.040
+And update email verification in our core application.
+
+8
+00:37.300 --> 00:43.180
+After we've done that we'll be using Github comparison 
+tool to see other file changes and then apply
+
+9
+00:43.210 --> 00:46.760
+that to our core applications file.
+
+10
+00:46.900 --> 00:54.370
+Also note that before you decide to upgrade to Laravel 
+version 6 you need to upgrade your PHP version
+
+11
+00:54.700 --> 00:57.830
+to 7.2 or higher.
+
+12
+00:57.830 --> 01:04.180
+And I think you should do that just in case 
+you're still using PHP version 7.1 because if
+
+13
+01:04.180 --> 01:08.740
+you see here PHP 7.1 will no longer be actively maintenance
+
+14
+01:08.890 --> 01:11.180
+as of December 2019.
+
+15
+01:13.880 --> 01:14.840
+Here I'm using
+
+16
+01:17.600 --> 01:19.290
+PHP 7.3
+
+17
+01:19.490 --> 01:21.800
+so I got to go.
+
+18
+01:21.830 --> 01:25.180
+All right let's change the working directory to our Laravel app
+
+19
+01:35.000 --> 01:35.530
+here
+
+20
+01:35.560 --> 01:45.950
+let me check my level version by saying: php 
+artisan --version my current level version is five
+
+21
+01:45.950 --> 01:50.090
+point eight point twenty three.
+
+22
+01:50.300 --> 01:50.650
+All right
+
+23
+01:50.690 --> 01:56.720
+as always before we upgrade to the newer version 
+let's create a new branch to isolate all changes
+
+24
+01:56.900 --> 02:00.110
+that we will make: git checkout
+
+25
+02:00.200 --> 02:01.750
+-b
+
+26
+02:02.330 --> 02:09.040
+and here I'm gonna call laravel-v6.0
+
+27
+02:09.040 --> 02:12.730
+OK
+
+28
+02:12.800 --> 02:17.220
+let's go back to our browser, and here
+
+29
+02:17.240 --> 02:25.380
+the first thing that we need to do is update our Laravel 
+framework dependency to version 6.0 in our composer
+
+30
+02:25.380 --> 02:27.710
+dot json
+
+31
+02:27.900 --> 02:32.620
+Also we need to examine any third party 
+packages that consumed by our app.
+
+32
+02:34.110 --> 02:37.590
+So to do that let's scroll all the way down
+
+33
+02:43.110 --> 02:45.630
+then hit this GitHub comparison tool
+
+34
+02:52.760 --> 02:54.930
+hit the file changes
+
+35
+02:55.150 --> 03:04.910
+make sure you hit this split mode and 
+then let's find composer.json. Okay
+
+36
+03:04.910 --> 03:05.890
+there we go.
+
+37
+03:06.780 --> 03:14.790
+So here we need to change our php version from 
+seven point one point three to seven point two.
+
+38
+03:14.790 --> 03:23.100
+Then we need to change laravel framework from five 
+point eight to six point o. In require dev section
+
+39
+03:23.100 --> 03:26.030
+we see that these packages are no longer needed.
+
+40
+03:26.340 --> 03:32.970
+They replaced with this new package facade ignition 
+which is the new and better error page for Laravel
+
+41
+03:37.150 --> 03:38.950
+and here for php unit
+
+42
+03:38.950 --> 03:44.410
+we need to change from from 7.5 to 8.0.
+
+43
+03:44.830 --> 03:56.770
+So let's go back to our editor. Let's pull open the composer.json, go to require section. And here
+
+44
+03:56.770 --> 03:59.890
+let's change this to seven point two
+
+45
+04:05.350 --> 04:10.980
+then change this version to six point 0.
+
+46
+04:11.300 --> 04:18.960
+here we have a couple of third body packages such 
+as doctrine, Laravel nexmo notification channel,
+
+47
+04:19.210 --> 04:23.750
+laravel slack notification channel and purifier.
+
+48
+04:23.750 --> 04:28.790
+I have checked all of these and I'm sure 
+they are compatible with Level 6.0.
+
+49
+04:29.690 --> 04:36.140
+So just in case you're using other library then make 
+sure it's compatible with the newer version of
+
+50
+04:36.140 --> 04:37.620
+Laravel.
+
+51
+04:37.640 --> 04:40.920
+All right, let's go back to our browser
+
+52
+04:40.970 --> 04:42.940
+let me copy this line
+
+53
+04:45.620 --> 04:46.520
+back to the editor. I'll move
+
+54
+04:50.000 --> 04:59.550
+this up and I'll select these lines and replace with this line.
+
+55
+04:59.550 --> 05:03.230
+Don't forget the comma here. Also
+
+56
+05:03.410 --> 05:11.470
+I'll change this php unit to 8.0. Alright
+
+57
+05:11.520 --> 05:22.320
+let's save this changes, go to our terminal and type: 
+composer update and hopefully we'll not get into any
+
+58
+05:22.320 --> 05:23.770
+error.
+
+59
+05:25.380 --> 05:26.550
+While it's updating
+
+60
+05:26.550 --> 05:27.930
+let's go back to the upgrade guide
+
+61
+05:34.650 --> 05:44.520
+let's jump to e-mail verification.
+
+62
+05:44.610 --> 05:45.050
+Here we go
+
+63
+05:49.920 --> 05:55.860
+so here to prevent possible csrf attack e-mail 
+verification has been updated from a get route
+
+64
+05:55.860 --> 05:59.920
+to a post. So let's copy this lines.
+
+65
+06:03.150 --> 06:10.980
+Head back to our editor then open verify blade php
+
+66
+06:14.490 --> 06:16.440
+here let's select both of these lines,
+
+67
+06:19.430 --> 06:20.160
+and paste the code.
+
+68
+06:25.230 --> 06:32.530
+Let's indent a little bit. 
+
+69
+06:32.530 --> 06:32.860
+All right
+
+70
+06:32.870 --> 06:34.160
+let me check my terminal
+
+71
+06:37.160 --> 06:38.670
+I get a bunch of errors here
+
+72
+06:45.950 --> 06:54.220
+it looks like this ever happened on purifier. Let me 
+go back to my editor and see the composer.json
+
+73
+06:54.220 --> 07:08.640
+OK here I forgot to change the purifier version 
+to version 3.0. Let's save this, back to my
+
+74
+07:08.640 --> 07:09.240
+terminal
+
+75
+07:14.140 --> 07:17.340
+and here I'll rerun composer update.
+
+76
+07:19.360 --> 07:20.890
+While it's doing its things
+
+77
+07:20.950 --> 07:28.300
+let's head back over to our browser and yeah I 
+think that's all we need to follow from this page.
+
+78
+07:28.360 --> 07:34.450
+And now let's switch to github comparison tool to see other 
+file changes and apply them in our core application.
+
+79
+07:40.730 --> 07:41.230
+Now
+
+80
+07:41.390 --> 07:46.670
+while I'm doing this thing I'm not talking anything 
+and I'll fast forward the video to save the time
+
+81
+09:44.630 --> 09:46.080
+All right let's save  all changes.
+
+82
+09:47.410 --> 09:52.060
+And let's go back to our terminal. Here we have no error
+
+83
+09:52.220 --> 09:58.120
+that means Laravel framework dependency as 
+well as temporary library successfully updated.
+
+84
+09:58.130 --> 10:03.790
+Now let's make some taste to make sure that 
+our application is still working just fine.
+
+85
+10:40.590 --> 10:41.400
+Okay great
+
+86
+10:41.400 --> 10:44.860
+our application still working just fine as before.
+
+87
+10:44.880 --> 10:47.010
+And with that let's go to our terminal
+
+88
+10:50.190 --> 10:50.940
+kill the server
+
+89
+10:55.370 --> 11:09.600
+and commit all changes into our git repo: git add all, 
+git commit -m update to laravel version
+
+90
+11:09.660 --> 11:10.710
+six point o
+
+91
+11:14.550 --> 11:16.620
+git checkout master
+
+92
+11:20.690 --> 11:33.840
+git merge laravel dash v six point o. Now let's 
+push to our remote repo by saying git push
+
+93
+11:33.960 --> 11:35.510
+origin master
+
+94
+11:43.470 --> 11:50.490
+and then git push origin laravel version six point o
+
+95
+11:58.200 --> 11:58.730
+okay congratulation,
+
+96
+11:59.800 --> 12:05.530
+now your application updated to laravel version 6.0 
+and you keep your application up to date.

@@ -1,0 +1,289 @@
+WEBVTT
+
+0
+00:03.210 --> 00:05.640
+Not let's fix the issue on cancel button.
+
+1
+00:05.910 --> 00:09.300
+So if you hit the edit button and then hit cancel button
+
+2
+00:12.650 --> 00:18.670
+update request has been called and we get 
+alert pop up and this is not what we expect.
+
+3
+00:19.580 --> 00:29.490
+So let's switch back over to our editor and then 
+open _answer.blade.php find the cancel button
+
+4
+00:32.800 --> 00:41.720
+and here we can simply add type equal button because if you place any button in the form without specifying
+
+5
+00:41.720 --> 00:43.920
+the type it will act like submit button.
+
+6
+00:45.730 --> 00:47.650
+And here we don't need this anymore
+
+7
+00:51.000 --> 00:52.710
+because we have handled that in the form.
+
+8
+00:56.240 --> 01:00.290
+and let's also add to both of these buttons `btn` bootstrap class. Let's save
+
+9
+01:20.080 --> 01:21.450
+and give it another try.
+
+10
+01:27.350 --> 01:28.270
+Edit an answer
+
+11
+01:31.220 --> 01:33.900
+and hit cancel button.
+
+12
+01:34.080 --> 01:35.170
+All right
+
+13
+01:35.220 --> 01:37.650
+Now no ajax call being sent and no alert
+
+14
+01:37.750 --> 01:40.700
+Pop up.
+
+15
+01:40.870 --> 01:45.730
+Now what if we hit this edit button and then add something here.
+
+16
+01:45.920 --> 01:56.280
+Or let's look delet everything here and then hit 
+cancel button. Now if edit the answer again.
+
+17
+01:56.390 --> 02:00.300
+Here it's empty the changes is not persistence.
+
+18
+02:00.400 --> 02:01.950
+So if we reload the page
+
+19
+02:07.030 --> 02:08.500
+the answer is still there.
+
+20
+02:08.650 --> 02:11.860
+I think this is another a big deal but it's look weird.
+
+21
+02:12.190 --> 02:17.190
+So to fix this issue let's switch over to answer dot vue
+
+22
+02:20.780 --> 02:23.110
+here in data method
+
+23
+02:23.150 --> 02:26.930
+let's add another property that will 
+hold the answer body before editing.
+
+24
+02:29.660 --> 02:29.970
+Here
+
+25
+02:29.980 --> 02:32.190
+I'm going to call it before edit cache
+
+26
+02:35.650 --> 02:36.730
+and is null by default
+
+27
+02:40.200 --> 02:41.950
+and then here in methods property
+
+28
+02:47.060 --> 02:48.570
+let's add two methods.
+
+29
+02:48.800 --> 02:50.060
+The first one is edit
+
+30
+02:56.080 --> 02:56.670
+in here
+
+31
+02:56.740 --> 03:01.090
+before editing we store the old answer 
+body to `beforeEditCache` property
+
+32
+03:09.150 --> 03:11.490
+and then we change the editing property to true.
+
+33
+03:19.310 --> 03:21.280
+the second method is cancel
+
+34
+03:24.870 --> 03:30.130
+when canceling or undoing the change we 
+simply restore the body property with old body
+
+35
+03:30.180 --> 03:32.010
+that stored in `beforeEditCache`.
+
+36
+03:40.130 --> 03:48.940
+and after that we can change the editing state to false.
+
+37
+03:49.120 --> 03:49.450
+All right
+
+38
+03:49.450 --> 03:52.110
+we can switch to _answer.blade.php
+
+39
+03:56.330 --> 03:58.260
+and then change the on click of this edit button
+
+40
+04:01.550 --> 04:03.370
+to call edit method
+
+41
+04:07.350 --> 04:09.280
+and then we also need to change this
+
+42
+04:13.580 --> 04:19.880
+to call cancel method.
+
+43
+04:20.110 --> 04:25.150
+Let's save all these and give a try one more time.
+
+44
+04:32.650 --> 04:37.290
+Edit an answer change something here
+
+45
+04:39.000 --> 04:42.480
+and then hit cancel button.
+
+46
+04:42.590 --> 04:42.850
+Now
+
+47
+04:42.850 --> 04:44.290
+If you hit the edit button again
+
+48
+04:47.070 --> 04:48.690
+the answer is not change.
+
+49
+04:48.780 --> 04:49.680
+Great.
+
+50
+04:51.930 --> 04:52.420
+Next
+
+51
+04:52.470 --> 04:57.860
+let's see another issue if we reload the page.
+
+52
+04:58.050 --> 05:01.440
+We can see the form for a fraction of a second.
+
+53
+05:01.560 --> 05:02.840
+So the fix this.
+
+54
+05:02.910 --> 05:04.590
+Let's switch over to our editor
+
+55
+05:08.970 --> 05:11.800
+and open answers underscore index
+
+56
+05:11.800 --> 05:12.560
+blade php
+
+57
+05:18.860 --> 05:22.290
+and inside this div we can add
+
+58
+05:25.160 --> 05:34.410
+v-cloak like so. This directive will remain on the element 
+until the associated vue instance finished compilation.
+
+59
+05:34.590 --> 05:40.900
+As soon as vue instance ready this directive is removed.
+
+60
+05:40.930 --> 05:43.220
+Now we can open app.scss
+
+61
+05:47.750 --> 05:52.170
+a define new css rule like so v-cloak
+
+62
+05:56.360 --> 05:57.170
+display
+
+63
+05:57.290 --> 06:02.070
+none.
+
+64
+06:02.150 --> 06:06.270
+So any elements which contains v-clock attribute will be hidden.
+
+65
+06:07.860 --> 06:09.320
+Le's save all changes
+
+66
+06:11.120 --> 06:12.060
+and have a look.
+
+67
+06:25.900 --> 06:32.200
+As you can see now then the  page firstly loaded we 
+cannot see any answers but after a fraction of a second
+
+68
+06:32.350 --> 06:33.810
+will answer displayed
+
+69
+06:34.360 --> 06:35.410
+and I think it's much better.

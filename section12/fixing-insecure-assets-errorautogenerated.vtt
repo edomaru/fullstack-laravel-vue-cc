@@ -1,0 +1,251 @@
+WEBVTT
+
+0
+00:01.640 --> 00:06.710
+Before I show you how to fix this issue 
+let me explain why this error happened.
+
+1
+00:06.710 --> 00:08.600
+If we view our page source
+
+2
+00:12.010 --> 00:12.740
+and find
+
+3
+00:16.130 --> 00:16.830
+our style sheet
+
+4
+00:19.450 --> 00:28.140
+As well as javascript reference here we'll see 
+it's using http protocol while our production's 
+
+5
+00:28.140 --> 00:35.310
+URL it is using HTTPS. So basically Heroku 
+expects our style sheet and JavaScript in
+
+6
+00:35.320 --> 00:36.410
+HTTPS
+
+7
+00:36.510 --> 00:38.460
+So there are two options to fix this issue
+
+8
+00:44.410 --> 00:53.530
+so the first option is to replace the laravel asset 
+helper function in our layout with secure asset
+
+9
+00:57.480 --> 00:59.590
+so let me show it to you in tinker
+
+10
+01:04.830 --> 01:05.310
+here
+
+11
+01:05.320 --> 01:10.460
+if we write asset css app.css
+
+12
+01:13.910 --> 01:16.570
+we'll find the full URL of app.css
+
+13
+01:16.580 --> 01:23.280
+with http. Now if we call secure asset
+
+14
+01:26.230 --> 01:34.440
+we'll find the URL in https. So all you have to do 
+is open the app.blade.php and replace all asset
+
+15
+01:34.450 --> 01:42.010
+function call with secure_asset. After that you can commit 
+and push your changes to Heroku and I'm sure
+
+16
+01:42.190 --> 01:43.540
+all errors will be gone.
+
+17
+01:44.410 --> 01:49.480
+But one thing to note if you're using this 
+approach is that the https will also applied
+
+18
+01:49.570 --> 01:52.240
+in development which is not ideal.
+
+19
+01:52.240 --> 01:58.150
+So if you want the HTTPS will only be applied in 
+production then you can use the second option.
+
+20
+02:01.900 --> 02:02.410
+To do that
+
+21
+02:02.440 --> 02:04.510
+let's open app
+
+22
+02:04.540 --> 02:05.650
+service provider
+
+23
+02:08.970 --> 02:10.000
+here in boot method
+
+24
+02:10.440 --> 02:13.760
+let's add lines of code like this
+
+25
+02:14.520 --> 02:24.990
+If config app dot env is equals production
+
+26
+02:31.330 --> 02:33.050
+then we'll be making use
+
+27
+02:33.100 --> 02:38.830
+the URLfacade and then call force scheme
+
+28
+02:42.180 --> 02:42.990
+https
+
+29
+02:46.850 --> 02:53.240
+so this code tells laravel that in production 
+the URL will be forced to https.
+
+30
+02:53.450 --> 02:53.830
+All right
+
+31
+02:53.930 --> 03:12.090
+let's save the change, then commit it into our git repo
+
+32
+03:12.270 --> 03:15.450
+Don't forget to push the changes to Hiroko. Here
+
+33
+03:15.450 --> 03:17.430
+I can do that in this integrated terminal
+
+34
+03:17.610 --> 03:23.670
+but for this purpose I prefer to use native terminal 
+because it gives me overall feedback during development
+
+35
+03:23.760 --> 03:28.080
+without need to scroll screen git push heroku master
+
+36
+03:38.710 --> 03:39.010
+All right
+
+37
+03:39.290 --> 03:43.210
+let's go back to our browser and then reload the page
+
+38
+03:46.980 --> 03:49.200
+Now all errors gone
+
+39
+03:49.200 --> 03:53.130
+and here our production app appears and shows us a message
+
+40
+03:53.130 --> 03:54.150
+no question available.
+
+41
+04:00.090 --> 04:03.270
+so let me create new account by hitting register link
+
+42
+04:15.280 --> 04:18.630
+okay new account created successfully.
+
+43
+04:18.650 --> 04:20.150
+Now let me create new question
+
+44
+04:23.640 --> 04:24.810
+I'll enter question title
+
+45
+04:28.930 --> 04:29.620
+then I'll enter
+
+46
+04:29.620 --> 04:30.400
+question body
+
+47
+04:33.530 --> 04:39.440
+and then I'll hit ask question button.
+
+48
+04:39.540 --> 04:40.220
+Great.
+
+49
+04:40.230 --> 04:43.560
+My first question created. Let me show the question
+
+50
+04:46.270 --> 04:48.340
+and here I'll answer my own question
+
+51
+04:56.680 --> 05:00.480
+I'll hit submit button new answer
+
+52
+05:00.480 --> 05:01.080
+added here.
+
+53
+05:07.210 --> 05:08.980
+Now I'll favorite this question. I'll hit
+
+54
+05:12.160 --> 05:17.780
+upvotes the vote counts increasing. Last
+
+55
+05:17.930 --> 05:19.830
+I'll make this answer as best answer.
+
+56
+05:23.890 --> 05:24.620
+All right
+
+57
+05:24.650 --> 05:27.060
+I think everything working just fine as expected.
+
+58
+05:27.770 --> 05:31.230
+So congratulations your Laravel app now online.
+
+59
+05:31.280 --> 05:33.080
+Be sure to show it off to your friends.

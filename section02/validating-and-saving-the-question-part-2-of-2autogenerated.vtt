@@ -1,0 +1,397 @@
+WEBVTT
+
+0
+00:02.660 --> 00:04.430
+Let's go back to `QuestionsController`
+
+1
+00:16.760 --> 00:18.520
+and here let's get rid of this message
+
+2
+00:21.900 --> 00:28.500
+then to save the question because the question is belongs to a user or created by user so we can get the
+
+3
+00:28.500 --> 00:29.880
+current user by calling
+
+4
+00:32.440 --> 00:33.510
+request user
+
+5
+00:36.510 --> 00:46.810
+and then call `questions` method to obtain an instance of our relationship
+
+6
+00:53.400 --> 00:55.060
+and then call `create` method
+
+7
+01:01.320 --> 01:06.150
+This will automatically add the appropriate user_id value to the new question model
+
+8
+01:09.030 --> 01:14.050
+and the last we need to pass the question that we enter in the form to this `create` method
+
+9
+01:14.940 --> 01:15.810
+Here we can say
+
+10
+01:20.190 --> 01:33.320
+request all like so to get all inputs or we can do it explicitly by calling request only and then specify
+
+11
+01:33.320 --> 01:34.130
+the request input
+
+12
+01:43.640 --> 01:44.180
+and the last
+
+13
+01:44.210 --> 01:55.890
+after we have successfully created new question we'll redirect to question index.
+
+14
+01:57.040 --> 02:03.430
+So return redirect and then the URI will be questions
+
+15
+02:06.080 --> 02:07.250
+or we can also say
+
+16
+02:10.770 --> 02:12.960
+redirect route
+
+17
+02:18.090 --> 02:20.580
+questions index like this.
+
+18
+02:22.150 --> 02:34.710
+So so again, if you're unsure with your routes just go to your terminal and type: php artisan route:list
+
+19
+02:38.260 --> 02:39.450
+and then filter by name
+
+20
+02:53.130 --> 03:01.080
+here you can pass the URI in the redirect function or chain with route method and specify the route
+
+21
+03:01.100 --> 03:04.860
+name
+
+22
+03:05.890 --> 03:06.360
+OK
+
+23
+03:06.390 --> 03:14.820
+OK, last we'll need to define a flash message we can do that by calling `with` method
+
+24
+03:15.220 --> 03:17.710
+then the key will be success
+
+25
+03:19.570 --> 03:28.260
+and the value let's say your question has been submitted.
+
+26
+03:32.140 --> 03:35.970
+Save and before we try that
+
+27
+03:35.970 --> 03:38.340
+actually there's two things that we need to do.
+
+28
+03:38.340 --> 03:42.650
+First we need to show the flash message that is stored in session to our view
+
+29
+03:42.690 --> 03:43.440
+right?
+
+30
+03:43.440 --> 03:44.880
+So let's go to
+
+31
+03:47.680 --> 03:48.860
+resources
+
+32
+03:51.370 --> 04:03.650
+views layouts folder and here let's create a new file
+
+33
+04:03.810 --> 04:07.530
+lat's save it as _messages.blade.php
+
+34
+04:13.580 --> 04:18.210
+The file name prefixed with underscore to indicate that this file is partial file.
+
+35
+04:18.630 --> 04:20.390
+But actually this is not necessary
+
+36
+04:23.580 --> 04:26.300
+here we simply write if
+
+37
+04:30.300 --> 04:31.460
+session success
+
+38
+04:35.480 --> 04:40.460
+or we can say if any value which has key 'success' found in session
+
+39
+04:46.380 --> 04:51.500
+then we'll display it in alert. Here, let's utilize bootstrap alert
+
+40
+04:51.830 --> 04:54.550
+And we want it to be able to close it right away.
+
+41
+04:54.800 --> 04:56.600
+so, let's go to bootstrap homepage
+
+42
+05:04.270 --> 05:05.440
+getbootstrap.com
+
+43
+05:08.950 --> 05:14.650
+and then go to the communication.
+
+44
+05:14.780 --> 05:18.640
+And here in the search box let's type alert
+
+45
+05:22.320 --> 05:23.120
+choose this one
+
+46
+05:27.310 --> 05:31.380
+then in the right side let's click dismissing menu
+
+47
+05:37.820 --> 05:39.720
+we can see how it looked like.
+
+48
+05:39.740 --> 05:41.410
+So here we can see the alert
+
+49
+05:46.520 --> 05:54.070
+and we can close it by clicking this icon so let's click this button to copy the markup to a clipboard.
+
+50
+05:57.900 --> 05:58.900
+And paste here.
+
+51
+06:08.130 --> 06:12.460
+change the alert type to `alert-success`
+
+52
+06:15.760 --> 06:23.120
+change the text in the strong tag to success.
+
+53
+06:27.600 --> 06:30.000
+And change the message with actuall message in session
+
+54
+06:39.200 --> 06:44.270
+so session success.
+
+55
+06:44.440 --> 06:56.150
+Alright, Now let's open index.blade.php file. And here we'll show the message on the top of our question list so we can
+
+56
+06:56.150 --> 06:59.410
+put it inside this card body
+
+57
+07:03.140 --> 07:05.900
+and then let's call our message partial like so
+
+58
+07:08.420 --> 07:14.170
+include layouts dot underscore messages
+
+59
+07:30.280 --> 07:36.610
+don't forget to save all changes.
+
+60
+07:37.660 --> 07:39.460
+And now we can go back to all our browser
+
+61
+07:46.470 --> 07:46.990
+OK
+
+62
+07:46.990 --> 07:49.870
+The second thing that we need to do is we need to log in.
+
+63
+07:49.870 --> 07:50.570
+right?
+
+64
+07:50.650 --> 07:53.070
+As you remember that the question is belongs to the user
+
+65
+07:56.590 --> 08:06.130
+So if we try to reload the page, and then hit continue. We'll got error like this
+
+66
+08:06.140 --> 08:07.970
+So let's go back to previous page
+
+67
+08:14.130 --> 08:15.110
+and then hit Logan
+
+68
+08:20.520 --> 08:21.500
+actually.
+
+69
+08:21.500 --> 08:24.920
+I don't remember the user's email so let me open thinker
+
+70
+08:30.150 --> 08:32.050
+php artisan tinker
+
+71
+08:36.520 --> 08:36.840
+here
+
+72
+08:36.860 --> 08:38.530
+I'll get the first users's email
+
+73
+08:47.150 --> 08:47.650
+OK
+
+74
+08:47.670 --> 08:48.680
+I'll copy this email
+
+75
+08:53.360 --> 08:55.480
+and paste here.
+
+76
+08:59.860 --> 09:02.940
+And I'm sure the password is secret.
+
+77
+09:11.330 --> 09:13.400
+And now let's go to questions page
+
+78
+09:18.460 --> 09:20.710
+and then create new question
+
+79
+09:20.710 --> 09:24.340
+Actually here I have my first question in the list.
+
+80
+09:24.340 --> 09:27.280
+I entered it before recording and I forgot to delete it
+
+81
+09:37.380 --> 09:38.570
+enter the question title
+
+82
+09:42.230 --> 09:43.500
+and then question body
+
+83
+09:48.080 --> 09:49.790
+and hit asked this question button
+
+84
+09:57.190 --> 09:58.310
+All right we have success
+
+85
+09:58.320 --> 10:05.540
+message show up and we can see our new question successfully created and added here.
+
+86
+10:05.580 --> 10:06.660
+OK great.
+
+87
+10:06.660 --> 10:12.030
+Now our question form is working perfectly it able to validate the question and able to save the valid
+
+88
+10:12.090 --> 10:13.780
+question to our database.
+
+89
+10:14.070 --> 10:16.520
+So with that I'll jump to my terminal
+
+90
+10:26.320 --> 10:27.830
+see all the changes we made.
+
+91
+10:35.940 --> 10:36.750
+git add all
+
+92
+10:40.790 --> 10:42.820
+git commit
+
+93
+10:58.170 --> 10:59.300
+push the current branch
+
+94
+11:20.880 --> 11:22.550
+switch to master branch
+
+95
+11:29.710 --> 11:34.260
+merge to lesson-8
+
+96
+11:37.710 --> 11:42.890
+And last push out master branch
+
+97
+11:50.530 --> 11:56.260
+Alright in the next lesson we'll extend the functionality of our form so that it also able to use to update
+
+98
+11:56.350 --> 11:57.130
+existing question.

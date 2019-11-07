@@ -1,0 +1,408 @@
+WEBVTT
+
+0
+00:01.370 --> 00:07.700
+In this video we're going to apply our markdown editor 
+in our answer component. To do that let's switch back
+
+1
+00:07.850 --> 00:13.820
+over to our editor. Here I'll run web pack by saying npm run watch
+
+2
+00:17.270 --> 00:19.150
+OK let's open answer component
+
+3
+00:22.630 --> 00:23.120
+here
+
+4
+00:23.160 --> 00:29.580
+we're going to do almost the same thing 
+as we did in question component. So here
+
+5
+00:29.590 --> 00:33.760
+let's replace the v-if with v-show
+
+6
+00:48.840 --> 00:49.380
+then here
+
+7
+00:49.470 --> 00:56.550
+let's also replace the v-else with v-show not editing
+
+8
+01:03.510 --> 01:04.510
+now here
+
+9
+01:04.590 --> 01:07.680
+let's import the M Editor component
+
+10
+01:12.860 --> 01:15.050
+then register in components property
+
+11
+01:22.700 --> 01:29.230
+and then find the text area in our template. Here it is
+
+12
+01:32.830 --> 01:35.320
+and wrap it in m Editor component like this
+
+13
+01:43.460 --> 01:48.080
+now it we save the change then switch our browser
+
+14
+01:53.300 --> 01:55.000
+I need to find my own answer
+
+15
+02:14.240 --> 02:14.640
+here
+
+16
+02:14.680 --> 02:15.470
+I'll edit my answer
+
+17
+02:18.700 --> 02:19.640
+hit the preview tab
+
+18
+02:25.590 --> 02:28.130
+unfortunately it's not work.
+
+19
+02:28.140 --> 02:36.400
+So why this happen do you have any idea? 
+Well if you open the M Editor component
+
+20
+02:41.710 --> 02:50.060
+here you'll see that both element using id attribute 
+to control the behavior. When we include the
+
+21
+02:50.060 --> 02:54.680
+M Editor in other places then there will be duplicate ids here.
+
+22
+02:55.340 --> 02:59.870
+So to fix this issue we need to distinguish these ids
+
+23
+02:59.870 --> 03:00.650
+also here
+
+24
+03:04.010 --> 03:06.290
+so let's jump to answer
+
+25
+03:11.550 --> 03:12.090
+then here
+
+26
+03:12.100 --> 03:19.050
+let's specify our custom attribute for example name equals answer
+
+27
+03:23.230 --> 03:34.600
+or to avoid conflict naming let's bind 
+the name attribute to unique name.
+
+28
+03:34.630 --> 03:37.770
+Now let's jump to computed property
+
+29
+03:47.730 --> 03:50.160
+and here let's define the unique name
+
+30
+03:54.160 --> 04:03.460
+return answer this dot id. This will produce a string like this
+
+31
+04:10.360 --> 04:17.740
+Let's copy this method definition then switch to question dot vue
+
+32
+04:20.890 --> 04:33.120
+jump to computed property then paste the 
+method here and change the string to question.
+
+33
+04:33.120 --> 04:34.100
+Find the editor
+
+34
+04:40.040 --> 04:40.460
+and here
+
+35
+04:40.480 --> 04:46.940
+let's also bind the name attribute to unique name.
+
+36
+04:47.130 --> 04:57.430
+Next we can go back to m editor dot vue. 
+Here in script section let's add in props
+
+37
+04:57.600 --> 04:57.990
+the name
+
+38
+05:10.980 --> 05:12.630
+then inside the methods property
+
+39
+05:16.570 --> 05:19.800
+here let's define a new method basically
+
+40
+05:19.800 --> 05:25.980
+this method will concatenate the tab name with the 
+name that we specify in the parent component through 
+
+41
+05:26.070 --> 05:27.110
+name property.
+
+42
+05:27.240 --> 05:28.690
+You can name it whatever you like
+
+43
+05:28.800 --> 05:38.080
+in my case I'll call it tab id. It receives two 
+arguments the first one is the tab name
+
+44
+05:41.460 --> 05:44.560
+and the second one is a hash which is empty by default
+
+45
+05:50.640 --> 05:52.100
+then inside this method
+
+46
+05:52.110 --> 05:58.430
+we simply return a string which compose the hash
+
+47
+06:02.100 --> 06:02.800
+tab name
+
+48
+06:06.840 --> 06:14.780
+and the name.
+
+49
+06:14.820 --> 06:16.430
+Now we can jump to our template
+
+50
+06:20.090 --> 06:23.150
+then here let's bind this href attribute
+
+51
+06:30.350 --> 06:33.350
+to tab id write
+
+52
+06:42.010 --> 06:43.150
+also here
+
+53
+06:43.160 --> 06:48.550
+let's bind the href attribute to tab id
+
+54
+06:52.000 --> 06:52.600
+preview
+
+55
+06:56.110 --> 06:56.620
+hash
+
+56
+06:59.890 --> 07:04.450
+and then let's bind the id of this tab pain to
+
+57
+07:07.680 --> 07:11.030
+tab id write
+
+58
+07:18.030 --> 07:20.100
+and bind the second tab pain to
+
+59
+07:23.250 --> 07:23.970
+tab id
+
+60
+07:27.450 --> 07:30.730
+preview. Let's save all changes
+
+61
+07:34.940 --> 07:35.870
+back to our browser
+
+62
+07:41.090 --> 07:42.030
+reload the page
+
+63
+07:47.280 --> 07:51.490
+let me edit the question hit the preview tab
+
+64
+07:53.250 --> 07:53.930
+OK
+
+65
+07:54.200 --> 08:02.530
+It's working as we expected.
+
+66
+08:02.580 --> 08:03.780
+Let me edit this question
+
+67
+08:13.420 --> 08:15.330
+hit the preview tab
+
+68
+08:15.430 --> 08:19.560
+All right now the preview tab in answer 
+component also working great.
+
+69
+08:25.270 --> 08:25.540
+Let's hit
+
+70
+08:25.550 --> 08:25.940
+Update
+
+71
+08:30.160 --> 08:32.470
+the syntax highlight not working.
+
+72
+08:32.520 --> 08:33.150
+Let me see
+
+73
+08:40.830 --> 08:42.260
+OK here
+
+74
+08:42.330 --> 08:46.280
+We need to define this ref in our answer component
+
+75
+08:51.610 --> 08:53.380
+so here I'll define
+
+76
+08:56.050 --> 08:58.540
+ref body html. Save
+
+77
+09:04.870 --> 09:05.740
+reload the page.
+
+78
+09:11.400 --> 09:12.420
+I'll edit one more time
+
+79
+09:22.550 --> 09:23.520
+hit update.
+
+80
+09:25.360 --> 09:30.280
+OK it's working. Now before we end this video
+
+81
+09:30.280 --> 09:31.270
+let's do one more thing
+
+82
+09:34.880 --> 09:42.220
+if you realize both answer and question components they
+
+83
+09:42.380 --> 09:44.120
+depends on m editor
+
+84
+09:47.910 --> 09:49.920
+end user info components.
+
+85
+09:49.920 --> 09:57.770
+In my opinion it would be better to put this import statement 
+as well as this components property inside
+
+86
+09:57.770 --> 10:00.960
+our mixin so that it will make our code more lean
+
+87
+10:03.650 --> 10:05.690
+so let's cut this import statements.
+
+88
+10:10.680 --> 10:13.620
+In answer component we can remove these
+
+89
+10:17.000 --> 10:19.010
+switch to a modification mixin
+
+90
+10:22.620 --> 10:26.970
+and paste on the top. And here
+
+91
+10:27.050 --> 10:28.630
+let's change the components path
+
+92
+10:41.790 --> 10:43.110
+back to question component
+
+93
+10:47.280 --> 10:49.230
+let's cut this components property
+
+94
+10:55.830 --> 10:59.220
+switch to answer component and remove this line
+
+95
+11:05.710 --> 11:10.630
+back to modification mixin and paste inside here.
+
+96
+11:14.390 --> 11:15.410
+Le'ts save all changes
+
+97
+11:20.200 --> 11:23.080
+and let's make sure our latest change not breaking our app
+
+98
+11:48.260 --> 11:53.460
+okay so far so good. Let's commit our changes into our git repo.

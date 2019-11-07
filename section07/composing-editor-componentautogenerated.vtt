@@ -1,0 +1,545 @@
+WEBVTT
+
+0
+00:02.220 --> 00:05.210
+In this lesson we're going to start building our simple markdown
+
+1
+00:05.210 --> 00:12.540
+editor. We will be composing bootstrap component such 
+as tabs and cards to produce interface that similar with
+
+2
+00:12.840 --> 00:16.610
+this GitHub markdown editor. OK
+
+3
+00:16.740 --> 00:18.990
+firstly let's navigate to our terminal
+
+4
+00:26.120 --> 00:29.050
+then create new branch git checkout
+
+5
+00:29.360 --> 00:32.850
+-b lesson 44
+
+6
+00:37.520 --> 00:44.110
+here I have started up my server in this first 
+terminal. So here in this second terminal I'll run
+
+7
+00:44.110 --> 00:54.400
+web pack to watch my asset changes 
+and compile them to public directory.
+
+8
+00:54.490 --> 01:01.040
+All right now let's switch over to our browser 
+then navigate to get bootstrap dot 
+
+9
+01:01.050 --> 01:01.420
+com
+
+10
+01:05.910 --> 01:08.250
+then navigate to documentation
+
+11
+01:13.370 --> 01:14.420
+find components
+
+12
+01:20.050 --> 01:20.620
+and then card
+
+13
+01:26.260 --> 01:27.610
+on the right side
+
+14
+01:27.760 --> 01:36.660
+let's hit the navigation link here how the company 
+look like and below that is the markup.
+
+15
+01:37.660 --> 01:42.850
+So let's copy these.
+
+16
+01:42.930 --> 01:44.910
+Now let's switch back over to our editor
+
+17
+01:51.810 --> 01:53.730
+inside this components folder
+
+18
+01:53.890 --> 01:58.630
+let's create a new file.
+
+19
+01:58.790 --> 02:04.440
+You can call it whatever you like but here I'll call it m editor
+
+20
+02:04.530 --> 02:07.100
+dot vue with M and E in capital
+
+21
+02:14.040 --> 02:14.760
+in this file
+
+22
+02:15.150 --> 02:16.950
+let's add template tag
+
+23
+02:19.840 --> 02:21.780
+and paste the markup from the clipboard.
+
+24
+02:34.380 --> 02:37.930
+Let's make a little adjustment. Here
+
+25
+02:37.950 --> 02:40.330
+we don't need our content to be center.
+
+26
+02:40.540 --> 02:43.330
+So let's remove this text center class
+
+27
+02:47.010 --> 02:53.360
+Let's change the text of the first nav link to write
+
+28
+02:54.420 --> 03:00.400
+then change the text of the second nav link to preview.
+
+29
+03:00.450 --> 03:03.440
+Here we only need two tabs so
+
+30
+03:03.630 --> 03:04.530
+let's remove this one
+
+31
+03:12.000 --> 03:15.080
+then here in card body let's remove everything
+
+32
+03:20.180 --> 03:29.110
+and then let's add a slot. So a slot is a vue js special 
+tag which kind of placeholder where we will replace
+
+33
+03:29.110 --> 03:32.890
+it with something else that we pass in from the parent component.
+
+34
+03:32.890 --> 03:39.730
+In this case we'll replace this slot with text area where 
+we can write our question or answer. The reason
+
+35
+03:39.760 --> 03:45.610
+why we don't put the text area here is because this 
+will be a child component of question or answer
+
+36
+03:45.610 --> 03:46.750
+component.
+
+37
+03:46.750 --> 03:53.110
+And when we write something in here we need to send 
+the data up to the parent so that we can then send it to
+
+38
+03:53.110 --> 03:53.710
+the server.
+
+39
+03:54.940 --> 04:00.610
+And as you may already know to do this stuff we 
+need to emit an event from the child to the parent
+
+40
+04:01.030 --> 04:02.550
+and it's a bit tricky.
+
+41
+04:02.560 --> 04:09.640
+So in my opinion for this case it's much easier 
+to use slot instead of put the text area directly.
+
+42
+04:09.820 --> 04:10.800
+Okay next
+
+43
+04:10.810 --> 04:17.900
+let's also add another div to preview our markdown 
+for now it's only study content like this.
+
+44
+04:21.800 --> 04:24.740
+Next let's open the question dot vue file.
+
+45
+04:33.920 --> 04:34.830
+Here in the script
+
+46
+04:35.360 --> 04:37.460
+let's import the M Editor component
+
+47
+04:47.700 --> 04:49.980
+then include it in components property
+
+48
+04:52.830 --> 04:54.570
+and then let's jump to our template.
+
+49
+05:00.190 --> 05:04.330
+And here let's wrap the text area within 
+the M Editor component like so
+
+50
+05:14.200 --> 05:19.630
+this component basically will take the markdown 
+that we write and parse it into HTML.
+
+51
+05:19.720 --> 05:26.010
+So here we need to pass the body from this question component 
+down to child component or m editor component
+
+52
+05:26.020 --> 05:26.640
+in this case.
+
+53
+05:27.070 --> 05:28.960
+So let's bind the body property here.
+
+54
+05:36.970 --> 05:37.700
+Alright now
+
+55
+05:37.720 --> 05:39.850
+let's go back to M Editor component
+
+56
+05:43.640 --> 05:44.090
+let's add
+
+57
+05:44.090 --> 05:44.740
+script tag
+
+58
+05:47.940 --> 05:48.550
+and here
+
+59
+05:48.550 --> 05:52.950
+let's define props and add the body in array
+
+60
+05:56.520 --> 05:56.910
+OK
+
+61
+05:57.070 --> 05:58.040
+let's save all changes
+
+62
+06:04.420 --> 06:05.510
+and now let's have a look.
+
+63
+06:19.700 --> 06:22.700
+As you can see here our new component shows up.
+
+64
+06:23.210 --> 06:26.390
+The next thing that we need to do is make these tabs functional.
+
+65
+06:29.320 --> 06:30.110
+To do that
+
+66
+06:30.110 --> 06:32.360
+let's go back to bootstrap official guide
+
+67
+06:36.780 --> 06:39.050
+go to navs component
+
+68
+06:46.510 --> 06:47.800
+then in the right side
+
+69
+06:47.980 --> 06:58.050
+let's hit the tabs link and to custom the bootstrap 
+nav tabs behaviour let's navigate to this link
+
+70
+07:00.770 --> 07:02.570
+javascript  behavior
+
+71
+07:02.750 --> 07:04.310
+and if we scroll down a little bit
+
+72
+07:09.520 --> 07:18.490
+we can see the tabs along with the markup so here 
+we'll need to add data toggle equals tab and href
+
+73
+07:18.700 --> 07:27.450
+which points to id of certain element. Then a tab 
+content as the tab content wrapper. Inside it we need
+
+74
+07:27.470 --> 07:36.360
+to define tab pane to represent a single tab content 
+and we also need to add id attribute which
+
+75
+07:36.360 --> 07:38.390
+should we match with the href's
+
+76
+07:38.400 --> 07:40.460
+value of the nav link.
+
+77
+07:40.620 --> 07:42.180
+So let's go back to our editor
+
+78
+07:46.300 --> 07:47.470
+jump to our template
+
+79
+07:53.840 --> 07:54.290
+and here
+
+80
+07:54.450 --> 07:59.710
+let's add another class to this div tab content.
+
+81
+07:59.860 --> 08:06.750
+Then let's wrap this slot with another div.
+
+82
+08:06.890 --> 08:12.200
+It should be has tab pane class to represent the single content.
+
+83
+08:12.450 --> 08:22.600
+And we also need to add active class 
+to make this content as current tab pane.
+
+84
+08:22.680 --> 08:25.430
+Then let's also give it id
+
+85
+08:31.040 --> 08:33.310
+and this also should be write.
+
+86
+08:37.900 --> 08:41.030
+Then let's also add a class to this div tab pane
+
+87
+08:47.700 --> 08:49.240
+and give it id
+
+88
+08:49.810 --> 08:54.850
+preview. And this should also preview
+
+89
+08:58.260 --> 08:59.400
+last but not least let's
+
+90
+08:59.630 --> 09:01.060
+select both nav links
+
+91
+09:03.940 --> 09:14.110
+and then add another attribute data toggle 
+equals tab. Let's save and see the change
+
+92
+09:19.610 --> 09:20.320
+reload the page.
+
+93
+09:24.810 --> 09:29.210
+Hit the edit button.
+
+94
+09:29.260 --> 09:34.510
+Now if we hit the preview tab we'll see the preview text appears.
+
+95
+09:34.510 --> 09:34.780
+Great.
+
+96
+09:40.430 --> 09:40.750
+Now
+
+97
+09:40.760 --> 09:48.270
+one last thing that we need to fix is this active tab 
+because as you can see it contains two colors
+
+98
+09:48.570 --> 09:50.010
+a bit gray on top
+
+99
+09:50.010 --> 09:57.370
+it's similar with body background color and white 
+on the bottom. Let's make it in white color instead.
+
+100
+09:58.270 --> 09:59.920
+Let's switch back over to our editor
+
+101
+10:04.270 --> 10:15.730
+then open sass underscore variables dot scss.
+In this file we'll find body bg which is a default
+
+102
+10:15.740 --> 10:17.400
+bootstrap variable that store
+
+103
+10:17.430 --> 10:23.530
+body background color. But this variable will also 
+affect another component such as nav active tab.
+
+104
+10:23.950 --> 10:27.670
+So for example if I change the color to red
+
+105
+10:30.520 --> 10:31.200
+and then save.
+
+106
+10:38.250 --> 10:39.230
+If I reload the page
+
+107
+10:43.630 --> 10:49.940
+you'll see the background color of the 
+body and nav active tab are all red.
+
+108
+10:54.090 --> 10:56.640
+So if you navigate to node modules
+
+109
+11:01.330 --> 11:01.780
+find
+
+110
+11:01.810 --> 11:02.230
+bootstrap
+
+111
+11:10.370 --> 11:13.870
+go to scss then open
+
+112
+11:17.250 --> 11:19.450
+underscore variables dot scss
+
+113
+11:22.890 --> 11:26.940
+and then find the body bg instances
+
+114
+11:33.350 --> 11:38.200
+here you'll see the nav tabs link active 
+bg is the depend on the body bg
+
+115
+11:38.270 --> 11:46.200
+that's way changing the color in 
+body bg will affect this component.
+
+116
+11:46.230 --> 11:53.160
+All right let's go back to underscore variables 
+dot scss  inside assets scss folder. And
+
+117
+11:53.160 --> 11:53.610
+here
+
+118
+11:53.670 --> 11:58.280
+let's change the body bg to color white
+
+119
+12:01.920 --> 12:04.110
+and then move this color white variable
+
+120
+12:07.460 --> 12:08.410
+before body bg
+
+121
+12:12.960 --> 12:20.280
+and if we want to make the body background color 
+to light gray like before then you can go to app dot
+
+122
+12:20.360 --> 12:26.650
+scss and then define new css rule like this.
+
+123
+12:41.650 --> 12:41.990
+All right
+
+124
+12:42.170 --> 13:02.790
+let's save all changes.
+
+125
+13:02.940 --> 13:08.560
+Now the background of nav active tab is white 
+while body backgroun color is light gray.
+
+126
+13:09.180 --> 13:16.540
+Okay great. In the next video we're going to make 
+this markdown preview functional. So here
+
+127
+13:16.600 --> 13:18.700
+let's commit our changes to our git repo.

@@ -1,0 +1,490 @@
+WEBVTT
+
+0
+00:01.110 --> 00:06.300
+All right let's pull up questions index.blade.php
+
+1
+00:12.110 --> 00:15.170
+then copy everything inside this section content
+
+2
+00:19.630 --> 00:20.860
+back to the questions page
+
+3
+00:24.950 --> 00:27.920
+then replace this with previous markup
+
+4
+00:32.420 --> 00:43.370
+let's adjust the indentation a little bit then we need 
+to replace blade related code such as this link. For
+
+5
+00:43.390 --> 00:47.060
+now let's replace the links target to hash
+
+6
+00:52.760 --> 01:03.810
+and then for now let's replace this code with 
+a message let's say "All questions here".
+
+7
+01:03.860 --> 01:13.160
+All right let's save the change back 
+to the browser go to Home Page.
+
+8
+01:13.180 --> 01:21.960
+Now we have card header ask Question 
+button and all question here. OK
+
+9
+01:22.090 --> 01:25.120
+Now let's actually display all questions in here.
+
+10
+01:25.120 --> 01:29.960
+Let's switch back over to our editor. And here
+
+11
+01:30.090 --> 01:31.920
+let's undo a couple of times
+
+12
+01:35.700 --> 01:36.070
+OK
+
+13
+01:36.070 --> 01:37.270
+Here we go.
+
+14
+01:37.270 --> 01:41.110
+So here we don't need this message.
+
+15
+01:41.110 --> 01:42.370
+So let's get rid of that
+
+16
+01:47.530 --> 01:55.230
+then here we call forelse which basically for each 
+loop in a slightly different form. Inside here we
+
+17
+01:55.240 --> 01:58.560
+loop through the questions underscore excerpt.
+
+18
+01:59.200 --> 02:01.740
+So before we replace this blade code
+
+19
+02:01.840 --> 02:06.830
+let's see the excerpt. So let's pull open this file
+
+20
+02:13.220 --> 02:18.260
+and as you already known that this file 
+basically represents a single question.
+
+21
+02:18.260 --> 02:29.770
+So let's copy everything inside this file. Let's navigate 
+to js components. And . here let's create a brand
+
+22
+02:29.770 --> 02:30.460
+new component
+
+23
+02:33.190 --> 02:33.460
+here
+
+24
+02:33.460 --> 02:39.790
+I'm going to call it question item dot vue or
+
+25
+02:39.880 --> 02:47.430
+let me call it question excerpt dot vue
+
+26
+02:52.640 --> 02:53.940
+in here
+
+27
+02:54.050 --> 03:00.260
+let's add template then inside this 
+template just paste the previous code
+
+28
+03:10.200 --> 03:10.640
+OK
+
+29
+03:10.680 --> 03:17.150
+let's start from the easiest part. Let's select question
+
+30
+03:17.320 --> 03:23.160
+arrow then hit command+d to select other instances or control+d
+
+31
+03:23.320 --> 03:24.310
+If you're using PC.
+
+32
+03:32.010 --> 03:37.460
+after all selected let's change them to question dot
+
+33
+03:44.440 --> 03:45.020
+Next
+
+34
+03:45.040 --> 03:52.880
+here we have str_plural which will return plural 
+or singular word based on the number that we
+
+35
+03:52.880 --> 03:54.150
+specified.
+
+36
+03:54.220 --> 04:03.040
+The simplest way could be replacing this with just views 
+or we can keep it as it is and defined by ourself.
+
+37
+04:03.850 --> 04:05.380
+So let's go to script section
+
+38
+04:12.870 --> 04:13.860
+inside here
+
+39
+04:13.860 --> 04:15.240
+let's add methods
+
+40
+04:20.330 --> 04:21.820
+then inside this methods
+
+41
+04:22.010 --> 04:24.110
+let's define the str_plural
+
+42
+04:29.580 --> 04:32.100
+this method will accept two arguments.
+
+43
+04:32.100 --> 04:35.790
+The first one is str or string.
+
+44
+04:36.000 --> 04:42.270
+Then the second one is count or number.
+
+45
+04:42.330 --> 04:58.200
+In here we simply say return str plus parentheses 
+if count is greater than one we'll add s.
+
+46
+04:58.530 --> 05:00.690
+Otherwise just empty string
+
+47
+05:07.180 --> 05:11.700
+let's replace this dot php concatenation with plus
+
+48
+05:17.660 --> 05:27.860
+then let's replace all route calling in anchor tag 
+as well as in form tag with the hash for now
+
+49
+05:35.860 --> 05:36.250
+all right
+
+50
+05:36.280 --> 05:44.150
+The next thing that we need to do is replace this 
+can blade directive with the javascript code.
+
+51
+05:44.560 --> 05:57.150
+If you remember we have policies. So here we can 
+utilize this modify to authorize the update. And for
+
+52
+05:57.150 --> 06:05.320
+delete we can also use the modify but for 
+question it's better to use delete question.
+
+53
+06:05.430 --> 06:07.680
+So let's go back to question excerpt
+
+54
+06:12.790 --> 06:13.550
+then here
+
+55
+06:13.600 --> 06:20.550
+let's remove this can update question as well as this  endcan
+
+56
+06:27.770 --> 06:37.430
+then here we can simply say the v-if authorize modify question
+
+57
+06:40.800 --> 06:42.670
+let's do the same thing to this form
+
+58
+06:53.380 --> 06:59.460
+and here we'll say v-if authorize delete
+
+59
+06:59.680 --> 07:02.500
+question
+
+60
+07:02.500 --> 07:03.040
+question.
+
+61
+07:05.800 --> 07:07.260
+Next
+
+62
+07:07.400 --> 07:09.060
+let's select this
+
+63
+07:09.290 --> 07:17.750
+user arrow then replace with user dot.
+
+64
+07:19.240 --> 07:20.330
+So question
+
+65
+07:20.380 --> 07:22.430
+user url query
+
+66
+07:22.450 --> 07:23.140
+user name.
+
+67
+07:26.780 --> 07:36.290
+And last let's replace this excerpt method call with excerpt.
+
+68
+07:36.330 --> 07:39.450
+All right let's jump to script section
+
+69
+07:42.650 --> 07:47.810
+then define a props so props
+
+70
+07:47.890 --> 07:50.360
+colon array
+
+71
+07:50.830 --> 07:51.430
+question.
+
+72
+07:55.510 --> 08:00.580
+All right now let's go back to questions page.
+
+73
+08:00.840 --> 08:01.840
+Let's go to the bottom.
+
+74
+08:05.900 --> 08:06.460
+In here
+
+75
+08:06.470 --> 08:07.730
+let's add script
+
+76
+08:12.830 --> 08:13.220
+then here
+
+77
+08:13.250 --> 08:15.890
+let's import the question excerpt component that we just created.
+
+78
+08:25.360 --> 08:33.970
+Inside here let's add components and in this 
+components let's put in the question excerpt.
+
+79
+08:38.580 --> 08:43.880
+Let's also add data method and it's going to return an object
+
+80
+08:46.950 --> 08:52.260
+and inside here let's define a property that 
+we're gonna use to hold all questions.
+
+81
+08:52.280 --> 08:57.920
+So questions and we'll set it with empty array.
+
+82
+08:59.390 --> 09:01.160
+Now we can go back to our template
+
+83
+09:06.470 --> 09:15.840
+let's remove this forelse directive as well 
+as include an empty. Then let's add a div
+
+84
+09:21.690 --> 09:30.000
+and we'll say v-if questions length.
+
+85
+09:30.470 --> 09:35.150
+Then inside here we can loop through 
+the question exert like so questions
+
+86
+09:35.160 --> 09:35.610
+excerpt
+
+87
+09:41.960 --> 09:42.620
+v-for
+
+88
+09:45.520 --> 09:46.590
+question
+
+89
+09:46.750 --> 09:48.310
+in questions.
+
+90
+09:51.250 --> 10:09.320
+Bind the question with question and bind the key with question id.
+
+91
+10:09.370 --> 10:17.500
+Here we can add in this alert v-else. So if there's one or 
+more questions we will loop through all questions.
+
+92
+10:17.650 --> 10:21.400
+Otherwise we'll show this message.
+
+93
+10:21.400 --> 10:22.600
+Don't forget to remove this line
+
+94
+10:27.420 --> 10:28.130
+and reindent this.
+
+95
+10:31.890 --> 10:36.180
+Here for the pagination we'll be doing that in upcoming lesson.
+
+96
+10:36.180 --> 10:45.730
+So for now let's replace this with the comment.
+
+97
+10:45.760 --> 10:46.290
+All right.
+
+98
+10:46.310 --> 10:47.060
+Save all changes
+
+99
+10:49.880 --> 10:51.610
+Ups I get error.
+
+100
+11:05.050 --> 11:08.530
+So here interpolation inside attribute has been removed
+
+101
+11:11.900 --> 11:13.160
+So I cannot do this way
+
+102
+11:18.750 --> 11:20.490
+let me go to question excerpt
+
+103
+11:25.220 --> 11:35.790
+so let's replace this with class equals let's say status classes
+
+104
+11:38.630 --> 11:40.040
+let's jump to our script
+
+105
+11:43.100 --> 11:51.980
+then let's add computed and in here let's define status classes
+
+106
+11:57.050 --> 11:59.130
+and this method simply return an array
+
+107
+12:01.950 --> 12:13.800
+and it's contain status class and this question status. Let's save.
+
+108
+12:17.090 --> 12:17.790
+still got error
+
+109
+12:23.970 --> 12:26.600
+Okay here.
+
+110
+12:26.600 --> 12:28.840
+question user url in href
+
+111
+12:35.230 --> 12:39.130
+so just replace this with hash
+
+112
+12:43.220 --> 12:44.000
+also this one
+
+113
+12:47.580 --> 12:48.030
+Save
+
+114
+12:51.690 --> 12:55.800
+OK back to our browser and reload
+
+115
+12:59.410 --> 13:05.580
+here we have a message because currently we're not 
+holding any questions so now let's consume our API
+
+116
+13:05.700 --> 13:06.480
+in this component.

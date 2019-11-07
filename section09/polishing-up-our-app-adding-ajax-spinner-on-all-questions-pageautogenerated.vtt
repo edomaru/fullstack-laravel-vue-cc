@@ -1,0 +1,394 @@
+WEBVTT
+
+0
+00:02.460 --> 00:08.910
+Now the show AJAX loader or AJAX spinner in 
+our page, we're going to use font awesome.
+
+1
+00:08.910 --> 00:12.120
+So let's navigate to font awesome dot com
+
+2
+00:15.790 --> 00:16.220
+Here
+
+3
+00:16.240 --> 00:18.250
+let's find spinner
+
+4
+00:24.600 --> 00:30.940
+so here we're going to use this font and later we'll 
+use special class to give rotate effect to the font.
+
+5
+00:31.790 --> 00:32.550
+Here
+
+6
+00:32.580 --> 00:38.900
+you can also use other class such as spinner third, circle notch
+
+7
+00:45.240 --> 00:45.960
+or other class
+
+8
+00:50.540 --> 00:57.780
+but I'll stick with this spinner. Actually bootstrap also 
+provides spinner which does the similar thing.
+
+9
+01:06.130 --> 01:08.050
+Here you'll find two types of spinner
+
+10
+01:12.620 --> 01:16.520
+border spinner and growing spinner
+
+11
+01:20.470 --> 01:26.990
+and you can also control the class such 
+as primary secondary and so on.
+
+12
+01:27.200 --> 01:33.230
+So feel free to choose font awesome or bootstrap 
+spinner because they do the same thing.
+
+13
+01:33.230 --> 01:36.510
+But here I'll stick with font awesome.
+
+14
+01:36.500 --> 01:41.120
+All right let's go back to our editor. Then here
+
+15
+01:41.120 --> 01:42.370
+Let's pull open
+
+16
+01:42.710 --> 01:43.220
+font
+
+17
+01:43.220 --> 01:44.500
+awesome
+
+18
+01:44.540 --> 01:45.140
+dot js.
+
+19
+01:54.230 --> 01:58.120
+Here let's add fa spinner
+
+20
+02:03.850 --> 02:07.510
+and let's add our font to the font awesome library.
+
+21
+02:11.500 --> 02:13.390
+Once the font registered now let's
+
+22
+02:13.390 --> 02:16.360
+open up questions dot vue
+
+23
+02:20.960 --> 02:24.320
+and right after the card
+
+24
+02:24.320 --> 02:28.170
+body, let's add another div
+
+25
+02:34.700 --> 02:47.760
+then we'll specify style attribute. In there we'll set 
+the color to ddd and adjust the text alignment
+
+26
+02:50.390 --> 02:51.620
+to center.
+
+27
+02:57.250 --> 02:58.360
+Inside here
+
+28
+02:58.360 --> 03:03.910
+let's call our spinner fa fa spinner.
+
+29
+03:08.490 --> 03:17.340
+Then as I said to give rotate effect we'll add fa
+spin. We will also need to control the font size.
+
+30
+03:17.460 --> 03:28.700
+Here I'll make the font size maybe three times 
+bigger from the standard fa three times. OK
+
+31
+03:28.800 --> 03:29.940
+let's save all these changes
+
+32
+03:34.500 --> 03:35.510
+and let's see how that look.
+
+33
+03:43.070 --> 03:43.630
+All right
+
+34
+03:43.630 --> 03:46.180
+Here we have our spinners show up.
+
+35
+03:46.240 --> 03:51.790
+Obviously this spinner should be disappear once 
+the request finished and we get the response back.
+
+36
+03:52.420 --> 03:54.810
+So to do that let's go back to our editor.
+
+37
+03:58.150 --> 04:00.850
+And here let's cut these lines
+
+38
+04:04.270 --> 04:07.970
+and instead we'll add spinner component which will create shortly.
+
+39
+04:13.110 --> 04:13.690
+OK
+
+40
+04:13.740 --> 04:24.710
+let's go to js components, create new 
+file and save it as spinner dot vue,
+
+41
+04:29.490 --> 04:33.410
+add template and paste the markup.
+
+42
+04:39.950 --> 04:40.700
+Here
+
+43
+04:40.760 --> 04:47.310
+let's cut these styles and instead let's add
+
+44
+04:47.780 --> 04:50.040
+class spinner
+
+45
+04:53.730 --> 04:54.660
+than here
+
+46
+04:54.760 --> 04:59.040
+outside template let's add style
+
+47
+05:03.220 --> 05:07.180
+we don't need this lang attribute just add scoped.
+
+48
+05:10.510 --> 05:16.470
+Here let's define the spinner and paste the styles here
+
+49
+05:21.810 --> 05:22.640
+All right
+
+50
+05:22.960 --> 05:27.980
+now let's register this component. Since this 
+component could be used across pages
+
+51
+05:28.260 --> 05:33.870
+so we're gonna register it globally. So let's open app dot js
+
+52
+05:39.940 --> 05:40.400
+here
+
+53
+05:40.420 --> 05:52.440
+firstly let's import the spinner component import 
+spinner from components spinner dot vue.
+
+54
+06:00.280 --> 06:09.250
+Then we can register globally using vue component 
+like this. Actually we no longer need this question
+
+55
+06:09.250 --> 06:14.050
+page, so let's remove this and instead will register globally
+
+56
+06:14.050 --> 06:15.070
+the spinner component
+
+57
+06:22.210 --> 06:24.920
+OK
+
+58
+06:25.390 --> 06:26.280
+let's save and
+
+59
+06:28.970 --> 06:30.230
+let's see.
+
+60
+06:36.030 --> 06:37.960
+OK it's still in there.
+
+61
+06:37.980 --> 06:39.090
+Let's go back to our editor,
+
+62
+06:42.100 --> 06:43.450
+back to questions component,
+
+63
+06:47.150 --> 06:51.990
+and here let's control this spinner to only 
+appear if the request is processing
+
+64
+06:55.380 --> 07:02.600
+so v-if request is processing
+
+65
+07:05.990 --> 07:09.920
+or we can simply say v-if loading
+
+66
+07:13.490 --> 07:20.440
+then here we can change this v if to
+
+67
+07:20.470 --> 07:23.100
+v else if. Alright
+
+68
+07:23.100 --> 07:24.450
+let's go to our script
+
+69
+07:27.390 --> 07:28.110
+and define
+
+70
+07:31.300 --> 07:42.460
+loading property and we'll set it to false so by 
+default will control the spinner to disappear.
+
+71
+07:42.520 --> 07:45.630
+Now we'll show the spinner before request being processed.
+
+72
+07:46.450 --> 07:48.520
+So let's go to methods
+
+73
+07:51.530 --> 07:54.290
+here in fetch question
+
+74
+07:54.800 --> 07:57.980
+let's show the spinner by changing the loading state to true
+
+75
+08:03.700 --> 08:05.550
+and then here in then method
+
+76
+08:09.000 --> 08:11.790
+we need to change the loading to false to hide the spinner.
+
+77
+08:15.000 --> 08:19.500
+Now since we are in a local computer 
+processing request is much faster.
+
+78
+08:20.070 --> 08:27.280
+So probably we couldn't see the spinner. So to simulate 
+a bit long request which could happen in production,
+
+79
+08:27.330 --> 08:32.190
+let's open up API questions
+
+80
+08:32.190 --> 08:32.850
+controller
+
+81
+08:36.280 --> 08:37.410
+in here
+
+82
+08:37.960 --> 08:48.730
+let's add php sleep function to delay the execution.
+In this case I delay for two seconds. All right
+
+83
+08:49.020 --> 08:50.050
+let's save all changes
+
+84
+08:54.490 --> 08:55.420
+and let's see how that look.
+
+85
+08:58.300 --> 09:07.170
+Reload the page. Here we have our spinner appear then 
+it's disappear and we'll have all questions displayed
+
+86
+09:07.670 --> 09:10.740
+awesome. Back to our editor
+
+87
+09:14.410 --> 09:23.170
+and here you can remove this sleep function or you 
+can keep it as it was an add if statement and make sure
+
+88
+09:23.170 --> 09:26.890
+that this function only get executed in development only
+
+89
+09:31.630 --> 09:35.190
+so we don't need to worry in our production.
+
+90
+09:35.260 --> 09:41.550
+Now let me save this and let me see if still working just fine.
+
+91
+09:42.880 --> 09:49.560
+Reload OK it's still working just fine.
+
+92
+09:49.780 --> 10:00.440
+Now you can try to implement the spinner on other 
+pages such as Question details, my posts and so on.

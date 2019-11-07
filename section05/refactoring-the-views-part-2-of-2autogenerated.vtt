@@ -1,0 +1,483 @@
+WEBVTT
+
+0
+00:02.290 --> 00:07.960
+In my opinion it's better to create only one view 
+which can be shared for both question and answer.
+
+1
+00:08.160 --> 00:13.510
+We can simply use if statement to determine 
+which vote control that we will create
+
+2
+00:13.510 --> 00:15.140
+So let me show it to you.
+
+3
+00:17.010 --> 00:17.760
+Let me open thinker
+
+4
+00:20.520 --> 00:24.340
+and hero I'll define a variable I'll call it model one.
+
+5
+00:27.990 --> 00:29.400
+and this variable will hold
+
+6
+00:29.400 --> 00:30.190
+Question instance.
+
+7
+00:35.590 --> 00:42.620
+and then I'll define another variable I will 
+call it model two. And this verbal will hold
+
+8
+00:42.640 --> 00:47.820
+answer instance.
+
+9
+00:48.170 --> 00:53.290
+Now I can check if any instance is 
+instance of a particular class like this.
+
+10
+00:55.420 --> 00:58.520
+Model one instance of app
+
+11
+01:02.840 --> 01:03.440
+question
+
+12
+01:08.000 --> 01:14.380
+here we get true because model one is instance of question.
+
+13
+01:14.600 --> 01:26.370
+Now if I change to model two we'll got false because 
+model two is not instance of question. But
+
+14
+01:26.480 --> 01:33.300
+if we change to app answer we will got true.
+
+15
+01:34.220 --> 01:35.210
+So I hope you get it.
+
+16
+01:40.220 --> 01:43.740
+here in show.blade.php
+
+17
+01:43.800 --> 01:44.800
+Let's fold this markup 
+
+18
+01:50.070 --> 01:51.480
+and then cut
+
+19
+01:54.360 --> 01:57.360
+and include another view by saying include
+
+20
+02:00.380 --> 02:17.100
+shared underscore vote and then we pass model with question.
+
+21
+02:17.110 --> 02:18.880
+Now we can go to shared folder
+
+22
+02:23.610 --> 02:30.430
+and then create new file and let's call it _vote.blade.php.
+
+23
+02:33.350 --> 02:44.290
+And here we simply paste the earlier code.
+
+24
+02:44.350 --> 02:45.130
+All right
+
+25
+02:45.130 --> 02:47.020
+now let's select all questions
+
+26
+03:03.430 --> 03:11.670
+and then change them to model.
+
+27
+03:11.720 --> 03:13.350
+Now let's change to other parts.
+
+28
+03:15.170 --> 03:19.970
+Here as can see the title attribute  should be dynamic
+
+29
+03:20.210 --> 03:23.890
+for example for answer vote it will be
+
+30
+03:23.930 --> 03:25.550
+"The answer is useful".
+
+31
+03:25.730 --> 03:27.730
+But for question vote it will be
+
+32
+03:27.740 --> 03:30.810
+"The question is useful". Also the
+
+33
+03:30.890 --> 03:38.220
+URI in the form action will be you start with questions for vote question and it will start with
+
+34
+03:38.310 --> 03:48.250
+answers for the vote answer. And then the form id 
+for vote question will be 'up-vote-question' but for
+
+35
+03:48.250 --> 03:52.350
+answer it will be 'up-vote-answer'
+
+36
+03:54.950 --> 04:05.540
+So here we can say if model instance of app question
+
+37
+04:19.090 --> 04:27.570
+so here we'll define a variable let's say 
+name and the value will be question
+
+38
+04:30.500 --> 04:32.910
+and then we'll define another variable
+
+39
+04:33.020 --> 04:36.830
+let's say first URI
+
+40
+04:39.910 --> 04:40.460
+Segment
+
+41
+04:43.480 --> 04:46.500
+and the value will be questions
+
+42
+04:48.890 --> 04:50.090
+else
+
+43
+04:50.550 --> 05:00.140
+Or else if model instance of app answer
+
+44
+05:03.680 --> 05:10.290
+let's copy these lines
+
+45
+05:10.370 --> 05:18.790
+We can change the name to answer.
+
+46
+05:18.990 --> 05:24.690
+And this first URI Segment to answers.
+
+47
+05:24.750 --> 05:28.060
+All right we have two variables to hold the state of the vote
+
+48
+05:33.150 --> 05:41.660
+now let's select the questions in the URI.
+
+49
+05:41.840 --> 05:43.850
+Here we don't to change the favourite button
+
+50
+05:49.000 --> 05:52.310
+So we'll only select vote up and vote down form.
+
+51
+05:52.900 --> 05:56.310
+And then let's replace them to
+
+52
+05:56.380 --> 06:05.390
+first URI Segment
+
+53
+06:06.380 --> 06:11.430
+Actually we can make them more simpler but that's fine for now.
+
+54
+06:11.910 --> 06:12.440
+Next
+
+55
+06:17.120 --> 06:19.440
+let's select all questions in the markup.
+
+56
+06:19.580 --> 06:19.950
+except
+
+57
+06:19.940 --> 06:20.710
+the favourite button.
+
+58
+06:28.620 --> 06:32.940
+and then we can change them to name
+
+59
+06:39.320 --> 06:39.970
+Now let's move
+
+60
+06:40.040 --> 06:42.770
+this favourite control to another view.
+
+61
+06:42.770 --> 06:53.300
+Let's select these cut and again we'll use if statement to 
+make sure that the controls will be rendered in question
+
+62
+06:55.770 --> 07:02.700
+if model instance of app question
+
+63
+07:09.530 --> 07:17.070
+and then here we can call include shared underscore favorite
+
+64
+07:21.970 --> 07:28.200
+model model
+
+65
+07:28.410 --> 07:30.890
+OK now we can go to shared folder
+
+66
+07:33.760 --> 07:34.690
+and create new file
+
+67
+07:38.210 --> 07:46.220
+and we can call it _favorite.blade.php
+
+68
+07:46.380 --> 07:48.430
+And here we just paste the code
+
+69
+07:55.480 --> 08:00.220
+and then let's switch to answers _index.blade.php
+
+70
+08:07.280 --> 08:09.150
+and here
+
+71
+08:09.410 --> 08:10.840
+let's cut this accept answer
+
+72
+08:15.750 --> 08:29.470
+back to a shared folder and create new file 
+and call it _accept.blade.php and paste the
+
+73
+08:29.470 --> 08:29.910
+code.
+
+74
+08:35.010 --> 08:35.780
+Here let's select
+
+75
+08:35.810 --> 08:37.000
+all answer
+
+76
+08:45.880 --> 08:50.370
+and replace them to model.
+
+77
+08:50.480 --> 08:53.500
+Now we can go back to underscore vote
+
+78
+08:53.510 --> 08:54.400
+blade php
+
+79
+08:58.730 --> 09:06.450
+and here let's add else if elseif model instance of
+
+80
+09:09.440 --> 09:10.040
+answer
+
+81
+09:13.690 --> 09:23.630
+and here can copy these lines paste here and change to shared accept
+
+82
+09:28.850 --> 09:30.380
+Alright  let's save all changes. And let's
+
+83
+09:35.710 --> 09:38.590
+see if everything is stil working fine.
+
+84
+09:49.750 --> 09:51.130
+Let's inspect this vote up
+
+85
+09:59.460 --> 10:08.810
+here you see the id is vote up question and followed 
+by question id and the action is questions
+
+86
+10:08.860 --> 10:09.990
+question id vote
+
+87
+10:13.590 --> 10:15.180
+let me see the down vote.
+
+88
+10:19.290 --> 10:27.360
+Here you see the id vote down question followed by
+question id and the action questions question id
+
+89
+10:27.620 --> 10:28.600
+vote.
+
+90
+10:28.800 --> 10:30.810
+Now let's see the vote up and down in answer
+
+91
+10:40.030 --> 10:40.840
+OK
+
+92
+10:40.890 --> 10:43.680
+here the id up vote answer
+
+93
+10:43.960 --> 10:48.470
+answer id and the action answers answer Id vote.
+
+94
+10:54.860 --> 10:56.030
+OK down vote
+
+95
+10:56.030 --> 10:57.130
+answer.
+
+96
+10:57.200 --> 11:04.260
+answers answer id vote. OK great. Actually let me try them.
+
+97
+11:22.490 --> 11:23.210
+OK
+
+98
+11:40.730 --> 11:41.600
+OK great
+
+99
+11:41.600 --> 11:44.250
+our application still working fine as it was.
+
+100
+11:49.860 --> 12:02.780
+And the last thing that I want to do is here I want to 
+simplify this id and this action. So let me copy
+
+101
+12:02.870 --> 12:06.930
+this and select other instance
+
+102
+12:10.190 --> 12:17.880
+and change them to formId and then here in the top
+
+103
+12:28.890 --> 12:33.580
+I'll define a formId variable and paste the form id
+
+104
+12:36.770 --> 12:38.160
+and make a little adjustment.
+
+105
+12:46.600 --> 12:47.050
+And then
+
+106
+12:51.730 --> 13:00.900
+I'll copy this URI and select the other instance.
+
+107
+13:01.020 --> 13:05.410
+Now let's change them to forms action
+
+108
+13:09.280 --> 13:14.450
+and then here let's define the form action variable
+
+109
+13:17.440 --> 13:19.380
+and paste the URI
+
+110
+13:19.810 --> 13:21.250
+Also make a little adjustment.
+
+111
+13:54.350 --> 14:06.140
+And here I need to change this to from id
+
+112
+14:06.350 --> 14:11.380
+OK so now we have successfully 
+implemented DRY principle in our view.
+
+113
+14:12.010 --> 14:16.930
+And you can see now or view look 
+more simpler and more cleaner.
+
+114
+14:17.470 --> 14:17.770
+OK
+
+115
+14:17.770 --> 14:18.520
+That's it.
+
+116
+14:18.520 --> 14:21.290
+Let's commit and push our changes to our git repo.

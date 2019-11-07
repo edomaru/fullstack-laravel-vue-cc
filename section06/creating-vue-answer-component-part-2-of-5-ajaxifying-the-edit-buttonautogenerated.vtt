@@ -1,0 +1,294 @@
+WEBVTT
+
+0
+00:06.850 --> 00:14.460
+Currently if we hit the edit button we'll be taken 
+to another page. To make it more interactive
+
+1
+00:14.530 --> 00:16.170
+let's change its behavior.
+
+2
+00:16.180 --> 00:22.060
+We'll put this answer form in the same page in the 
+same position where the answer stay or in a simple
+
+3
+00:22.060 --> 00:24.430
+term we'll make it as inline form.
+
+4
+00:27.630 --> 00:29.810
+All right let's switch back over to our editor
+
+5
+00:32.560 --> 00:33.940
+in here in this file
+
+6
+00:34.930 --> 00:37.260
+firstly we need to changed how the edit button
+
+7
+00:37.270 --> 00:37.780
+behaves.
+
+8
+00:47.850 --> 00:49.440
+Let's remove the `href` attribute
+
+9
+00:55.830 --> 00:58.680
+and then we need to attach an event listener to this button.
+
+10
+00:59.860 --> 01:07.930
+We can do that by utilizing `v-on` directive. This directive 
+needs an argument which is type of the event
+
+11
+01:09.060 --> 01:13.120
+it could be click double click etc.
+
+12
+01:13.140 --> 01:20.550
+In this case we'll need click event so we can say v-on click equals
+
+13
+01:23.880 --> 01:25.950
+and then with the specified expression here
+
+14
+01:29.590 --> 01:35.020
+the expression can be inline statesman or method 
+name. Here the expression will be inline statement
+
+15
+01:35.040 --> 01:36.620
+like this.
+
+16
+01:36.760 --> 01:38.260
+editing equal true
+
+17
+01:42.940 --> 01:48.700
+the editing is a variable to control the state of 
+the form. When it's true the form will be shown.
+
+18
+01:48.700 --> 01:52.390
+Otherwise when it's false the form will be hidden.
+
+19
+01:52.390 --> 01:57.760
+When working with event we can utilize 
+something called modifiers. Modifiers
+
+20
+01:57.890 --> 02:04.030
+are directive postfixes denoted by dot indicating 
+that a directive should be bound in some special
+
+21
+02:04.030 --> 02:04.500
+way.
+
+22
+02:05.670 --> 02:07.980
+So here we can add on  v-on click
+
+23
+02:11.340 --> 02:19.160
+dot prevent the prevent the link to follow the URL. 
+we have removed the URL from this anchor
+
+24
+02:19.720 --> 02:25.440
+but this way I think is much better because we can 
+modify the link easily in the browser on the fly.
+
+25
+02:27.130 --> 02:33.680
+By specifying the prevent here it will make sure 
+that this link will not follow the URL anymore.
+
+26
+02:33.780 --> 02:36.870
+And here we can use the shorthand syntax for the v-on
+
+27
+02:39.810 --> 02:40.560
+just like this
+
+28
+02:43.910 --> 02:44.350
+okay
+
+29
+02:44.390 --> 02:53.290
+here we need to define this editing variable and we can 
+define that in answer component. Let's switch to answer
+
+30
+02:53.310 --> 02:54.130
+dot vue file.
+
+31
+02:58.750 --> 03:00.310
+Here let's define data method
+
+32
+03:03.530 --> 03:05.060
+then return an object.
+
+33
+03:08.280 --> 03:10.950
+And instead here we define editing property.
+
+34
+03:13.880 --> 03:15.360
+And it should be false by default
+
+35
+03:18.670 --> 03:22.720
+which mean the edit answer form is hidden by default.
+
+36
+03:22.720 --> 03:27.540
+Next let's determine which part will be hidden 
+or shown when the added bonus clicked.
+
+37
+03:35.340 --> 03:40.290
+In my opinion it would be better 
+to hide this answer body buttons
+
+38
+03:45.400 --> 03:46.990
+and user info when editing
+
+39
+03:52.220 --> 03:53.520
+so let's wrap this
+
+40
+03:53.840 --> 03:57.410
+body html and the row in another div.
+
+41
+04:14.080 --> 04:16.760
+and then above that let's add a form
+
+42
+04:25.720 --> 04:27.050
+for now let's display a message
+
+43
+04:32.640 --> 04:34.230
+and let's also add an update button.
+
+44
+04:48.980 --> 04:50.180
+when the button is clicked
+
+45
+04:50.180 --> 04:54.350
+we change the editing to false which 
+means the answer form will be hidden.
+
+46
+04:57.280 --> 05:02.870
+And to toggle between the elements we can 
+utilize vue js  conditional rendering like this
+
+47
+05:06.610 --> 05:07.030
+v-if
+
+48
+05:07.030 --> 05:14.860
+so v-if directive will conditionally render the element 
+based on the trueness of the expression value.
+
+49
+05:15.070 --> 05:20.920
+If the value is true this form will be shown 
+otherwise if it falls this form will be hidden.
+
+50
+05:22.390 --> 05:25.990
+So here we can pass in the editing as expression like so
+
+51
+05:35.840 --> 05:38.000
+or we can make it more simpler just like this
+
+52
+05:45.360 --> 05:52.360
+now here we need kind of the opposite condition 
+of this element it should be appear when editing is
+
+53
+05:52.360 --> 05:53.030
+false
+
+54
+05:54.070 --> 05:56.360
+and disappears when editing is true.
+
+55
+05:56.710 --> 05:59.690
+Here we can say v-if
+
+56
+06:03.420 --> 06:07.140
+editing is equals false.
+
+57
+06:08.400 --> 06:11.180
+Or in simple form we can write it like this
+
+58
+06:17.010 --> 06:20.490
+or we can make it more simpler by utilizing v-else directive
+
+59
+06:20.490 --> 06:20.940
+like so
+
+60
+06:28.930 --> 06:37.070
+please note that when you're using v-if and v-else 
+both elements should be in the same level. Let's save
+
+61
+06:37.080 --> 06:39.190
+all changes and see how it look.
+
+62
+06:51.240 --> 06:54.160
+You can find an editable answer here I have it.
+
+63
+06:57.180 --> 07:04.110
+Let's hit the button here's the answer body disappear 
+and we have edit answer form message
+
+64
+07:04.130 --> 07:04.730
+show up.
+
+65
+07:06.530 --> 07:07.530
+hit the update button
+
+66
+07:10.800 --> 07:12.620
+the message disappear
+
+67
+07:12.690 --> 07:19.140
+while our answer body came back and it's also 
+reload the page but don't worry we'll fix that letter.

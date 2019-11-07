@@ -1,0 +1,413 @@
+WEBVTT
+
+0
+00:02.670 --> 00:04.590
+Now if we see our other question
+
+1
+00:11.230 --> 00:17.710
+here it has four answers but the delete button is still active.
+
+2
+00:18.140 --> 00:23.820
+If we try to delete the question I'm sure it will be failed 
+because we have protected to be removed in the
+
+3
+00:23.960 --> 00:35.440
+server side by utilizing laravel policy. So let's switch 
+back over to our editor and then open question policy
+
+4
+00:40.150 --> 00:42.770
+here we authorize the question can be deleted if
+
+5
+00:42.770 --> 00:45.640
+the question is by owned by the current user
+
+6
+00:46.130 --> 00:47.370
+and it has no answer.
+
+7
+00:49.150 --> 00:54.950
+So here we need to rewrite this logic in our javascript code. Let's
+
+8
+00:56.530 --> 01:05.520
+open up authorization policies dot js
+
+9
+01:05.720 --> 01:08.660
+And then here let's create another method. Here
+
+10
+01:08.660 --> 01:10.600
+I'm going to call it delete question
+
+11
+01:15.070 --> 01:23.820
+the first argument is user and the second argument is question.
+
+12
+01:24.060 --> 01:28.860
+Here we simply match id of the user with user id of the question.
+
+13
+01:36.620 --> 01:42.780
+And we also check if question answers count is less than one.
+
+14
+01:42.840 --> 01:45.880
+OK now we can switch back to question component.
+
+15
+01:57.170 --> 02:07.770
+And change the first argument of the 
+authorize function to be delete question.
+
+16
+02:07.820 --> 02:09.130
+Let's save all changes.
+
+17
+02:16.600 --> 02:17.660
+reload the page
+
+18
+02:23.050 --> 02:23.650
+OK
+
+19
+02:23.730 --> 02:25.290
+Now the delete button disappear
+
+20
+02:25.430 --> 02:34.410
+great.
+
+21
+02:34.440 --> 02:41.830
+The last thing that we need to do before we end this lesson 
+is to wrap both of these in another vue js component.
+
+22
+02:43.080 --> 02:47.350
+Actually we can leave them like this and everything should be fine.
+
+23
+02:47.670 --> 02:53.550
+But I think it would be much better to create one big 
+component that will contain other components in
+
+24
+02:53.550 --> 02:56.620
+a page.
+
+25
+02:56.670 --> 02:59.760
+So let's cut everything inside this section content
+
+26
+03:03.270 --> 03:06.750
+and then call another component that we will create shortly.
+
+27
+03:06.750 --> 03:09.730
+Here we can say question page
+
+28
+03:12.580 --> 03:16.870
+bind question to question instance
+
+29
+03:21.180 --> 03:26.200
+and close the component. That's it.
+
+30
+03:26.260 --> 03:31.040
+Now we can go to assets js folder.
+
+31
+03:34.110 --> 03:40.830
+Here I will not place the new component inside this 
+components because I want to show that this is a big
+
+32
+03:40.830 --> 03:41.680
+component
+
+33
+03:41.880 --> 03:44.240
+where other components house in it.
+
+34
+03:44.280 --> 03:46.960
+It represents a single page.
+
+35
+03:47.020 --> 03:48.450
+So here I'll create new folder
+
+36
+03:52.270 --> 03:57.540
+and I'm going to call it pages. Inside this folder let's create
+
+37
+03:57.750 --> 04:03.150
+new file and call it question page dot vue
+
+38
+04:08.720 --> 04:09.930
+and then inside this file
+
+39
+04:15.250 --> 04:16.040
+just paste the code
+
+40
+04:25.180 --> 04:27.910
+and replace the blade syntax to vue js syntax
+
+41
+04:40.070 --> 04:42.050
+and last let's add script section
+
+42
+04:49.150 --> 04:49.580
+here
+
+43
+04:49.630 --> 04:53.420
+let's register the question and answers component as local components
+
+44
+05:11.810 --> 05:12.230
+here
+
+45
+05:12.250 --> 05:14.090
+let's add components property
+
+46
+05:16.900 --> 05:18.340
+and register them here.
+
+47
+05:26.240 --> 05:28.060
+Now we can go to app.js
+
+48
+05:32.540 --> 05:42.940
+and remove this components because now they 
+registered as a local component inside question page.
+
+49
+05:43.030 --> 05:44.550
+Don't forget to add props.
+
+50
+05:49.550 --> 05:56.230
+And then specify question.
+
+51
+05:56.300 --> 05:56.820
+All right
+
+52
+05:56.820 --> 06:02.330
+let's save all changes
+
+53
+06:02.590 --> 06:05.140
+and let's make sure that everything is working just fine.
+
+54
+06:08.490 --> 06:09.310
+Reload the page
+
+55
+06:12.680 --> 06:16.720
+something went wrong. Let me open console
+
+56
+06:19.100 --> 06:26.820
+Here I have ever unknown custom element question 
+page. I forgot to register this component in app dot
+
+57
+06:26.820 --> 06:27.210
+js file
+
+58
+06:30.120 --> 06:34.670
+so back to app.js
+
+59
+06:34.800 --> 06:35.780
+I undo the change
+
+60
+06:39.590 --> 06:46.130
+remove the last and change this to question
+
+61
+06:46.180 --> 06:49.120
+page and it come from
+
+62
+06:51.980 --> 06:52.710
+pages
+
+63
+06:56.460 --> 07:00.300
+Question page dot vue. Here
+
+64
+07:00.300 --> 07:03.300
+we can keep these components as a global component
+
+65
+07:04.900 --> 07:10.730
+Or let's just remove them from here because I 
+think they will be better as a local component.
+
+66
+07:13.400 --> 07:14.630
+Now if I save these
+
+67
+07:19.170 --> 07:21.380
+and reload the page. We will have another error
+
+68
+07:27.970 --> 07:35.280
+actually we'll get a lot of errors. This because we 
+need to register both components in question page
+
+69
+07:35.600 --> 07:45.590
+I mean we need to register them in question component.
+
+70
+07:45.800 --> 07:46.370
+So here
+
+71
+07:52.270 --> 07:54.280
+import vote from vote dot
+
+72
+07:59.100 --> 08:13.310
+vue. And then import user info from user info dot vue
+
+73
+08:16.060 --> 08:19.600
+and then add them in components property.
+
+74
+08:38.560 --> 08:39.010
+Reload again
+
+75
+08:43.190 --> 08:44.660
+the errors still remain.
+
+76
+08:44.840 --> 08:53.030
+But now I have six errors and to fix these we 
+need to do the same thing in answer component.
+
+77
+08:54.190 --> 08:55.250
+So let's copy these
+
+78
+08:58.470 --> 09:00.390
+then go to answer dot vue
+
+79
+09:03.580 --> 09:04.100
+paste
+
+80
+09:07.240 --> 09:09.490
+let's also copy components property
+
+81
+09:14.390 --> 09:16.850
+and then paste here. Save
+
+82
+09:21.240 --> 09:21.840
+reload again
+
+83
+09:26.130 --> 09:26.500
+OK
+
+84
+09:26.520 --> 09:27.720
+now we have no errors
+
+85
+09:33.770 --> 09:35.490
+and everything working just fine.
+
+86
+09:37.010 --> 09:39.220
+Now if I open vue developer tools
+
+87
+09:41.900 --> 09:48.710
+as you can see here now below root component we'll 
+have question page component that contains question
+
+88
+09:49.460 --> 09:50.470
+and answers component
+
+89
+09:56.670 --> 09:57.090
+OK
+
+90
+09:57.100 --> 10:02.710
+we have successfully rewritten the entire parts of this 
+show question page into vue js components and
+
+91
+10:02.710 --> 10:05.630
+it's make our application now look more interactive.
+
+92
+10:06.700 --> 10:10.470
+All right before we end this section there 
+is one thing that we need to do here.
+
+93
+10:14.710 --> 10:16.450
+If you see the answer component
+
+94
+10:19.280 --> 10:20.540
+and question component
+
+95
+10:23.740 --> 10:25.440
+we have some duplicate code.
+
+96
+10:25.780 --> 10:31.870
+So in the next lesson we'll refactor our code in 
+our components and implement DRY principle.
+
+97
+10:32.440 --> 10:32.790
+OK
+
+98
+10:32.830 --> 10:36.470
+Let's save all changes into our git 
+repo and join me in the next lesson.

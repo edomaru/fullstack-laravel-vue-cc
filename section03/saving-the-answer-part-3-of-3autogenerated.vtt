@@ -1,0 +1,185 @@
+WEBVTT
+
+0
+00:02.390 --> 00:06.310
+Alright now we can go back to our view 
+and show our flash message.
+
+1
+00:06.320 --> 00:13.660
+So let's open answers index.blade.php
+
+2
+00:13.770 --> 00:25.050
+And here we can render our flash message 
+by simply say include layouts underscore messages.
+
+3
+00:29.550 --> 00:29.820
+Next
+
+4
+00:29.820 --> 00:31.800
+let's go to our answer form
+
+5
+00:34.800 --> 00:36.860
+and here
+
+6
+00:37.450 --> 00:41.220
+we can change this action's value to route
+
+7
+00:45.840 --> 00:59.600
+questions dot answers dot store and pass the question instance or question id in the second argument.
+
+8
+01:04.000 --> 01:04.790
+And last
+
+9
+01:04.820 --> 01:08.020
+let's also show the validation error message in the answer's body
+
+10
+01:11.780 --> 01:15.050
+here we'll add after a form control the bootstrap is invalid
+
+11
+01:15.050 --> 01:25.450
+class.
+
+12
+01:25.800 --> 01:33.290
+So if the body input has error we add is-invalid
+
+13
+01:33.290 --> 01:37.610
+class otherwise we'll add nothing.
+
+14
+01:44.820 --> 01:48.660
+Let's also add invalid-feedback in the bottom of the answer's body.
+
+15
+01:49.380 --> 01:52.290
+So if errors
+
+16
+01:55.010 --> 01:55.880
+has body
+
+17
+02:05.970 --> 02:11.610
+and then here we show the validation error message 
+by wrapping it inside invalid-feedback.
+
+18
+02:38.530 --> 02:40.650
+Alright now let's save all changes
+
+19
+02:44.670 --> 02:45.420
+and then
+
+20
+02:48.290 --> 02:49.170
+reload the page
+
+21
+02:58.180 --> 03:02.160
+let the answer's body empty and then hit the submit button.
+
+22
+03:03.850 --> 03:07.690
+Ups  question does not exist.
+
+23
+03:08.570 --> 03:09.630
+Let me check.
+
+24
+03:14.950 --> 03:15.460
+OK
+
+25
+03:15.460 --> 03:21.380
+Here I need to import this namespace on the top here.
+
+26
+03:24.520 --> 03:30.600
+Save reload again continue.
+
+27
+03:37.160 --> 03:41.330
+Here we can see the validation error message on the bottom.
+
+28
+03:41.340 --> 03:44.210
+Now if we enter something here
+
+29
+03:50.870 --> 03:55.400
+and then hit submit button the answer should be stored in our database.
+
+30
+03:56.740 --> 03:58.360
+Ups I get another error
+
+31
+04:01.610 --> 04:05.430
+actually we need to specify the column names in the fillable attributes 
+
+32
+04:05.430 --> 04:08.840
+in our Answer model. Let's open
+
+33
+04:08.840 --> 04:15.290
+the answer mode.
+
+34
+04:15.930 --> 04:17.990
+And here let's define fillable attribute
+
+35
+04:21.980 --> 04:25.340
+and then specify body and user_id
+
+36
+04:29.560 --> 04:35.090
+save that. Reload again and hit continue.
+
+37
+04:42.740 --> 04:49.330
+All right now we have success method show up 
+and the answer saved and added here.
+
+38
+04:49.360 --> 04:51.180
+Now let me go back to all questions
+
+39
+04:57.240 --> 04:58.920
+and see another question.
+
+40
+05:03.390 --> 05:05.110
+And here I'll enter another answer.
+
+41
+05:10.180 --> 05:18.120
+And then hit the submit button.
+
+42
+05:18.140 --> 05:20.240
+All right the answer has been successfully saved
+
+43
+05:23.040 --> 05:24.000
+OK with that
+
+44
+05:24.000 --> 05:29.910
+I'm going to my terminal and I'll save all changes to my git repo.

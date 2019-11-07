@@ -1,0 +1,364 @@
+WEBVTT
+
+0
+00:01.850 --> 00:07.460
+In this lesson we're gonna implement update answer functionality so that the users that has answered
+
+1
+00:07.450 --> 00:11.090
+a particular question also able to edit their own answers.
+
+2
+00:13.540 --> 00:19.550
+Here we need to add edit button also delete button as we did when we were building the question resource.
+
+3
+00:19.840 --> 00:26.710
+And in this case I'm going to put them on the bottom left of the answer item.
+
+4
+00:26.710 --> 00:27.030
+All right
+
+5
+00:27.030 --> 00:32.220
+let's go ahead and open our terminal 
+and create new branch by typing git
+
+6
+00:32.250 --> 00:34.310
+checkout -b
+
+7
+00:34.410 --> 00:42.000
+and then the branch name is lesson-18. 
+OK firstly let's add button
+
+8
+00:42.040 --> 00:49.150
+in our answer item. Here we can open question index.blade.php
+
+9
+00:52.990 --> 00:54.250
+and simply copy
+
+10
+00:57.270 --> 01:00.770
+this buttons.
+
+11
+01:00.820 --> 01:04.510
+Now let's open answers _index.blade.php
+
+12
+01:10.620 --> 01:19.140
+here before I paste the buttons here I'm going to restructure or make change these markup because if
+
+13
+01:19.140 --> 01:27.630
+you see here the author info is too close to the right and you can see each answer item is not in
+
+14
+01:27.630 --> 01:28.510
+the same line.
+
+15
+01:31.710 --> 01:37.830
+Now I want to show the buttons on the left and 
+the author still in the right side but it's not too
+
+16
+01:37.860 --> 01:46.490
+close to the right and I want it's in the same 
+line in each answer item.
+
+17
+01:46.510 --> 01:51.560
+So here after answer's body I'm going to add a new div
+
+18
+01:54.330 --> 01:55.800
+and give it a bootstrap row class
+
+19
+02:02.020 --> 02:02.610
+inside this
+
+20
+02:02.630 --> 02:03.860
+I'm going to add new div
+
+21
+02:07.960 --> 02:15.680
+and give it a class col-4
+
+22
+02:15.850 --> 02:19.320
+So bootstrap grid system provide 12 columns in a row.
+
+23
+02:19.570 --> 02:22.470
+And here I want to split the row into three parts.
+
+24
+02:22.490 --> 02:24.910
+each part will be col-4
+
+25
+02:25.180 --> 02:27.330
+And inside this div just paste the buttons
+
+26
+02:31.210 --> 02:33.550
+then I'm going to add another col-4
+
+27
+02:39.120 --> 02:39.540
+for now
+
+28
+02:39.570 --> 02:44.200
+It will be empty but maybe in the future I'm going to add something else.
+
+29
+02:47.610 --> 02:49.440
+Here let's cut these lines
+
+30
+02:56.740 --> 02:58.230
+and paste here
+
+31
+03:03.390 --> 03:14.860
+And change this class to col-4
+
+32
+03:15.070 --> 03:18.660
+All right let's change this variable
+
+33
+03:23.850 --> 03:27.700
+to answer.
+
+34
+03:27.910 --> 03:36.680
+And here in the edit button let's change the route 
+to questions dot answers dot
+
+35
+03:36.690 --> 03:38.110
+edit
+
+36
+03:38.360 --> 03:40.580
+And then let's see again our edit route
+
+37
+03:57.020 --> 03:57.610
+and here
+
+38
+03:57.650 --> 04:02.120
+we have two route parameters so here
+
+39
+04:05.920 --> 04:08.860
+we can pass in the second parameter an array.
+
+40
+04:09.220 --> 04:12.880
+The first is question instance or question id
+
+41
+04:16.980 --> 04:26.120
+and the second is the answer instance or answer ID.
+
+42
+04:26.470 --> 04:30.640
+And here in the delete form let's change the form action
+
+43
+04:31.240 --> 04:56.790
+to questions dot answers dot destroy and pass in the same array in the second parameter.
+
+44
+04:56.800 --> 04:57.390
+All right
+
+45
+04:57.430 --> 05:05.860
+now let's create new policy because here we call 
+can update answer and can delete answer.
+
+46
+05:06.080 --> 05:15.130
+Let's switch over to our terminal and generate policy for our answer model by saying: php artisan make
+
+47
+05:15.910 --> 05:20.550
+policy AnswerPolicy
+
+48
+05:21.670 --> 05:25.210
+model equals answer
+
+49
+05:28.900 --> 05:29.420
+Now let's
+
+50
+05:29.440 --> 05:31.230
+open up the answer policy file
+
+51
+05:38.240 --> 05:42.170
+here get rid of the other methods except 
+update and delete method.
+
+52
+05:52.940 --> 05:56.320
+And here we match the current user ID with answer's user id
+
+53
+06:07.820 --> 06:09.330
+let's copy this line.
+
+54
+06:12.270 --> 06:15.550
+And paste here. Next
+
+55
+06:15.580 --> 06:19.420
+We need to register our new policy in auth service provider.
+
+56
+06:19.420 --> 06:20.690
+So let's open the file
+
+57
+06:26.380 --> 06:26.730
+here
+
+58
+06:26.740 --> 06:28.930
+let's import the namespace of the answer model
+
+59
+06:34.570 --> 06:45.560
+and also the answer policy.
+
+60
+06:45.710 --> 06:50.660
+And then here we map the answer model to answer the policy
+
+61
+07:00.320 --> 07:02.060
+Alright let's save all changes.
+
+62
+07:04.540 --> 07:05.400
+And have a look
+
+63
+07:15.340 --> 07:22.050
+here I logged in as James Bogan
+
+64
+07:22.270 --> 07:22.900
+So here
+
+65
+07:28.470 --> 07:34.040
+the buttons only appear on the answer that made by this user.
+
+66
+07:34.350 --> 07:41.510
+And you can see the buttons are hidden on the answers that are made by other users.
+
+67
+07:41.550 --> 07:41.970
+OK
+
+68
+07:42.000 --> 07:42.870
+now let's open
+
+69
+07:42.870 --> 07:43.860
+Answers controller
+
+70
+07:51.080 --> 07:52.440
+here in the edit method
+
+71
+07:52.790 --> 07:56.060
+let's add question as the first argument.
+
+72
+08:01.780 --> 08:04.100
+And here before we return edit view
+
+73
+08:04.180 --> 08:08.590
+let's make sure the user that will edit the answer 
+is the authorized user.
+
+74
+08:08.620 --> 08:15.420
+Here we can say this authorize update
+
+75
+08:16.030 --> 08:21.070
+answer.
+
+76
+08:21.180 --> 08:22.920
+After that we can return
+
+77
+08:26.930 --> 08:28.840
+the answers
+
+78
+08:29.230 --> 08:35.300
+dot edit view and pass in the question and answer instance to it.
+
+79
+08:48.290 --> 08:54.990
+Next here in update method let's also add 
+question before answer.
+
+80
+09:02.490 --> 09:08.490
+And inside here we also need to authorize 
+the user to update the answer
+
+81
+09:21.960 --> 09:26.010
+and then we can validate the answer and update it in single command like so
+
+82
+09:49.040 --> 09:57.400
+remember request validate will return the array 
+contains a validated data. And last after answer
+
+83
+09:57.400 --> 09:58.420
+updated
+
+84
+10:03.430 --> 10:06.190
+We can redirect the page to a question dot show
+
+85
+10:14.470 --> 10:18.020
+and remember the questions dot show route needs a slug.
+
+86
+10:18.250 --> 10:24.710
+So here we pass the question's slug.
+
+87
+10:24.880 --> 10:26.890
+And let's also store a message into session.

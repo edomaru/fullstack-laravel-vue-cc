@@ -1,0 +1,226 @@
+WEBVTT
+
+0
+00:02.570 --> 00:07.560
+In the previous lesson I use js fiddle to play 
+around with vue js with a minimum set up
+
+1
+00:07.630 --> 00:10.510
+and it allows you to follow along easily.
+
+2
+00:10.670 --> 00:17.060
+Now in this lesson I want to show you how the 
+set up vue js locally. Firstly you need to choose
+
+3
+00:17.120 --> 00:20.700
+the location where you want to put your vue js application.
+
+4
+00:20.750 --> 00:24.070
+In my case I'll put it in desktop. Then here
+
+5
+00:24.200 --> 00:30.090
+let's create a new folder and I'll call it vue app
+
+6
+00:30.340 --> 00:33.990
+Now we can open our favorite code editor.
+
+7
+00:34.200 --> 00:41.790
+In this case I'll be using Atom which is my 
+another favorite editor. Back to desktop
+
+8
+00:41.850 --> 00:48.670
+and here we can simply drag the folder 
+into our editor then let's create new file
+
+9
+00:53.300 --> 00:55.970
+and let's call it index dot HTML.
+
+10
+00:59.930 --> 01:02.920
+Let's create HTML 5 boilerplate. 
+
+11
+01:02.920 --> 01:11.290
+Here I have Emett plug in install so that I can type 
+html colon 5 and then hit tab to generate HTML
+
+12
+01:11.330 --> 01:14.110
+five boilerplate
+
+13
+01:14.330 --> 01:20.910
+If you're using visual studio code editor the 
+emmet extension has installed by default.
+
+14
+01:20.910 --> 01:26.700
+Now let's switch back over to our browser. Here in HTML section
+
+15
+01:26.760 --> 01:30.990
+we can copy everything back to our editor
+
+16
+01:34.100 --> 01:36.210
+here in body just paste the code.
+
+17
+01:40.260 --> 01:42.030
+Then here we can move the script tag
+
+18
+01:47.690 --> 01:48.740
+inside the head tag
+
+19
+01:51.730 --> 01:55.330
+or we can place it on the bottom before body closing tag.
+
+20
+01:58.550 --> 02:03.770
+Let's switch back over to our browser 
+and here in the script section
+
+21
+02:04.010 --> 02:05.060
+Let's copy everything
+
+22
+02:11.730 --> 02:13.680
+and then here let's add another script
+
+23
+02:17.360 --> 02:19.810
+and paste our vue js script inside.
+
+24
+02:26.580 --> 02:31.710
+Save let's switch back to our browser.
+
+25
+02:31.930 --> 02:35.680
+And here we can run our vue js application by open a new tab
+
+26
+02:38.610 --> 02:45.010
+choosing File menu then open file and then choose the html file.
+
+27
+02:48.200 --> 02:52.160
+OK here our vue js application working like in js fiddle.
+
+28
+02:52.430 --> 02:56.510
+But still we load the vue js file from cdn.
+
+29
+02:56.550 --> 03:01.360
+Now let's also put the vue js file as a local file. In order to do that
+
+30
+03:01.440 --> 03:09.470
+let's switch back over to vue js official guide. And 
+here we will find two buttons for our development
+
+31
+03:09.510 --> 03:15.550
+we need vue js development version which will gives us 
+extra warnings and errors during our development.
+
+32
+03:15.770 --> 03:16.920
+Production ready app
+
+33
+03:17.010 --> 03:20.940
+we can choose this production version button.
+
+34
+03:21.030 --> 03:26.910
+All right let's hit this development version
+
+35
+03:27.180 --> 03:39.240
+and then here I'll save into vue app and to make application organized we can create new folder here I'll call it
+
+36
+03:40.090 --> 03:49.940
+js and then hit save.
+
+37
+03:49.950 --> 04:06.800
+Now here we can change the script 
+source with our local vue js file.
+
+38
+04:06.980 --> 04:15.230
+Now if we reload the page we will got the same thing 
+as before but now we load the vue js file locally.
+
+39
+04:15.250 --> 04:17.130
+Now if you're using Atom like me
+
+40
+04:17.290 --> 04:23.160
+you can install plugin called atom live server. This plugin 
+allows you to launch a development local server 
+
+41
+04:23.400 --> 04:25.050
+with liver reload feature.
+
+42
+04:25.050 --> 04:31.290
+Similarly if you're using a visual studio code editor 
+you can install extension called live server which
+
+43
+04:31.290 --> 04:41.370
+has a similar feature. So let me close this tab then I'll switch to my code editor and here I can start live
+
+44
+04:41.370 --> 04:52.720
+server by hitting the packages menu choose atom live 
+server then choose start server. Once it's run it will
+
+45
+04:52.720 --> 04:54.890
+open our project in new browser's tab.
+
+46
+04:57.800 --> 04:59.630
+Now if I change something here
+
+47
+05:10.010 --> 05:10.760
+And then save
+
+48
+05:13.340 --> 05:17.780
+here the change reflected immediately and 
+I don't need to reload the page manually.
+
+49
+05:17.910 --> 05:20.500
+And that's something called live reload feature.
+
+50
+05:20.910 --> 05:24.790
+So that's how you could set up the 
+vue js locally. In the next lessons
+
+51
+05:24.830 --> 05:30.180
+we're going to learn a lot more about 
+vue js. So I'll see you in the next lesson.

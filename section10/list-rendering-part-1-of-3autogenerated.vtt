@@ -1,0 +1,181 @@
+WEBVTT
+
+0
+00:03.160 --> 00:07.450
+In software development we always deal 
+with collection of data in most cases.
+
+1
+00:07.690 --> 00:14.170
+We might display them in a list if each data item 
+is a single information or they could be display
+
+2
+00:14.200 --> 00:15.240
+in a table
+
+3
+00:15.300 --> 00:23.690
+If each data item consist of more than one related 
+information or records. In this lesson we will learn how
+
+4
+00:23.690 --> 00:27.700
+to present data in the form of list or table using vue js
+
+5
+00:27.700 --> 00:35.690
+v-for directive. The v-for directive can be used to 
+iterate collections the syntax of this directives
+
+6
+00:35.830 --> 00:43.990
+is in the form of item in items or item of 
+items where items is source data array
+
+7
+00:44.200 --> 00:49.840
+while item is an alias for the array element being iterated on.
+
+8
+00:49.840 --> 00:59.080
+in practice we can use the v-for for ranges 
+arrays objects and array of objects.
+
+9
+00:59.080 --> 01:05.700
+This v-for will replicate the html element where 
+we're defining it in the element. To follow along
+
+10
+01:05.710 --> 01:06.420
+this lesson
+
+11
+01:06.460 --> 01:12.570
+You can download the file in the course resource 
+then you can extract it and open it in your favorite
+
+12
+01:12.610 --> 01:15.620
+editor. If you use atom like me
+
+13
+01:15.700 --> 01:22.620
+you can also install atom live server plugin which allows 
+you to run the http server on the current project
+
+14
+01:22.720 --> 01:24.360
+that opened in the browser.
+
+15
+01:24.550 --> 01:29.830
+Another advantage of this plugin is the ability to 
+live reload so that any changes that we made in
+
+16
+01:29.830 --> 01:34.110
+the file will be automatically reload the page. OK
+
+17
+01:34.120 --> 01:41.050
+firstly let's make use the v-for directive to iterate 
+a range of number. Let's open the list rendering
+
+18
+01:41.050 --> 01:44.030
+one dot html
+
+19
+01:44.110 --> 01:52.510
+Here we have a list which currently hard coded. And 
+it contains list one through list ten. We will make
+
+20
+01:52.510 --> 02:00.760
+changes this list to be dynamic by making use of 
+the v-for directive. Let's switch over to our editor
+
+21
+02:01.140 --> 02:08.090
+and then let's open up the list rendering one dot html.
+
+22
+02:08.100 --> 02:14.640
+Here we have unordered list which has a class list 
+group and some of list items with class list group
+
+23
+02:14.640 --> 02:15.390
+item.
+
+24
+02:15.390 --> 02:19.930
+These are classes that are provided by 
+bootstraps to make all list beautiful.
+
+25
+02:19.980 --> 02:25.180
+Here we have vue js included and we need 
+to add another script to put our own script.
+
+26
+02:28.240 --> 02:29.190
+Let's instanciate
+
+27
+02:29.220 --> 02:30.150
+the vue instance
+
+28
+02:33.650 --> 02:41.320
+then specify the el property with hash tag app as defined in here.
+
+29
+02:45.300 --> 02:49.500
+OK here let's leave one list item and remove the rest.
+
+30
+02:50.740 --> 02:57.080
+Then inside this list item we can say v-for equals
+
+31
+03:00.090 --> 03:03.320
+and then let's say n in 10.
+
+32
+03:03.510 --> 03:08.810
+So this name is totally up to you but in my case I call it n.
+
+33
+03:09.020 --> 03:11.070
+And then let's change this text to list
+
+34
+03:17.090 --> 03:20.860
+or let's make use the string interpolation list
+
+35
+03:23.620 --> 03:28.150
+and then concatenate with n variable.
+
+36
+03:28.160 --> 03:31.910
+Now if I save and switch to browser
+
+37
+03:34.930 --> 03:37.320
+we will find it no difference.
+
+38
+03:37.320 --> 03:43.270
+So let me change the range to let's say five our list
+
+39
+03:43.290 --> 03:46.130
+should we change.
+
+40
+03:46.320 --> 03:48.320
+Now here we have five list items.

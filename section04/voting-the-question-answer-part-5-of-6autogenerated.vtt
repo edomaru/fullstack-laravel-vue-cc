@@ -1,0 +1,373 @@
+WEBVTT
+
+0
+00:03.130 --> 00:05.190
+All right let's switch over to our terminal
+
+1
+00:06.700 --> 00:08.530
+And here let's generate new controller
+
+2
+00:13.350 --> 00:17.580
+here it's going to be vote question controller
+
+3
+00:23.650 --> 00:24.080
+OK
+
+4
+00:24.200 --> 00:26.850
+Let's open vote
+
+5
+00:27.360 --> 00:28.710
+Question controller.
+
+6
+00:36.680 --> 00:45.550
+Let's import the question model namespace
+
+7
+00:46.750 --> 00:49.650
+and here let's firstly define a constructor.
+
+8
+00:57.770 --> 01:02.720
+And here we need to call auth middleware because 
+a user that's going to vote needs to sign in
+
+9
+01:15.580 --> 01:24.620
+and then we can define in invoke method define an 
+argument which type-hint to question instance.
+
+10
+01:31.220 --> 01:37.770
+and hear let's capture the vote by calling laravel 
+request helper function and then vote
+
+11
+01:41.760 --> 01:43.710
+and then we can assign it into a variable
+
+12
+01:47.160 --> 01:49.830
+here I want to make sure that the vote is integer.
+
+13
+01:55.520 --> 01:59.290
+Next we need to get the current answer and we can do by calling
+
+14
+01:59.500 --> 02:01.370
+laravel auth helper
+
+15
+02:04.130 --> 02:05.210
+and then call user
+
+16
+02:05.210 --> 02:10.330
+method to actually get the current user instance.
+
+17
+02:11.100 --> 02:17.280
+And then we can call vote question pass in 
+the question instance in the first argument.
+
+18
+02:20.060 --> 02:25.760
+And then pass the vote which we capture 
+from the request in the second argument.
+
+19
+02:29.040 --> 02:37.600
+And lastly we can refresh the page we're calling return back.
+
+20
+02:37.640 --> 02:40.460
+Now we can open web.php
+
+21
+02:45.200 --> 02:49.580
+and here we define a new route for voting the question.
+
+22
+02:49.580 --> 03:00.380
+And here we can say route post the uri will be questions question
+
+23
+03:02.310 --> 03:09.090
+vote and the handler is vote question
+
+24
+03:09.230 --> 03:13.120
+controller
+
+25
+03:13.270 --> 03:15.440
+Here we are using a single action controller
+
+26
+03:15.520 --> 03:17.830
+So here we don't need to specify the method.
+
+27
+03:20.700 --> 03:24.000
+Lastly let's open question
+
+28
+03:26.830 --> 03:28.040
+show.blade.php
+
+29
+03:33.040 --> 03:38.310
+here let's add off class if the user hasn't sign in.
+
+30
+03:38.420 --> 03:39.500
+We can do that like this
+
+31
+03:58.950 --> 04:02.390
+here we can copy this on click
+
+32
+04:12.910 --> 04:13.910
+and paste here.
+
+33
+04:21.920 --> 04:25.040
+And then change the id to
+
+34
+04:28.730 --> 04:32.800
+vote question.
+
+35
+04:33.000 --> 04:36.740
+question Id let's also copy the form
+
+36
+04:40.980 --> 04:42.210
+and then paste here.
+
+37
+04:46.230 --> 04:52.910
+And change the id to up vote question
+
+38
+04:53.110 --> 04:53.860
+question id
+
+39
+04:58.410 --> 05:02.530
+and also change the action to questions
+
+40
+05:03.570 --> 05:05.750
+question id vote
+
+41
+05:14.970 --> 05:18.530
+here we don't need this to delete method so let's remove it
+
+42
+05:19.650 --> 05:23.050
+Instead we need to send a value to represent the vote up
+
+43
+05:26.230 --> 05:30.330
+So here we call request vote
+
+44
+05:34.690 --> 05:36.420
+so lets define a hidden input
+
+45
+05:45.280 --> 05:53.850
+and then call it vote then the value will be one.
+
+46
+05:54.070 --> 05:55.150
+Let's also change this
+
+47
+05:58.230 --> 05:58.710
+to
+
+48
+06:01.450 --> 06:04.620
+question votes count
+
+49
+06:09.590 --> 06:10.200
+now
+
+50
+06:10.940 --> 06:14.640
+let's also make chance to vote down button
+
+51
+06:14.820 --> 06:17.160
+So let's firstly copy this class
+
+52
+06:28.090 --> 06:30.160
+and then paste here.
+
+53
+06:33.150 --> 06:34.140
+also the on click
+
+54
+06:44.990 --> 06:48.090
+change the id to down vote question
+
+55
+06:59.070 --> 07:00.230
+let's also copy the form
+
+56
+07:03.980 --> 07:05.290
+and then paste here.
+
+57
+07:06.900 --> 07:15.270
+And then change the id to down vote 
+question and hear the vote will be a -1
+
+58
+07:16.840 --> 07:18.090
+All right let's save all these
+
+59
+07:22.670 --> 07:26.110
+and hopefully the vote buttons are working.
+
+60
+07:26.140 --> 07:27.730
+Let's switch over to our browser
+
+61
+07:36.350 --> 07:37.640
+let's randomly select a question
+
+62
+07:45.250 --> 07:46.150
+and here
+
+63
+07:46.240 --> 07:48.800
+the votes count is zero
+
+64
+07:48.840 --> 07:50.210
+Let me hit the vote up
+
+65
+07:55.730 --> 08:00.100
+Now the number increasing. If I hit this vote down
+
+66
+08:05.050 --> 08:07.330
+now the number decreasing.
+
+67
+08:07.330 --> 08:13.920
+You may be asking why the number 
+increasing from zero to two or a vice versa.
+
+68
+08:14.320 --> 08:14.920
+Let me show you
+
+69
+08:14.950 --> 08:15.930
+in phpmyadmin let's
+
+70
+08:32.090 --> 08:34.820
+see the questions.
+
+71
+08:34.930 --> 08:38.740
+So here "optio amet"
+
+72
+08:38.780 --> 08:40.160
+bla bla bla
+
+73
+08:44.940 --> 08:47.250
+I'm sure the ID is 6
+
+74
+08:51.510 --> 08:52.530
+now if I
+
+75
+08:52.720 --> 09:01.040
+see here the question with id six has two votes.
+
+76
+09:01.140 --> 09:04.210
+The first one is negative and another is positive
+
+77
+09:04.270 --> 09:09.300
+one. So plus one plus negative one will return zero.
+
+78
+09:09.300 --> 09:11.690
+Now let me see the user
+
+79
+09:12.660 --> 09:16.140
+So here I log in as "Jameson Bogan"
+
+80
+09:22.700 --> 09:28.530
+Jameson Bogan has ID one and here
+
+81
+09:31.240 --> 09:33.510
+id one negative.
+
+82
+09:33.560 --> 09:41.010
+So when I clicked the vote up it update 
+the existing vote from -1 to 1.
+
+83
+09:41.010 --> 09:44.300
+So one plus one will result two.
+
+84
+09:44.910 --> 09:46.600
+So I hope it makes sense to you.
+
+85
+09:52.710 --> 09:54.840
+Let me try another question
+
+86
+09:59.390 --> 10:00.920
+If I hit this vote up button
+
+87
+10:04.920 --> 10:06.150
+it will be zero
+
+88
+10:12.200 --> 10:12.460
+OK
+
+89
+10:12.470 --> 10:13.150
+Great
+
+90
+10:13.160 --> 10:15.680
+Now our vote question controls working perfectly.

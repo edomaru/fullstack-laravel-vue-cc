@@ -1,0 +1,197 @@
+WEBVTT
+
+0
+00:01.960 --> 00:09.080
+In order to make the markdown preview functional 
+we will need to installed market parser package. So
+
+1
+00:09.170 --> 00:11.570
+let's navigate to npm
+
+2
+00:11.610 --> 00:12.150
+js dot com
+
+3
+00:18.630 --> 00:20.310
+here in the search box
+
+4
+00:20.340 --> 00:24.320
+Let's find markdown parser
+
+5
+00:28.240 --> 00:28.960
+in this list
+
+6
+00:29.180 --> 00:38.440
+let's choose this markdown it because this package 
+although less popular with this mark package but
+
+7
+00:38.450 --> 00:45.110
+it's good in quality and maintenance also
+
+8
+00:45.170 --> 00:52.840
+this package provides some plugins that will extend 
+the functionality of the package such as markdown
+
+9
+00:53.190 --> 00:55.700
+emoji markdown it container
+
+10
+00:59.280 --> 01:03.810
+markdown it footer and so on.
+
+11
+01:03.940 --> 01:06.270
+All right let's hit this package
+
+12
+01:10.830 --> 01:11.180
+here
+
+13
+01:11.190 --> 01:12.870
+let's copy the installation command
+
+14
+01:17.720 --> 01:19.130
+let's switch to our terminal
+
+15
+01:22.450 --> 01:25.820
+and here I'll run run watch
+
+16
+01:29.360 --> 01:41.390
+open new terminal and paste the previous command
+here. And let's add dash dash save dev to indicate
+
+17
+01:41.450 --> 01:49.750
+that this package is dev dependencies or we can 
+simply use the shorthand just like this. Hit return
+
+18
+01:54.240 --> 01:54.650
+now
+
+19
+01:54.670 --> 02:04.950
+while it's install let's switch to to 
+m editor dot vue. Go to script here
+
+20
+02:05.080 --> 02:07.500
+firstly let's import the markdown it package.
+
+21
+02:21.930 --> 02:34.800
+Then define a variable to hold the markdown it instance.
+
+22
+02:34.810 --> 02:36.510
+Now we can add computed property
+
+23
+02:44.570 --> 02:46.790
+and here let's define a new method.
+
+24
+02:47.140 --> 02:49.030
+I'll call it preview.
+
+25
+02:53.190 --> 03:03.850
+Inside this method we can render the raw markdown 
+into html by saying return md dot render
+
+26
+03:06.270 --> 03:11.830
+and then pass the body in.
+
+27
+03:12.030 --> 03:13.520
+Now we can go to our template
+
+28
+03:18.650 --> 03:22.700
+and here we can add html content to this div by saying 
+
+29
+03:26.000 --> 03:27.140
+v html
+
+30
+03:29.990 --> 03:33.290
+equals preview
+
+31
+03:38.270 --> 03:40.180
+and we don't need this text anymore.
+
+32
+03:45.690 --> 03:45.950
+Alright
+
+33
+03:46.340 --> 03:48.750
+let's save and have a look.
+
+34
+03:58.260 --> 03:58.940
+Reload the page
+
+35
+04:04.700 --> 04:15.050
+hit the edit button and hit the preview tab. As you 
+can see now we can preview our question here.
+
+36
+04:15.120 --> 04:17.040
+So if I write something here
+
+37
+04:37.110 --> 04:42.540
+here I can see how it look before I actually 
+save the change into database.
+
+38
+04:42.600 --> 04:45.300
+Okay great
+
+39
+04:45.300 --> 04:51.240
+Now one thing we need to fix here 
+is this text area because if we see
+
+40
+05:03.390 --> 05:04.040
+when I hit the edit
+
+41
+05:04.050 --> 05:13.450
+button the rest of the question is hidden and I need to 
+scroll up or down to see entire body of the question
+
+42
+05:15.280 --> 05:16.160
+in my opinion
+
+43
+05:16.210 --> 05:21.850
+It would be better to make the height of this text 
+area to automatically resize depends on the text
+
+44
+05:21.940 --> 05:23.090
+that contains inside it.
+
+45
+05:24.310 --> 05:26.020
+So we'll do that in the next video.

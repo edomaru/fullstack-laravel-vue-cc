@@ -1,0 +1,596 @@
+WEBVTT
+
+0
+00:03.920 --> 00:06.560
+Now let's finally show the edit answer form here
+
+1
+00:10.290 --> 00:10.840
+here
+
+2
+00:11.040 --> 00:12.390
+let's add a bootstrap form-group
+
+3
+00:16.370 --> 00:17.130
+inside here
+
+4
+00:17.210 --> 00:18.380
+let's add text area
+
+5
+00:21.670 --> 00:24.570
+and give it a class form-control.
+
+6
+00:34.550 --> 00:36.710
+Here I leave the rows attribute to 10
+
+7
+00:42.150 --> 00:48.420
+and here we can use v-model directive to create two 
+ways data bindings between answer body and text
+
+8
+00:48.420 --> 00:48.910
+area.
+
+9
+00:48.950 --> 00:49.470
+like so
+
+10
+00:56.560 --> 00:58.400
+here I also add a cancel button
+
+11
+00:58.450 --> 00:59.440
+to undo the change.
+
+12
+01:06.540 --> 01:10.200
+when this button clicked we need to 
+change the editing states to false
+
+13
+01:22.550 --> 01:24.830
+and to make this body html  reactive
+
+14
+01:24.920 --> 01:26.200
+we can change this like so
+
+15
+01:40.680 --> 01:41.120
+OK
+
+16
+01:41.120 --> 01:42.630
+here we called body and body
+
+17
+01:42.720 --> 01:46.000
+html so let's define both of these
+
+18
+01:46.010 --> 01:47.080
+in our data method
+
+19
+01:52.350 --> 01:57.700
+body colon this answer dot body. Body
+
+20
+02:01.060 --> 02:02.990
+html
+
+21
+02:06.700 --> 02:08.150
+this dot answer
+
+22
+02:11.100 --> 02:17.830
+body html.  Now if you remember 
+that the body html is an accessory.
+
+23
+02:18.220 --> 02:24.740
+So let's add that in appends attribute of 
+answer model. Let's open answer model
+
+24
+02:33.970 --> 02:35.430
+and in here let's
+
+25
+02:35.750 --> 02:36.800
+add body_html.
+
+26
+02:49.000 --> 02:49.770
+And here
+
+27
+02:49.770 --> 02:50.000
+I'll remove
+
+28
+02:50.020 --> 02:58.110
+the underscore as I defined in data method. 
+Let's save all changes and have a look
+
+29
+03:10.760 --> 03:11.390
+edit button
+
+30
+03:14.200 --> 03:19.020
+here our edit answer form appear hit update button. The form
+
+31
+03:22.950 --> 03:24.870
+disappear and the page reload
+
+32
+03:29.810 --> 03:35.110
+I'll hit the button one more time and then hit the cancel button.
+
+33
+03:35.240 --> 03:38.180
+The form disappear again and the page reload
+
+34
+03:38.730 --> 03:40.040
+and we'll fix that letter.
+
+35
+03:45.740 --> 03:46.410
+OK
+
+36
+03:46.530 --> 03:48.830
+now it is time to make the form functional.
+
+37
+03:49.250 --> 03:54.490
+Let's flip back over to our editor and here in the form let's add
+
+38
+03:57.920 --> 04:07.490
+v-on and then specify the event type in 
+this case the event type will be submit.
+
+39
+04:07.540 --> 04:13.270
+Remember we can replace the v-on with `@` symbol.
+
+40
+04:15.510 --> 04:22.880
+And then let's add event modifier `prevent` 
+to prevent the form submitting the form.
+
+41
+04:26.460 --> 04:28.740
+And now the expression will be method name
+
+42
+04:28.740 --> 04:30.780
+In this case `update`.
+
+43
+04:30.990 --> 04:41.350
+So whenever we submit the form we'll call `update` method. 
+Now let's switch to answer dot vue and go to script
+
+44
+04:41.350 --> 04:43.880
+tag. Here
+
+45
+04:43.900 --> 04:47.940
+I'll add other properties `id` to hold answer id.
+
+46
+04:53.480 --> 04:58.520
+And then  `question_id` to hold a question id of the answer
+
+47
+05:11.180 --> 05:12.960
+and here let's add methods property
+
+48
+05:16.840 --> 05:22.800
+and then inside here let's define `update` method.
+
+49
+05:22.960 --> 05:29.800
+When this method is called we'll send to our server 
+an AJAX request by utilizing axios library. To
+
+50
+05:29.800 --> 05:31.650
+make AJAX request using axios
+
+51
+05:31.690 --> 05:33.920
+we can simply say axios dot patch
+
+52
+05:37.970 --> 05:43.300
+remember we use `patch` instead of `put` method 
+because we will only update one attribute
+
+53
+05:43.570 --> 05:48.570
+In this case answer's body. This method needs to arguments.
+
+54
+05:48.790 --> 05:52.500
+The first one is endpoint. Let's see our routes
+
+55
+06:10.730 --> 06:11.060
+here
+
+56
+06:11.110 --> 06:11.840
+Let's cover this
+
+57
+06:11.850 --> 06:12.200
+URI
+
+58
+06:24.090 --> 06:30.530
+and here I'm going to put the URI in back tick 
+rather than single or double quotes.
+
+59
+06:30.530 --> 06:35.630
+This is something called template literal and it 
+makes working with a string interpolation is much
+
+60
+06:35.660 --> 06:36.370
+easier.
+
+61
+06:37.600 --> 06:38.790
+I'll paste the uri here
+
+62
+06:42.580 --> 06:49.680
+and I'm going to change the question with the this question id
+
+63
+06:58.040 --> 07:03.880
+and then I'm going to change the answer with this id
+
+64
+07:11.330 --> 07:11.800
+OK
+
+65
+07:11.840 --> 07:21.060
+In the second argument of the patch method we 
+need to specify the data that will be sent in object.
+
+66
+07:21.300 --> 07:31.760
+In this case body colon this dot body that's it.
+
+67
+07:31.850 --> 07:37.650
+Here we don't it to pass `csrf` token such as 
+we did when working with normal form.
+
+68
+07:37.650 --> 07:43.460
+This is because `csrf` token has been set by default by Laravel.
+
+69
+07:43.490 --> 07:44.870
+So if you go to
+
+70
+07:47.500 --> 08:00.430
+assets js folder and then open bootstrap.js file.
+
+71
+08:00.650 --> 08:11.780
+Here you can see window axios defaults headers common X-CSRF-TOKEN equals token dot content. And the token
+
+72
+08:11.790 --> 08:19.920
+content is come from here.
+
+73
+08:19.970 --> 08:31.140
+So make sure in the head section 
+of your layout you have this `meta`.
+
+74
+08:31.310 --> 08:38.090
+Now the patch method returns something called promise.
+A promise allows as to associate handlers with an
+
+75
+08:38.090 --> 08:39.590
+asynchronous actions
+
+76
+08:39.680 --> 08:42.510
+eventual success value or failure reason.
+
+77
+08:42.620 --> 08:49.760
+So here we can chain in with then and catch.
+
+78
+09:01.600 --> 09:08.880
+So if the ajax call was successful we go inside `then` 
+method and execute whatever is inside there.
+
+79
+09:08.920 --> 09:15.700
+Otherwise if the ajax call was failed we guilt and said 
+`catch` method and again execute whatever is inside
+
+80
+09:15.760 --> 09:16.060
+there.
+
+81
+09:19.390 --> 09:24.910
+inside this `then` method we can 
+pass in a function or arrow function.
+
+82
+09:25.000 --> 09:28.810
+It should be has one argument to represents ajax response.
+
+83
+09:32.460 --> 09:34.360
+For now let's console log the response
+
+84
+09:42.040 --> 09:45.040
+and we also need to change the state of the editing to false
+
+85
+09:48.000 --> 09:48.950
+in catch method
+
+86
+09:51.200 --> 09:57.920
+We can also pass a function or errow function and 
+it should be has one argument that hold a response.
+
+87
+10:01.490 --> 10:11.140
+For now let's console log a message.
+
+88
+10:11.270 --> 10:16.430
+Now on the server side we need to make a bit
+change to update method in answers control.
+
+89
+10:16.880 --> 10:18.480
+So let's open the file
+
+90
+10:32.930 --> 10:44.350
+Here instead of redirecting to a question dot 
+show page we need to return json response.
+
+91
+10:44.520 --> 10:53.540
+Here we can say return response json
+
+92
+10:53.790 --> 10:58.480
+and then I'm going to send some data back to the client.
+
+93
+10:58.580 --> 11:09.550
+The first one is a message
+
+94
+11:09.820 --> 11:11.450
+I'll copy the message here.
+
+95
+11:21.570 --> 11:27.350
+And the second is body html because when 
+an answer has been updated the body html of
+
+96
+11:27.390 --> 11:28.210
+the answer
+
+97
+11:28.210 --> 11:29.480
+should be change immediately.
+
+98
+11:33.290 --> 11:36.740
+Here we could remove this line or we can keep it
+
+99
+11:39.970 --> 11:42.040
+and wrap this the response json
+
+100
+11:42.240 --> 11:54.580
+in if statement like this.
+
+101
+11:54.600 --> 12:00.910
+This will ensure that the response json will only 
+be returned if you want to return json data.
+
+102
+12:00.930 --> 12:06.630
+But if you don't want that then 
+this redirect will be returned.
+
+103
+12:06.820 --> 12:08.300
+All right let's save all changes
+
+104
+12:11.220 --> 12:15.350
+and give it a shot. Reload the page
+
+105
+12:22.760 --> 12:24.030
+and open the developer tool
+
+106
+12:29.450 --> 12:34.280
+and then hit the network tab and choose XHR
+
+107
+12:37.060 --> 12:38.030
+Let's edit an answer
+
+108
+12:54.370 --> 12:55.160
+hit update
+
+109
+13:05.330 --> 13:05.570
+here
+
+110
+13:05.570 --> 13:09.530
+we can see our request if you go to header
+
+111
+13:13.420 --> 13:20.710
+we can see the request URL, request 
+method `patch` and status code OK.
+
+112
+13:20.900 --> 13:22.330
+If we go to response
+
+113
+13:25.220 --> 13:31.510
+here we can see the message but here the body html is empty.
+
+114
+13:31.530 --> 13:32.820
+We'll fix that shortly.
+
+115
+13:36.290 --> 13:42.160
+And so if we go to console we can see the actual response.
+
+116
+13:46.910 --> 13:50.480
+Our json data can be found in data.
+
+117
+14:06.350 --> 14:08.870
+Currently if you're not updated the answer
+
+118
+14:09.430 --> 14:15.420
+and then hit cancel button here 
+nothing change in this answer body.
+
+119
+14:15.630 --> 14:17.490
+But if we hit the edit button again
+
+120
+14:21.380 --> 14:25.760
+the answer body in this  text area has changed.
+
+121
+14:25.760 --> 14:26.900
+If we reload the page
+
+122
+14:30.810 --> 14:33.090
+now the answer's body is also change.
+
+123
+14:33.330 --> 14:39.540
+So to fix this we need to change the body html in 
+our answer component with body html from 
+
+124
+14:39.540 --> 14:46.180
+json response. So let's switch back over to 
+our editor  and I need to assign the body html
+
+125
+14:46.230 --> 14:46.910
+of the answer
+
+126
+14:46.910 --> 14:47.740
+Instance here
+
+127
+14:56.650 --> 14:58.930
+and then let's switched to answer dot vue
+
+128
+15:07.830 --> 15:20.670
+and here we simply change the body 
+html with res dot data dot body html
+
+129
+15:20.800 --> 15:24.640
+Let's also display the message for now we'll show it javascript
+
+130
+15:24.710 --> 15:26.850
+alert. In upcoming lesson
+
+131
+15:26.890 --> 15:29.040
+we'll come back here and beautify the message.
+
+132
+15:38.140 --> 15:43.120
+And here I'll remove the console log. Let's save
+
+133
+15:45.040 --> 15:46.450
+and give it a shot one more time. Edit
+
+134
+15:51.340 --> 15:52.380
+an answer.
+
+135
+15:59.550 --> 16:20.720
+Hit update
+
+136
+16:20.840 --> 16:25.830
+The answer is no change here because 
+in data method I define `bodyHtml`.
+
+137
+16:25.910 --> 16:27.830
+So here I need to remove the underscore.
+
+138
+16:31.840 --> 16:33.840
+Save and let's try one more time.
+
+139
+16:46.380 --> 16:46.920
+Hit update button
+
+140
+16:51.710 --> 16:54.960
+now we can see the answer body here changed immediately.

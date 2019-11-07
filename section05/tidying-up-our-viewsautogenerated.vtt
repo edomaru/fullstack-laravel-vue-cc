@@ -1,0 +1,470 @@
+WEBVTT
+
+0
+00:01.300 --> 00:07.540
+In the previous lessons we have refactor our views, clean 
+the content from malicious code and other stuffs.
+
+1
+00:07.720 --> 00:08.070
+Now
+
+2
+00:08.070 --> 00:13.570
+before we actually end this sections let's tidy up our views.
+
+3
+00:13.680 --> 00:22.050
+So here we have divider between its answer 
+using html horizontal rule. That's way it's
+
+4
+00:22.060 --> 00:24.470
+also appear on the last answer.
+
+5
+00:24.970 --> 00:31.220
+I think it's not good and we will remove it from our 
+markup and then create our own divider using
+
+6
+00:31.240 --> 00:31.540
+css
+
+7
+00:36.950 --> 00:42.690
+we also need to move a single answer into another 
+view and loop through it in foreach loop
+
+8
+00:42.770 --> 00:49.190
+This will make our views much cleaner and it will 
+make it more easier for us to migrate or rewrite our
+
+9
+00:49.190 --> 00:55.220
+views into vue js components when we are 
+integrating vue js into our application in other
+
+10
+00:55.220 --> 00:57.160
+section of this course.
+
+11
+00:57.890 --> 01:00.800
+All right let's open up our terminal
+
+12
+01:03.570 --> 01:08.080
+and then create new branch by saying git check out
+
+13
+01:08.170 --> 01:12.730
+-b lesson-27
+
+14
+01:12.950 --> 01:15.750
+Now we are in new branch and we're good to go.
+
+15
+01:16.170 --> 01:19.120
+OK let's open up answers
+
+16
+01:21.330 --> 01:31.100
+_index.blade.php
+
+17
+01:31.340 --> 01:35.930
+And here I realized that I forgot to replace 
+the vote control with the vote view
+
+18
+01:38.970 --> 01:42.880
+So here
+
+19
+01:42.950 --> 01:49.700
+So here let me remove the vote control and include 
+the vote view that is stored in shared folder.
+
+20
+01:56.670 --> 01:59.520
+And then pass in the answer instance as model
+
+21
+02:06.120 --> 02:08.330
+let me see if everything's still working.
+
+22
+02:20.880 --> 02:21.530
+OK
+
+23
+02:21.670 --> 02:23.200
+I think everything is working fine.
+
+24
+02:29.250 --> 02:29.710
+Here
+
+25
+02:29.770 --> 02:34.150
+let's move this answer item into another
+view and then included here.
+
+26
+02:36.960 --> 02:38.460
+So let's fold this
+
+27
+02:44.120 --> 02:45.110
+cut
+
+28
+02:45.790 --> 02:48.820
+And then we say include
+
+29
+02:51.260 --> 02:54.330
+answers dot underscore
+
+30
+02:54.450 --> 02:56.450
+answer.
+
+31
+02:56.690 --> 03:00.480
+And then we can explicitly pass in 
+the answer instance to this view
+
+32
+03:03.680 --> 03:10.390
+but passing data to child view is optional because 
+variables that are available in the parent view will
+
+33
+03:10.390 --> 03:12.960
+be also available in the child view.
+
+34
+03:12.970 --> 03:19.870
+So in this case we can omit that.
+
+35
+03:20.170 --> 03:22.210
+Let's also remove this horizontal rule
+
+36
+03:24.970 --> 03:26.110
+because as I said
+
+37
+03:29.600 --> 03:32.210
+it also appear even in the last answer.
+
+38
+03:33.760 --> 03:40.950
+So letter we'll write css code to show border 
+on the bottom of the answer except the last one.
+
+39
+03:41.110 --> 03:42.070
+And if we see
+
+40
+03:53.430 --> 04:00.930
+the border color is rgba zero zero zero zero point 1.
+
+41
+04:00.930 --> 04:03.710
+Now let's create you file inside answers folder
+
+42
+04:08.300 --> 04:13.490
+and call it underscore answer blade php
+
+43
+04:16.460 --> 04:22.750
+inside this file just paste the code. Let's 
+save all changes and see how it look.
+
+44
+04:35.850 --> 04:42.390
+Now our answers look close together because we've 
+removed the horizontal rule which by default it
+
+45
+04:42.390 --> 04:47.610
+has some space on the top and the bottom 
+so let's switch back over to our editor
+
+46
+04:53.490 --> 04:54.850
+in here
+
+47
+04:54.900 --> 05:01.080
+let's add another class so that we can easily select the 
+element that contains our answer when writing
+
+48
+05:01.110 --> 05:02.080
+css code.
+
+49
+05:02.340 --> 05:06.880
+Here I'll add post instead of answer.
+
+50
+05:06.990 --> 05:13.200
+Because the class will also be used later in question 
+item but it's up to you to call it whenever you
+
+51
+05:13.200 --> 05:14.150
+like.
+
+52
+05:14.730 --> 05:17.720
+All right let's open app dot
+
+53
+05:17.780 --> 05:18.960
+s c s s
+
+54
+05:25.820 --> 05:28.930
+and then the define new css rule for the post class.
+
+55
+05:39.220 --> 05:42.790
+Here we need a space between one answer with another.
+
+56
+05:42.940 --> 05:45.190
+So we can specify padding
+
+57
+05:45.820 --> 05:55.190
+let's say 20 pixels on the top and the bottom 
+and then we can define border bottom
+
+58
+06:01.390 --> 06:03.130
+one pixel solid
+
+59
+06:05.570 --> 06:06.470
+rgba
+
+60
+06:09.230 --> 06:19.810
+black zero point one.
+
+61
+06:20.060 --> 06:27.380
+Here I passed in black variable which is defined in 
+bootstrap variable into rgba function. In regular
+
+62
+06:27.390 --> 06:27.930
+css
+
+63
+06:28.040 --> 06:29.490
+this will not work.
+
+64
+06:29.570 --> 06:33.930
+You have to define a value for red green and blue instead.
+
+65
+06:34.160 --> 06:42.170
+So this will work only in sass. And to prevent 
+the last item to be has border bottom
+
+66
+06:42.410 --> 06:51.080
+here we can utilize pseudo class not last child
+
+67
+06:54.900 --> 06:57.520
+and move the border bottom inside.
+
+68
+06:58.530 --> 07:04.780
+So this means all post class except 
+the last child will be has border bottom.
+
+69
+07:04.860 --> 07:13.030
+All right let's save all changes and let's see. Actually 
+we need to compile these to see the change
+
+70
+07:20.440 --> 07:22.950
+npm run watch
+
+71
+07:42.470 --> 07:42.990
+OK
+
+72
+07:43.080 --> 07:46.760
+Now we have border between each answer as before.
+
+73
+07:49.020 --> 07:52.140
+And you can see there's no border on the bottom.
+
+74
+07:52.160 --> 07:53.790
+Great.
+
+75
+07:53.800 --> 08:03.520
+Now let's also apply these two the all questions page.
+
+76
+08:03.640 --> 08:05.900
+Let's switch back over to our editor
+
+77
+08:09.530 --> 08:12.850
+And open questions
+
+78
+08:13.200 --> 08:14.710
+index.blade.php
+
+79
+08:18.300 --> 08:19.910
+and then find
+
+80
+08:21.920 --> 08:22.670
+forelse
+
+81
+08:32.400 --> 08:33.670
+let's cut the question excerpt remove
+
+82
+08:40.760 --> 08:52.120
+the horizontal rule then here we can say include questions dot underscore excerpt
+
+83
+08:56.250 --> 09:02.680
+and then go to questions folder and create new file.
+
+84
+09:02.860 --> 09:07.720
+Let's call it _excerpt.blade.php
+
+85
+09:12.220 --> 09:14.130
+and then paste the code here.
+
+86
+09:18.240 --> 09:21.650
+And don't forget to add post class here.
+
+87
+09:21.760 --> 09:24.140
+Let's save all changes and have a look.
+
+88
+09:37.930 --> 09:40.490
+The last item still has border
+
+89
+09:40.840 --> 09:41.620
+let me see
+
+90
+09:44.700 --> 09:47.330
+OK here I need to remove this
+
+91
+10:00.490 --> 10:01.190
+OK
+
+92
+10:01.200 --> 10:02.940
+Now look good.
+
+93
+10:03.090 --> 10:04.620
+Now let me show the pagination.
+
+94
+10:16.610 --> 10:17.560
+Here
+
+95
+10:17.590 --> 10:20.460
+I'll change the number to five.
+
+96
+10:29.680 --> 10:30.070
+Here
+
+97
+10:30.070 --> 10:36.290
+the problem is the pagination has no space 
+on the top and it close to the last item.
+
+98
+10:36.360 --> 10:45.410
+So let's switch back over to our editor and then go to resources.
+
+99
+10:47.770 --> 10:53.590
+views vendor pagination folder
+
+100
+10:53.950 --> 10:55.600
+and then let's open bootstrap 4
+
+101
+10:55.630 --> 10:56.490
+blade php.
+
+102
+10:59.350 --> 11:00.360
+And here
+
+103
+11:00.370 --> 11:01.930
+let's add margin top
+
+104
+11:01.970 --> 11:03.420
+I'll try mt-3
+
+105
+11:11.370 --> 11:17.910
+is still too close I think so here I'll try mt-4
+
+106
+11:23.410 --> 11:23.910
+OK
+
+107
+11:23.930 --> 11:29.440
+I think it's much better. Let me change back to 10
+
+108
+11:35.910 --> 11:42.430
+all right so now we have our views much cleaner 
+and I think we are ready to go to the next section
+
+109
+11:42.700 --> 11:48.040
+to learn about vue js integration to 
+make our application more interactive.
+
+110
+11:48.100 --> 11:53.000
+So please commit your changes to your git repo and join me in the next section.

@@ -1,0 +1,316 @@
+WEBVTT
+
+0
+00:02.130 --> 00:07.830
+In this lesson we're going to fix one little issue 
+that we're left in accept component. Currently
+
+1
+00:08.880 --> 00:10.390
+If we see our own question
+
+2
+00:13.090 --> 00:14.110
+and then hit accept button
+
+3
+00:17.800 --> 00:25.280
+the answer marked as best answer but let's say 
+we want to chance another one as best answer
+
+4
+00:28.910 --> 00:32.440
+now here we'll have two answers marked as best answer.
+
+5
+00:32.440 --> 00:34.780
+So to see the change we need to reload the page
+
+6
+00:39.460 --> 00:46.550
+in the last lesson we've looked at how to make use the 
+vue js custom events. We emitted the deleted event in
+
+7
+00:46.550 --> 00:50.140
+child component to the parent component 
+and then the parent component
+
+8
+00:50.190 --> 00:54.590
+listen to  the event and remove the 
+answer from the answers array
+
+9
+00:55.010 --> 01:01.360
+In this case even though it looks simple but it's very 
+difficult to implement a standard custom events
+
+10
+01:01.930 --> 01:04.760
+because if you open the vue developer tools
+
+11
+01:14.580 --> 01:25.710
+the accept component is under answers answer and 
+vote that means when someone hit the accept button
+
+12
+01:26.670 --> 01:30.820
+that accept component needs to emit an event to vote component.
+
+13
+01:32.800 --> 01:37.160
+Then the vote component continue emitting 
+the event to answers component
+
+14
+01:37.240 --> 01:39.640
+and so on.
+
+15
+01:39.650 --> 01:45.350
+So for this situation where the communication between 
+components is too hard to implement we can make
+
+16
+01:45.350 --> 01:47.930
+use a global event bus. To do that
+
+17
+01:47.930 --> 01:55.950
+let's switch back over to our code editor. Actually let's 
+open up our terminal and then create a new branch
+
+18
+01:56.070 --> 02:01.860
+to isolate our work git checkout -b lesson-39
+
+19
+02:05.640 --> 02:09.090
+and then run web pack npm run watch.
+
+20
+02:15.220 --> 02:16.360
+Now let's go to
+
+21
+02:19.470 --> 02:24.210
+assets js folder. In here
+
+22
+02:24.270 --> 02:25.260
+let's create new file
+
+23
+02:28.530 --> 02:34.260
+and I'm going to call it event bus dot
+
+24
+02:34.390 --> 02:35.080
+js
+
+25
+02:39.950 --> 02:41.320
+Inside this file
+
+26
+02:41.340 --> 02:43.140
+firstly let's import the vue js
+
+27
+02:51.540 --> 02:54.870
+and then let's define a variable to hold the vue instance
+
+28
+03:06.230 --> 03:10.640
+and the last we can export it so that we 
+can make use it in other javascript file
+
+29
+03:21.420 --> 03:22.560
+that's all we need.
+
+30
+03:22.590 --> 03:25.550
+We have created the event bus and we can start to use it.
+
+31
+03:30.430 --> 03:32.030
+Let's open up accept.vue
+
+32
+03:38.210 --> 03:41.890
+and here in the script section let's import our event bus file
+
+33
+03:54.000 --> 04:02.090
+then let's get to create method. Here 
+inside then after ajax post request
+
+34
+04:02.140 --> 04:05.610
+successfully sent let's emit an event using the event bus
+
+35
+04:19.860 --> 04:22.480
+let's save all  changes and give it a shot.
+
+36
+04:25.790 --> 04:30.720
+Reload the page. I get error can't resolve event bus.
+
+37
+04:30.840 --> 04:31.490
+Let me see
+
+38
+04:36.390 --> 04:37.580
+the file name
+
+39
+04:37.740 --> 04:38.460
+event bus
+
+40
+04:41.900 --> 04:42.210
+OK
+
+41
+04:42.210 --> 04:50.490
+the problem here we need to go up to js folder before 
+the event bus. We can do that by chance this dot
+
+42
+04:50.940 --> 04:57.310
+with double dots. Save ok no error. Reload the page
+
+43
+05:01.480 --> 05:02.300
+here
+
+44
+05:02.800 --> 05:08.050
+Let's hit the events tab. Now if we hit that check icon
+
+45
+05:11.180 --> 05:13.810
+not even being emitted
+
+46
+05:13.820 --> 05:15.210
+And here I get error.
+
+47
+05:19.110 --> 05:21.670
+event bus is not defined. Here
+
+48
+05:21.700 --> 05:26.430
+I defined the event bus with capital E and here I call it with lower e
+
+49
+05:42.630 --> 05:44.260
+Let me hit the check icon again.
+
+50
+05:47.340 --> 05:54.630
+Here I have accepted event emitted and notice that the 
+event emitted by a root component even though we
+
+51
+05:54.760 --> 05:58.070
+emitted inside accept component.
+
+52
+05:58.070 --> 06:00.950
+Now let's listen to this event and do something.
+
+53
+06:08.800 --> 06:14.650
+I think the best way to listen to the accepted event 
+is in the created hook because we will be able 
+
+54
+06:14.650 --> 06:22.940
+to access reactive data and events the templates and 
+virtual DOM have not yet been mounted or rendered so
+
+55
+06:22.940 --> 06:23.430
+created
+
+56
+06:30.290 --> 06:38.600
+and then inside here we can listen to accepted 
+event like so event bus on accepted
+
+57
+06:42.120 --> 06:46.560
+arrow function which contains id as argument.
+
+58
+06:47.960 --> 06:54.050
+Inside this will simply match the id that we get from 
+the event payload with the current answer id
+
+59
+06:57.050 --> 07:02.980
+that this will result a boolean value and we 
+can then assign it to the is best property.
+
+60
+07:12.800 --> 07:19.370
+So initially is best stores the value from answers is best.
+
+61
+07:19.620 --> 07:26.910
+But when the component is listen to accepted event 
+the is best will be replaced with a value that came
+
+62
+07:26.910 --> 07:29.190
+from here.
+
+63
+07:33.210 --> 07:36.400
+All right let's save the change and give it another shot.
+
+64
+07:46.630 --> 07:47.770
+Let me hit the check icon
+
+65
+07:53.360 --> 07:59.270
+now you'll see there's only one answer 
+marked as best answer as we expect.
+
+66
+07:59.350 --> 08:00.470
+Let me try one more time
+
+67
+08:06.410 --> 08:07.520
+OK great.
+
+68
+08:07.540 --> 08:12.570
+We have successfully fixed a little issue on the accept 
+component and we've learned how to make use of
+
+69
+08:12.580 --> 08:18.780
+global oven bus that allows us to communicate 
+between components much easier.
+
+70
+08:18.920 --> 08:19.700
+That's it
+
+71
+08:20.090 --> 08:20.610
+let's commit all changes
+
+72
+08:20.620 --> 08:24.950
+to our git repo and I'll see you in next lesson.

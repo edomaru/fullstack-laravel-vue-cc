@@ -1,0 +1,459 @@
+WEBVTT
+
+0
+00:05.420 --> 00:19.800
+Now Let's utilize this component in our show question 
+page. We can open questions show.blade.php.
+
+1
+00:19.860 --> 00:20.390
+Let's find
+
+2
+00:20.400 --> 00:21.900
+where the author file included.
+
+3
+00:27.630 --> 00:35.230
+OK here it is.
+
+4
+00:35.300 --> 00:38.000
+Now we can call our user info component like so.
+
+5
+00:50.420 --> 00:58.430
+And remember our server component needs to 
+receive model and label attribute as we define in
+
+6
+01:03.080 --> 01:12.390
+props property.
+
+7
+01:12.570 --> 01:16.930
+And here we need to pass data 
+from here to this component.
+
+8
+01:18.720 --> 01:25.980
+In this case we can use the v-bind directive for dynamic binding.
+
+9
+01:26.210 --> 01:32.600
+So whenever the data is updated in the 
+parent it will also fall down to the child.
+
+10
+01:32.600 --> 01:40.520
+Here we can also use the shorthand syntax for v-bind 
+by simply type colon followed by attribute name
+
+11
+01:42.520 --> 01:52.080
+then equals and then we need to pass in the user 
+instance to this component. Since we are in blade file
+
+12
+01:52.080 --> 02:05.990
+we can pass in any value to our tribute or a 
+custom attribute of our component like this.
+
+13
+02:06.000 --> 02:12.660
+So remember when we are in vue js file we cannot 
+pass any value into components attribute using
+
+14
+02:12.960 --> 02:19.370
+mustaches or string interpellation. But here since 
+we are in php file we're allowed to do that
+
+15
+02:20.630 --> 02:24.410
+because when this file rendered it will be look like this
+
+16
+02:33.510 --> 02:35.690
+id title and so on.
+
+17
+02:41.630 --> 02:49.790
+So if you see here the concept of the component is similar 
+to blade include directive here we specify what file
+
+18
+02:49.790 --> 02:50.790
+to be included.
+
+19
+02:52.510 --> 02:59.440
+And then specify which values that we need to 
+pass in to the included file. When we use a vue js 
+
+20
+02:59.450 --> 03:00.190
+component
+
+21
+03:00.190 --> 03:07.060
+we call the component name and then specify which values 
+that we need to pass in to the component through
+
+22
+03:07.060 --> 03:13.460
+custom attributes.
+
+23
+03:13.470 --> 03:22.060
+No we don't need these include directive just remove it.
+
+24
+03:22.160 --> 03:22.670
+All right
+
+25
+03:22.680 --> 03:37.590
+Let's save all changes and let's see how it looked like.
+
+26
+03:37.620 --> 03:39.810
+Now the user info disappears
+
+27
+03:40.590 --> 03:49.280
+Let me check ok here for the label 
+we need to pass in a plain string.
+
+28
+03:49.340 --> 04:07.280
+That's why here we don't need to 
+use dynamic binding just like this.
+
+29
+04:07.330 --> 04:10.540
+Nothing change the user info is still disappear.
+
+30
+04:13.310 --> 04:20.120
+Let's open up or our browser console.
+
+31
+04:20.190 --> 04:21.600
+Here we have two errors.
+
+32
+04:23.150 --> 04:29.890
+Cannot read property url of undefined.
+
+33
+04:30.450 --> 04:31.970
+Let's open vue dev tools
+
+34
+04:39.930 --> 04:43.510
+here we can see our user info below route component.
+
+35
+04:47.670 --> 04:50.050
+In the props we have label ask
+
+36
+04:53.250 --> 04:54.250
+if we see the model
+
+37
+04:59.460 --> 05:04.020
+there was not created date attribute 
+and we cannot also find the user here.
+
+38
+05:04.020 --> 05:07.220
+That's why the user in data is undefined.
+
+39
+05:07.530 --> 05:09.280
+So why this happened.
+
+40
+05:09.960 --> 05:16.650
+Well this happened because the relation object in 
+this case user will not be included because we did
+
+41
+05:16.650 --> 05:20.300
+not eager loaded it in our query.
+
+42
+05:20.370 --> 05:25.540
+So if we open route service provider
+
+43
+05:34.500 --> 05:37.230
+here we have answers dot user eager loaded.
+
+44
+05:37.450 --> 05:38.170
+That's way
+
+45
+05:40.800 --> 05:45.720
+here we'll have answers and in every answer
+
+46
+05:50.400 --> 05:57.230
+will have user.
+
+47
+05:57.280 --> 06:02.890
+Actually there is a better solution for this 
+situation but we cannot do that at this time.
+
+48
+06:02.890 --> 06:09.190
+For now we will fix this issue by including the user 
+that related to question instance and letter we
+
+49
+06:09.190 --> 06:11.470
+will come back here and refactor the code.
+
+50
+06:24.300 --> 06:36.020
+Let's see
+
+51
+06:36.080 --> 06:40.050
+Here we have ask undefined the user's name
+
+52
+06:40.050 --> 06:47.320
+now comeback but I can't see the user's avatar. 
+Let's open up our browser console.
+
+53
+06:50.240 --> 06:55.760
+There's no error
+
+54
+06:55.800 --> 06:58.600
+Let's inspect the user info component.
+
+55
+07:00.660 --> 07:05.190
+Let's see the user object.
+
+56
+07:05.450 --> 07:09.200
+And here we cannot find URL and Avatar.
+
+57
+07:09.200 --> 07:10.400
+So what's wrong here.
+
+58
+07:15.290 --> 07:19.150
+Well when echoing the question
+
+59
+07:19.160 --> 07:22.590
+Instance in blade like this. Laravel
+
+60
+07:22.640 --> 07:25.200
+will display it in json representation.
+
+61
+07:25.210 --> 07:28.990
+But unfortunately all accessories will not be included.
+
+62
+07:29.240 --> 07:35.720
+So to make our accessors to be included in json representation 
+we need to add them in appends attribute
+
+63
+07:35.840 --> 07:37.260
+in our model.
+
+64
+07:37.580 --> 07:39.250
+So let's open to user model
+
+65
+07:51.540 --> 07:52.750
+then here let's define
+
+66
+07:52.770 --> 07:53.380
+appends
+
+67
+08:00.120 --> 08:06.540
+and add our accessor in this case url and  avatar
+
+68
+08:10.450 --> 08:11.220
+let's also open
+
+69
+08:11.220 --> 08:12.290
+the question model
+
+70
+08:20.180 --> 08:23.420
+and then define created date access to appends attribute
+
+71
+08:31.400 --> 08:32.590
+Save all changes
+
+72
+08:37.020 --> 08:37.680
+and have a look
+
+73
+08:54.200 --> 08:56.160
+get url attribute doesn't exist.
+
+74
+09:02.460 --> 09:14.100
+Sorry it should be url. Reload again.
+
+75
+09:14.160 --> 09:14.910
+All right
+
+76
+09:14.910 --> 09:19.320
+Now the post creation dates and Avatar appears as before.
+
+77
+09:19.560 --> 09:22.840
+It looks no different with include directive that we used before
+
+78
+09:25.860 --> 09:27.650
+but if you see our page source
+
+79
+09:39.140 --> 09:45.500
+here the user info rendered in user 
+info tag. It is not a valid html tag
+
+80
+09:46.380 --> 10:01.540
+but when vue js has been loaded on the page 
+it will transform this tag into valid html.
+
+81
+10:01.660 --> 10:01.990
+All right
+
+82
+10:01.990 --> 10:07.110
+let's also make change to answer item 
+to utilize our brand new component.
+
+83
+10:07.210 --> 10:17.840
+Let's go back to our editor and then open 
+answers underscore  answer blade php.
+
+84
+10:25.720 --> 10:26.090
+Here
+
+85
+10:26.140 --> 10:27.790
+let's remove the include author
+
+86
+10:31.600 --> 10:33.640
+and then call our user info component
+
+87
+10:57.180 --> 10:59.390
+Last let's open answer model
+
+88
+11:08.070 --> 11:09.480
+let's define appends attribute
+
+89
+11:12.400 --> 11:14.330
+and add created date accessor.
+
+90
+11:20.660 --> 11:21.790
+Let's save all changes
+
+91
+11:25.780 --> 11:27.950
+and hopefully everything is working fine.
+
+92
+11:41.120 --> 11:42.370
+I made typo
+
+93
+11:42.410 --> 11:53.140
+It should be created date.
+
+94
+11:53.170 --> 11:55.330
+Now everything looks fine as we expect.
+
+95
+11:57.910 --> 11:58.840
+Okay great.
+
+96
+11:58.840 --> 12:03.240
+We've successfully created our vuejs
+component in our application.
+
+97
+12:03.300 --> 12:05.780
+Currently we don't see any difference in our UI
+
+98
+12:05.940 --> 12:08.900
+but I think it's a good start.
+
+99
+12:08.910 --> 12:11.480
+All right let's commit our changes to our git repo
+
+100
+12:16.210 --> 12:21.130
+and don't forget to stop the webpack from 
+watching our asset changes before we do that.
+
+101
+12:30.960 --> 12:31.670
+git
+
+102
+12:32.380 --> 12:36.410
+add all git commit
+
+103
+12:36.440 --> 12:49.750
+dash m and I'm going to say create a basic vue js component.
+
+104
+12:49.960 --> 12:51.020
+check out master
+
+105
+12:53.930 --> 12:55.880
+git merge lesson twenty eight
+
+106
+12:59.950 --> 13:01.840
+git push origin master
+
+107
+13:08.130 --> 13:11.950
+and then git push origin lesson twenty eight.

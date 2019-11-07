@@ -1,0 +1,422 @@
+WEBVTT
+
+0
+00:02.190 --> 00:06.420
+Here let me quit from tinker and clear the screen. I'll
+
+1
+00:10.400 --> 00:11.170
+reopen the tinker
+
+2
+00:13.830 --> 00:14.280
+here
+
+3
+00:14.280 --> 00:21.840
+firstly let's find two questions and assign 
+each one of them to variables.
+
+4
+00:21.880 --> 00:25.830
+`q1` app question
+
+5
+00:26.360 --> 00:37.910
+find 1 and then `q2` app question
+
+6
+00:38.100 --> 00:38.910
+find 2
+
+7
+00:43.490 --> 00:55.230
+Next let's friend three users and assign each one of them to other variables.
+
+8
+01:12.030 --> 01:14.380
+And now let's see the favorite of each instance
+
+9
+01:24.330 --> 01:27.600
+of course we'll find nothing because we haven't do anything yet
+
+10
+01:27.620 --> 01:35.440
+to both models
+
+11
+01:36.380 --> 01:36.820
+All right
+
+12
+01:36.890 --> 01:41.070
+now let's say user one favorite the question one.
+
+13
+01:41.380 --> 01:45.310
+Here we can say user 1
+
+14
+01:46.870 --> 01:50.260
+favorite
+
+15
+01:50.260 --> 01:53.170
+And then we call attach method
+
+16
+01:53.230 --> 01:56.420
+this method receives both integer value or object
+
+17
+01:56.500 --> 02:02.060
+But for now let's pass in the question id which is integer like so
+
+18
+02:02.150 --> 02:03.850
+q1 id
+
+19
+02:06.930 --> 02:07.310
+OK
+
+20
+02:07.330 --> 02:15.790
+Now if we call user one favorites again 
+we'll see it look no difference.
+
+21
+02:15.800 --> 02:19.260
+This is because we need to refresh the relationship like this.
+
+22
+02:19.350 --> 02:23.080
+user one load favorites
+
+23
+02:33.720 --> 02:37.530
+we'll see now user one has one favorite question.
+
+24
+02:37.560 --> 02:50.350
+Now let's say user one favorite the question 2 
+and again we can say user one favorites and then
+
+25
+02:50.380 --> 03:02.570
+attach and now instead of passing integer I can also 
+pass the question instance question two like so.
+
+26
+03:02.650 --> 03:07.530
+Now if we call user 1 favorites again.
+
+27
+03:07.570 --> 03:10.050
+Again we'll see it look no difference.
+
+28
+03:10.080 --> 03:15.610
+So here we need to refresh the relationship again.
+
+29
+03:27.880 --> 03:32.800
+All right so now that you know how to make relationship 
+between user and question using attach method
+
+30
+03:33.390 --> 03:38.460
+and you'll see that attach method receives integer value or object.
+
+31
+03:38.710 --> 03:43.320
+Actually it also receive array value contains integer values.
+
+32
+03:43.480 --> 03:45.850
+So let's say user two favorites
+
+33
+03:45.880 --> 03:50.160
+the question 1 and 2 and here we can do that like this.
+
+34
+03:50.170 --> 03:56.090
+user two favorites attach
+
+35
+03:56.980 --> 03:58.480
+Passing the array
+
+36
+03:59.380 --> 04:00.180
+And here
+
+37
+04:00.490 --> 04:09.250
+question 1 id and then question two id.
+
+38
+04:09.290 --> 04:13.940
+We can also link between user and question 
+model through inverse relationship.
+
+39
+04:13.940 --> 04:16.070
+So let's say user 3 favorite
+
+40
+04:16.070 --> 04:17.170
+question 1
+
+41
+04:17.180 --> 04:19.070
+Here we can do like so
+
+42
+04:19.340 --> 04:30.250
+question 1 favorites attach user 3
+
+43
+04:30.260 --> 04:33.200
+now if we call user 3 favorites
+
+44
+04:41.010 --> 04:43.410
+here we can see user three has favorite
+
+45
+04:43.410 --> 04:45.070
+question one
+
+46
+04:45.300 --> 04:45.620
+OK
+
+47
+04:45.630 --> 04:51.230
+One last more thing before we see how to remove the 
+relationship record is to show you what happened if
+
+48
+04:51.230 --> 04:53.070
+we tried to insert the same record.
+
+49
+04:56.680 --> 05:00.490
+Here we have attached question one with user three
+
+50
+05:00.550 --> 05:02.180
+Now if we try again
+
+51
+05:04.200 --> 05:10.590
+We'll get error because in the migration file we have prevent that by define index that compose of user
+
+52
+05:10.590 --> 05:13.000
+id and question id.
+
+53
+05:13.040 --> 05:13.500
+All right
+
+54
+05:13.520 --> 05:16.850
+now let's see how to release or remove the relationship record.
+
+55
+05:17.290 --> 05:19.150
+Let's say user one unfavorite
+
+56
+05:19.190 --> 05:31.030
+The question two here we can type user 1 favorites and then call the detach method pass the question
+
+57
+05:31.130 --> 05:31.630
+two instance
+
+58
+05:37.370 --> 05:40.190
+now let's call  user one favorites
+
+59
+05:46.320 --> 05:49.200
+actually let's reload the relationship to see the change
+
+60
+06:01.450 --> 06:02.380
+as you can see
+
+61
+06:02.410 --> 06:09.390
+now user one now favorite only question 1 like the 
+attach method this the detach method also accept an
+
+62
+06:09.390 --> 06:10.100
+array.
+
+63
+06:10.290 --> 06:12.870
+Here let's say user two unfavorite
+
+64
+06:12.870 --> 06:16.160
+Question 1 and 2 and we can do that like
+
+65
+06:16.170 --> 06:19.460
+so user two favorites
+
+66
+06:22.610 --> 06:23.410
+detach
+
+67
+06:29.000 --> 06:36.020
+question one id and question two id
+
+68
+06:39.560 --> 06:40.960
+now if we see the favorites
+
+69
+06:47.230 --> 06:48.850
+user two now has favorite
+
+70
+06:48.850 --> 06:50.160
+nothing.
+
+71
+06:50.180 --> 06:57.310
+Lastly we can check if a particular question favorited by particular user by saying question 1
+
+72
+06:59.930 --> 07:19.780
+favourites where user id let's say user one id count 
+let's see if the question 1 favorited by user two
+
+73
+07:32.220 --> 07:33.760
+why I alwasy get false
+
+74
+07:40.000 --> 07:44.050
+Actually I need parenthesis here
+
+75
+07:46.930 --> 07:52.650
+because favorite like this will return collection
+
+76
+07:55.890 --> 07:59.260
+here we can see that question 1 favorited 
+by User 1. And here we
+
+77
+08:08.370 --> 08:12.300
+get false which means it's not a favorited by user 2
+
+78
+08:12.320 --> 08:12.920
+All right
+
+79
+08:12.920 --> 08:15.160
+enough playing and let's quit prom tinker
+
+80
+08:18.710 --> 08:23.540
+let's switch to our editor and here in the question model
+
+81
+08:27.190 --> 08:28.210
+we can define new method
+
+82
+08:33.240 --> 08:42.450
+let's call it is fAvorited
+
+83
+08:42.550 --> 08:43.990
+And here we simply return
+
+84
+08:49.290 --> 08:51.530
+and then copy this line
+
+85
+08:57.300 --> 08:58.700
+and paste here.
+
+86
+09:00.620 --> 09:10.240
+Here since we are in question model we can change 
+this variable to this which refers to current model
+
+87
+09:15.970 --> 09:26.180
+and we can replace the user instance with the current user's id.
+
+88
+09:26.290 --> 09:29.890
+Let's also define an accessor for this method.
+
+89
+09:32.320 --> 09:39.990
+get is favorited attribute
+
+90
+09:44.400 --> 09:47.410
+and here we simply call return
+
+91
+09:47.450 --> 09:50.300
+this is favorited
+
+92
+09:55.680 --> 09:56.750
+and last
+
+93
+09:56.770 --> 10:00.490
+let's also define another accessor that will return favorites count
+
+94
+10:05.340 --> 10:12.380
+Here
+
+95
+10:12.680 --> 10:13.730
+we simply return
+
+96
+10:17.050 --> 10:21.420
+this favorites count
+
+97
+10:23.340 --> 10:28.320
+All right so now that you know how to work with many 
+to many relationship before we actually apply that
+
+98
+10:28.410 --> 10:31.750
+in our application and make the favorite button works
+
+99
+10:31.770 --> 10:32.440
+let's play that
+
+100
+10:32.460 --> 10:37.480
+in our database seeder to make fake 
+favorite questions in our database.
+
+101
+10:37.730 --> 10:40.370
+And here I miss parenthesis

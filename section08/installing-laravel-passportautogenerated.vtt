@@ -1,0 +1,242 @@
+WEBVTT
+
+0
+00:02.490 --> 00:08.090
+In this lesson we're gonna be looking at how install and configure a passport in our application.
+
+1
+00:08.300 --> 00:14.240
+We will then make a small change in our authentication system in order to make the API that we're gonna
+
+2
+00:14.270 --> 00:16.720
+build working properly.
+
+3
+00:16.770 --> 00:20.680
+Let's go ahead and open up our terminal and here
+
+4
+00:20.690 --> 00:25.040
+As always I'm going gonna isolate the new changes that I'll make into a new branch
+
+5
+00:32.430 --> 00:32.980
+all right
+
+6
+00:33.080 --> 00:45.050
+Now let's install passport by saying composer require laravel passport and hit return
+
+7
+00:54.730 --> 00:55.390
+all right
+
+8
+00:55.390 --> 01:00.860
+Once laravel passport installed it needs some tables to hold the token stuffs.
+
+9
+01:01.000 --> 01:08.170
+So what we need to do here is to migrate the database migration that ships with the passport php artisan
+
+10
+01:08.320 --> 01:08.730
+migrate
+
+11
+01:12.070 --> 01:12.450
+next
+
+12
+01:12.460 --> 01:16.420
+We need to have encryption keys to generate secure access tokens.
+
+13
+01:16.570 --> 01:17.140
+We can do that
+
+14
+01:17.140 --> 01:25.520
+by saying php artisan passport install hit return.
+
+15
+01:30.660 --> 01:38.340
+as you can see that those command gives us personal access and password grant client that we can use to
+
+16
+01:38.340 --> 01:43.020
+generate access token after running those command
+
+17
+01:43.050 --> 01:45.510
+Let's go ahead and open up our user model
+
+18
+01:54.410 --> 01:55.690
+at the top here
+
+19
+01:55.720 --> 01:58.090
+Let's add a laravel passport
+
+20
+02:02.440 --> 02:04.930
+has api tokens trait
+
+21
+02:08.040 --> 02:13.200
+this trait provides a few helper methods which allows us to inspect the authenticated users token
+
+22
+02:17.270 --> 02:19.120
+then we can attach those trait here
+
+23
+02:26.280 --> 02:34.830
+next let's pull up config auth.php find the API
+
+24
+02:38.100 --> 02:39.870
+then here
+
+25
+02:39.870 --> 02:41.960
+Let's change the driver to
+
+26
+02:42.060 --> 02:42.560
+Passport
+
+27
+02:45.380 --> 02:51.110
+according to a laravel official guide that this will instruct our application to use passports taken guard
+
+28
+02:51.410 --> 02:52.590
+when authenticating
+
+29
+02:52.610 --> 02:55.530
+Incoming api requests.
+
+30
+02:55.820 --> 03:03.200
+Next let's pull open service provider then inside boot method
+
+31
+03:06.130 --> 03:16.610
+let's add Passport::routes by doing this way it will register some routes that necessary
+
+32
+03:16.610 --> 03:22.340
+to issue access tokens and revoke access tokens clients and personal access tokens
+
+33
+03:26.690 --> 03:33.440
+then at the top here we need to import the passport otherwise we're gonna get password not an exception
+
+34
+03:38.160 --> 03:44.110
+Let's save all changes and now we can verify the password routes in our terminal
+
+35
+03:46.720 --> 03:54.400
+php artisan route:list name passport
+
+36
+03:58.880 --> 03:59.870
+as you can see
+
+37
+04:03.910 --> 04:06.910
+we have a bunch of routes regarding to access token
+
+38
+04:09.690 --> 04:16.030
+but don't worry too much because what we really care about in this project might be just this one
+
+39
+04:25.040 --> 04:25.540
+all right
+
+40
+04:25.640 --> 04:30.340
+That's all step that we need to configure the passport at least in general.
+
+41
+04:30.560 --> 04:36.860
+Now here what I'm gonna show you could be additional step but this step will help you consuming api
+
+42
+04:36.950 --> 04:40.250
+from your javascript application much easier.
+
+43
+04:40.250 --> 04:50.590
+So that's open kernel php in http folder go to middleware group.
+
+44
+04:57.480 --> 05:09.300
+Then inside web section let's add laravel passport http middleware
+
+45
+05:11.760 --> 05:15.240
+create fresh token
+
+46
+05:19.330 --> 05:27.790
+create fresh API token class. So typically if you want to consume your API in your javascript application
+
+47
+05:28.180 --> 05:34.330
+you would need to manually attach the access token to the request especially when you would make a request
+
+48
+05:34.540 --> 05:38.470
+to the endpoint that need user to be authenticated.
+
+49
+05:38.620 --> 05:45.430
+For example if you would hit the creed or upload question endpoint then you would need to attach the token
+
+50
+05:45.550 --> 05:47.050
+in the request header like this
+
+51
+05:50.570 --> 05:57.800
+however by using this way passport will take care of all of this stuff for us out of the box under the hood
+
+52
+05:58.040 --> 06:06.470
+passport will attach a larvel token cookie to your outgoing responses which contains an encrypted JWT
+
+53
+06:06.950 --> 06:12.790
+passport will then use it to authenticate API request from your javascript application.
+
+54
+06:13.040 --> 06:19.280
+That's why I said this step will help you consuming your API much easier because you can hit to any
+
+55
+06:19.280 --> 06:24.800
+request to your API without need to explicitly passing the access token.
+
+56
+06:24.800 --> 06:25.340
+All right.
+
+57
+06:25.640 --> 06:27.640
+I think that's it for this video.
+
+58
+06:27.740 --> 06:33.420
+We've installed and configure passport for 
+API authentication in the next one
+
+59
+06:33.500 --> 06:37.250
+We're gonna continue and see how the request the access tokens.

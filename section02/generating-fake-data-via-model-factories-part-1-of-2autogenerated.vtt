@@ -1,0 +1,390 @@
+WEBVTT
+
+0
+00:02.420 --> 00:08.690
+In a previous lesson we have created questions table to hold all questions for our application.
+
+1
+00:08.720 --> 00:14.090
+Now in this lesson we're going to pre populate our tables with some fake data programmatically
+
+2
+00:14.480 --> 00:17.550
+by combining model factories and database seed.
+
+3
+00:17.990 --> 00:19.490
+All right before we move on
+
+4
+00:19.580 --> 00:27.550
+let's head over to our terminal and then create new branch by saying git
+
+5
+00:28.050 --> 00:30.940
+checkout -b
+
+6
+00:30.950 --> 00:37.380
+And then the branch name will be lesson-3. Ups
+
+7
+00:37.400 --> 00:42.200
+Check out check out.
+
+8
+00:43.070 --> 00:47.260
+OK now we are in lesson 3 branch and we're ready to go.
+
+9
+00:47.270 --> 00:48.800
+All right
+
+10
+00:48.800 --> 00:54.840
+let's go to database factories folder and here
+
+11
+00:54.910 --> 00:58.580
+we'll find user factory dot php
+
+12
+00:58.650 --> 01:00.190
+If we open up this file
+
+13
+01:01.930 --> 01:04.150
+It contains factory definition.
+
+14
+01:04.570 --> 01:10.750
+Factories are basically designed to allow us to quickly build out fake models and they are often used
+
+15
+01:10.810 --> 01:12.070
+for two purposes
+
+16
+01:12.340 --> 01:14.290
+testing and database seeding
+
+17
+01:14.500 --> 01:19.710
+If you remember in the previous project we utilize eloquent or query builder.
+
+18
+01:20.050 --> 01:23.830
+But now in this project we'll utilize model factories.
+
+19
+01:24.670 --> 01:25.290
+OK
+
+20
+01:25.510 --> 01:30.160
+so this factory define needs two arguments
+
+21
+01:30.160 --> 01:37.160
+the first one is the model name which in this case user user model.
+
+22
+01:37.540 --> 01:47.280
+And the second argument is callback that defines the data that goes in columns. The callback inject instance
+
+23
+01:47.330 --> 01:54.900
+of faker library which you may already know allows as to conveniently generate various kinds of random
+
+24
+01:54.900 --> 02:05.640
+data for testing and seeding purposes. And inside this  Callbeck it returns an array consist of a column
+
+25
+02:05.820 --> 02:07.530
+with the value pairs.
+
+26
+02:07.530 --> 02:16.170
+So basically here we can define which column will be filled with a certain value. We can fill the name
+
+27
+02:16.350 --> 02:17.140
+with
+
+28
+02:17.430 --> 02:25.910
+let's say John like so but of course we need various names for different users
+
+29
+02:25.910 --> 02:27.110
+right?
+
+30
+02:27.320 --> 02:33.590
+That's why we utilize Faker for name and email.
+
+31
+02:33.610 --> 02:36.330
+All right here here in this file
+
+32
+02:36.340 --> 02:42.520
+we could define a new factory definition for our question model but I think it would be better to organize
+
+33
+02:42.650 --> 02:46.000
+in a single factory file for a single model.
+
+34
+02:46.000 --> 02:48.690
+So let's jump to our terminal
+
+35
+02:53.100 --> 03:05.470
+and create new factory by typing php artisan make 
+factory and then the factory name will be question
+
+36
+03:06.250 --> 03:10.670
+factory hit return.
+
+37
+03:11.820 --> 03:18.230
+Now that's open the question factory and define factory definition for our
+
+38
+03:18.230 --> 03:19.090
+Question model.
+
+39
+03:22.490 --> 03:27.650
+Here in the first perimeter let's change to question model
+
+40
+03:30.010 --> 03:35.790
+inside the callback let's change this empty array
+
+41
+03:40.370 --> 03:40.880
+here
+
+42
+03:40.910 --> 03:42.080
+let's set the title column
+
+43
+03:44.840 --> 03:56.330
+with random sentences faker sentences sentence like so and we'll have five to ten sentences in this
+
+44
+03:56.330 --> 03:57.010
+case
+
+45
+03:58.200 --> 04:09.730
+rand 5 to 10 and to remove the dot in the end I'll wrap this in php
+
+46
+04:09.730 --> 04:19.520
+rtrim helper rtrim and then specify a dot in
+
+47
+04:19.540 --> 04:21.620
+the second argument.
+
+48
+04:21.810 --> 04:23.710
+So let me show it to you.
+
+49
+04:24.340 --> 04:26.600
+I'll open tinker.
+
+50
+04:31.790 --> 04:38.350
+And here I'll say use Faker Factory
+
+51
+04:40.050 --> 04:42.840
+Then I'll create faker instance faker
+
+52
+04:43.610 --> 04:50.720
+equals factory create.
+
+53
+04:50.750 --> 04:52.520
+Now if I generate sentence
+
+54
+05:02.520 --> 05:06.160
+you'll see it's always end with dot.
+
+55
+05:06.270 --> 05:16.490
+Now I'll wrap this with rtrim and pass the dot here.
+
+56
+05:18.980 --> 05:21.440
+Ups rtrim
+
+57
+05:29.720 --> 05:31.890
+and now the dot no longer there
+
+58
+05:32.080 --> 05:32.760
+right?
+
+59
+05:35.460 --> 05:38.190
+OK next
+
+60
+05:41.010 --> 05:43.560
+let's set the body column with some paragraphs
+
+61
+05:56.050 --> 05:58.610
+three to seven paragraphs randomly
+
+62
+06:04.160 --> 06:07.910
+and because paragraphs will return value in array by default
+
+63
+06:08.180 --> 06:14.990
+so we need to pass through value in the second argument
+
+64
+06:15.210 --> 06:17.750
+This will convert it into a string.
+
+65
+06:18.170 --> 06:19.810
+So let me show you again.
+
+66
+06:20.080 --> 06:23.830
+I'll go to tinker and here
+
+67
+06:24.060 --> 06:35.430
+if I type faker paragraphs
+
+68
+06:35.790 --> 06:37.280
+You'll see it's in array
+
+69
+06:37.560 --> 06:47.030
+but when I passed let's say three and passed through in the second argument
+
+70
+06:47.460 --> 06:53.120
+Now it's in a string and it's perhaps separated by a new line ok
+
+71
+07:01.670 --> 07:04.650
+Now let's also set set number of question viewed
+
+72
+07:04.940 --> 07:06.920
+So views
+
+73
+07:10.140 --> 07:19.930
+and here let's make random number between 0 to 10. Let's do the same thing to answers and votes.
+
+74
+07:20.760 --> 07:22.580
+So duplicate this line
+
+75
+07:29.160 --> 07:31.650
+and change to answers
+
+76
+07:36.530 --> 07:37.630
+duplicate one more time
+
+77
+07:41.290 --> 07:44.020
+and change to votes.
+
+78
+07:45.070 --> 07:46.920
+Here the votes can be negative
+
+79
+07:47.050 --> 07:54.800
+so let's change the first argument to let's say  -3.
+
+80
+07:55.100 --> 07:57.580
+Sorry I missed comma here
+
+81
+08:11.740 --> 08:12.140
+OK
+
+82
+08:12.140 --> 08:15.810
+I think that all we need to do in this question factory.
+
+83
+08:15.830 --> 08:22.220
+Now we can insert some records into our database using our defined factories by calling laravel factory
+
+84
+08:22.220 --> 08:23.600
+helper function.
+
+85
+08:23.600 --> 08:35.220
+For now let's try that in thinker.
+
+86
+08:35.530 --> 08:46.650
+And here we can call factory specify the class name let's say App user class and the number of data
+
+87
+08:46.710 --> 08:49.040
+that will be created is three.
+
+88
+08:49.040 --> 08:57.880
+In my case. Closing the parenthesis and to actually create the user model we need to end this with create
+
+89
+08:57.900 --> 09:03.640
+method call hit return.
+
+90
+09:03.690 --> 09:11.310
+Here we have three records as we defined in the second argument of factory helper calling.
+
+91
+09:11.760 --> 09:18.270
+And here we also have three users with different name and email.
+
+92
+09:18.300 --> 09:22.750
+So here we just passing user model in the first argument.
+
+93
+09:23.100 --> 09:30.960
+In factory helper function call instead of use or factory and Laravel will recognize that we want generate
+
+94
+09:30.960 --> 09:35.390
+some data that defined in user factory.
+
+95
+09:35.560 --> 09:43.080
+Now instead of calling the factory helper function in tinker let's put that database seeder so that
+
+96
+09:43.080 --> 09:49.550
+we don't need to enter to tinker whenever we want to generate or regenerate some data.

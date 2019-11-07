@@ -1,0 +1,294 @@
+WEBVTT
+
+0
+00:02.740 --> 00:08.500
+Now because a question is created by user and we have defined that in our questions table we
+
+1
+00:08.500 --> 00:14.080
+also need to make kind of relationship 
+in both question and user model.
+
+2
+00:14.530 --> 00:17.040
+So let's go back to our editor
+
+3
+00:21.060 --> 00:21.850
+and open
+
+4
+00:24.430 --> 00:25.350
+question model
+
+5
+00:28.670 --> 00:28.980
+and here
+
+6
+00:29.000 --> 00:32.140
+let's define relationship method. A question
+
+7
+00:32.220 --> 00:37.200
+is belongs to user. So here
+
+8
+00:39.410 --> 00:40.220
+I'll call it
+
+9
+00:43.430 --> 00:46.930
+user in singular.
+
+10
+00:47.730 --> 01:02.280
+And inside this method let's call this this model is belongs to User model
+
+11
+01:03.960 --> 01:05.940
+OK.
+
+12
+01:05.940 --> 01:16.650
+So by doing this we can do something like this question let's say question
+
+13
+01:16.770 --> 01:19.000
+find one.
+
+14
+01:19.710 --> 01:26.020
+And then we can get the information of the user who create that question like this.
+
+15
+01:26.020 --> 01:27.300
+It should be
+
+16
+01:27.480 --> 01:31.490
+Question. Question
+
+17
+01:32.710 --> 01:46.810
+user name like this. Or question user email or other information that user have.
+
+18
+01:47.400 --> 01:48.190
+OK
+
+19
+01:51.770 --> 01:56.720
+Let's also define some attributes so that they are able to mass assignment.
+
+20
+01:56.730 --> 02:10.110
+So here protected fillable and then specify the attributes for the columns at least for now it
+
+21
+02:10.110 --> 02:12.000
+will be title
+
+22
+02:12.660 --> 02:13.520
+and body.
+
+23
+02:18.300 --> 02:24.510
+Next let's open the user model.
+
+24
+02:24.900 --> 02:28.140
+And in this model let's also define relationship method
+
+25
+02:36.110 --> 02:41.260
+I'll call it questions
+
+26
+02:44.250 --> 02:46.360
+so questions in plural.
+
+27
+02:46.800 --> 02:50.850
+And inside this method we'll call return
+
+28
+02:50.870 --> 02:55.220
+this this model has many questions
+
+29
+03:03.650 --> 03:09.170
+and last thing that we need to do because we have slug column in questions table and we don't want to
+
+30
+03:09.170 --> 03:11.500
+fill it manually at least for now.
+
+31
+03:11.540 --> 03:14.430
+So let's define a muttator for title attribute
+
+32
+03:22.520 --> 03:29.320
+so remember a mediator is always start with a set then the attribute name.
+
+33
+03:29.400 --> 03:35.790
+In this case title and end with attribute
+
+34
+03:40.100 --> 03:44.440
+and here value.
+
+35
+03:44.880 --> 03:49.890
+So and when we enter something to titles attribute we'll do something.
+
+36
+03:49.980 --> 03:51.670
+So here
+
+37
+03:52.200 --> 04:07.240
+So here we just need to assign the value to title attribute this attributes title equals value
+
+38
+04:07.250 --> 04:23.870
+like so. Then we'll also assign to slug attribute the value.
+
+39
+04:23.970 --> 04:33.670
+But here we'll call Laravel  str_slug function helper to convert the string into slug format.
+
+40
+04:37.280 --> 04:40.480
+So let me open tinker
+
+41
+04:47.090 --> 05:02.060
+and here I'll define a variable str equals my first question. And now I'll call str_slug and then
+
+42
+05:02.060 --> 05:09.870
+pass in the str variable as argument. As you see here
+
+43
+05:09.890 --> 05:18.020
+the string was converted to slug format or a lower cased string with a dash separator between the words.
+
+44
+05:18.350 --> 05:22.200
+So basically here the slug  attribute will be fill
+
+45
+05:22.410 --> 05:28.980
+with title that has been converted to slug format.
+
+46
+05:29.920 --> 05:30.490
+OK
+
+47
+05:31.560 --> 05:41.020
+save that.
+
+48
+05:41.290 --> 05:43.470
+And that's it for this lesson.
+
+49
+05:43.510 --> 05:53.040
+So let's save our work to our local repo. Switch over to our terminal I'll quit from tinker.
+
+50
+05:54.750 --> 05:59.380
+And here let's see the changes by typing git status.
+
+51
+06:00.420 --> 06:03.060
+Here we can see all changes that we made.
+
+52
+06:03.180 --> 06:04.310
+I'll clean my console
+
+53
+06:07.300 --> 06:07.950
+and here
+
+54
+06:07.980 --> 06:13.560
+let's add these files my typing git add all
+
+55
+06:16.480 --> 06:25.250
+and commit the changes to our repo git commit -m and you can tell whatever you like but here I'll
+
+56
+06:25.250 --> 06:31.860
+say generate question model via artisan
+
+57
+06:34.400 --> 06:37.250
+model generator.
+
+58
+06:40.800 --> 06:45.890
+OK now let's push the changes to our remote repository.
+
+59
+06:45.900 --> 06:58.660
+git push origin lesson-2.
+
+60
+06:58.740 --> 06:59.630
+All right
+
+61
+06:59.640 --> 07:11.470
+now if we switch to master branch git checkout master.
+
+62
+07:12.420 --> 07:16.240
+We are not going to have our code that we already pushed up.
+
+63
+07:16.290 --> 07:17.760
+So here
+
+64
+07:20.610 --> 07:27.150
+we don't have question model and create question table migration file.
+
+65
+07:27.260 --> 07:32.840
+It's no problem actually what we have to do is merge our master branch with our new branch.
+
+66
+07:34.930 --> 07:43.800
+So git merge lesson-2 ok
+
+67
+07:47.070 --> 07:53.510
+as we can see everything that we merged in is available on master branch. Last
+
+68
+07:53.550 --> 08:05.240
+let's also push our master branch to our remote repo git push origin master.
+
+69
+08:09.720 --> 08:10.480
+OK great
+
+70
+08:10.560 --> 08:16.200
+So now that we have questions table in our database and a question model that represent that table for
+
+71
+08:16.230 --> 08:23.430
+our project. In the next lesson we are going to pre-populate the questions table as well as users table with
+
+72
+08:23.430 --> 08:27.180
+some data using something called modal factories.
